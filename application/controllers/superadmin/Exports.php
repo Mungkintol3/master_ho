@@ -11,7 +11,8 @@ class Exports extends CI_Controller
 		$data   = array(
  			'pegawai'		=>  $this->m_admin->getData("tbl_pegawai")->result()
  		);
-		$this->load->view("exports",$data);
+		$this->template->load("template/template","superadmin/exports",$data);
+		//$this->load->view("exports",$data);
 	}
 
 
