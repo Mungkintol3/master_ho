@@ -41,13 +41,18 @@ The above copyright notice and this permission notice shall be included in all c
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item ">
+          <li class="nav-item <?php if ($url == 'dashboard'){
+            echo 'active';
+
+          }?>">
             <a class="nav-link" href="<?php echo base_url("superadmin/dashboard");?>">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item <?php if ($url == 'karyawan'){
+            echo 'active' ;
+          }?>">
             <a class="nav-link" href="<?php echo base_url()?>superadmin/karyawan">
               <i class="material-icons">person</i>
               <p>Karyawan</p>

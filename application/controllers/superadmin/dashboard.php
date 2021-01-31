@@ -16,10 +16,12 @@ class Dashboard extends CI_Controller
 
 	public function index()
 	{
-		$this->load->view('template/header');
+
+		$data['url']=  $this->uri->segment(2);
+		$this->load->view('template/header',$data);
 		$this->load->view('superadmin/dashboard');
 		$this->load->view('template/footer');
-		$this->output->cache(1);
+		
 		
 	}
 
