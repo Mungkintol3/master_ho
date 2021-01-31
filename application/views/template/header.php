@@ -54,9 +54,33 @@ The above copyright notice and this permission notice shall be included in all c
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="<?php echo base_url()?>superadmin/karyawan">
+              <i class="material-icons">person</i>
+              <p>Tambah Data Jabatan</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?php echo base_url()?>superadmin/karyawan">
+              <i class="material-icons">person</i>
+              <p>Tambah Data Golongan</p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="#">
               <i class="material-icons">content_paste</i>
-              <p>Table List</p>
+              <p>Input Histori Golongan</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?php echo base_url()?>superadmin/karyawan">
+              <i class="material-icons">person</i>
+              <p>Input Penilaiain Pegawai</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?php echo base_url()?>superadmin/karyawan">
+              <i class="material-icons">person</i>
+              <p>Input Poin Pegawai</p>
             </a>
           </li>
           <li class="nav-item">
