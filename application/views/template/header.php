@@ -25,7 +25,7 @@ The above copyright notice and this permission notice shall be included in all c
   <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/assets/css/font-google.css" />
   <link rel="stylesheet" href="<?= base_url() ?>/assets/font-awesome/css/font-awesome.min.css">
   <!-- CSS Files -->
-  <link href="<?php echo base_url()?>assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+  <link href="<?php echo base_url()?>assets/css/material-dashboard.css" rel="stylesheet" />
 </head>
 
 <body class="">

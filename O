@@ -1,0 +1,74 @@
+[33mcommit ef52f7ace4011653c1cde84c0c76c2dd35e63720[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: dasep12 <depiyawandasep13@gmail.com>
+Date:   Sun Jan 31 12:37:30 2021 +0700
+
+    t
+
+[33mcommit 4ff0df74cfc03cfe79bf39f073bfb45250f5c47b[m
+Merge: 21e1c98 a99b76e
+Author: dasep12 <depiyawandasep13@gmail.com>
+Date:   Sun Jan 31 12:35:11 2021 +0700
+
+    stash
+
+[33mcommit a99b76e616d0bb7ef72b6cd871a0d40917711cc6[m
+Author: Murry Febriansyah putra -niomic <murryfebriansyah1@gmail.com>
+Date:   Sun Jan 31 19:31:41 2021 +0700
+
+    cache delete
+
+[33mcommit 21e1c9873dd4776b18c6ed3d74fa4a46f056bb41[m
+Author: dasep12 <depiyawandasep13@gmail.com>
+Date:   Sun Jan 31 12:32:59 2021 +0700
+
+    revisi merge
+
+[33mcommit e326e4659acf66c293b29c943108c7e86c13989a[m
+Merge: 32e95b1 9a2fcee
+Author: dasep12 <depiyawandasep13@gmail.com>
+Date:   Sun Jan 31 12:07:02 2021 +0700
+
+    Merge branch 'main' of https://github.com/Mungkintol3/master_ho
+
+[33mcommit 9a2fceeae0df150443057d93368b8680f1d2bee7[m
+Merge: a133ac1 f5dcb73
+Author: Murry Febriansyah putra -niomic <murryfebriansyah1@gmail.com>
+Date:   Sun Jan 31 18:32:04 2021 +0700
+
+    edit profile karyawan
+
+[33mcommit a133ac1f38a23a30cc874164f5015679f9284db6[m
+Author: Murry Febriansyah putra -niomic <murryfebriansyah1@gmail.com>
+Date:   Sun Jan 31 18:30:01 2021 +0700
+
+    edit profile karyawan
+
+[33mcommit 32e95b10bf1340a7f700f3a1be0e56ad41e5679a[m
+Author: dasep12 <depiyawandasep13@gmail.com>
+Date:   Sun Jan 31 12:06:30 2021 +0700
+
+    db upload
+
+[33mcommit f5dcb73bca0a59d826e1f565baf1ef8a2058ab2f[m
+Author: dasep12 <depiyawandasep13@gmail.com>
+Date:   Sun Jan 31 11:09:32 2021 +0700
+
+    create first project
+
+[33mcommit fd7fb52ceb65aaeebff8876eb4f53d207ed86268[m
+Author: dasep12 <depiyawandasep13@gmail.com>
+Date:   Sun Jan 31 08:35:21 2021 +0700
+
+    tes
+
+[33mcommit 1acb456fce955385840b9a516c9334552d082193[m
+Author: Murry Febriansyah putra -niomic <murryfebriansyah1@gmail.com>
+Date:   Sun Jan 31 15:02:08 2021 +0700
+
+    master data HO
+
+[33mcommit 5d52921e4459d624db5b0dae5d48e7a38fef4b92[m
+Author: Mungkintol3 <76930054+Mungkintol3@users.noreply.github.com>
+Date:   Sun Jan 31 14:58:38 2021 +0700
+
+    Initial commit
