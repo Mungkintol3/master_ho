@@ -19,6 +19,7 @@ class Dashboard extends CI_Controller
 		$this->load->view('template/header');
 		$this->load->view('superadmin/dashboard');
 		$this->load->view('template/footer');
+
 		$this->output->cache(1);
 		
 	}

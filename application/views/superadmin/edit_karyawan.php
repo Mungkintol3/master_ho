@@ -37,57 +37,57 @@
                 			<tr class="text-right">
                 				<td class="text-left">NPK</td>
                 				<td>:</td>
-                				<td>220927</td>
+                				<td><?= $karyawan->npk ?></td>
                 			</tr>
                 			<tr class="text-right">
                 				<td class="text-left">Nama</td>
                 				<td>:</td>
-                				<td>Mury Febriansyah Putra</td>
+                				<td><?= $karyawan->nama ?></td>
                 			</tr>
                 			<tr class="text-right">
                 				<td class="text-left">NIK</td>
                 				<td>:</td>
-                				<td>3172021402980003</td>
+                				<td><?= $karyawan->nik ?></td>
                 			</tr>
                 			<tr class="text-right">
                 				<td class="text-left">NPWP</td>
                 				<td>:</td>
-                				<td>82.939.497.2-042.000</td>
+                				<td><?= $karyawan->npwp ?></td>
                 			</tr>
                 			<tr class="text-right">
                 				<td class="text-left">Kartu Keluarga</td>
                 				<td>:</td>
-                				<td>3172020003102</td>
+                				<td><?= $karyawan->no_kk ?></td>
                 			</tr>
                 			<tr class="text-right">
                 				<td class="text-left">Tempat,Tanggal Lahir</td>
                 				<td>:</td>
-                				<td>JAKARTA , 14 Febuari 1998</td>
+                				<td><?= $karyawan->tempat_lahir . "," . $karyawan->tgl_lahir ?></td>
                 			</tr>
                 			<tr class="text-right">
                 				<td class="text-left">Alamat KTP</td>
                 				<td>:</td>
-                				<td>Jl. Warakas IV GG.14 No.30 Rt.011/Rw.011 Jakarta Utara</td>
+                				<td><?= $karyawan->alamat ?></td>
                 			</tr>
                 			<tr class="text-right">
                 				<td class="text-left">Alamat Sekarang</td>
                 				<td>:</td>
-                				<td>Jl. Warakas IV GG.14 No.30 Rt.011/Rw.011 Jakarta Utara</td>
+                				<td><?= $karyawan->domisili ?></td>
                 			</tr>
                 			<tr class="text-right">
                 				<td class="text-left">Nomor Telepon</td>
                 				<td>:</td>
-                				<td>087886511096</td>
+                				<td><?= $karyawan->no_telpon ?></td>
                 			</tr>
                 			<tr class="text-right">
                 				<td class="text-left">Nomor Kontak Darurat</td>
                 				<td>:</td>
-                				<td>M.Mulyono - 085612847212</td>
+                				<td><?= $karyawan->kontak_darurat ?></td>
                 			</tr>
                 			<tr class="text-right">
                 				<td class="text-left">Golongan Darah</td>
                 				<td>:</td>
-                				<td>A</td>
+                				<td><?= $karyawan->gol_darah ?></td>
                 			</tr>
 
                 		</table>
