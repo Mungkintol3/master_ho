@@ -26,7 +26,11 @@ class TambahKaryawan extends CI_Controller {
                 }
 
 		}
- 		$this->load->view('form_add_pegawai',$data);
+
+		$data1['url'] = $this->uri->segment(2);
+ 		$this->load->view('template/header',$data1);
+ 		$this->load->view('superadmin/form_add_pegawai',$data);
+ 		$this->load->view('template/footer');
  	}
 
 
@@ -46,48 +50,66 @@ class TambahKaryawan extends CI_Controller {
  		foreach($sheet as $row){
 	            if($numrow > 1){
 	 			//cek nisn sudah terdaftar apa belum di master siswa
-				$cekNPK = $this->m_admin->cari(array("npk" => $row['C']),"tbl_pegawai")->num_rows();
+				$cekNPK = $this->m_admin->cari(array("npk" => $row['B']),"tbl_karyawan")->num_rows();
 	            	if($cekNPK > 0){
-	            		$this->session->set_flashdata("error","NPK " . $row['C'] . " Sudah Terdaftar di Master Karyawan");
-	            		redirect("TambahKaryawan");
+	            		$this->session->set_flashdata("error","NPK " . $row['B'] . " Sudah Terdaftar di Master Karyawan");
+	            		redirect("superadmin/TambahKaryawan");
 					}else {
 							// push data karyawan ke tabel karyawan
 			                array_push($data, array(
-			                	'id_user'				=> md5($row['C']) ,
-			                	'nama'					=> $row['B'] ,
-			                	'npk'					=> $row['C'] ,
-			                	'nik'					=> $row['D'] ,
-			                	'no_kk'					=> $row['E'] ,
-			                	'tempat_lahir'			=> $row['F'] ,
-			                	'tgl_lahir'				=> $row['G'] ,
-			                	'bpjs_kesehatan'		=> $row['H'] ,
-			                	'bpjs_ketenagakerjaan'	=> $row['I'] ,
-			                	'divisi'				=> $row['J'] ,
-			                	'departement'			=> $row['K'] ,
-			                	'posisi'				=> $row['L'] ,
-			                	'wilayah'				=> $row['M'] ,
-			                	'status_karyawan'		=> $row['N'] ,
-			                	'company'				=> $row['O'] ,
-			                	'join_date'				=> $row['P'] ,
-			                	'usia'					=> $row['Q'] ,
-			                	'sertifikasi_terbaru'	=> $row['R'] ,
-			                	'tgl_sertifikasi'		=> $row['S'] ,
-			                	'kel_jabatan'			=> $row['T'] ,
-			                	'gol_kerja'				=> $row['U'] ,
-			                	'status_kerja'			=> $row['V'] ,
-			                	'latest_promosi'		=> $row['W'] ,
+			                	'id_user'					=> md5($row['B']) ,
+			                	'npk'						=> $row['B'] ,
+			                	'nama'						=> $row['C'] ,
+			                	'divisi'					=> $row['D'] ,
+			                	'departement'				=> $row['E'] ,
+			                	'position'					=> $row['F'] ,
+			                	'wilayah'					=> $row['G'] ,
+			                	'gender'					=> $row['H'] ,
+			                	'martial_status'			=> $row['I'] ,
+			                	'address'					=> $row['J'] ,
+			                	'tgl_lahir'					=> $row['K'] ,
+			                	'age'						=> $row['L'] ,
+			                	'no_telp'					=> $row['M'] ,
+			                	'email'						=> $row['N'] ,
+			                	'gol_darah'					=> $row['O'] ,
+			                	'no_ktp'					=> $row['P'] ,
+			                	'no_kk'						=> $row['Q'] ,
+			                	'bpjs_kesehatan'			=> $row['R'] ,
+			                	'bpjs_tenagakerja'			=> $row['S'] ,
+			                	'no_dplk'					=> $row['T'] ,
+			                	'no_npwp'					=> $row['U'] ,
+			                	'nama_bank'					=> $row['V'] ,
+			                	'no_rekening'				=> $row['W'] ,
+			                	'status_pajak'				=> $row['X'] ,
+			                	'status_kawin'				=> $row['Y'] ,
+			                	'no_pkwt'					=> $row['Z'] ,
+			                	//
+			                	'promosi_jabatan'			=> $row['AA'] ,
+			                	'mutasi_jabatan'			=> $row['AB'] ,
+			                	'mutasi_jabatan'			=> $row['AC'] ,
+			                	'employment_status'			=> $row['AD'] ,
+			                	'company'					=> $row['AE'] ,
+			                	'join_date'					=> $row['AF'] ,
+			                	'length_of_service'			=> $row['AG'] ,
+			                	'education_join'			=> $row['AH'] ,
+			                	'education_update'			=> $row['AI'] ,
+			                	'kel_jabatan'				=> $row['AJ'] ,
+			                	'gol_kerja'					=> $row['AK'] ,
+			                	'latest_promotion'			=> $row['AL'] ,
 			                ));
 					}
 	            }
             		$numrow++; // Tambah 1
         }
+
+
         	if($cekNPK > 0){
         		echo "";
         	}else {
-        		$input = $this->m_admin->inputArray("tbl_pegawai",$data);
+        		$input = $this->m_admin->inputArray("tbl_karyawan",$data);
         			if($input){
         				$this->session->set_flashdata("success","Data telah Di daftar");
-	            		redirect("TambahKaryawan");
+	            		redirect("superadmin/TambahKaryawan");
         			}else {
         				echo "Gagal";
         			}

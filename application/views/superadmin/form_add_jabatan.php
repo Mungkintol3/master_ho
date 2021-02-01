@@ -1,6 +1,9 @@
-<?php include 'header.php'; ?>
-	<section class="container">
-		<div class="row">
+
+
+ <div class="content" style="background-image: url('assets/img/sigap.png')">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
 		<?php if($this->session->flashdata("success"))  { ?>
 			<div class="alert alert-info">
 				<?= $this->session->flashdata("success") ?>
@@ -39,7 +42,7 @@
 					alert("nama jabatan kosong")
 				}else {
 					$.ajax({
-						url : "<?= base_url('Jabatan/add') ?>" ,
+						url : "<?= base_url('superadmin/Jabatan/add') ?>" ,
 						method : "POST" ,
 						data : new FormData(this),
 			            processData : false ,
@@ -52,12 +55,13 @@
 							$("#submit").attr("disabled",false);		
 						},
 						success : function(e){
-							alert(e)
+							alert(e);
+							window.reload();
 						}
 					})
 				}
 			})
 		})
 	</script>
-</body>
-</html>
+</div>
+</div>

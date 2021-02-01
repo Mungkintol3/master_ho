@@ -1,5 +1,6 @@
 
-	<section class="container">
+ <div class="content" style="background-image: url('assets/img/sigap.png')">
+        <div class="container-fluid">
 		<div class="row">
 		<?php if($this->session->flashdata("success"))  { ?>
 			<div class="alert alert-info">
@@ -11,37 +12,35 @@
 			</div>
 		<?php } ?>
 		<h4>Tambah Data Pegawai</h4>
-		<a href="<?= base_url('assets/upload/format.xlsx') ?>">download format upload</a>
+		<a href="<?= base_url('assets/upload/format/form_kar_upload.xlsx') ?>">download format upload</a>
 			<form method="post" onsubmit="return validasi()" enctype="multipart/form-data" action="" id="uploadpegawai">
 				<label>Posting File</label>
-				<div class="form-group">
 					<input type="file" onchange="return cekexe()" name="file" id="file" class="form-control">
-				</div>
 				<button type="submit" name="submit" class="btn btn-info">review</button>
 			</form>
 		</div>
 
 		<?php 
 			if(isset($_POST['submit'])){ ?>
-		<form action="<?= base_url('TambahKaryawan/upload') ?>" method="post" >
+		<form action="<?= base_url('superadmin/TambahKaryawan/upload') ?>" method="post" >
 			<table class="table">
 				<thead>
 					<tr>
 						<th>No</th>
 						<th>Nama</th>
 						<th>NPK</th>
-						<th>Tempat,Tanggal Lahir</th>
-						<th>Status Karyawan</th>
+						<th>Wilayah</th>
+						<th>Divisi</th>
 					</tr>
 				</thead>
 				<tbody>
 				<?php $no =1 ; foreach($sheet as $r ) :  ?>
 					<tr>
 						<td><?= $no++ ?></td>
+						<td><?= $r['C'] ?></td>
 						<td><?= $r['B'] ?></td>
-						<td><?= $r['D'] ?></td>
-						<td><?= $r['F'] .  "," .$r['G']  ?></td>
-						<td><?= $r['N']  ?></td>
+						<td><?= $r['G']  ?></td>
+						<td><?= $r['D']  ?></td>
 					</tr>
 				<?php endforeach; ?>
 				</tbody>
@@ -52,7 +51,8 @@
 		</form>	
 		<?php	}
 		?>
-	</section>
+</div>
+</div>
 
 	<script type="text/javascript">
 		function cekexe(){
@@ -74,5 +74,3 @@
 			}
 		}
 	</script>
-</body>
-</html>

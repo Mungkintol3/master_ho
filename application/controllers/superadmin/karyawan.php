@@ -16,7 +16,7 @@ class Karyawan extends CI_Controller
 
 	public function index()
 	{
-		$karyawan = $this->m_admin->getData("tbl_pegawai")->result();
+		$karyawan = $this->m_admin->getData("tbl_karyawan")->result();
 		$data = array(
 			'karyawan' =>  $karyawan ,
 			'url' 	   =>   $this->uri->segment(2)

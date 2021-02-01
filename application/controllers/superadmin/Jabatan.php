@@ -6,9 +6,25 @@
  class Jabatan extends CI_Controller
  {
  	
+
+ 	public function index()
+ 	{
+
+ 		$data = array(
+ 		  		'url' => $this->uri->segment(2) ,
+ 		  		'jabatan'	=> $this->m_admin->getData("tbl_jabatan")->result()
+ 		  );
+ 		$this->load->view('template/header',$data);
+		$this->load->view('superadmin/jabatan',$data);
+		$this->load->view('template/footer');
+ 	}
+
  	public function form_add()
  	{
- 		$this->load->view("form_add_jabatan");
+ 		$data['url']=  $this->uri->segment(2);
+		$this->load->view('template/header',$data);
+		$this->load->view('superadmin/form_add_jabatan');
+		$this->load->view('template/footer');
  	}
 
  	public function update()
@@ -54,9 +70,10 @@
  	}
 
 
- 	public function delete()
+ 	public function delete($id)
  	{
- 		$id = $this->input->get("id");
+ 		//$id = $this->input->get("id");
  		$this->m_admin->delete("tbl_jabatan",array("id" => $id));
+ 		redirect('superadmin/Jabatan');
  	}
  }
