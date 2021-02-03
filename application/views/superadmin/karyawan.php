@@ -26,7 +26,7 @@
                               <td><?= $result->departement ?></td>
                               <td><?= $result->gol_kerja ?></td>
                       				<td class="td-actions text-right">
-                                <a href="#" class="btn-danger btn-sm">
+                                <a href="<?= base_url('superadmin/Karyawan/Edit_karyawan/' . $result->id_user) ?>" class="btn-danger btn-sm">
       					                    <i class="material-icons">edit</i>
                                 </a>
                                 <a href="#" class="btn-danger btn-sm">

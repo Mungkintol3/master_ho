@@ -36,7 +36,7 @@ class Karyawan extends CI_Controller
 	public function Edit_karyawan($id)
 	{
 		$data = array(
-			'karyawan'		=> $this->m_admin->cari(array("id_user"=> $id),"tbl_pegawai")->row() ,
+			'karyawan'		=> $this->m_admin->cari(array("id_user"=> $id),"tbl_karyawan")->row() ,
 			'url' 			=> $this->uri->segment(2)
 		);
 		//$this->output->cache(1);

@@ -102,6 +102,25 @@ The above copyright notice and this permission notice shall be included in all c
               <p>Perbarui PKWT</p>
             </a>
           </li>
+
+          <li  class="nav-item <?php if ($url == 'Career'){
+            echo 'active' ;
+          }?>">
+            <a class="nav-link" href="<?= base_url('superadmin/Career') ?>">
+              <i class="material-icons">library_books</i>
+              <p>Input Histori Karir</p>
+            </a>
+          </li>
+
+          <li  class="nav-item <?php if ($url == 'Company'){
+            echo 'active' ;
+          }?>">
+            <a class="nav-link" href="<?= base_url('superadmin/Company') ?>">
+              <i class="material-icons">library_books</i>
+              <p>Input Histori Company</p>
+            </a>
+          </li>
+
           <li class="nav-item">
             <a class="nav-link" href="#">
               <i class="material-icons">bubble_chart</i>

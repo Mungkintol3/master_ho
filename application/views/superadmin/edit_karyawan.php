@@ -47,12 +47,12 @@
                 			<tr class="text-right">
                 				<td class="text-left">NIK</td>
                 				<td>:</td>
-                				<td><?= $karyawan->nik ?></td>
+                				<td><?= $karyawan->no_ktp ?></td>
                 			</tr>
                 			<tr class="text-right">
                 				<td class="text-left">NPWP</td>
                 				<td>:</td>
-                				<td><?= $karyawan->npwp ?></td>
+                				<td><?= $karyawan->no_npwp ?></td>
                 			</tr>
                             <tr class="text-right">
                                 <td class="text-left">Status Pajak</td>
@@ -72,7 +72,7 @@
                 			<tr class="text-right">
                 				<td class="text-left">Tempat,Tanggal Lahir</td>
                 				<td>:</td>
-                				<td><?= $karyawan->tempat_lahir . "," . $karyawan->tgl_lahir ?></td>
+                				<td><?=  $karyawan->tgl_lahir ?></td>
                 			</tr>
                             <tr class="text-right">
                                 <td class="text-left">Jenis Kelamin</td>
@@ -87,17 +87,17 @@
                 			<tr class="text-right">
                 				<td class="text-left">Alamat KTP</td>
                 				<td>:</td>
-                				<td><?= $karyawan->alamat ?></td>
+                				<td><?= $karyawan->alamat_ktp ?></td>
                 			</tr>
                 			<tr class="text-right">
                 				<td class="text-left">Alamat Sekarang</td>
                 				<td>:</td>
-                				<td><?= $karyawan->domisili ?></td>
+                				<td><?= $karyawan->address ?></td>
                 			</tr>
                 			<tr class="text-right">
                 				<td class="text-left">Nomor Telepon</td>
                 				<td>:</td>
-                				<td><?= $karyawan->no_telpon ?></td>
+                				<td><?= $karyawan->no_telp ?></td>
                 			</tr>
                             <tr class="text-right">
                                 <td class="text-left">Email</td>
@@ -129,52 +129,52 @@
                             <tr class="text-left">
                                 <td class="text-left">Tanggal Bergabung</td>
                                 <td>:</td>
-                                <td>23 November 2018</td>
+                                <td><?= $karyawan->join_date ?></td>
                             </tr>
                             <tr class="text-left">
                                 <td class="text-left">Department</td>
                                 <td>:</td>
-                                <td>HC OPS</td>
+                                <td><?= $karyawan->departement ?></td>
                             </tr>
                             <tr class="text-left">
                                 <td class="text-left">Division</td>
                                 <td>:</td>
-                                <td>HC</td>
+                                <td><?= $karyawan->divisi ?></td>
                             </tr>
                             <tr class="text-left">
                                 <td class="text-left">Position</td>
                                 <td>:</td>
-                                <td>Staff Master Data</td>
+                                <td><?= $karyawan->position ?></td>
                             </tr>
                             <tr class="text-left">
                                 <td class="text-left">Kelompok Jabatan</td>
                                 <td>:</td>
-                                <td>Admin 2</td>
+                                <td><?= $karyawan->kel_jabatan ?></td>
                             </tr>
                             <tr class="text-left">
                                 <td class="text-left">Wilayah</td>
                                 <td>:</td>
-                                <td>Head Office</td>
+                                <td><?= $karyawan->wilayah ?></td>
                             </tr>
                             <tr class="text-left">
                                 <td class="text-left">Nomor BPJS Ketenagakerjaan</td>
                                 <td>:</td>
-                                <td>120J12345</td>
+                                <td><?= $karyawan->bpjs_tenagakerja ?></td>
                             </tr>
                             <tr class="text-left">
                                 <td class="text-left">Nomor BPJS Kesehatan</td>
                                 <td>:</td>
-                                <td>000124567891</td>
+                                <td><?= $karyawan->bpjs_kesehatan ?></td>
                             </tr>
                             <tr class="text-left">
                                 <td class="text-left">No.DPLK/Asuransi</td>
                                 <td>:</td>
-                                <td>0001G31219800</td>
+                                <td><?= $karyawan->no_dplk ?></td>
                             </tr>
                             <tr class="text-left">
                                 <td class="text-left">Nama Bank / Nomor Rekening</td>
                                 <td>:</td>
-                                <td>Permata / 4146548011 </td>
+                                <td><?= $karyawan->nama_bank ?> / <?= $karyawan->no_rekening ?> </td>
                             </tr>
 
                         </table>
