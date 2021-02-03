@@ -1,9 +1,9 @@
 <div class="content">
 <div class="col-md-12">
-  <a data-toggle="modal" data-target="#addjabatan" class="btn btn-danger">Tambah Data </a>
+  <a data-toggle="modal" data-target="#addgolongan" class="btn btn-danger">Tambah Data </a>
               <div class="card card-plain">
                 <div class="card-header card-header-info">
-                  <h4 class="card-title mt-0"> DAFTAR JABATAN</h4>
+                  <h4 class="card-title mt-0"> DAFTAR GOLONGAN KERJA</h4>
                   <p class="card-category"> SIGAP PRIMA ASTREA & SIGAP GARDA PRATAMA</p>
                 </div>
                 <div class="card-body">
@@ -11,23 +11,23 @@
                     <table class="table table-hover">
                       <thead class="">
                         <th class="text-center">NO</th>
-                        <th>Kode Jabatan</th>
-                      	<th >Nama Jabatan</th>
+                        <th>Kode Golongan</th>
+                      	<th>Golongan Kerja</th>
                   		<th>Keterangan</th>
                   		<th class="text-right">Action</th>
                        </thead>
                   			<tbody>
-                          <?php foreach($jabatan as $result) :  ?>
+                          <?php $no = 1 ;  foreach($golongan as $result) :  ?>
                       			<tr>
-                      				<td class="text-center">1</td>
-                      				<td><?= $result->kode_jabatan ?></td>
-                              <td><?= $result->nama_jabatan ?></td>
+                      				<td class="text-center"><?= $no++ ?></td>
+                      				<td><?= $result->kode_golongan ?></td>
+                              <td><?= $result->golongan_kerja ?></td>
                               <td><?= $result->keterangan ?></td>
                       				<td class="td-actions text-right">
-                                <a  data-id="<?php echo $result->id ?>" data-toggle="modal" data-target="#detail_jab" class="btn-danger btn-sm">
+                                <a  data-id="<?php echo $result->id ?>" data-toggle="modal" data-target="#detail_gol" class="btn-danger btn-sm">
       					                    <i class="material-icons">edit</i>
                                 </a>
-                                <a onclick="return confirm('hapus ?')" href="<?= base_url('superadmin/Jabatan/delete/'. $result->id) ?>" class="btn-danger btn-sm">
+                                <a onclick="return confirm('hapus ?')" href="<?= base_url('superadmin/Golongan/delete/'. $result->id) ?>" class="btn-danger btn-sm">
                                     <i class="material-icons">close</i>
                                 </a>
                     					</td>
@@ -41,22 +41,22 @@
       </div>
   </div>
  <!-- modal form tambah jabatan -->
- <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="addjabatan" class="modal fade">
-     <div class="modal-dialog modal-xl">
+ <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="addgolongan" class="modal fade">
+     <div class="modal-dialog">
          <div class="modal-content">
              <div class="modal-header">
-              Tambah Data Jabatan
+              Tambah Data Golongan
                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
              </div>
              <div class="modal-body" id="hstatus">
-                <form method="post"  action="#" id="addjabatan">
-                  <label>Kode Jabatan</label>
+                <form method="post"  action="#" id="addgolongan">
+                  <label>Kode Golongan</label>
                   <div class="form-group">
-                    <input type="text"  name="kode_jabatan" id="kode_jabatan" class="form-control">
+                    <input type="text"  name="kode_golongan" id="kode_golongan" class="form-control">
                   </div>
-                  <label>Nama Jabatan</label>
+                  <label>Golongan Kerja</label>
                   <div class="form-group">
-                    <input type="text"  name="nama_jabatan" id="nama_jabatan" class="form-control">
+                    <input type="text"  name="golongan_kerja" id="golongan_kerja" class="form-control">
                   </div>
                   <label>Keterangan</label>
                   <div class="form-group">
@@ -72,40 +72,39 @@
 <!-- end of modal  -->
 
  <!-- modal edit jabatan -->
- <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="detail_jab" class="modal fade">
+ <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="detail_gol" class="modal fade">
      <div class="modal-dialog modal-xl">
          <div class="modal-content">
              <div class="modal-header">
-             Edit Data Jabatan
+             Edit Data Golongan
                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
              </div>
-             <form class="form-horizontal"  action="<?php echo base_url('superuser/Jabatan/update') ?>" method="post">
+
              <div class="modal-body" id="showup">
                 
              </div>
              </div>
          </div>
-     </form>
      </div>
 <!-- end of modal  -->
 
   <script type="text/javascript">
     $(function(){
-      $("#addjabatan").on('submit',function(e){
+      $("#addgolongan").on('submit',function(e){
         var nama  , kode , keterangan ;
-        nama = document.getElementById('nama_jabatan').value ;
-        kode = document.getElementById('kode_jabatan').value ;
+        nama = document.getElementById('golongan_kerja').value ;
+        kode = document.getElementById('kode_golongan').value ;
         ket = document.getElementById('keterangan').value ;
         e.preventDefault();
-        if(document.getElementById('kode_jabatan').value == "" ){
-          alert("kode jabatan kosong")
-        }else if(document.getElementById('nama_jabatan').value == "" ){
-          alert("nama jabatan kosong")
-        }else {
+        if(kode == "" ){
+          alert("kode golongan kerja kosong")
+        }else if(nama == "" ){
+          alert("nama golongan kerja kosong")
+        }else  {
           $.ajax({
-            url : "<?= base_url('superadmin/Jabatan/add') ?>" ,
+            url : "<?= base_url('superadmin/Golongan/add') ?>" ,
             method : "POST" ,
-            data :  "nama_jabatan=" + nama + "&kode_jabatan="+ kode + "&keterangan="+ ket, 
+            data :  "golongan_kerja=" + nama + "&kode_golongan="+ kode + "&keterangan="+ ket, 
             beforeSend : function(){
               $("#submit").attr("disabled",true);   
             },
@@ -114,7 +113,7 @@
             },
             success : function(e){
               alert(e);
-              window.location.href = "<?= base_url('superadmin/Jabatan') ?>"
+              window.location.href = "<?= base_url('superadmin/Golongan') ?>"
             }
           })
         } 
@@ -122,15 +121,14 @@
     })
 
 
-        $("#detail_jab").on("show.bs.modal",function(event){
+        $("#detail_gol").on("show.bs.modal",function(event){
           var div = $(event.relatedTarget);
           var modal = $(this);
           var id = div.data('id');
-
             
-            //kirim data ke controller supplier
+            //kirim data ke controller 
             $.ajax({
-              url : "<?php echo base_url("superadmin/Jabatan/modal") ?>",
+              url : "<?php echo base_url("superadmin/Golongan/modal") ?>",
               data : "id="+id ,
               method : "GET",
               success : function(response){

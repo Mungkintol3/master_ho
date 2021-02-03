@@ -6,9 +6,22 @@
  class Golongan extends CI_Controller
  {
  	
- 	public function form_add()
+ 	public function index()
  	{
- 		$this->load->view("form_add_golongan");
+ 		$data = array(
+ 		  		'url'		 => $this->uri->segment(2) ,
+ 		  		'golongan'	 => $this->m_admin->getData("tbl_golongan")->result()
+ 		  );
+ 		$this->load->view('template/header',$data);
+		$this->load->view('superadmin/golongan',$data);
+		$this->load->view('template/footer');
+ 	}
+
+ 	public function modal()
+ 	{
+ 		$id = $this->input->get("id");
+ 		$data['results']  = $this->m_admin->cari(array('id' => $id),"tbl_golongan")->row();
+ 		$this->load->view("superadmin/modal_data_golongan",$data);
  	}
 
 
@@ -56,9 +69,9 @@
  		$keterangan		 = $this->input->post("keterangan");
  		$id 			 = $this->input->post("id");
  		$data = array(
- 			"kode_golongan"			=> "C1" ,
-	 		"golongan_kerja"		=> "K2" ,
-	 		"keterangan"			=> ""
+ 			"kode_golongan"			=> $kode ,
+	 		"golongan_kerja"		=> $nama,
+	 		"keterangan"			=> $keterangan
 	 	);
 	 	$update = $this->m_admin->update($data,"tbl_golongan",array("id"	=> $id));
 	 		if($update == true){
@@ -90,9 +103,11 @@
  		}
  	}
 
- 	public function delete()
+ 	public function delete($id)
  	{
- 		$id = $this->input->get("id");
- 		$this->m_admin->delete("tbl_golongan",array("id" => 3));
+ 		$del = $this->m_admin->delete("tbl_golongan",array("id" => $id));
+ 			if($del){
+ 				redirect('superadmin/Golongan');
+ 			}
  	}
  }
