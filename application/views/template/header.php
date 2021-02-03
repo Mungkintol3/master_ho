@@ -26,7 +26,8 @@ The above copyright notice and this permission notice shall be included in all c
   <link rel="stylesheet" href="<?= base_url() ?>/assets/font-awesome/css/font-awesome.min.css">
   <!-- CSS Files -->
   <link href="<?php echo base_url()?>assets/css/material-dashboard.css" rel="stylesheet" />
-    <script src="<?php echo base_url()?>assets/js/core/jquery.min.js"></script>
+   <!--  <script src="<?php echo base_url()?>assets/js/core/jquery.min.js"></script> -->
+    <script src="<?php echo base_url()?>assets/js/jquery-3-1.min.js"></script>
 </head>
 
 <body class="">

@@ -19,12 +19,11 @@
 		$this->load->view('template/footer');
  	}
 
- 	public function form_add()
+ 	public function modal()
  	{
- 		$data['url']=  $this->uri->segment(2);
-		$this->load->view('template/header',$data);
-		$this->load->view('superadmin/form_add_jabatan');
-		$this->load->view('template/footer');
+ 		$id = $this->input->get("id");
+ 		$data['results']  = $this->m_admin->cari(array('id' => $id),"tbl_jabatan")->row();
+ 		$this->load->view("superadmin/modal_data_jabatan",$data);
  	}
 
  	public function update()
@@ -32,15 +31,17 @@
  		$kode 			 = $this->input->post("kode_jabatan");
  		$nama  			 = $this->input->post("nama_jabatan");
  		$keterangan		 = $this->input->post("keterangan");
- 		//$id 			 = $this->input->post("id");
+ 		$id 			 = $this->input->post("id");
  		$data = array(
- 			"kode_jabatan"			=> "B1" ,
- 			"nama_jabatan"			=> "OFFICER" ,
- 			"keterangan"			=> ""
+ 			"kode_jabatan"			=> $kode ,
+ 			"nama_jabatan"			=> $nama ,
+ 			"keterangan"			=> $keterangan
 	 	);
-	 	$update = $this->m_admin->update($data,"tbl_jabatan",array("id"	=> 1));
+	 	$update = $this->m_admin->update($data,"tbl_jabatan",array("id"	=> $id));
 	 		if($update == true){
 	 			echo "berhasil";
+	 		}else {
+	 			echo "gagal";
 	 		}
 
  	}
@@ -60,6 +61,7 @@
 	 			"nama_jabatan"			=> $nama ,
 	 			"keterangan"			=> $keterangan
 	 		);
+	 		//var_dump($data);
 	 		$input = $this->m_admin->inputData($data,"tbl_jabatan");
 	 			if($input == true){
 	 				echo "sukses";
