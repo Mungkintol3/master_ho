@@ -76,8 +76,10 @@ The above copyright notice and this permission notice shall be included in all c
               <p>Data Golongan</p>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
+          <li class="nav-item <?php if ($url == 'Golongan'){
+            echo 'active' ;
+          }?>">
+            <a class="nav-link" href="<?= base_url('superadmin/Golongan/add_histori_golongan_pegawai') ?>">
               <i class="material-icons">content_paste</i>
               <p>Input Histori Golongan</p>
             </a>
@@ -120,6 +122,7 @@ The above copyright notice and this permission notice shall be included in all c
               <p>Input Histori Company</p>
             </a>
           </li>
+
 
           <li class="nav-item">
             <a class="nav-link" href="#">

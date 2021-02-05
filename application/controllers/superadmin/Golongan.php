@@ -17,6 +17,8 @@
 		$this->load->view('template/footer');
  	}
 
+
+ 	//tampilkan data detail dari master golongan kerja
  	public function modal()
  	{
  		$id = $this->input->get("id");
@@ -25,42 +27,7 @@
  	}
 
 
- 	public function add_histori_golongan_pegawai()
- 	{
- 		$data   = array(
- 			'data' 			=>  $this->m_admin->getData("tbl_golongan")->result() ,
- 			'pegawai'		=>  $this->m_admin->getData("tbl_pegawai")->result()
- 		);
- 		$this->load->view("add_histori_golongan_pegawai",$data);
- 	}
-
- 	public  function input_histori()
- 	{
- 		$npk				 = $this->input->post("npk");
- 		$gol_lama 			 = $this->input->post("gol_sebelumnya");
- 		$gol_baru 			 = $this->input->post("gol_update");
- 		$tgl				 = $this->input->post("tgl");
-	 		$data = array(
-	 			"npk"					=> $npk ,
-	 			"id_user"				=> md5($npk) ,
-	 			"gol_update"			=> $gol_baru ,
-	 			"gol_sebelumnya"		=> $gol_lama ,
-	 			"tahun"					=> date("Y") ,
-	 			"tgl"					=> $tgl
-	 		);
-
-	 		$input = $this->m_admin->inputData($data,"histori_golongan");
-	 			if($input == true){
-			 		$data2 = array(
-			 			"gol_kerja"			=> $gol_baru
-			 		);
-			 		$this->m_admin->update($data2,"tbl_pegawai",array("npk"	=> $npk));
-			 		echo "sukses";
-	 			} else {
-	 				echo "gagal";
-	 			}			
- 	}
-
+ 	//update data golongan kerja dari master
  	public function update()
  	{
 
@@ -80,6 +47,8 @@
  	}
 
 
+
+ 	//tambah jenis golongan kerja 
  	public function add()
  	{
  		$kode 			 = $this->input->post("kode_golongan");
@@ -103,6 +72,7 @@
  		}
  	}
 
+ 	//hapus data golongan kerja dari master 
  	public function delete($id)
  	{
  		$del = $this->m_admin->delete("tbl_golongan",array("id" => $id));
@@ -110,4 +80,53 @@
  				redirect('superadmin/Golongan');
  			}
  	}
+
+
+
+ 	//histori golongan kerja karyawan
+ 	public function add_histori_golongan_pegawai()
+ 	{
+ 		$data   = array(
+ 			'data' 			=>  $this->m_admin->getData("tbl_golongan")->result() ,
+ 			'karyawan'		=>  $this->m_admin->getData("tbl_karyawan")->result() ,
+ 			'url'			=> ""
+ 		);
+ 		$this->load->view('template/header',$data);
+ 		$this->load->view("superadmin/add_histori_golongan_pegawai",$data);
+		$this->load->view('template/footer');
+ 	}
+
+ 	public  function input_histori()
+ 	{
+ 		$npk				 = $this->input->post("npk");
+ 		$gol_lama 			 = $this->input->post("gol_sebelumnya");
+ 		$gol_baru 			 = $this->input->post("gol_update");
+ 		$tgl				 = $this->input->post("tgl");
+ 		$id_user			 = $this->input->post("id_user");
+ 		$id 				 = $this->input->post("id");
+	 		$data = array(
+	 			"npk"					=> $npk ,
+	 			"id_user"				=> md5($npk) ,
+	 			"gol_update"			=> $gol_baru ,
+	 			"gol_sebelumnya"		=> $gol_lama ,
+	 			//"tahun"					=> date("Y") ,
+	 			"tgl"					=> $tgl
+	 		);
+	 		var_dump($data);
+
+	 		/*$input = $this->m_admin->inputData($data,"histori_golongan");
+	 			if($input == true){
+			 		$data2 = array(
+			 			"gol_kerja"			=> $gol_baru
+			 		);
+			 		$this->m_admin->update($data2,"tbl_pegawai",array("npk"	=> $npk));
+			 		echo "sukses";
+	 			} else {
+	 				echo "gagal";
+	 			}*/			
+ 	}
+
+
+
+ 	
  }
