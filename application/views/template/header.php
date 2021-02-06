@@ -78,7 +78,7 @@ The above copyright notice and this permission notice shall be included in all c
           </li>
           
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url()?>superadmin/karyawan">
+            <a class="nav-link" href="<?php echo base_url('superadmin/Nilai_karyawan/add_histori_nilai')?>">
               <i class="material-icons">person</i>
               <p>Input Penilaiain Pegawai</p>
             </a>
