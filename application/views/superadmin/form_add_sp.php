@@ -1,117 +1,139 @@
-<?php include 'header.php'; ?>
-	<section class="container">
-		<div class="row">
-		<?php if($this->session->flashdata("success"))  { ?>
-			<div class="alert alert-info">
-				<?= $this->session->flashdata("success") ?>
-			</div>
-		<?php }else if($this->session->flashdata("error"))  { ?>
-			<div class="alert alert-danger">
-				<?= $this->session->flashdata("error") ?>
-			</div>
-		<?php } ?>
-		<h4>Input Surat Peringatan</h4>
-			<form method="post"  action="#" id="addSP">
-				<label>NPK</label>
-				<div class="form-group">
-					<input type="text" readonly=""  name="npk" id="npk" class="form-control">
-					<button  type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal">cari npk</button>
-				</div>
-				<label>Nama</label>
-				<div class="form-group">
-					<input type="text" readonly=""  name="nama" id="nama" class="form-control">
-				</div>
-				<label>Tipe Surat Peringatan</label>
-				<div class="form-group">
-					<input type="text"  name="tipe_sp" id="tipe_sp" class="form-control">
-				</div>
-				<label>Tanggal</label>
-				<div class="form-group">
-					<input type="text"  name="tgl" id="tgl" class="form-control">
-				</div>
-				<label>Keterangan</label>
-				<div class="form-group">
-					<textarea id="keterangan" class="form-control" name="keterangan"></textarea>
-				</div>
-				<button type="submit" id="submit" class="btn btn-info">posting</button>
-			</form>
-		</div>
-	</section>
-<!-- Modal data  -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" >
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Cari Pegawai</h4>
-                    </div>
-                    <div class="modal-body">
-                        <table id="dataTables2" width="100%" class="table table-bordered table-hover table-striped">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>NPK</th>
-                                    <th>Nama</th>
-                                    <th>Pilih</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tbody>
-                                	<?php $no = 1 ; foreach($pegawai as $r) : ?>
-                                		<tr>
-                                			<td><?= $no++ ?></td>
-                                			<td><?= $r->npk ?></td>
-                                			<td><?= $r->nama ?></td>
-                                			<td><a class="btn btn-info btn-xs click"
-                                			 data-npk="<?= $r->npk ?>" 
-                                			 data-nama="<?= $r->nama ?>" 
-                                			 >pilih</a></td>
-                                		</tr>
-                                	<?php endforeach ?>
-                                </tbody>
-                            </tbody>
-                        </table>  
-                    </div>
+<div class="content">
+<div class="col-md-12">
+              <div class="card card-plain">
+                <div class="card-header card-header-info">
+                  <h4 class="card-title mt-0"> Rekap Surat Peringatan Karyawan</h4>
+                  <p class="card-category"> SIGAP PRIMA ASTREA & SIGAP GARDA PRATAMA</p>
                 </div>
-            </div>
-        </div>
-        <!-- end of modal pegawai -->
-	<script type="text/javascript">
-		$(function(){
-			$("#addSP").on('submit',function(e){
-				e.preventDefault();
-				if(document.getElementById('npk').value == "" ){
-					alert("npk masih kosong")
-				}else if(document.getElementById('tipe_sp').value == "" ){
-					alert("jenis surat Peringatan kosong")
-				}else if(document.getElementById('tgl').value == "" ){
-					alert("tanggal masih kosong")
-				}else {
-					$.ajax({
-						url : "<?= base_url('Surat_peringatan/add') ?>" ,
-						method : "POST" ,
-						data : new FormData(this),
-			            processData : false ,
-			            contentType : false ,
-			            cache  : false, 
-						beforeSend : function(){
-							$("#submit").attr("disabled",true);		
-						},
-						complete : function(){
-							$("#submit").attr("disabled",false);		
-						},
-						success : function(e){
-							alert(e)
-						}
-					})
-				}
-			})
-			$('.click').on('click',function(e){
-              document.getElementById("npk").value = $(this).attr('data-npk');
-              document.getElementById("nama").value = $(this).attr('data-nama');
-              $('#myModal').modal('hide');
-        	})
-		})
-	</script>
-</body>
-</html>
+                <div class="card-body">
+                  
+                    <div class="form-group">
+                      <button type="button " data-toggle="modal" data-target="#selectkaryawan" class="btn btn-success">Cari Karyawan <i class="fa fa-search"></i> </button>
+                    </div>
+                  <form id="addSP" method="post" class="form-horizontal">
+                    <div class="form-group">
+                      <input type="hidden" name="id" id="id">
+                      <input type="hidden" name="id_user" id="id_user">
+                      <input readonly="" type="text" id="nama" placeholder="Enter Nama" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                      <input readonly="" type="text" id="npk" placeholder="Enter NPK" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                      <input type="text"  name="tipe_sp" placeholder="Jenis Surat Peringatan" id="tipe_sp" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                      <textarea id="keterangan" placeholder="Keterangan" class="form-control" name="keterangan"></textarea>
+                    </div>
+
+                    
+
+                    <div class="form-group">
+                      <input  type="text" id="tanggal" placeholder="Tahun" class="form-control">
+                    </div>
+
+                    <button type="submit" class="btn btn-info">Simpan Perubahan</button>
+                  </form>
+              	</div>
+              </div>
+          </div>
+      </div>
+  </div>
+ <!-- modal form tambah jabatan -->
+ <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="selectkaryawan" class="modal fade">
+     <div class="modal-dialog modal-xl">
+         <div class="modal-content">
+             <div class="modal-header">
+             Data Karyawan
+                 <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+             </div>
+             <div class="modal-body" id="hstatus">
+                <table class="table">
+                  <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>NPK</th>
+                    <th>Divisi</th>
+                  </tr>
+                  <tbody>
+                    <?php $no = 1 ; foreach($karyawan as $f) : ?>
+                    <tr>
+                      <td><?= $no++ ?></td>
+                      <td>
+                        <a class="btn btn-success btn-sm click"
+                           data-npk="<?= $f->npk ?>" 
+                           data-id_user="<?= $f->id_user ?>" 
+                           data-id="<?= $f->id ?>"
+                           data-nama="<?= $f->nama ?>"
+                           >
+                            <?= $f->nama ?>
+                        </a>
+                      </td>
+                      <td><?= $f->npk ?></td>
+                      <td><?= $f->divisi ?></td>
+                    </tr>
+                    <?php endforeach ?>
+                  </tbody>
+                </table>
+                </div>
+             </div>
+         </div>
+     </form>
+     </div>
+<!-- end of modal  -->
+
+
+  <script type="text/javascript">
+$(function(){
+      $("#addSP").on('submit',function(e){
+        var nama , tgl , id , id_user , npk , tipe_sp , ket ; 
+        nama        = document.getElementById('nama').value ;
+        tgl         = document.getElementById('tanggal').value;
+        npk         = document.getElementById('npk').value ;
+        id_user     = document.getElementById('id_user').value ;
+        id          = document.getElementById('id').value ;
+        tipe_sp     = document.getElementById('tipe_sp').value ;
+        ket         = document.getElementById('keterangan').value ;
+        e.preventDefault();
+        if(document.getElementById('nama').value == "" ){
+          alert("data karyawan masih kosong")
+        }else if(document.getElementById('tipe_sp').value == "" ){
+          alert("jenis surat Peringatan kosong")
+        }else if(document.getElementById('keterangan').value == "" ){
+          alert("keterangan masih kosong")
+        }else if(document.getElementById('tanggal').value == "" ){
+          alert("tanggal masih kosong")
+        }else {
+          $.ajax({
+            url : "<?= base_url('superadmin/Surat_peringatan/add') ?>" ,
+            method : "POST" ,
+            data :  "id_user=" + id_user + "&nama=" + nama + "&npk=" + npk + "&tgl="+ tgl + "&tipe_sp="+ tipe_sp + "&keterangan=" + ket ,
+            beforeSend : function(){
+              $("#submit").attr("disabled",true);   
+            },
+            complete : function(){
+              $("#submit").attr("disabled",false);    
+            },
+            success : function(e){
+                if(e = "sukses"){
+                  alert("berhasil");
+                  window.location.href='<?= base_url('superadmin/Surat_peringatan/form_add') ?>'
+                }else {
+                  alert("gagal")
+                }
+            }
+          })
+        }
+      })
+    })
+      $('.click').on('click',function(e){
+              document.getElementById("npk").value     = $(this).attr('data-npk');
+              document.getElementById("id").value      = $(this).attr('data-id');
+              document.getElementById("id_user").value = $(this).attr('data-id_user');
+              document.getElementById("nama").value    =  $(this).attr('data-nama');
+              $('#selectkaryawan').modal('hide');
+          })
+  </script>

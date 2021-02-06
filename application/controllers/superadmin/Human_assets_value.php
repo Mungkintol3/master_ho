@@ -3,7 +3,7 @@ date_default_timezone_set('Asia/Jakarta');
 /**
  * 
  */
-class Surat_peringatan extends CI_Controller
+class Human_assets_value extends CI_Controller
 {
 	
 
@@ -14,31 +14,30 @@ class Surat_peringatan extends CI_Controller
  		  		'karyawan'	 => $this->m_admin->getData("tbl_karyawan")->result()
  		  );
  		$this->load->view('template/header',$data);
-		$this->load->view("superadmin/form_add_sp",$data);
+		$this->load->view("superadmin/form_human_assets",$data);
 		$this->load->view('template/footer');
 	}
 
 
 	public function add()
  	{
- 		$npk  			 = $this->input->post("npk");
- 		$nama  			 = $this->input->post("nama");
  		$id_user 		 = $this->input->post("id_user");
+ 		$nama  			 = $this->input->post("nama");
+ 		$npk  			 = $this->input->post("npk");
  		$tgl  			 = $this->input->post("tgl");
- 		$tipe 			 = $this->input->post("tipe_sp");
  		$keterangan		 = $this->input->post("keterangan");
+ 		$assets_value	 = $this->input->post("assets_value");
 
 	 		$data = array(
 	 			"id_user"						=> $id_user,
-	 			"nama"							=> $nama , 
+	 			"nama"							=> $nama ,
 	 			"npk"							=> $npk ,
-	 			"tgl"							=> $tgl ,
+	 			"asset_value"					=> $assets_value , 
 	 			"tahun"							=> $tgl,
-	 			"jenis_surat_peringatan"		=> $tipe ,
 	 			"keterangan"					=> $keterangan
 	 		);
-
-	 		$input = $this->m_admin->inputData($data,"histori_surat_peringatan");
+					
+	 		$input = $this->m_admin->inputData($data,"human_value_assets");
 	 			if($input == true){
 	 				echo "sukses";
 	 			} else {

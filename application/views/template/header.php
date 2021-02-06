@@ -76,14 +76,7 @@ The above copyright notice and this permission notice shall be included in all c
               <p>Data Golongan</p>
             </a>
           </li>
-          <li class="nav-item <?php if ($url == 'Golongan'){
-            echo 'active' ;
-          }?>">
-            <a class="nav-link" href="<?= base_url('superadmin/Golongan/add_histori_golongan_pegawai') ?>">
-              <i class="material-icons">content_paste</i>
-              <p>Input Histori Golongan</p>
-            </a>
-          </li>
+          
           <li class="nav-item">
             <a class="nav-link" href="<?php echo base_url()?>superadmin/karyawan">
               <i class="material-icons">person</i>
@@ -91,7 +84,7 @@ The above copyright notice and this permission notice shall be included in all c
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url()?>superadmin/karyawan">
+            <a class="nav-link" href="<?php echo base_url('superadmin/Poin_pegawai/add_histori_poin')?>">
               <i class="material-icons">person</i>
               <p>Input Poin Pegawai</p>
             </a>
@@ -102,6 +95,15 @@ The above copyright notice and this permission notice shall be included in all c
             <a class="nav-link" href="<?= base_url('superadmin/Update_pkwt') ?>">
               <i class="material-icons">library_books</i>
               <p>Perbarui PKWT</p>
+            </a>
+          </li>
+
+          <li class="nav-item <?php if ($url == 'Golongan'){
+            echo 'active' ;
+          }?>">
+            <a class="nav-link" href="<?= base_url('superadmin/Golongan/add_histori_golongan_pegawai') ?>">
+              <i class="material-icons">content_paste</i>
+              <p>Input Histori Golongan</p>
             </a>
           </li>
 
@@ -124,22 +126,28 @@ The above copyright notice and this permission notice shall be included in all c
           </li>
 
 
-          <li class="nav-item">
-            <a class="nav-link" href="#">
+          <li class="nav-item <?php if ($url == 'Surat_peringatan'){
+            echo 'active' ;
+          }?>">
+            <a class="nav-link" href="<?= base_url('superadmin/Surat_peringatan/form_add') ?>">
               <i class="material-icons">bubble_chart</i>
-              <p>Icons</p>
+              <p>Input Surat Peringatan</p>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./map.html">
+          <li class="nav-item <?php if ($url == 'Training_Histori'){
+            echo 'active' ;
+          }?>">
+            <a class="nav-link" href="<?= base_url('superadmin/Training_Histori/form_add') ?>">
               <i class="material-icons">location_ons</i>
-              <p>Maps</p>
+              <p>Input Training Histori</p>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./notifications.html">
+          <li class="nav-item <?php if ($url == 'Human_assets_value'){
+            echo 'active' ;
+          }?>">
+            <a class="nav-link" href="<?= base_url('superadmin/Human_assets_value/form_add') ?>">
               <i class="material-icons">notifications</i>
-              <p>Notifications</p>
+              <p>Input Human Assets Value</p>
             </a>
           </li>
         </ul>

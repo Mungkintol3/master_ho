@@ -2,7 +2,7 @@
 <div class="col-md-12">
               <div class="card card-plain">
                 <div class="card-header card-header-info">
-                  <h4 class="card-title mt-0"> Mutasi Golongan Karyawan</h4>
+                  <h4 class="card-title mt-0"> Mutasi Karir Karyawan</h4>
                   <p class="card-category"> SIGAP PRIMA ASTREA & SIGAP GARDA PRATAMA</p>
                 </div>
                 <div class="card-body">
@@ -10,7 +10,7 @@
                     <div class="form-group">
                       <button type="button " data-toggle="modal" data-target="#selectkaryawan" class="btn btn-success">Cari Karyawan <i class="fa fa-search"></i> </button>
                     </div>
-                  <form id="updategol" class="form-horizontal">
+                  <form id="formtraining" class="form-horizontal">
                     <div class="form-group">
                       <input type="hidden" name="id" id="id">
                       <input type="hidden" name="id_user" id="id_user">
@@ -22,18 +22,27 @@
                     </div>
 
                     <div class="form-group">
-                      <input  type="text" id="gol_sebelumnya" readonly="" placeholder="Golongan Saat ini" class="form-control">
+                      <select  id="jenis_training" class="form-control" name="jenis_training">
+                        <option value="">Jenis Training</option>
+                        <option>K3</option>
+                        <option>GADUT</option>
+                        <option>GP</option>
+                      </select>
                     </div>
 
                     <div class="form-group">
-                      <input type="text" id="gol_update" placeholder="Enter Golongan Kerja Terbaru" class="form-control">
+                      <select class="form-control"  name="keterangan" id="keterangan">
+                        <option value="">Status Training</option>
+                        <option>Ada</option>
+                        <option>Tidak Ada</option>
+                      </select>
                     </div>
 
                     <div class="form-group">
                       <input  type="text" id="tanggal" placeholder="Enter Tahun" class="form-control">
                     </div>
 
-                    <button type="submit" id="submit" class="btn btn-info">Simpan Perubahan</button>
+                    <button type="submit" class="btn btn-info">Simpan Perubahan</button>
                   </form>
               	</div>
               </div>
@@ -54,7 +63,7 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>NPK</th>
-                    <th>Golongan</th>
+                    <th>Divisi</th>
                   </tr>
                   <tbody>
                     <?php $no = 1 ; foreach($karyawan as $f) : ?>
@@ -66,7 +75,6 @@
                            data-id_user="<?= $f->id_user ?>" 
                            data-id="<?= $f->id ?>"
                            data-nama="<?= $f->nama ?>"
-                           data-gol="<?= $f->gol_kerja ?>"
                            >
                             <?= $f->nama ?>
                         </a>
@@ -86,50 +94,48 @@
 
 
   <script type="text/javascript">
+    $('.click').on('click',function(e){
+        document.getElementById("npk").value = $(this).attr('data-npk');
+        document.getElementById("nama").value = $(this).attr('data-nama');
+        document.getElementById("id").value = $(this).attr('data-id');
+        document.getElementById("id_user").value = $(this).attr('data-id_user');
+        $('#selectkaryawan').modal('hide');
+    })
+
     $(function(){
-			$("#updategol").on('submit',function(e){
-				var nama , id , id_user , npk , tgl ,gol_update , gol_sebelumnya ;
-				nama 			= document.getElementById('nama').value ;
-				id 				= document.getElementById('id').value ;
-				npk 			= document.getElementById('npk').value ;
-				id_user 		= document.getElementById('id_user').value ;
-				gol_update 		= document.getElementById('gol_update').value ;
-				gol_sebelumnya 	= document.getElementById('gol_sebelumnya').value ;
-				tgl 			= document.getElementById('tanggal').value ;
-				e.preventDefault();
-				if(document.getElementById('npk').value == "" ){
-					alert("data karyawan masih kosong")
-				}else if(document.getElementById('gol_update').value == "" ){
-					alert("golongan kerja baru kosong")
-				}else if(document.getElementById('tanggal').value == "" ){
-					alert("tanggal masih kosong")
-				}else {
-					$.ajax({
-						url : "<?= base_url('superadmin/Golongan/input_histori') ?>" ,
-						method : "POST" ,
-						data : "npk="+ npk + "&nama=" + nama + "&id="+ id + "&id_user="+ id_user + "&gol_update="+ gol_update + "&gol_sebelumnya="+gol_sebelumnya + "&tgl=" + tgl,
-						beforeSend : function(){
-							$("#submit").attr("disabled",true);		
-						},
-						complete : function(){
-							$("#submit").attr("disabled",false);		
-						},
-						success : function(e){
-							alert(e);
-							window.location.href="<?= base_url('superadmin/Golongan/add_histori_golongan_pegawai') ?>"
-						}
-					})
-				}
-			})
-
-			$('.click').on('click',function(e){
-              document.getElementById("npk").value = $(this).attr('data-npk');
-              document.getElementById("id").value = $(this).attr('data-id');
-              document.getElementById("id_user").value = $(this).attr('data-id_user');
-              document.getElementById("nama").value = $(this).attr('data-nama');
-              document.getElementById("gol_sebelumnya").value = $(this).attr('data-gol');
-              $('#selectkaryawan').modal('hide');
-        	})
-		})
-
+      $("#formtraining").on('submit',function(e){
+        var id , id_user , tgl  , ket , jenis_training;
+        id                = document.getElementById('id').value;
+        id_user           = document.getElementById('id_user').value;
+        tgl               = document.getElementById('tanggal').value;
+        nama              = document.getElementById('nama').value;
+        npk               = document.getElementById('npk').value;
+        ket               = document.getElementById('keterangan').value;
+        jenis_training    = document.getElementById('jenis_training').value;
+        e.preventDefault();
+          if(document.getElementById('nama').value == ""){
+            alert("data karyawan masih kosong");
+          }else if(document.getElementById('jenis_training').value == ""){
+            alert("jenis training masih kosong");
+          }else if(document.getElementById('keterangan').value == ""){
+            alert("status masih kosong");
+          }else if(document.getElementById('tanggal').value == ""){
+            alert("tanggal masih kosong");
+          } else {
+            $.ajax({
+              url : "<?= base_url('superadmin/Training_histori/add') ?>" ,
+              method : "POST" ,
+              data : "id_user=" + id_user + "&nama=" + nama + "&npk=" + npk + "&tgl="+ tgl + "&jenis_training="+ jenis_training + "&keterangan=" + ket ,
+              success : function(e){
+                if(e = "sukses"){
+                  alert(e)
+                  window.location.href="<?= base_url('superadmin/Training_histori/form_add') ?>"
+                }else {
+                  alert('gagal');
+                }
+              }
+            })
+          }
+      })
+    })
   </script>

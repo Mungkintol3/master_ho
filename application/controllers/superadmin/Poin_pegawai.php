@@ -5,12 +5,18 @@
  */
 class Poin_pegawai extends CI_Controller
 {
+
+
+	//input point karyawan
 	public function add_histori_poin()
 	{
-		$data   = array(
- 			'pegawai'		=>  $this->m_admin->getData("tbl_pegawai")->result()
- 		);
-		$this->load->view("add_histori_poin_pegawai",$data);
+		$data = array(
+ 		  		'url'		 => $this->uri->segment(2) ,
+ 		  		'karyawan'	 => $this->m_admin->getData("tbl_karyawan")->result()
+ 		  );
+ 		$this->load->view('template/header',$data);
+		$this->load->view("superadmin/add_histori_poin_pegawai",$data);
+		$this->load->view('template/footer');
 	}
 
 	public  function input_histori()
@@ -18,13 +24,18 @@ class Poin_pegawai extends CI_Controller
  		$npk				 = $this->input->post("npk");
  		$nilai 	 			 = $this->input->post("poin");
  		$tgl				 = $this->input->post("tgl");
+ 		$id 				 = $this->input->post("id");
+ 		$nama 				 = $this->input->post("nama");
+ 		$id_user 			 = $this->input->post("id_user");
 	 		$data = array(
+	 			"id_user"				=> $id_user ,
 	 			"npk"					=> $npk ,
-	 			"id_user"				=> md5($npk) ,
+	 			"nama"					=> $nama ,
 	 			"poin"					=> $nilai ,
-	 			"tahun"					=> date("Y") ,
-	 			"tgl"					=> $tgl
+	 			"tahun"					=> $tgl ,
+	 			"tgl"					=> $tgl ,
 	 		);
+
 
 	 		$input = $this->m_admin->inputData($data,"histori_poin_karyawan");
 	 			if($input == true){

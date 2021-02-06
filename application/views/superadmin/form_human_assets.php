@@ -2,7 +2,7 @@
 <div class="col-md-12">
               <div class="card card-plain">
                 <div class="card-header card-header-info">
-                  <h4 class="card-title mt-0">Tambah Poin Karyawan</h4>
+                  <h4 class="card-title mt-0"> Input Human Assets Value</h4>
                   <p class="card-category"> SIGAP PRIMA ASTREA & SIGAP GARDA PRATAMA</p>
                 </div>
                 <div class="card-body">
@@ -10,7 +10,7 @@
                     <div class="form-group">
                       <button type="button " data-toggle="modal" data-target="#selectkaryawan" class="btn btn-success">Cari Karyawan <i class="fa fa-search"></i> </button>
                     </div>
-                  <form id="updatepoin" method="post" action="#" class="form-horizontal">
+                  <form id="formhumanassets" method="post" class="form-horizontal">
                     <div class="form-group">
                       <input type="hidden" name="id" id="id">
                       <input type="hidden" name="id_user" id="id_user">
@@ -22,14 +22,21 @@
                     </div>
 
                     <div class="form-group">
-                      <input type="text" name="poin" id="poin" placeholder="Enter Poin Pegawai" class="form-control">
+                      <input  type="text" id="human_assets" placeholder="Enter New Human Assets" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <input  type="text" id="tanggal" maxlength="4" placeholder="Enter Tahun" class="form-control">
+                      <input  type="text" id="tanggal" placeholder="Enter Tahun" class="form-control">
                     </div>
 
-                    <button type="submit" id="submit" class="btn btn-info">Simpan Perubahan</button>
+                    <div class="form-group">
+                      <textarea class="form-control" id="keterangan" placeholder="Keterangan jika diperlukan"></textarea>
+                    </div>
+                                      
+
+
+
+                    <button type="submit" class="btn btn-info">Simpan Perubahan</button>
                   </form>
               	</div>
               </div>
@@ -50,7 +57,7 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>NPK</th>
-                    <th>Golongan</th>
+                    <th>Divisi</th>
                   </tr>
                   <tbody>
                     <?php $no = 1 ; foreach($karyawan as $f) : ?>
@@ -58,9 +65,9 @@
                       <td><?= $no++ ?></td>
                       <td>
                         <a class="btn btn-success btn-sm click"
-                           data-id="<?= $f->id ?>"
-                           data-id_user="<?= $f->id_user ?>" 
                            data-npk="<?= $f->npk ?>" 
+                           data-id_user="<?= $f->id_user ?>" 
+                           data-id="<?= $f->id ?>"
                            data-nama="<?= $f->nama ?>"
                            >
                             <?= $f->nama ?>
@@ -81,50 +88,47 @@
 
 
   <script type="text/javascript">
-      $(function(){
-        
-          $("#updatepoin").on('submit',function(e){
-            var nama , id , id_user , npk , tgl  , point ;
-            nama      = document.getElementById('nama').value ;
-            id        = document.getElementById('id').value ;
-            npk       = document.getElementById('npk').value ;
-            point     = document.getElementById('poin').value ;
-            id_user   = document.getElementById('id_user').value ;
-            tgl       = document.getElementById('tanggal').value ;
-            e.preventDefault();
-            if(document.getElementById('npk').value == "" ){
-              alert("data karyawan masih kosong")
-            }else if(document.getElementById('poin').value == "" ){
-              alert("poin  masih kosong")
-            }else if(document.getElementById('tanggal').value == "" ){
-              alert("tanggal masih kosong")
-            }else {
-              $.ajax({
-                url : "<?= base_url('superadmin/Poin_pegawai/input_histori') ?>" ,
-                method : "POST" ,
-                data : "id=" + id + "&id_user=" + id_user + "&nama=" + nama + "&npk="+ npk + "&poin=" + point + "&tgl=" + tgl  ,
-                beforeSend : function(){
-                  $("#submit").attr("disabled",true);   
-                },
-                complete : function(){
-                  $("#submit").attr("disabled",false);    
-                },
-                success : function(e){
-                  alert(e);
-                  window.location.href="<?= base_url('superadmin/Poin_pegawai/add_histori_poin') ?>"
-                }
-              })
-            }
-          })
-
+    $('.click').on('click',function(e){
+        document.getElementById("npk").value = $(this).attr('data-npk');
+        document.getElementById("nama").value = $(this).attr('data-nama');
+        document.getElementById("id").value = $(this).attr('data-id');
+        document.getElementById("id_user").value = $(this).attr('data-id_user');
+        $('#selectkaryawan').modal('hide');
     })
 
-    $('.click').on('click',function(e){
-      document.getElementById("npk").value       = $(this).attr('data-npk');
-      document.getElementById("nama").value      = $(this).attr('data-nama');
-      document.getElementById("id").value        = $(this).attr('data-id');
-      document.getElementById("id_user").value   = $(this).attr('data-id_user');
-      $('#selectkaryawan').modal('hide');
-  })
-
+    $(function(){
+      $("#formhumanassets").on('submit',function(e){
+        var id , id_user , tgl  , ket , assets_value , nama  ;
+        id                = document.getElementById('id').value;
+        id_user           = document.getElementById('id_user').value;
+        tgl               = document.getElementById('tanggal').value;
+        nama              = document.getElementById('nama').value;
+        npk               = document.getElementById('npk').value;
+        ket               = document.getElementById('keterangan').value;
+        assets_value      = document.getElementById('human_assets').value;
+        e.preventDefault();
+          if(document.getElementById('nama').value == ""){
+            alert("data karyawan masih kosong");
+          }else if(document.getElementById('human_assets').value == ""){
+            alert("human assets masih kosong");
+          }else if(document.getElementById('tanggal').value == ""){
+            alert("tanggal masih kosong");
+          } else {
+            $.ajax({
+              url : "<?= base_url('superadmin/human_assets_value/add') ?>" ,
+              method : "POST" ,
+              data : "id_user=" + id_user + "&nama=" + nama + "&npk=" + npk + "&tgl="+ tgl + "&assets_value="+ assets_value + "&keterangan=" + ket ,
+              success : function(e){
+                //alert(e);
+                if(e = "sukses"){
+                  alert(e)
+                  window.location.href="<?= base_url('superadmin/Human_assets_value/form_add') ?>"
+                }else {
+                  alert('gagal');
+                }
+              }
+            })
+          }
+      })
+    })
   </script>

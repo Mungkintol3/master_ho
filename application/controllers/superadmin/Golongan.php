@@ -104,26 +104,27 @@
  		$tgl				 = $this->input->post("tgl");
  		$id_user			 = $this->input->post("id_user");
  		$id 				 = $this->input->post("id");
-	 		$data = array(
-	 			"npk"					=> $npk ,
-	 			"id_user"				=> md5($npk) ,
-	 			"gol_update"			=> $gol_baru ,
-	 			"gol_sebelumnya"		=> $gol_lama ,
-	 			//"tahun"					=> date("Y") ,
-	 			"tgl"					=> $tgl
+ 		//data update 
+ 		$data_update = array(
+	 			"gol_kerja"			=> $gol_baru
 	 		);
-	 		var_dump($data);
 
-	 		/*$input = $this->m_admin->inputData($data,"histori_golongan");
+
+	 		$input = $this->m_admin->update($data_update,"tbl_karyawan",array("id" => $id));
 	 			if($input == true){
-			 		$data2 = array(
-			 			"gol_kerja"			=> $gol_baru
+			 		$data = array(
+			 			"npk"					=> $npk ,
+			 			"id_user"				=> $id_user ,
+			 			"gol_update"			=> $gol_baru ,
+			 			"gol_sebelumnya"		=> $gol_lama ,
+			 			"tahun"					=> $tgl ,
+			 			"tgl"					=> $tgl
 			 		);
-			 		$this->m_admin->update($data2,"tbl_pegawai",array("npk"	=> $npk));
+			 		$this->m_admin->inputData($data,"histori_golongan");
 			 		echo "sukses";
 	 			} else {
 	 				echo "gagal";
-	 			}*/			
+	 			}			
  	}
 
 

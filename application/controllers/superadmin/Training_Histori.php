@@ -3,7 +3,7 @@ date_default_timezone_set('Asia/Jakarta');
 /**
  * 
  */
-class Surat_peringatan extends CI_Controller
+class Training_histori extends CI_Controller
 {
 	
 
@@ -14,7 +14,7 @@ class Surat_peringatan extends CI_Controller
  		  		'karyawan'	 => $this->m_admin->getData("tbl_karyawan")->result()
  		  );
  		$this->load->view('template/header',$data);
-		$this->load->view("superadmin/form_add_sp",$data);
+		$this->load->view("superadmin/form_training_histori",$data);
 		$this->load->view('template/footer');
 	}
 
@@ -25,20 +25,20 @@ class Surat_peringatan extends CI_Controller
  		$nama  			 = $this->input->post("nama");
  		$id_user 		 = $this->input->post("id_user");
  		$tgl  			 = $this->input->post("tgl");
- 		$tipe 			 = $this->input->post("tipe_sp");
  		$keterangan		 = $this->input->post("keterangan");
+ 		$jenis_training	 = $this->input->post("jenis_training");
 
 	 		$data = array(
 	 			"id_user"						=> $id_user,
-	 			"nama"							=> $nama , 
+	 			"nama"							=> $nama ,
+	 			"jenis_training"				=> $jenis_training , 
 	 			"npk"							=> $npk ,
 	 			"tgl"							=> $tgl ,
 	 			"tahun"							=> $tgl,
-	 			"jenis_surat_peringatan"		=> $tipe ,
 	 			"keterangan"					=> $keterangan
 	 		);
-
-	 		$input = $this->m_admin->inputData($data,"histori_surat_peringatan");
+	 		
+	 		$input = $this->m_admin->inputData($data,"histori_training");
 	 			if($input == true){
 	 				echo "sukses";
 	 			} else {
