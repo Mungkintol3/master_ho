@@ -43,11 +43,29 @@ The above copyright notice and this permission notice shall be included in all c
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
+
+            <div class="btn-group">
+              <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="material-icons"></i>
+                Input Data Karyawan
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="<?php echo base_url('superadmin/Nilai_karyawan/add_histori_nilai')?>">Input Penilaian Karyawan</a>
+                <a class="dropdown-item" href="<?php echo base_url('superadmin/Poin_pegawai/add_histori_poin')?>">Input Poin Karyawan</a>
+                <a class="dropdown-item" href="#">Input History Golongan</a>
+                <a class="dropdown-item" href="<?= base_url('superadmin/Career') ?>">Input Career History</a>
+                <a class="dropdown-item" href="<?= base_url('superadmin/Training_Histori/form_add') ?>">Input Sertifikat / Pelatihan</a>
+                <a class="dropdown-item"href="<?= base_url('superadmin/Company') ?>">Input History Company</a>
+                <a class="dropdown-item"href="<?= base_url('superadmin/Surat_peringatan/form_add') ?>">Input Surat Peringatan</a>
+                <a class="dropdown-item"href="<?= base_url('superadmin/Human_assets_value/form_add') ?>">Input Human Assets Value</a>
+              </div>
+            </div>  
+
           <li class="nav-item <?php if ($url == 'dashboard'){
             echo 'active';
 
           }?>">
-            <a class="nav-link" href="<?php echo base_url("superadmin/dashboard");?>">
+            <a class="nav-link" href="<?php echo base_url("superadmin/dashboard");?>" >
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
@@ -77,100 +95,13 @@ The above copyright notice and this permission notice shall be included in all c
             </a>
           </li>
           
-          <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('superadmin/Nilai_karyawan/add_histori_nilai')?>">
-              <i class="material-icons">person</i>
-              <p>Input Penilaiain Pegawai</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('superadmin/Poin_pegawai/add_histori_poin')?>">
-              <i class="material-icons">person</i>
-              <p>Input Poin Pegawai</p>
-            </a>
-          </li>
+         
           <li  class="nav-item <?php if ($url == 'Update_pkwt'){
             echo 'active' ;
           }?>">
             <a class="nav-link" href="<?= base_url('superadmin/Update_pkwt') ?>">
               <i class="material-icons">library_books</i>
               <p>Perbarui PKWT</p>
-            </a>
-          </li>
-
-          <li class="nav-item <?php if ($url == 'Golongan'){
-            echo 'active' ;
-          }?>">
-            <a class="nav-link" href="<?= base_url('superadmin/Golongan/add_histori_golongan_pegawai') ?>">
-              <i class="material-icons">content_paste</i>
-              <p>Input Histori Golongan</p>
-            </a>
-          </li>
-
-          <li  class="nav-item <?php if ($url == 'Career'){
-            echo 'active' ;
-          }?>">
-            <a class="nav-link" href="<?= base_url('superadmin/Career') ?>">
-              <i class="material-icons">library_books</i>
-              <p>Input Histori Karir</p>
-            </a>
-          </li>
-
-          <li  class="nav-item <?php if ($url == 'Company'){
-            echo 'active' ;
-          }?>">
-            <a class="nav-link" href="<?= base_url('superadmin/Company') ?>">
-              <i class="material-icons">library_books</i>
-              <p>Input Histori Company</p>
-            </a>
-          </li>
-
-
-          <li class="nav-item <?php if ($url == 'Surat_peringatan'){
-            echo 'active' ;
-          }?>">
-            <a class="nav-link" href="<?= base_url('superadmin/Surat_peringatan/form_add') ?>">
-              <i class="material-icons">bubble_chart</i>
-              <p>Input Surat Peringatan</p>
-            </a>
-          </li>
-          <li class="nav-item <?php if ($url == 'Training_Histori'){
-            echo 'active' ;
-          }?>">
-            <a class="nav-link" href="<?= base_url('superadmin/Training_Histori/form_add') ?>">
-              <i class="material-icons">location_ons</i>
-              <p>Input Training Histori</p>
-            </a>
-          </li>
-          <li class="nav-item <?php if ($url == 'Human_assets_value'){
-            echo 'active' ;
-          }?>">
-            <a class="nav-link" href="<?= base_url('superadmin/Human_assets_value/form_add') ?>">
-              <i class="material-icons">notifications</i>
-              <p>Input Human Assets Value</p>
-            </a>
-          </li>
-
-          <li class="nav-item <?php if ($url == 'Promosi'){
-            echo 'active' ;
-          }?>">
-            <a class="nav-link" href="<?= base_url('superadmin/Promosi/add_promosi_jabatan') ?>">
-              <i class="material-icons">notifications</i>
-              <p>Promosi Jabatan</p>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('superadmin/Promosi/add_mutasi_jabatan') ?>">
-              <i class="material-icons">notifications</i>
-              <p>Mutasi Jabatan</p>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('superadmin/Promosi/add_demosi_jabatan') ?>">
-              <i class="material-icons">notifications</i>
-              <p>Demosi Jabatan</p>
             </a>
           </li>
 

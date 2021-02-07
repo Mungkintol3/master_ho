@@ -1,46 +1,66 @@
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+  
 <div class="content">
 <div class="col-md-12">
-  <a href="<?= base_url('superadmin/TambahKaryawan') ?>" class="btn btn-danger">Tambah Data </a>
-              <div class="card card-plain">
+            <div class="card card-plain">
                 <div class="card-header card-header-info">
                   <h4 class="card-title mt-0"> DAFTAR KARYAWAN</h4>
                   <p class="card-category"> SIGAP PRIMA ASTREA & SIGAP GARDA PRATAMA</p>
                 </div>
                 <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-hover">
-                      <thead class="">
-                        <th class="text-center">NO</th>
-                        <th>NPK</th>
-                      	<th >NAMA</th>
-                  		<th>Department</th>
-                  		<th>Gol</th>
-                  		<th class="text-right">Action</th>
-                       </thead>
-                  			<tbody>
-                          <?php foreach($karyawan as $result) :  ?>
-                      			<tr>
-                      				<td class="text-center">1</td>
-                      				<td><?= $result->npk ?></td>
-                              <td><?= $result->nama ?></td>
-                              <td><?= $result->departement ?></td>
-                              <td><?= $result->gol_kerja ?></td>
-                      				<td class="td-actions text-right">
-                                <a href="<?= base_url('superadmin/Karyawan/Edit_karyawan/' . $result->id_user) ?>" class="btn-danger btn-sm">
-      					                    <i class="material-icons">edit</i>
+              <table  id="table_id" class="cell-border">
+              <thead>
+                  <tr>
+                      <th class="text-center">No</th>
+                      <th class="text-center">NPK</th>
+                      <th class="text-center">Nama</th>
+                      <th class="text-center">Department</th>
+                      <th class="text-center">Divisi</th>
+                      <th class="text-center">Posisi</th>
+                      <th class="text-center">Wilayah</th>
+                      <th class="text-center">Action</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($karyawan as $result) :?>
+                  <tr>
+                     <td class="text-center">1</td>
+                     <td class="text-center"><?= $result->npk ?></td>
+                     <td class="text-center"><?= $result->nama?></td>
+                     <td class="text-center"><?= $result->departement?></td>
+                     <td class="text-center"><?= $result->divisi?></td>
+                     <td class="text-center"><?= $result->position?></td>
+                     <td class="text-center"><?= $result->wilayah?></td>
+                     <td class="td-actions text-center">
+                                <a href="#" class="btn btn-success btn-fab btn-fab-mini btn-round">
+                                  <i class="material-icons">person</i>
                                 </a>
-                                <a href="#" class="btn-danger btn-sm">
-                                    <i class="material-icons">close</i>
+                                <a href="<?= base_url('superadmin/Karyawan/Edit_karyawan/' . $result->id_user) ?>" class="btn btn-info btn-fab btn-fab-mini btn-round">
+                                  <i class="material-icons">edit</i>
                                 </a>
-                    					</td>
-                      			</tr>
-                          <?php endforeach  ?>                  		                  	
-                  			</tbody>
-                    </table>
-              	</div>
-              </div>
-          </div>
-
-              
+                                <a href="#" class="btn btn-danger btn-fab btn-fab-mini btn-round">
+                                  <i class="material-icons">close</i>
+                                </a>
+                     </td>
+                  </tr>
+                  <?php endforeach  ?>  
+              </tbody>
+             </table>
       </div>
+    </div>
+    <style type="text/css">
+      #tambahkaryawan{
+        float: right;
+      }  
+    </style>
+
+     <a id="tambahkaryawan" href="<?= base_url('superadmin/TambahKaryawan') ?>" class="btn btn-success">Tambah Data </a>
   </div>
+</div>
+      <script type="text/javascript">
+            $(document).ready( function () {
+              $('#table_id').DataTable( {
+                    "pagingType": "full_numbers"
+                } );
+            } );
+          </script>

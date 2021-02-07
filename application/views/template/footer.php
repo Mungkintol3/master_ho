@@ -1,34 +1,23 @@
-<br>
 <footer class="footer">
         <div class="container-fluid">
           <nav class="float-left">
             <ul>
               <li>
-                <a href="#">
-                  Creative Tim
+                <a href="https://www.creative-tim.com" target="_blank">
+                  &copy; creative Tim
                 </a>
               </li>
               <li>
-                <a href="#">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Licenses
-                </a>
+                <a href="https://www.creative-tim.com/license" target="_blank">
+                  all right reserved
+                 </a>
               </li>
             </ul>
           </nav>
           <div class="copyright float-right">
-            &copy;
-            <a href="https://wa.me/6287886511096?text=Murray%20are%20you%20there" target="blank">made with <i class="material-icons">favorite</i> click Murray</a>.
-          </div>
+            mix with <i class="material-icons">favorite</i> by
+            <a href="https://wa.me/6287886511096?text=Murray%20are%20you%20there" target="_blank">Murry Febrians</a> for a better future.
+          </div>  
         </div>
       </footer>
     </div>
@@ -38,8 +27,9 @@
   <script src="<?php echo base_url()?>assets/js/core/popper.min.js"></script>
   <script src="<?php echo base_url()?>assets/js/core/bootstrap-material-design.min.js"></script>
   <script src="<?php echo base_url()?>assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-
  <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script> -->
+  <!-- DataTables -->
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
   <!-- Chartist JS -->
   <script src="<?php echo base_url()?>assets/js/plugins/chartist.min.js"></script>
   <!--  Notifications Plugin    -->
@@ -51,15 +41,6 @@
       // Javascript method's body can be found in assets/js/demos.js
       md.initDashboardPageCharts();
     });
-  </script>
-  <script type="text/javascript">
-      $(document).ready(function(){
-        $('ul li').on('click', function(){
-            //alert('clicked');
-            $(this).siblings().removeClass('nav-item active');
-            $(this).addClass('nav-item active');
-        });
-      });
   </script>
 </body>
 

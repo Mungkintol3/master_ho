@@ -3,31 +3,42 @@
 <div class="container-fluid">
 	<div class="card card-nav-tabs card-plain">
     <div class="card-header card-header-info">
-        <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
         <div class="nav-tabs-navigation">
+             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <div class="nav-tabs-wrapper">
                 <ul class="nav nav-tabs" data-tabs="tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#home" data-toggle="tab">Biodata</a>
+                        <a class="nav-link active" href="#biodata" data-toggle="tab">Biodata</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#updates" data-toggle="tab">Informasi Karyawan</a>
+                        <a class="nav-link" href="#employee" data-toggle="tab">Informasi Karyawan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#history" data-toggle="tab">Pendidikan</a>
+                        <a class="nav-link" href="#elementary" data-toggle="tab">Pendidikan</a>
                     </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="#history" data-toggle="tab">Sertifikat</a>
+                        <a class="nav-link" href="#sertifikat" data-toggle="tab">Sertifikat</a>
                     </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="#history" data-toggle="tab">Data Keluarga</a>
+                        <a class="nav-link" href="#fams" data-toggle="tab">Data Keluarga</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            History Karyawan
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" data-toggle="tab">
+                            <a  class="dropdown-item" href="#historyGol" data-toggle="tab">History Golongan</a>
+                            <a class="dropdown-item" href="#historyComp" data-toggle="tab">History Company</a>
+                            <a class="dropdown-item" href="#historySert" data-toggle="tab">History Training</a>
+                            <a class="dropdown-item" href="#historySp" data-toggle="tab">History Peringatan</a>
+                          </div>
                     </li>
                 </ul>
             </div>
         </div>
     </div><div class="card-body ">
         <div class="tab-content text-center">
-            <div class="tab-pane active" id="home">
+            <div class="tab-pane active" id="biodata">
                 <div class="row">
                 	<div class="col-lg-4">
                 		<img height="300" width="300" src="<?php echo base_url()?>assets/upload/berkas/Foto_Profil/Murry.jpeg">
@@ -119,7 +130,7 @@
                 	</div>
                 </div>
             </div>
-            <div class="tab-pane" id="updates">
+            <div class="tab-pane" id="employee">
                 <table class="table table-hover">
                             <tr class="text-left">
                                 <td class="text-left">Perusahaan</td>
@@ -179,8 +190,26 @@
 
                         </table>
             </div>
-            <div class="tab-pane" id="history">
-                <p> I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.</p>
+            <div class="tab-pane" id="elementary">
+                <p> SEKOLAH</p>
+            </div>
+            <div class="tab-pane" id="sertifikat">
+                <p>SERTIFIKAT</p>
+            </div>
+            <div class="tab-pane" id="fams">
+                <p>KELUARGA</p>
+            </div>
+            <div class="tab-pane" id="historyGol">
+                <p>History GOLONGAN</p>
+            </div>
+            <div class="tab-pane" id="historyComp">
+                <p>History Company</p>
+            </div>
+            <div class="tab-pane" id="historySert">
+                <p>History Training atau Sertifikat</p>
+            </div>
+            <div class="tab-pane" id="historySp">
+                <p>History surat peringatan</p>
             </div>
         </div>
     </div>
