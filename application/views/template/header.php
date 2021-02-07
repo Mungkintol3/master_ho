@@ -150,6 +150,30 @@ The above copyright notice and this permission notice shall be included in all c
               <p>Input Human Assets Value</p>
             </a>
           </li>
+
+          <li class="nav-item <?php if ($url == 'Promosi'){
+            echo 'active' ;
+          }?>">
+            <a class="nav-link" href="<?= base_url('superadmin/Promosi/add_promosi_jabatan') ?>">
+              <i class="material-icons">notifications</i>
+              <p>Promosi Jabatan</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="<?= base_url('superadmin/Promosi/add_mutasi_jabatan') ?>">
+              <i class="material-icons">notifications</i>
+              <p>Mutasi Jabatan</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="<?= base_url('superadmin/Promosi/add_demosi_jabatan') ?>">
+              <i class="material-icons">notifications</i>
+              <p>Demosi Jabatan</p>
+            </a>
+          </li>
+
         </ul>
       </div>
     </div>
