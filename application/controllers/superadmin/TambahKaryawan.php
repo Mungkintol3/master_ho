@@ -83,19 +83,12 @@ class TambahKaryawan extends CI_Controller {
 			                	'status_pajak'				=> $row['X'] ,
 			                	'status_kawin'				=> $row['Y'] ,
 			                	'no_pkwt'					=> $row['Z'] ,
-			                	//
-			                	'promosi_jabatan'			=> $row['AA'] ,
-			                	'mutasi_jabatan'			=> $row['AB'] ,
-			                	'mutasi_jabatan'			=> $row['AC'] ,
-			                	'employment_status'			=> $row['AD'] ,
-			                	'company'					=> $row['AE'] ,
-			                	'join_date'					=> $row['AF'] ,
-			                	'length_of_service'			=> $row['AG'] ,
-			                	'education_join'			=> $row['AH'] ,
-			                	'education_update'			=> $row['AI'] ,
-			                	'kel_jabatan'				=> $row['AJ'] ,
-			                	'gol_kerja'					=> $row['AK'] ,
-			                	'latest_promotion'			=> $row['AL'] ,
+			                  	'employment_status'			=> $row['AA'] ,
+			                	'company'					=> $row['AB'] ,
+			                	'join_date'					=> $row['AC'] ,
+			                	'education_join'			=> $row['AD'] ,
+			                	'kel_jabatan'				=> $row['AE'] ,
+			                	'gol_kerja'					=> $row['AF'] ,
 			                ));
 					}
 	            }
