@@ -34,7 +34,7 @@ class TambahKaryawan extends CI_Controller {
  	}
 
 
- 	public function upload()
+ 	public function Upload()
  	{
 
  		// Load plugin PHPExcel nya
@@ -94,7 +94,6 @@ class TambahKaryawan extends CI_Controller {
 	            }
             		$numrow++; // Tambah 1
         }
-
 
         	if($cekNPK > 0){
         		echo "";
