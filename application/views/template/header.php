@@ -28,6 +28,7 @@ The above copyright notice and this permission notice shall be included in all c
   <link href="<?php echo base_url()?>assets/css/material-dashboard.css" rel="stylesheet" />
    <!--  <script src="<?php echo base_url()?>assets/js/core/jquery.min.js"></script> -->
     <script src="<?php echo base_url()?>assets/js/jquery-3-1.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
 </head>
 
 <body class="">
@@ -52,12 +53,16 @@ The above copyright notice and this permission notice shall be included in all c
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="<?php echo base_url('superadmin/Nilai_karyawan/add_histori_nilai')?>">Input Penilaian Karyawan</a>
                 <a class="dropdown-item" href="<?php echo base_url('superadmin/Poin_pegawai/add_histori_poin')?>">Input Poin Karyawan</a>
-                <a class="dropdown-item" href="#">Input History Golongan</a>
+                <a class="dropdown-item" href="<?= base_url('superadmin/Golongan/add_histori_golongan_pegawai') ?>">Input History Golongan</a>
                 <a class="dropdown-item" href="<?= base_url('superadmin/Career') ?>">Input Career History</a>
                 <a class="dropdown-item" href="<?= base_url('superadmin/Training_Histori/form_add') ?>">Input Sertifikat / Pelatihan</a>
                 <a class="dropdown-item"href="<?= base_url('superadmin/Company') ?>">Input History Company</a>
                 <a class="dropdown-item"href="<?= base_url('superadmin/Surat_peringatan/form_add') ?>">Input Surat Peringatan</a>
                 <a class="dropdown-item"href="<?= base_url('superadmin/Human_assets_value/form_add') ?>">Input Human Assets Value</a>
+                <a class="dropdown-item"href="<?= base_url('superadmin/Promosi/add_promosi_jabatan') ?>">Input Promosi Jabatan</a>
+                <a class="dropdown-item"href="<?= base_url('superadmin/Promosi/add_mutasi_jabatan') ?>">Input Mutasi Jabatan</a>
+                <a class="dropdown-item"href="<?= base_url('superadmin/Promosi/add_demosi_jabatan') ?>">Input Demosi Jabatan</a>
+                <a class="dropdown-item"href="<?= base_url('superadmin/Divisi/add') ?>">Input Divisi & Departement</a>
               </div>
             </div>  
 

@@ -44,4 +44,30 @@ class Karyawan extends CI_Controller
 		$this->load->view('superadmin/edit_karyawan',$data);
 		$this->load->view('template/footer');
 	}
+
+
+	public function delete($id)
+	{
+		$delete = $this->m_admin->delete('tbl_karyawan',array("id_user"  => $id));
+		if($delete){
+
+			$this->m_admin->delete('histori_company',array("id_user"  => $id));
+			$this->m_admin->delete('histori_divisi',array("id_user"  => $id));
+			$this->m_admin->delete('histori_golongan',array("id_user"  => $id));
+			$this->m_admin->delete('histori_jabatan',array("id_user"  => $id));
+			$this->m_admin->delete('histori_karir',array("id_user"  => $id));
+			$this->m_admin->delete('histori_nilai_karyawan',array("id_user"  => $id));
+			$this->m_admin->delete('histori_pendidikan',array("id_user"  => $id));
+			$this->m_admin->delete('histori_pkwt',array("id_user"  => $id));
+			$this->m_admin->delete('histori_poin_karyawan',array("id_user"  => $id));
+			$this->m_admin->delete('histori_promosi',array("id_user"  => $id));
+			$this->m_admin->delete('histori_surat_peringatan',array("id_user"  => $id));
+			$this->m_admin->delete('histori_training',array("id_user"  => $id));
+			$this->m_admin->delete('human_value_assets',array("id_user"  => $id));
+			$this->m_admin->delete('mutasi_jabatan',array("id_user"  => $id));
+			$this->m_admin->delete('promosi_jabatan',array("id_user"  => $id));
+
+			rediret('superadmin/Karyawan');
+		}
+	}
 }

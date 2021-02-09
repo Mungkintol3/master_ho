@@ -1,5 +1,5 @@
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
-  
+
+
 <div class="content">
 <div class="col-md-12">
             <div class="card card-plain">
@@ -32,15 +32,15 @@
                      <td class="text-center"><?= $result->position?></td>
                      <td class="text-center"><?= $result->wilayah?></td>
                      <td class="td-actions text-center">
-                                <a href="#" class="btn btn-success btn-fab btn-fab-mini btn-round">
-                                  <i class="material-icons">person</i>
-                                </a>
-                                <a href="<?= base_url('superadmin/Karyawan/Edit_karyawan/' . $result->id_user) ?>" class="btn btn-info btn-fab btn-fab-mini btn-round">
-                                  <i class="material-icons">edit</i>
-                                </a>
-                                <a href="#" class="btn btn-danger btn-fab btn-fab-mini btn-round">
-                                  <i class="material-icons">close</i>
-                                </a>
+                          <a href="#" class="btn btn-success btn-fab btn-fab-mini btn-round">
+                            <i class="material-icons">person</i>
+                          </a>
+                          <a href="<?= base_url('superadmin/Karyawan/Edit_karyawan/' . $result->id_user) ?>" class="btn btn-info btn-fab btn-fab-mini btn-round">
+                            <i class="material-icons">edit</i>
+                          </a>
+                          <a onclick="return confirm('hapus semua data karyawan')" href="<?= base_url('superadmin/Karyawan/delete/' . $result->id_user) ?>" class="btn btn-danger btn-fab btn-fab-mini btn-round">
+                            <i class="material-icons">close</i>
+                          </a>
                      </td>
                   </tr>
                   <?php endforeach  ?>  

@@ -16,7 +16,7 @@
     <div>
       <form method="post" onsubmit="return validasi()" enctype="multipart/form-data" action="" id="uploadpegawai">
           <input type="file" onchange="return cekexe()" name="file" id="file" class="form-control">
-        <a href="<?= base_url('assets/upload/format.xlsx') ?>" class="btn btn-success btn-round">download format upload</a>
+        <a href="<?= base_url('assets/upload/format/form_kar_upload.xlsx') ?>" class="btn btn-success btn-round">download format upload</a>
         <button type="submit" name="submit" class="btn btn-danger btn-round">Posting</button>
       </form>
       </div>
@@ -26,15 +26,13 @@
 
     <?php 
       if(isset($_POST['submit'])){ ?>
-    <form action="<?= base_url('TambahKaryawan/upload') ?>" method="post" >
-      <table class="table">
+    <form action="<?= base_url('superadmin/TambahKaryawan/upload') ?>" method="post" >
+      <table id="table_id" class="table">
         <thead>
           <tr>
             <th>No</th>
             <th>Nama</th>
             <th>NPK</th>
-            <th>Tempat,Tanggal Lahir</th>
-            <th>Status Karyawan</th>
           </tr>
         </thead>
         <tbody>
@@ -43,8 +41,6 @@
             <td><?= $no++ ?></td>
             <td><?= $r['B'] ?></td>
             <td><?= $r['D'] ?></td>
-            <td><?= $r['F'] .  "," .$r['G']  ?></td>
-            <td><?= $r['N']  ?></td>
           </tr>
         <?php endforeach; ?>
         </tbody>
@@ -76,6 +72,12 @@
         return false  ;
       }
     }
+
+    $(document).ready( function () {
+      $('#table_id').DataTable( {
+            "pagingType": "full_numbers"
+        } );
+    } );
   </script>
 
   </div>
