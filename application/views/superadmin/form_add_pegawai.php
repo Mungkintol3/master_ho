@@ -42,7 +42,7 @@
           <tr>
             <td><?= $no++ ?></td>
             <td><?= $r['B'] ?></td>
-            <td><?= $r['D'] ?></td>
+            <td><?= $r['C'] ?></td>
           </tr>
         <?php endforeach; ?>
         </tbody>

@@ -2,7 +2,7 @@
 <div class="col-md-12">
               <div class="card card-plain">
                 <div class="card-header card-header-info">
-                  <h4 class="card-title mt-0"> Mutasi Golongan Karyawan</h4>
+                  <h4 class="card-title mt-0"> Tambah Divisi Departement Position Karyawan</h4>
                   <p class="card-category"> SIGAP PRIMA ASTREA & SIGAP GARDA PRATAMA</p>
                 </div>
                 <div class="card-body">
@@ -34,15 +34,30 @@
                     </div>
 
                     <div class="form-group">
-                      <input  type="text" id="divisi"  placeholder="Divisi Terbaru" class="form-control">
+                      <select id="divisi" class="form-control">
+                        <option value="">Pilih Divisi Baru</option>
+                        <?php foreach($divisi as $divisi) : ?>
+                            <option><?= $divisi->divisi ?></option>
+                        <?php endforeach ; ?>
+                      </select>
                     </div>
 
                     <div class="form-group">
-                      <input  type="text" id="departement" placeholder="Departement Terbaru" class="form-control">
+                      <select id="departement" class="form-control">
+                        <option value="">Pilih Departement Baru</option>
+                        <?php foreach($departement as $departement) : ?>
+                            <option><?= $departement->departement ?></option>
+                        <?php endforeach ; ?>
+                      </select>
                     </div>
 
                     <div class="form-group">
-                      <input   type="text" id="position" placeholder="Posisi Terbaru" class="form-control">
+                      <select id="position" class="form-control">
+                        <option value="">Pilih Posisi Baru</option>
+                        <?php foreach($position as $posisi) : ?>
+                            <option><?= $posisi->posisi ?></option>
+                        <?php endforeach ; ?>
+                      </select>
                     </div>
 
                     <div class="form-group">
@@ -143,6 +158,7 @@
 						},
 						success : function(e){
 							if(e = "sukses"){
+                alert("sukses");
                 window.location.href="<?= base_url('superadmin/Divisi/add') ?>"
               }else {
                 alert('gagal');

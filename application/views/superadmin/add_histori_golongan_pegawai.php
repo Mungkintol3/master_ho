@@ -26,7 +26,12 @@
                     </div>
 
                     <div class="form-group">
-                      <input type="text" id="gol_update" placeholder="Enter Golongan Kerja Terbaru" class="form-control">
+                      <select class="form-control" id="gol_update">
+                        <option value="">Pilih Golongan Terbaru</option>
+                        <?php foreach($golongan as $golongan) { ?>
+                            <option><?= $golongan->golongan_kerja ?></option>
+                        <?php } ?>
+                      </select>
                     </div>
 
                     <div class="form-group">

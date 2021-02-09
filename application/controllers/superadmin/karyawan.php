@@ -37,6 +37,11 @@ class Karyawan extends CI_Controller
 	{
 		$data = array(
 			'karyawan'		=> $this->m_admin->cari(array("id_user"=> $id),"tbl_karyawan")->row() ,
+			'golongan'		=> $this->m_admin->cari(array("id_user"=> $id),"histori_golongan")->result() ,
+			'company'		=> $this->m_admin->cari(array("id_user"=> $id),"histori_company")->result() ,
+			'training'		=> $this->m_admin->cari(array("id_user"=> $id),"histori_training")->result() ,
+			'sp'			=> $this->m_admin->cari(array("id_user"=> $id),"histori_surat_peringatan")->result() ,
+			'pendidikan'	=> $this->m_admin->cari(array("id_user"=> $id),"pendidikan")->result() ,
 			'url' 			=> $this->uri->segment(2)
 		);
 		//$this->output->cache(1);

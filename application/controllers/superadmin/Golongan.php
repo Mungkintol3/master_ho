@@ -87,7 +87,7 @@
  	public function add_histori_golongan_pegawai()
  	{
  		$data   = array(
- 			'data' 			=>  $this->m_admin->getData("tbl_golongan")->result() ,
+ 			'golongan' 			=>  $this->m_admin->getData("tbl_golongan")->result() ,
  			'karyawan'		=>  $this->m_admin->getData("tbl_karyawan")->result() ,
  			'url'			=> ""
  		);

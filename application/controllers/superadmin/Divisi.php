@@ -9,8 +9,11 @@ class Divisi extends CI_Controller
 	public function add()
 	{
 		$data = array(
- 		  		'url'		 => $this->uri->segment(2) ,
- 		  		'karyawan'	 => $this->m_admin->getData("tbl_karyawan")->result()
+ 		  		'url'		 	 => $this->uri->segment(2) ,
+ 		  		'karyawan'	 	 => $this->m_admin->getData("tbl_karyawan")->result() ,
+ 		  		'divisi'		 => $this->m_admin->getData("divisi")->result() ,
+ 		  		'position'	 	 => $this->m_admin->getData("position")->result() ,
+ 		  		'departement'	 => $this->m_admin->getData("departement")->result() ,
  		  );
  		$this->load->view('template/header',$data);
 		$this->load->view("superadmin/add_divisi_departement",$data);

@@ -2,7 +2,7 @@
 <div class="col-md-12">
               <div class="card card-plain">
                 <div class="card-header card-header-info">
-                  <h4 class="card-title mt-0"> Mutasi Karir Karyawan</h4>
+                  <h4 class="card-title mt-0"> Data Training Karyawan</h4>
                   <p class="card-category"> SIGAP PRIMA ASTREA & SIGAP GARDA PRATAMA</p>
                 </div>
                 <div class="card-body">

@@ -26,7 +26,12 @@
                     </div>
 
                     <div class="form-group">
-                      <input type="text" id="new_jabatan" placeholder="Jabatan Terbaru" class="form-control">
+                      <select id="new_jabatan" class="form-control">
+                        <option value="">Pilih Promosi Jabatan Terbaru </option>
+                        <?php foreach($jabatan as $jbt) { ?>
+                          <option><?= $jbt->nama_jabatan ?></option>
+                        <?php } ?>
+                      </select>
                     </div>
 
                     <div class="form-group">
@@ -115,13 +120,13 @@
                   $("#submit").attr("disabled",false);    
                 },
                 success : function(e){
-                   alert(e);
-                   /*if(e = "sukses"){
+                   //alert(e);
+                   if(e = "sukses"){
                      alert(e);
                      window.location.href="<?= base_url('superadmin/Promosi/add_promosi_jabatan') ?>"
                    }else {
                       alert("gagal")
-                   }*/
+                   }
                 }
               })
             }

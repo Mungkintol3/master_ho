@@ -135,7 +135,7 @@
                             <tr class="text-left">
                                 <td class="text-left">Perusahaan</td>
                                 <td>:</td>
-                                <td>PT SIGAP GARDA PRATAMA</td>
+                                <td><?= $karyawan->company ?></td>
                             </tr>
                             <tr class="text-left">
                                 <td class="text-left">Tanggal Bergabung</td>
@@ -191,7 +191,28 @@
                         </table>
             </div>
             <div class="tab-pane" id="elementary">
-                <p> SEKOLAH</p>
+                <table class="table">
+                    <tr>
+                        <th>NPK</th>
+                        <th>Pendidikan</th>
+                        <th>Sekolah / Universitas</th>
+                        <th>Tahun Lulus</th>
+                        <th>Opsi</th>
+                    </tr>
+                    <tbody>
+                        <?php foreach($pendidikan as $pendidikan) { ?>
+                            <tr>
+                                <td><?= $pendidikan->npk ?></td>
+                                <td><?= $pendidikan->pendidikan ?></td>
+                                <td><?= $pendidikan->institusi ?></td>
+                                <td><?= $pendidikan->thn_lulus ?></td>
+                                <td>
+                                    <a href="">hapus</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
             </div>
             <div class="tab-pane" id="sertifikat">
                 <p>SERTIFIKAT</p>
@@ -200,16 +221,94 @@
                 <p>KELUARGA</p>
             </div>
             <div class="tab-pane" id="historyGol">
-                <p>History GOLONGAN</p>
+                <table class="table">
+                    <tr>
+                        <th>NPK</th>
+                        <th>Golongan Kerja</th>
+                        <th>Tahun</th>
+                        <th>Opsi</th>
+                    </tr>
+                    <tbody>
+                        <?php foreach($golongan as $golongan) { ?>
+                            <tr>
+                                <td><?= $golongan->npk ?></td>
+                                <td><?= $golongan->gol_update ?></td>
+                                <td><?= $golongan->tahun ?></td>
+                                <td>
+                                    <a href="">hapus</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
             </div>
             <div class="tab-pane" id="historyComp">
-                <p>History Company</p>
+                <table class="table">
+                    <tr>
+                        <th>NPK</th>
+                        <th>Company</th>
+                        <th>Tahun</th>
+                        <th>Opsi</th>
+                    </tr>
+                    <tbody>
+                        <?php foreach($company as $company) { ?>
+                            <tr>
+                                <td><?= $company->npk ?></td>
+                                <td><?= $company->company ?></td>
+                                <td><?= $company->tahun ?></td>
+                                <td>
+                                    <a href="">hapus</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
             </div>
             <div class="tab-pane" id="historySert">
-                <p>History Training atau Sertifikat</p>
+                <table class="table">
+                    <tr>
+                        <th>NPK</th>
+                        <th>Jenis Training</th>
+                        <th>Tahun</th>
+                        <th>Opsi</th>
+                    </tr>
+                    <tbody>
+                        <?php foreach($training as $training) { ?>
+                            <tr>
+                                <td><?= $training->npk ?></td>
+                                <td><?= $training->jenis_training ?></td>
+                                <td><?= $training->tahun ?></td>
+                                <td>
+                                    <a href="">hapus</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
             </div>
             <div class="tab-pane" id="historySp">
-                <p>History surat peringatan</p>
+                <table class="table">
+                    <tr>
+                        <th>NPK</th>
+                        <th>Surat Peringatan</th>
+                        <th>Tanggal</th>
+                        <th>Keterangan</th>
+                        <th>Opsi</th>
+                    </tr>
+                    <tbody>
+                        <?php foreach($sp as $sp) { ?>
+                            <tr>
+                                <td><?= $sp->npk ?></td>
+                                <td><?= $sp->jenis_surat_peringatan ?></td>
+                                <td><?= $sp->tahun ?></td>
+                                <td><?= $sp->keterangan ?></td>
+                                <td>
+                                    <a href="">hapus</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

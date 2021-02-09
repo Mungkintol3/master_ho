@@ -29,10 +29,13 @@ class Company extends CI_Controller
 		$nama 			= $this->input->post("nama");
 		//tambah ke histori company
 		$data = array(
+			'nama'			=> $nama ,
+			'npk'			=> $npk ,
 			'id_user'		=> $id_user ,
 			"company"		=> $company_new ,
-			"join_date"		=> $tgl ,
-		);
+			"join_date"		=> $tgl , 
+			'tahun'			=> substr($tgl,0,4)
+		); 
 
 		//data karir terbaru
 		$dataupdate = array(

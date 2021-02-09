@@ -10,7 +10,8 @@ class Promosi extends CI_Controller
 	{
 		$data = array(
  		  		'url'		 => $this->uri->segment(2) ,
- 		  		'karyawan'	 => $this->m_admin->getData("tbl_karyawan")->result()
+ 		  		'karyawan'	 => $this->m_admin->getData("tbl_karyawan")->result() ,
+ 		  		'jabatan'	 => $this->m_admin->getData("tbl_jabatan")->result() ,
  		  );
  		$this->load->view('template/header',$data);
 		$this->load->view("superadmin/add_promosi_jabatan",$data);
@@ -56,6 +57,7 @@ class Promosi extends CI_Controller
 	{
 		$data = array(
  		  		'url'		 => $this->uri->segment(2) ,
+ 		  		'jabatan'	 => $this->m_admin->getData("tbl_jabatan")->result() ,
  		  		'karyawan'	 => $this->m_admin->getData("tbl_karyawan")->result()
  		  );
  		$this->load->view('template/header',$data);
@@ -100,6 +102,7 @@ class Promosi extends CI_Controller
 	{
 		$data = array(
  		  		'url'		 => $this->uri->segment(2) ,
+ 		  		'jabatan'	 => $this->m_admin->getData("tbl_jabatan")->result() ,
  		  		'karyawan'	 => $this->m_admin->getData("tbl_karyawan")->result()
  		  );
  		$this->load->view('template/header',$data);

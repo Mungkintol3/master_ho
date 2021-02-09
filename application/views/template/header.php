@@ -63,6 +63,7 @@ The above copyright notice and this permission notice shall be included in all c
                 <a class="dropdown-item"href="<?= base_url('superadmin/Promosi/add_mutasi_jabatan') ?>">Input Mutasi Jabatan</a>
                 <a class="dropdown-item"href="<?= base_url('superadmin/Promosi/add_demosi_jabatan') ?>">Input Demosi Jabatan</a>
                 <a class="dropdown-item"href="<?= base_url('superadmin/Divisi/add') ?>">Input Divisi & Departement</a>
+                <a class="dropdown-item"href="<?= base_url('superadmin/Pendidikan/formupdate') ?>">Update Pendidikan</a>
               </div>
             </div>  
 
@@ -99,7 +100,33 @@ The above copyright notice and this permission notice shall be included in all c
               <p>Data Golongan</p>
             </a>
           </li>
-          
+
+          <li class="nav-item <?php if ($url == 'Departement'){
+            echo 'active' ;
+          }?>">
+            <a class="nav-link" href="<?php echo base_url()?>superadmin/Departement">
+              <i class="material-icons">person</i>
+              <p>Data Departement</p>
+            </a>
+          </li>  
+
+          <li class="nav-item <?php if ($url == 'Position'){
+            echo 'active' ;
+          }?>">
+            <a class="nav-link" href="<?php echo base_url()?>superadmin/Position">
+              <i class="material-icons">person</i>
+              <p>Data Position</p>
+            </a>
+          </li> 
+
+          <li class="nav-item <?php if ($url == 'Data_divisi'){
+            echo 'active' ;
+          }?>">
+            <a class="nav-link" href="<?php echo base_url()?>superadmin/Data_divisi">
+              <i class="material-icons">person</i>
+              <p>Data Divisi</p>
+            </a>
+          </li>       
          
           <li  class="nav-item <?php if ($url == 'Update_pkwt'){
             echo 'active' ;

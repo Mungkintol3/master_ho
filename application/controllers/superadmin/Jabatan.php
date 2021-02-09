@@ -74,7 +74,7 @@
 
  	public function delete($id)
  	{
- 		$id = $this->input->get("id");
+ 		//$id = $this->input->get("id");
  		$this->m_admin->delete("tbl_jabatan",array("id" => $id));
  		redirect('superadmin/Jabatan');
  	}

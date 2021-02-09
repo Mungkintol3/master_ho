@@ -34,7 +34,7 @@ class Training_histori extends CI_Controller
 	 			"jenis_training"				=> $jenis_training , 
 	 			"npk"							=> $npk ,
 	 			"tgl"							=> $tgl ,
-	 			"tahun"							=> $tgl,
+	 			"tahun"							=> substr($tgl, 0,4),
 	 			"keterangan"					=> $keterangan
 	 		);
 	 		
