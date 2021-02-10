@@ -33,7 +33,7 @@ class Surat_peringatan extends CI_Controller
 	 			"nama"							=> $nama , 
 	 			"npk"							=> $npk ,
 	 			"tgl"							=> $tgl ,
-	 			"tahun"							=> $tgl,
+	 			"tahun"							=> substr($tgl,0,4),
 	 			"jenis_surat_peringatan"		=> $tipe ,
 	 			"keterangan"					=> $keterangan
 	 		);

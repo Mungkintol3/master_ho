@@ -32,7 +32,8 @@ class Promosi extends CI_Controller
 			'id_user'			=> $id_user ,
 			'nama'				=> $nama ,
 			'npk'				=> $npk ,
-			'tahun'				=> $tgl ,
+			'tahun'				=> substr($tgl,0 ,4 ) ,
+			'tanggal'			=> $tgl ,
 			'latest_promosi'	=> $jabatan
 		);
 
@@ -52,7 +53,7 @@ class Promosi extends CI_Controller
 			}		
  	}
 
-
+ 	//tambah data mutasi jabatan ke histori
  	public function add_mutasi_jabatan()
 	{
 		$data = array(
@@ -79,7 +80,7 @@ class Promosi extends CI_Controller
 			'id_user'			=> $id_user ,
 			'nama'				=> $nama ,
 			'npk'				=> $npk ,
-			'tahun'				=> $tgl ,
+			'tahun'				=> substr($tgl , 0, 1) ,
 			'mutasi'			=> $mutasi
 		);
 

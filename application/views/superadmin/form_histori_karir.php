@@ -14,23 +14,23 @@
                     <div class="form-group">
                       <input type="hidden" name="id" id="id">
                       <input type="hidden" name="id_user" id="id_user">
-                      <input readonly="" type="text" id="nama" placeholder="Enter Nama" class="form-control">
+                      <input readonly="" type="text" name="nama" id="nama" placeholder="Enter Nama" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <input readonly="" type="text" id="npk" placeholder="Enter NPK" class="form-control">
+                      <input readonly="" type="text" name="npk" id="npk" placeholder="Enter NPK" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <input  type="text" id="karir_old" readonly="" placeholder="Carrer Saat ini" class="form-control">
+                      <input  type="text" id="karir_old" name="karir_old" readonly="" placeholder="Carrer Saat ini" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <input type="text" id="new_karir" placeholder="Enter Mutasi Carer Terbaru" class="form-control">
+                      <input type="text" id="new_karir" name="new_karir" placeholder="Enter Mutasi Carer Terbaru" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <input  type="text" id="tanggal" placeholder="Enter Tahun" class="form-control">
+                      <input  type="text" id="tanggal" name="tanggal" placeholder="Enter Tahun" class="form-control">
                     </div>
 
                     <button type="submit" class="btn btn-info">Simpan Perubahan</button>
@@ -97,14 +97,7 @@
 
     $(function(){
       $("#formkarir").on('submit',function(e){
-        var id , id_user , tgl ;
-        id            = document.getElementById('id').value;
-        id_user       = document.getElementById('id_user').value;
-        tgl           = document.getElementById('tanggal').value;
-        nama          = document.getElementById('nama').value;
-        npk           = document.getElementById('npk').value;
-        karir_old    = document.getElementById('karir_old').value ;
-        karir_new    = document.getElementById('new_karir').value ;
+        var postData = new FormData(this) ;
         e.preventDefault();
           if(document.getElementById('nama').value == ""){
             alert("data karyawan masih kosong")
@@ -116,7 +109,10 @@
             $.ajax({
               url : "<?= base_url('superadmin/Career/update') ?>" ,
               method : "POST" ,
-              data : "id="+ id + "&id_user=" + id_user + "&nama=" + nama + "&npk=" + npk + "&tgl="+ tgl + "&karir_old="+ karir_old + "&karir_new="+ karir_new ,
+              data : postData ,
+              processData : false ,
+              contentType : false ,
+              cache : false ,
               success : function(e){
                 alert(e)
                 window.location.href="<?= base_url('superadmin/Career/') ?>"

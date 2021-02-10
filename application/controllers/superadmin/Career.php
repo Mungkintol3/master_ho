@@ -25,15 +25,16 @@ class Career extends CI_Controller
 		$id_user		= $this->input->post("id_user");
 		$npk 			= $this->input->post("npk");
 		$karir_old		= $this->input->post("karir_old");
-		$karir_new 		= $this->input->post("karir_new");
-		$tgl 			= $this->input->post("tgl");
+		$karir_new 		= $this->input->post("new_karir");
+		$tgl 			= $this->input->post("tanggal");
 		$nama 			= $this->input->post("nama");
 		//tambah ke histori karir
 		$data = array(
 			'id_user'		=> $id_user ,
 			"karir_new"		=> $karir_new ,
 			"karir_old"		=> $karir_old ,
-			'tahun'			=> $tgl 
+			'tahun'			=> substr($tgl,0,4) ,
+			'tanggal'		=> $tgl 
 		);
 
 		//data karir terbaru

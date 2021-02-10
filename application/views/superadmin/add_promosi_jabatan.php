@@ -12,13 +12,13 @@
                     </div>
                   <form id="updatejabatan" method="post" action="#" class="form-horizontal">
                     <div class="form-group">
-                      <input type="hidden" id="id">
-                      <input type="hidden" id="id_user">
-                      <input readonly="" type="text" id="nama" placeholder="Enter Nama" class="form-control">
+                      <input type="hidden" name="id" id="id">
+                      <input type="hidden" name="id_user" id="id_user">
+                      <input readonly="" type="text" name="nama" id="nama" placeholder="Enter Nama" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <input readonly="" type="text" id="npk" placeholder="Enter NPK" class="form-control">
+                      <input readonly="" type="text" name="npk" id="npk" placeholder="Enter NPK" class="form-control">
                     </div>
 
                     <div class="form-group">
@@ -26,7 +26,7 @@
                     </div>
 
                     <div class="form-group">
-                      <select id="new_jabatan" class="form-control">
+                      <select id="new_jabatan" name="jabatan" class="form-control">
                         <option value="">Pilih Promosi Jabatan Terbaru </option>
                         <?php foreach($jabatan as $jbt) { ?>
                           <option><?= $jbt->nama_jabatan ?></option>
@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="form-group">
-                      <input  type="text" id="tanggal"  placeholder="Enter Tahun" class="form-control">
+                      <input  type="text" id="tanggal" name="tgl"  placeholder="Enter Tahun" class="form-control">
                     </div>
 
                     <button type="submit" id="submit" class="btn btn-info">Simpan Perubahan</button>
@@ -94,13 +94,7 @@
       $(function(){
         
           $("#updatejabatan").on('submit',function(e){
-            var nama , id , id_user , npk , tgl  , jabatan ;
-            nama      = document.getElementById('nama').value ;
-            id        = document.getElementById('id').value ;
-            npk       = document.getElementById('npk').value ;
-            jabatan     = document.getElementById('new_jabatan').value ;
-            id_user   = document.getElementById('id_user').value ;
-            tgl       = document.getElementById('tanggal').value ;
+            var postData = new FormData(this);
             e.preventDefault();
             if(document.getElementById('npk').value == "" ){
               alert("data karyawan masih kosong")
@@ -112,7 +106,10 @@
               $.ajax({
                 url : "<?= base_url('superadmin/Promosi/input_jabatan') ?>" ,
                 method : "POST" ,
-                data : "id=" + id + "&id_user=" + id_user + "&nama=" + nama + "&npk="+ npk + "&jabatan=" + jabatan + "&tgl=" + tgl  ,
+                data : postData,
+                processData: false,
+                contentType: false,
+                cache  : false ,
                 beforeSend : function(){
                   $("#submit").attr("disabled",true);   
                 },

@@ -25,6 +25,8 @@ class Human_assets_value extends CI_Controller
  		$nama  			 = $this->input->post("nama");
  		$npk  			 = $this->input->post("npk");
  		$tgl  			 = $this->input->post("tgl");
+ 		$kekuatan		 = $this->input->post("kekuatan");
+ 		$kelemahan		 = $this->input->post("kelemahan");
  		$keterangan		 = $this->input->post("keterangan");
  		$assets_value	 = $this->input->post("assets_value");
 
@@ -33,8 +35,11 @@ class Human_assets_value extends CI_Controller
 	 			"nama"							=> $nama ,
 	 			"npk"							=> $npk ,
 	 			"asset_value"					=> $assets_value , 
-	 			"tahun"							=> $tgl,
-	 			"keterangan"					=> $keterangan
+	 			"tahun"							=> substr($tgl,0,4) ,
+	 			"tgl"							=> $tgl,
+	 			"keterangan"					=> $keterangan ,
+	 			"kekuatan"						=> $kekuatan ,
+	 			"kelemahan"						=> $kelemahan 
 	 		);
 					
 	 		$input = $this->m_admin->inputData($data,"human_value_assets");

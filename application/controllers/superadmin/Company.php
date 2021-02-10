@@ -40,7 +40,7 @@ class Company extends CI_Controller
 		//data karir terbaru
 		$dataupdate = array(
 			'company'			=> $company_new ,
-			"join_date"		=> $tgl ,
+			"join_date"			=> $tgl ,
 		);
 
 		$update = $this->m_admin->update($dataupdate,"tbl_karyawan",array("id" => $id));

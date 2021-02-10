@@ -14,11 +14,11 @@
                     <div class="form-group">
                       <input type="hidden" name="id" id="id">
                       <input type="hidden" name="id_user" id="id_user">
-                      <input readonly="" type="text" id="nama" placeholder="Enter Nama" class="form-control">
+                      <input readonly="" type="text" id="nama" name="nama" placeholder="Enter Nama" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <input readonly="" type="text" id="npk" placeholder="Enter NPK" class="form-control">
+                      <input readonly="" type="text" name="npk" id="npk" placeholder="Enter NPK" class="form-control">
                     </div>
 
                     <div class="form-group">
@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="form-group">
-                      <input  type="text" id="tanggal" placeholder="Enter Tahun" class="form-control">
+                      <input  type="text" id="tanggal" name="tgl" placeholder="Enter Tahun" class="form-control">
                     </div>
 
                     <button type="submit" class="btn btn-info">Simpan Perubahan</button>
@@ -104,14 +104,7 @@
 
     $(function(){
       $("#formtraining").on('submit',function(e){
-        var id , id_user , tgl  , ket , jenis_training;
-        id                = document.getElementById('id').value;
-        id_user           = document.getElementById('id_user').value;
-        tgl               = document.getElementById('tanggal').value;
-        nama              = document.getElementById('nama').value;
-        npk               = document.getElementById('npk').value;
-        ket               = document.getElementById('keterangan').value;
-        jenis_training    = document.getElementById('jenis_training').value;
+        var postData = new FormData(this);
         e.preventDefault();
           if(document.getElementById('nama').value == ""){
             alert("data karyawan masih kosong");
@@ -125,7 +118,10 @@
             $.ajax({
               url : "<?= base_url('superadmin/Training_histori/add') ?>" ,
               method : "POST" ,
-              data : "id_user=" + id_user + "&nama=" + nama + "&npk=" + npk + "&tgl="+ tgl + "&jenis_training="+ jenis_training + "&keterangan=" + ket ,
+              data : postData ,
+              processData : false ,
+              contentType : false ,
+              cache : false ,
               success : function(e){
                 if(e = "sukses"){
                   alert(e)

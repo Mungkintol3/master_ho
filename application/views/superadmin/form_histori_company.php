@@ -14,23 +14,23 @@
                     <div class="form-group">
                       <input type="hidden" name="id" id="id">
                       <input type="hidden" name="id_user" id="id_user">
-                      <input readonly="" type="text" id="nama" placeholder="Enter Nama" class="form-control">
+                      <input readonly="" type="text" id="nama" name="nama" placeholder="Enter Nama" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <input readonly="" type="text" id="npk" placeholder="Enter NPK" class="form-control">
+                      <input readonly="" type="text" id="npk" name="npk" placeholder="Enter NPK" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <input  type="text" id="company" readonly="" placeholder="Company Now" class="form-control">
+                      <input  type="text" id="company" readonly="" name="company_old"  placeholder="Company Now" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <input type="text" id="new_company" placeholder="Enter Mutasi Company" class="form-control">
+                      <input type="text" id="new_company" name="company_new" placeholder="Enter Mutasi Company" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <input  type="text" id="tanggal" placeholder="Enter Tahun" class="form-control">
+                      <input  type="text" id="tanggal" name="tgl" placeholder="Enter Tahun" class="form-control">
                     </div>
 
                     <button type="submit" class="btn btn-info">Simpan Perubahan</button>
@@ -97,14 +97,7 @@
 
     $(function(){
       $("#formcompany").on('submit',function(e){
-        var id , id_user , tgl ;
-        id            = document.getElementById('id').value;
-        id_user       = document.getElementById('id_user').value;
-        tgl           = document.getElementById('tanggal').value;
-        nama          = document.getElementById('nama').value;
-        npk           = document.getElementById('npk').value;
-        company       = document.getElementById('new_company').value ;
-        company_old   = document.getElementById("company").value;
+        var postData = new FormData(this);
         e.preventDefault();
           if(document.getElementById('nama').value == ""){
             alert("data karyawan masih kosong")
@@ -116,7 +109,10 @@
             $.ajax({
               url : "<?= base_url('superadmin/Company/update') ?>" ,
               method : "POST" ,
-              data : "id="+ id + "&id_user=" + id_user + "&nama=" + nama + "&npk=" + npk + "&tgl="+ tgl + "&company_old="+ company_old + "&company_new="+ company ,
+              data : postData ,
+              processData : false ,
+              contentType : false ,
+              cache : false ,
               success : function(e){
                 alert(e)
                 window.location.href="<?= base_url('superadmin/Company/') ?>"

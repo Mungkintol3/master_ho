@@ -14,28 +14,33 @@
                     <div class="form-group">
                       <input type="hidden" name="id" id="id">
                       <input type="hidden" name="id_user" id="id_user">
-                      <input readonly="" type="text" id="nama" placeholder="Enter Nama" class="form-control">
+                      <input readonly="" type="text" id="nama" name="nama" placeholder="Enter Nama" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <input readonly="" type="text" id="npk" placeholder="Enter NPK" class="form-control">
+                      <input readonly="" type="text" id="npk" name="npk" placeholder="Enter NPK" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <input  type="text" id="human_assets" placeholder="Enter New Human Assets" class="form-control">
+                      <input  type="text" id="human_assets" name="assets_value" placeholder="Enter New Human Assets" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <input  type="text" id="tanggal" placeholder="Enter Tahun" class="form-control">
+                      <input  type="text" id="kekuatan" name="kekuatan" placeholder="Enter Kekuatan" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <textarea class="form-control" id="keterangan" placeholder="Keterangan jika diperlukan"></textarea>
+                      <input  type="text" id="kelemahan" name="kelemahan" placeholder="Enter Kelemahan" class="form-control">
                     </div>
-                                      
 
 
+                    <div class="form-group">
+                      <input  type="text" id="tanggal" name="tgl" placeholder="Enter Tahun" class="form-control">
+                    </div>
 
+                    <div class="form-group">
+                      <textarea class="form-control" name="keterangan" id="keterangan" placeholder="Keterangan jika diperlukan"></textarea>
+                    </div>
                     <button type="submit" class="btn btn-info">Simpan Perubahan</button>
                   </form>
               	</div>
@@ -98,26 +103,26 @@
 
     $(function(){
       $("#formhumanassets").on('submit',function(e){
-        var id , id_user , tgl  , ket , assets_value , nama  ;
-        id                = document.getElementById('id').value;
-        id_user           = document.getElementById('id_user').value;
-        tgl               = document.getElementById('tanggal').value;
-        nama              = document.getElementById('nama').value;
-        npk               = document.getElementById('npk').value;
-        ket               = document.getElementById('keterangan').value;
-        assets_value      = document.getElementById('human_assets').value;
+        var postData = new FormData(this);
         e.preventDefault();
           if(document.getElementById('nama').value == ""){
             alert("data karyawan masih kosong");
           }else if(document.getElementById('human_assets').value == ""){
             alert("human assets masih kosong");
+          }else if(document.getElementById('kekuatan').value == ""){
+            alert("kekuatan masih kosong");
+          }else if(document.getElementById('kelemahan').value == ""){
+            alert("kelemahan masih kosong");
           }else if(document.getElementById('tanggal').value == ""){
             alert("tanggal masih kosong");
           } else {
             $.ajax({
               url : "<?= base_url('superadmin/human_assets_value/add') ?>" ,
               method : "POST" ,
-              data : "id_user=" + id_user + "&nama=" + nama + "&npk=" + npk + "&tgl="+ tgl + "&assets_value="+ assets_value + "&keterangan=" + ket ,
+              data : postData ,
+              processData : false ,
+              contentType : false ,
+              cache : false ,
               success : function(e){
                 //alert(e);
                 if(e = "sukses"){
