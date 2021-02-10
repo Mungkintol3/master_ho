@@ -23,7 +23,7 @@ class Poin_pegawai extends CI_Controller
  	{
  		$npk				 = $this->input->post("npk");
  		$nilai 	 			 = $this->input->post("poin");
- 		$tgl				 = $this->input->post("tgl");
+ 		$tgl				 = $this->input->post("tanggal");
  		$id 				 = $this->input->post("id");
  		$nama 				 = $this->input->post("nama");
  		$id_user 			 = $this->input->post("id_user");
@@ -32,7 +32,7 @@ class Poin_pegawai extends CI_Controller
 	 			"npk"					=> $npk ,
 	 			"nama"					=> $nama ,
 	 			"poin"					=> $nilai ,
-	 			"tahun"					=> $tgl ,
+	 			"tahun"					=> substr($tgl,0,4) ,
 	 			"tgl"					=> $tgl ,
 	 		);
 

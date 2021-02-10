@@ -10,23 +10,26 @@
                     <div class="form-group">
                       <button type="button " data-toggle="modal" data-target="#selectkaryawan" class="btn btn-success">Cari Karyawan <i class="fa fa-search"></i> </button>
                     </div>
-                  <form id="updategol" class="form-horizontal">
+                  <form id="updategol" class="form-horizontal" enctype="multipart/form-data">
+                    <label>Surat Kenaikan Golongan</label>
+                    <input type="file" onchange="return cekexe()" name="file" id="file" class="form-control">
                     <div class="form-group">
                       <input type="hidden" name="id" id="id">
                       <input type="hidden" name="id_user" id="id_user">
-                      <input readonly="" type="text" id="nama" placeholder="Enter Nama" class="form-control">
+                      <input readonly="" type="text" id="nama" name="nama"  placeholder="Enter Nama" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <input readonly="" type="text" id="npk" placeholder="Enter NPK" class="form-control">
+                      <input readonly="" type="text" name="npk" id="npk" placeholder="Enter NPK" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <input  type="text" id="gol_sebelumnya" readonly="" placeholder="Golongan Saat ini" class="form-control">
+                      <input  type="text" id="gol_sebelumnya" name="gol_sebelumnya" readonly="" placeholder="Golongan Saat ini" class="form-control">
                     </div>
 
+
                     <div class="form-group">
-                      <select class="form-control" id="gol_update">
+                      <select class="form-control" name="gol_update" id="gol_update">
                         <option value="">Pilih Golongan Terbaru</option>
                         <?php foreach($golongan as $golongan) { ?>
                             <option><?= $golongan->golongan_kerja ?></option>
@@ -35,7 +38,7 @@
                     </div>
 
                     <div class="form-group">
-                      <input  type="text" id="tanggal" placeholder="Enter Tahun" class="form-control">
+                      <input  type="text" id="tanggal" name="tanggal" placeholder="Enter Tahun" class="form-control">
                     </div>
 
                     <button type="submit" id="submit" class="btn btn-info">Simpan Perubahan</button>
@@ -91,50 +94,59 @@
 
 
   <script type="text/javascript">
+     function cekexe(){
+      const file = document.getElementById('file');
+      const path  = file.value ;
+      const exe = /(\.pdf)$/i;
+      if(!exe.exec(path)){
+        alert("file harus berbentuk pdf");
+        file.value = "";
+        return ;
+      }
+    }
     $(function(){
-			$("#updategol").on('submit',function(e){
-				var nama , id , id_user , npk , tgl ,gol_update , gol_sebelumnya ;
-				nama 			= document.getElementById('nama').value ;
-				id 				= document.getElementById('id').value ;
-				npk 			= document.getElementById('npk').value ;
-				id_user 		= document.getElementById('id_user').value ;
-				gol_update 		= document.getElementById('gol_update').value ;
-				gol_sebelumnya 	= document.getElementById('gol_sebelumnya').value ;
-				tgl 			= document.getElementById('tanggal').value ;
-				e.preventDefault();
-				if(document.getElementById('npk').value == "" ){
-					alert("data karyawan masih kosong")
-				}else if(document.getElementById('gol_update').value == "" ){
-					alert("golongan kerja baru kosong")
-				}else if(document.getElementById('tanggal').value == "" ){
-					alert("tanggal masih kosong")
-				}else {
-					$.ajax({
-						url : "<?= base_url('superadmin/Golongan/input_histori') ?>" ,
-						method : "POST" ,
-						data : "npk="+ npk + "&nama=" + nama + "&id="+ id + "&id_user="+ id_user + "&gol_update="+ gol_update + "&gol_sebelumnya="+gol_sebelumnya + "&tgl=" + tgl,
-						beforeSend : function(){
-							$("#submit").attr("disabled",true);		
-						},
-						complete : function(){
-							$("#submit").attr("disabled",false);		
-						},
-						success : function(e){
-							alert(e);
-							window.location.href="<?= base_url('superadmin/Golongan/add_histori_golongan_pegawai') ?>"
-						}
-					})
-				}
-			})
+        $("#updategol").on('submit',function(e){
+          var postData = new FormData(this);
+          e.preventDefault();
+        if(document.getElementById('file').value == ""){
+          alert('berkas masih kosong ')
+        }
+        else if(document.getElementById('npk').value == "" ){
+          alert("data karyawan masih kosong")
+        }else if(document.getElementById('gol_update').value == "" ){
+          alert("golongan kerja baru kosong")
+        }else if(document.getElementById('tanggal').value == "" ){
+          alert("tanggal masih kosong")
+        }else {
+              $.ajax({
+                url : "<?= base_url('superadmin/Golongan/input_histori') ?>" ,
+                method : "POST" ,
+                data : postData,
+                processData: false,
+                contentType: false,
+                cache  : false ,
+                success : function(e){
+                  if(e = 'sukses'){
+                    alert(e)
+                    window.location.href="<?= base_url('superadmin/Golongan/add_histori_golongan_pegawai') ?>";
+                  }else {
+                    alert(e)
+                  }
+                }
+              })
+          }          
+
+        })
+    })
+
 
 			$('.click').on('click',function(e){
-              document.getElementById("npk").value = $(this).attr('data-npk');
-              document.getElementById("id").value = $(this).attr('data-id');
-              document.getElementById("id_user").value = $(this).attr('data-id_user');
-              document.getElementById("nama").value = $(this).attr('data-nama');
+              document.getElementById("npk").value            =  $(this).attr('data-npk');
+              document.getElementById("id").value             = $(this).attr('data-id');
+              document.getElementById("id_user").value        = $(this).attr('data-id_user');
+              document.getElementById("nama").value           = $(this).attr('data-nama');
               document.getElementById("gol_sebelumnya").value = $(this).attr('data-gol');
               $('#selectkaryawan').modal('hide');
-        	})
-		})
+    })
 
   </script>

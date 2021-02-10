@@ -75,4 +75,15 @@ class Karyawan extends CI_Controller
 			rediret('superadmin/Karyawan');
 		}
 	}
+
+	public function delgol($id , $id_user , $file)
+	{
+		$dir   = './assets/upload/histori_golongan/' . $file ;
+		if(file_exists($dir)){
+			unlink($dir);
+	 		$this->m_admin->delete("histori_golongan",array("id" => $id));
+	 		redirect('superadmin/Karyawan/Edit_karyawan/' . $id_user);
+		}
+ 	
+	}
 }

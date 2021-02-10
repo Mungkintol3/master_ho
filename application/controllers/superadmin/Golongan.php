@@ -98,16 +98,30 @@
 
  	public  function input_histori()
  	{
+ 		$file 				 =  $_FILES['file']['name'];
+ 		$filename 			 = $file;
  		$npk				 = $this->input->post("npk");
- 		$gol_lama 			 = $this->input->post("gol_sebelumnya");
- 		$gol_baru 			 = $this->input->post("gol_update");
- 		$tgl				 = $this->input->post("tgl");
- 		$id_user			 = $this->input->post("id_user");
- 		$id 				 = $this->input->post("id");
- 		//data update 
- 		$data_update = array(
-	 			"gol_kerja"			=> $gol_baru
-	 		);
+		$extensi 			= pathinfo($filename, PATHINFO_EXTENSION);
+ 		$this->load->library('upload');
+ 		$config['allowed_types']   = 'pdf|PDF' ;
+ 		$config['upload_path']     = './assets/upload/histori_golongan/' ;
+ 		$config['file_name'] 	   = $npk . date('yyddmm')  . $file  ;
+
+ 		$this->upload->initialize($config);
+ 			if(!$this->upload->do_upload('file')){
+ 				echo "file gagal upload";
+ 			}else {
+ 				$berkas  			 = $this->upload->data('file_name');
+ 				$gol_lama 			 = $this->input->post("gol_sebelumnya");
+		 		$gol_baru 			 = $this->input->post("gol_update");
+		 		$tgl				 = $this->input->post("tanggal");
+		 		$id_user			 = $this->input->post("id_user");
+		 		$id 				 = $this->input->post("id");
+
+		 		//data update 
+		 		$data_update = array(
+			 			"gol_kerja"			=> $gol_baru
+			 		);
 
 
 	 		$input = $this->m_admin->update($data_update,"tbl_karyawan",array("id" => $id));
@@ -117,14 +131,18 @@
 			 			"id_user"				=> $id_user ,
 			 			"gol_update"			=> $gol_baru ,
 			 			"gol_sebelumnya"		=> $gol_lama ,
-			 			"tahun"					=> $tgl ,
-			 			"tgl"					=> $tgl
+			 			"tahun"					=> substr($tgl, 0,4) ,
+			 			"tgl"					=> $tgl ,
+			 			'berkas'				=> $berkas
 			 		);
 			 		$this->m_admin->inputData($data,"histori_golongan");
 			 		echo "sukses";
 	 			} else {
 	 				echo "gagal";
-	 			}			
+	 			}
+ 			}
+
+
  	}
 
 

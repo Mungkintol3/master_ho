@@ -26,7 +26,7 @@ class Nilai_karyawan extends CI_Controller
  	{
  		$npk				 = $this->input->post("npk");
  		$nilai 	 			 = $this->input->post("nilai");
- 		$tgl				 = $this->input->post("tgl");
+ 		$tgl				 = $this->input->post("tanggal");
  		$id 				 = $this->input->post("id");
  		$nama 				 = $this->input->post("nama");
  		$id_user 			 = $this->input->post("id_user");
@@ -35,7 +35,7 @@ class Nilai_karyawan extends CI_Controller
 	 			"npk"					=> $npk ,
 	 			"nama"					=> $nama ,
 	 			"nilai_pk"				=> $nilai ,
-	 			"tahun"					=> $tgl ,
+	 			"tahun"					=> substr($tgl, 0,4) ,
 	 			"tgl"					=> $tgl ,
 	 		);
 

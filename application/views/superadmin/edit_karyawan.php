@@ -226,6 +226,7 @@
                         <th>NPK</th>
                         <th>Golongan Kerja</th>
                         <th>Tahun</th>
+                        <th>Berkas</th>
                         <th>Opsi</th>
                     </tr>
                     <tbody>
@@ -235,9 +236,17 @@
                                 <td><?= $golongan->gol_update ?></td>
                                 <td><?= $golongan->tahun ?></td>
                                 <td>
-                                    <a href="">hapus</a>
+                                    <a href='javascript:open<?= $golongan->id ?>("<?= $golongan->berkas ?>")' >bukti</td>
+                                <td>
+                                    <a href="<?= base_url('superadmin/Karyawan/delgol/' . $golongan->id . "/" . $golongan->id_user . "/"  . $golongan->berkas) ?>" onclick="return confirm('hapus ?')">hapus</a>
                                 </td>
                             </tr>
+
+                            <script type="text/javascript">
+                                function open<?= $golongan->id ?>(file) {
+                                 window.open("<?= base_url('assets/upload/histori_golongan/') ?>" + file, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=500,width=680,height=500"); 
+                                }
+                            </script>
                         <?php } ?>
                     </tbody>
                 </table>
@@ -315,3 +324,4 @@
   </div>
 
 </div>
+
