@@ -2,7 +2,7 @@
 <div class="col-md-12">
               <div class="card card-plain">
                 <div class="card-header card-header-info">
-                  <h4 class="card-title mt-0"> Rekap Surat Peringatan Karyawan</h4>
+                  <h4 class="card-title mt-0">Tambah Anggota Keluarga Karyawan</h4>
                   <p class="card-category"> SIGAP PRIMA ASTREA & SIGAP GARDA PRATAMA</p>
                 </div>
                 <div class="card-body">
@@ -14,7 +14,7 @@
                     <div class="form-group">
                       <input type="hidden" name="id" id="id">
                       <input type="hidden" name="id_user" id="id_user">
-                      <input readonly="" type="text" id="nama" name="nama" placeholder="Enter Nama" class="form-control">
+                      <input readonly="" type="text" id="nama_karyawan" name="nama_karyawan" placeholder="Enter Nama Karyawan"  class="form-control">
                     </div>
 
                     <div class="form-group">
@@ -22,18 +22,31 @@
                     </div>
 
                     <div class="form-group">
-                      <input type="text"  name="tipe_sp" placeholder="Jenis Surat Peringatan" id="tipe_sp" class="form-control">
+                      <input type="text"  name="nama" placeholder="Nama Keluarga" id="nama" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <textarea id="keterangan"  placeholder="Keterangan" class="form-control" name="keterangan"></textarea>
+                      <input type="text"  name="nik" placeholder="NIK" id="nik" class="form-control">
                     </div>
-
 
                     <div class="form-group">
-                      <input  type="text" id="tanggal" name="tgl" placeholder="Tahun" class="form-control">
+                      <input type="text"  name="no_kk" placeholder="No Kartu Keluarga" id="no_kk" class="form-control">
                     </div>
 
+                    <div class="form-group">
+                      <input type="text"  name="no_bpjs" placeholder="No BPJS" id="no_bpjs" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                      <select name="status" id="status" class="form-control">
+                        <option value="">Pilih Status</option>
+                        <option>Suami</option>
+                        <option>Istri</option>
+                        <option>Anak ke - 1</option>
+                        <option>Anak ke - 2</option>
+                        <option>Anak ke - 3</option>
+                      </select>                      
+                    </div>
                     <button type="submit" class="btn btn-info">Simpan Perubahan</button>
                   </form>
               	</div>
@@ -89,17 +102,21 @@ $(function(){
       $("#addSP").on('submit',function(e){
         var postData = new FormData(this);
         e.preventDefault();
-        if(document.getElementById('nama').value == "" ){
+        if(document.getElementById('nama_karyawan').value == "" ){
           alert("data karyawan masih kosong")
-        }else if(document.getElementById('tipe_sp').value == "" ){
-          alert("jenis surat Peringatan kosong")
-        }else if(document.getElementById('keterangan').value == "" ){
-          alert("keterangan masih kosong")
-        }else if(document.getElementById('tanggal').value == "" ){
-          alert("tanggal masih kosong")
+        }else if(document.getElementById('nama').value == "" ){
+          alert("nama keluarga kosong");
+        }else if(document.getElementById('nik').value == "" ){
+          alert("nik masih kosong");
+        }else if(document.getElementById('no_kk').value == "" ){
+          alert("no kartu keluarga masih kosong")
+        }else if(document.getElementById('no_bpjs').value == "" ){
+          alert("no bpjs masih kosong");
+        }else if(document.getElementById('status').value == "" ){
+          alert("status masih kosong");
         }else {
           $.ajax({
-            url : "<?= base_url('superadmin/Surat_peringatan/add') ?>" ,
+            url : "<?= base_url('superadmin/Keluarga/add') ?>" ,
             method : "POST" ,
             data : postData ,
             processData : false ,
@@ -114,7 +131,7 @@ $(function(){
             success : function(e){
                 if(e = "sukses"){
                   alert("berhasil");
-                  window.location.href='<?= base_url('superadmin/Surat_peringatan/form_add') ?>'
+                  window.location.href='<?= base_url('superadmin/Keluarga/form_add') ?>'
                 }else {
                   alert("gagal")
                 }
@@ -127,7 +144,7 @@ $(function(){
               document.getElementById("npk").value     = $(this).attr('data-npk');
               document.getElementById("id").value      = $(this).attr('data-id');
               document.getElementById("id_user").value = $(this).attr('data-id_user');
-              document.getElementById("nama").value    =  $(this).attr('data-nama');
+              document.getElementById("nama_karyawan").value    =  $(this).attr('data-nama');
               $('#selectkaryawan').modal('hide');
           })
   </script>

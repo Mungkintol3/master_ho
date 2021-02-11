@@ -146,6 +146,15 @@ The above copyright notice and this permission notice shall be included in all c
             </a>
           </li>
 
+          <li  class="nav-item <?php if ($url == 'Keluarga'){
+            echo 'active' ;
+          }?>">
+            <a class="nav-link" href="<?= base_url('superadmin/Keluarga/form_add') ?>">
+              <i class="material-icons">library_books</i>
+              <p>Tambah Keluarga</p>
+            </a>
+          </li>
+
         </ul>
       </div>
     </div>

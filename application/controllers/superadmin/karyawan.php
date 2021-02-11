@@ -42,6 +42,7 @@ class Karyawan extends CI_Controller
 			'training'		=> $this->m_admin->cari(array("id_user"=> $id),"histori_training")->result() ,
 			'sp'			=> $this->m_admin->cari(array("id_user"=> $id),"histori_surat_peringatan")->result() ,
 			'pendidikan'	=> $this->m_admin->cari(array("id_user"=> $id),"pendidikan")->result() ,
+			'keluarga'		=> $this->m_admin->cari(array("id_user"=> $id),"tbl_keluarga")->result() ,
 			'url' 			=> $this->uri->segment(2)
 		);
 		//$this->output->cache(1);
@@ -76,6 +77,8 @@ class Karyawan extends CI_Controller
 		}
 	}
 
+
+	//hapus data golongan
 	public function delgol($id , $id_user , $file)
 	{
 		$dir   = './assets/upload/histori_golongan/' . $file ;
@@ -84,6 +87,14 @@ class Karyawan extends CI_Controller
 	 		$this->m_admin->delete("histori_golongan",array("id" => $id));
 	 		redirect('superadmin/Karyawan/Edit_karyawan/' . $id_user);
 		}
+ 	
+	}
+
+	public function delkel($id, $id_user)
+	{
+
+	 		$this->m_admin->delete("tbl_keluarga",array("id" => $id));
+	 		redirect('superadmin/Karyawan/Edit_karyawan/' . $id_user);
  	
 	}
 }

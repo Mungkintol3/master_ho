@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 11, 2021 at 04:33 AM
+-- Generation Time: Feb 11, 2021 at 01:47 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.26
 
@@ -42,7 +42,7 @@ CREATE TABLE `demosi_jabatan` (
 --
 
 INSERT INTO `demosi_jabatan` (`id`, `id_user`, `nama`, `npk`, `demosi_jabatan`, `tahun`, `tanggal`) VALUES
-(3, 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', '123456', 'Junior Analisist', 2020, '2020-01-12');
+(2, 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', '123456', 'Department Head', 2020, '2020-01-12');
 
 -- --------------------------------------------------------
 
@@ -60,8 +60,10 @@ CREATE TABLE `departement` (
 --
 
 INSERT INTO `departement` (`id`, `departement`) VALUES
-(1, 'Koperasi'),
-(5, 'GA');
+(1, 'GA'),
+(2, 'Staff Operasional'),
+(3, 'Koperasi'),
+(4, 'Finance');
 
 -- --------------------------------------------------------
 
@@ -79,9 +81,11 @@ CREATE TABLE `divisi` (
 --
 
 INSERT INTO `divisi` (`id`, `divisi`) VALUES
-(2, 'Koperasi'),
-(4, 'Operatioanal'),
-(5, 'GA ');
+(1, 'Koperasi'),
+(2, 'HC'),
+(3, 'Operational'),
+(4, 'GA '),
+(5, 'Finance Accounting');
 
 -- --------------------------------------------------------
 
@@ -104,8 +108,7 @@ CREATE TABLE `histori_company` (
 --
 
 INSERT INTO `histori_company` (`id`, `npk`, `nama`, `id_user`, `company`, `join_date`, `tahun`) VALUES
-(7, '123456', 'Dasep', 'e10adc3949ba59abbe56e057f20f883e', 'SPA', '2014-01-12', 2014),
-(8, '123456', 'Dasep', 'e10adc3949ba59abbe56e057f20f883e', 'SPG', '2024-01-12', 2024);
+(1, '123456', 'Dasep', 'e10adc3949ba59abbe56e057f20f883e', 'SPA', '2020-01-12', 2020);
 
 -- --------------------------------------------------------
 
@@ -130,8 +133,7 @@ CREATE TABLE `histori_divisi` (
 --
 
 INSERT INTO `histori_divisi` (`id`, `npk`, `id_user`, `nama`, `divisi`, `departement`, `position`, `tahun`, `tanggal`) VALUES
-(11, '123456', 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', 'GA', 'GA', 'GA Head', 2021, '2021-01-01'),
-(12, '123456', 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', 'Koperasi', 'Koperasi', 'Koperasi Staff', 2022, '2022-06-01');
+(1, '123456', 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', 'GA', 'GA', 'GA Dept Head', 2021, '2021-01-01');
 
 -- --------------------------------------------------------
 
@@ -149,6 +151,13 @@ CREATE TABLE `histori_golongan` (
   `tgl` date DEFAULT NULL,
   `berkas` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `histori_golongan`
+--
+
+INSERT INTO `histori_golongan` (`id`, `id_user`, `npk`, `gol_sebelumnya`, `gol_update`, `tahun`, `tgl`, `berkas`) VALUES
+(1, 'e10adc3949ba59abbe56e057f20f883e', '123456', '', '1A', 2021, '2021-01-01', '12345621211111020237-56-1-SM.pdf');
 
 -- --------------------------------------------------------
 
@@ -184,14 +193,6 @@ CREATE TABLE `histori_karir` (
   `tanggal` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `histori_karir`
---
-
-INSERT INTO `histori_karir` (`id`, `id_user`, `karir_old`, `karir_new`, `tahun`, `tanggal`) VALUES
-(13, 'e10adc3949ba59abbe56e057f20f883e', '', 'Payroll', 2021, '2021-01-01'),
-(14, 'e10adc3949ba59abbe56e057f20f883e', 'Payroll', 'NPB', 2021, '2021-06-01');
-
 -- --------------------------------------------------------
 
 --
@@ -208,15 +209,6 @@ CREATE TABLE `histori_nilai_karyawan` (
   `tgl` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `histori_nilai_karyawan`
---
-
-INSERT INTO `histori_nilai_karyawan` (`id`, `npk`, `nama`, `id_user`, `nilai_pk`, `tahun`, `tgl`) VALUES
-(8, '123456', 'Dasep', NULL, 'B', 2021, '2021-01-01'),
-(9, '123456', 'Dasep', 'e10adc3949ba59abbe56e057f20f883e', 'A', 2021, '2021-01-01'),
-(10, '123456', 'Dasep', 'e10adc3949ba59abbe56e057f20f883e', 'B', 2017, '2017-01-01');
-
 -- --------------------------------------------------------
 
 --
@@ -232,13 +224,6 @@ CREATE TABLE `histori_npk` (
   `tanggal` date DEFAULT NULL,
   `tahun` year(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `histori_npk`
---
-
-INSERT INTO `histori_npk` (`id`, `id_user`, `nama`, `npk_lama`, `npk_baru`, `tanggal`, `tahun`) VALUES
-(3, 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', '220221', '123456', '2021-01-01', 2021);
 
 -- --------------------------------------------------------
 
@@ -270,13 +255,6 @@ CREATE TABLE `histori_pkwt` (
   `tgl` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `histori_pkwt`
---
-
-INSERT INTO `histori_pkwt` (`id`, `id_user`, `pkwt_sebelumnya`, `no_pkwt`, `tahun`, `tgl`) VALUES
-(3, 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, 2021, '2021-01-01');
-
 -- --------------------------------------------------------
 
 --
@@ -292,13 +270,6 @@ CREATE TABLE `histori_poin_karyawan` (
   `tahun` year(4) DEFAULT NULL,
   `tgl` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `histori_poin_karyawan`
---
-
-INSERT INTO `histori_poin_karyawan` (`id`, `nama`, `npk`, `id_user`, `poin`, `tahun`, `tgl`) VALUES
-(7, 'Dasep', '123456', 'e10adc3949ba59abbe56e057f20f883e', '12', 2021, '2021-01-01');
 
 -- --------------------------------------------------------
 
@@ -334,7 +305,7 @@ CREATE TABLE `histori_surat_peringatan` (
 --
 
 INSERT INTO `histori_surat_peringatan` (`id`, `id_user`, `nama`, `npk`, `jenis_surat_peringatan`, `tgl`, `tahun`, `keterangan`) VALUES
-(16, 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', '123456', 'SP 1', '2020-01-12', 2020, 'tidur di jam kerja');
+(1, 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', '123456', 'SP 1', '2020-01-12', 2020, 'Tidur di jam kerja');
 
 -- --------------------------------------------------------
 
@@ -358,9 +329,9 @@ CREATE TABLE `histori_training` (
 --
 
 INSERT INTO `histori_training` (`id`, `id_user`, `npk`, `nama`, `jenis_training`, `tahun`, `tgl`, `keterangan`) VALUES
-(6, 'e10adc3949ba59abbe56e057f20f883e', '123456', 'Dasep', 'K3', 2020, '2020-01-12', 'Ada'),
-(7, 'e10adc3949ba59abbe56e057f20f883e', '123456', 'Dasep', 'GADUT', 2020, '2020-01-12', 'Tidak Ada'),
-(8, 'e10adc3949ba59abbe56e057f20f883e', '123456', 'Dasep', 'GP', 2024, '2024-01-12', 'Ada');
+(1, 'e10adc3949ba59abbe56e057f20f883e', '123456', 'Dasep', 'K3', 2020, '2020-01-12', 'Ada'),
+(2, 'e10adc3949ba59abbe56e057f20f883e', '123456', 'Dasep', 'GADUT', 0000, '0000-00-00', 'Tidak Ada'),
+(3, 'e10adc3949ba59abbe56e057f20f883e', '123456', 'Dasep', 'GP', 2019, '2019-01-12', 'Ada');
 
 -- --------------------------------------------------------
 
@@ -381,13 +352,6 @@ CREATE TABLE `human_value_assets` (
   `tgl` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `human_value_assets`
---
-
-INSERT INTO `human_value_assets` (`id`, `id_user`, `nama`, `npk`, `asset_value`, `tahun`, `kekuatan`, `kelemahan`, `keterangan`, `tgl`) VALUES
-(8, 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', '123456', 'Potential Candidate', 2014, 'lari nya kenceng', 'tidur mulu', '', '2014-01-12');
-
 -- --------------------------------------------------------
 
 --
@@ -403,6 +367,13 @@ CREATE TABLE `mutasi_jabatan` (
   `tahun` year(4) DEFAULT NULL,
   `tanggal` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `mutasi_jabatan`
+--
+
+INSERT INTO `mutasi_jabatan` (`id`, `id_user`, `nama`, `npk`, `mutasi`, `tahun`, `tanggal`) VALUES
+(2, 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', '123456', 'Department Head', 0000, NULL);
 
 -- --------------------------------------------------------
 
@@ -426,8 +397,9 @@ CREATE TABLE `pendidikan` (
 --
 
 INSERT INTO `pendidikan` (`id`, `id_user`, `nama`, `npk`, `pendidikan`, `jurusan`, `institusi`, `thn_lulus`) VALUES
-(5, 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', '123456', 'SMA', 'IPA', 'STIMIK', '2017'),
-(8, 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', '123456', 'D3', 'Manajemen Informatika', 'STIMIK SWADHARMA', '2021');
+(1, 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', '123456', 'SMA', 'IPA', 'SMK DWIPA', '2017'),
+(2, 'a2e80aa2ed6e8f87a79188ef1f1b6b08', 'Murry', '220220', 'SMK', 'IPS', 'SMAN 1 ', '2015'),
+(3, 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', '123456', 'D3', 'Manajemen Informatika', 'STIMIK SWADHARMA', '2022');
 
 -- --------------------------------------------------------
 
@@ -437,7 +409,7 @@ INSERT INTO `pendidikan` (`id`, `id_user`, `nama`, `npk`, `pendidikan`, `jurusan
 
 CREATE TABLE `position` (
   `id` int(11) NOT NULL,
-  `posisi` varchar(100) DEFAULT NULL
+  `posisi` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -445,8 +417,11 @@ CREATE TABLE `position` (
 --
 
 INSERT INTO `position` (`id`, `posisi`) VALUES
-(3, 'Koperasi Staff'),
-(4, 'GA Head');
+(1, 'Koperasi Staff'),
+(2, 'Operational 1& 2 Staff'),
+(3, 'GA Dept Head'),
+(4, 'Finance Sect Head'),
+(5, 'HC Ops Staff');
 
 -- --------------------------------------------------------
 
@@ -469,8 +444,7 @@ CREATE TABLE `promosi_jabatan` (
 --
 
 INSERT INTO `promosi_jabatan` (`id`, `id_user`, `npk`, `nama`, `tanggal`, `tahun`, `latest_promosi`) VALUES
-(6, 'e10adc3949ba59abbe56e057f20f883e', NULL, 'Dasep', '2020-01-12', 2020, 'Departement Head'),
-(7, 'e10adc3949ba59abbe56e057f20f883e', '123456', 'Dasep', '2020-01-12', 2020, 'Junior Analisist');
+(1, 'e10adc3949ba59abbe56e057f20f883e', '123456', 'Dasep', '2020-01-12', 2020, 'Department Head');
 
 -- --------------------------------------------------------
 
@@ -490,9 +464,12 @@ CREATE TABLE `tbl_golongan` (
 --
 
 INSERT INTO `tbl_golongan` (`id`, `golongan_kerja`, `kode_golongan`, `keterangan`) VALUES
-(10, '1A', '1A', ''),
-(11, '2F', '2F', ''),
-(12, '4D', '4D', '');
+(1, '1A', '1A', ''),
+(2, '2A', '2A', ''),
+(3, '3B', '3B', ''),
+(4, '5A', '5A', ''),
+(5, '4C', '4C', ''),
+(6, '3D', '3D', '');
 
 -- --------------------------------------------------------
 
@@ -512,8 +489,9 @@ CREATE TABLE `tbl_jabatan` (
 --
 
 INSERT INTO `tbl_jabatan` (`id`, `nama_jabatan`, `kode_jabatan`, `keterangan`) VALUES
-(12, 'Departement Head', 'DH', ''),
-(13, 'Junior Analisist', 'JA', '');
+(1, 'Junior Analyst', 'JA', ''),
+(2, 'Department Head', 'DH', ''),
+(3, 'Admin 2', 'ADM 2', '');
 
 -- --------------------------------------------------------
 
@@ -533,7 +511,7 @@ CREATE TABLE `tbl_karyawan` (
   `gender` varchar(20) DEFAULT NULL,
   `martial_status` varchar(30) DEFAULT NULL,
   `address` text DEFAULT NULL,
-  `tgl_lahir` varchar(30) DEFAULT NULL,
+  `tgl_lahir` date DEFAULT NULL,
   `age` int(3) DEFAULT NULL,
   `no_telp` varchar(15) DEFAULT NULL,
   `email` varchar(60) DEFAULT NULL,
@@ -573,7 +551,35 @@ CREATE TABLE `tbl_karyawan` (
 --
 
 INSERT INTO `tbl_karyawan` (`id`, `id_user`, `npk`, `nama`, `divisi`, `departement`, `position`, `wilayah`, `gender`, `martial_status`, `address`, `tgl_lahir`, `age`, `no_telp`, `email`, `gol_darah`, `no_ktp`, `no_kk`, `bpjs_kesehatan`, `bpjs_tenagakerja`, `no_dplk`, `no_npwp`, `nama_bank`, `no_rekening`, `status_pajak`, `status_kawin`, `no_pkwt`, `promosi_jabatan`, `mutasi_jabatan`, `demosi_jabatan`, `employment_status`, `company`, `join_date`, `length_of_service`, `education_join`, `education_update`, `kel_jabatan`, `gol_kerja`, `latest_promotion`, `karir`, `alamat_ktp`, `tempat_lahir`, `kontak_darurat`, `latest_promosi`) VALUES
-(6, 'e10adc3949ba59abbe56e057f20f883e', 220221, 'Dasep', 'Koperasi', 'Koperasi', 'Koperasi Staff', 'Head Office', 'Laki-Laki', 'Single', 'BLOK KAMIS, RT 004/RW 002, KEL. MAJA UTARA, KEC. MAJA', '1999/04/01', 51, '0821-1285-0847', 'a@gmail.com', 'A', '3175042312881012', '3175042312881088', '000124567891', '120J12345', '0001G31219800', '246155097024000', 'Bank Central Asia', '6930347998', 'TK/0', 'LAJANG', NULL, 'Junior Analisist', 'Departement Head', 'Junior Analisist', 'Permanent Employee', 'SPG', '2024-01-12', NULL, 'SMA', 'D3', 'Junior Analyst', '4D', NULL, 'NPB', 'Priuk Jakarta Utara', 'Jakarta', '01212121212', '2020-01-12');
+(1, 'e10adc3949ba59abbe56e057f20f883e', 123456, 'Dasep', 'GA', 'GA', 'GA Dept Head', 'Head Office', 'Laki-Laki', 'Single', 'BLOK KAMIS, RT 004/RW 002, KEL. MAJA UTARA, KEC. MAJA', '1999-04-01', 51, '0821-1285-0847', 'a@gmail.com', 'A', '3175042312881012', '3175042312881088', '000124567891', '120J12345', '0001G31219800', '246155097024000', 'Bank Central Asia', '6930347998', 'TK/0', 'LAJANG', '123456', 'Department Head', 'Department Head', 'Department Head', 'Permanent Employee', 'SPA', '2020-01-12', NULL, 'SMA', 'D3', 'Junior Analyst', '1A', NULL, NULL, 'Priuk Jakarta Utara', 'Jakarta', '01212121212', '2020-01-12'),
+(2, 'a2e80aa2ed6e8f87a79188ef1f1b6b08', 220220, 'Murry', NULL, NULL, NULL, 'Head Offie', 'Laki-Laki', 'Single', 'Lodan Dalam II C RT 06 / RW 08 KEL.ANCOL JAKARTA UTARA', '1998-04-13', 21, '0812-1212-2244', 'murrry@gmail.com', 'AB', '3175042312881111', '3175042312881089', '000124567892', '120J12344', '0001G31219801', '246155097024001', 'Bank Central Asia', '6930347991', 'TK/0', 'KAWIN', '123457', NULL, NULL, NULL, 'Permanent Employee', NULL, '2011/11/06', NULL, 'SMK', 'SMK', 'Operational', NULL, NULL, NULL, 'Ancol Jakarta Utara', 'Bandung', '0121212121', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_keluarga`
+--
+
+CREATE TABLE `tbl_keluarga` (
+  `id` int(11) NOT NULL,
+  `id_user` varchar(255) DEFAULT NULL,
+  `npk` varchar(11) DEFAULT NULL,
+  `nama_karyawan` varchar(100) DEFAULT NULL,
+  `nama` varchar(100) DEFAULT NULL,
+  `status` varchar(100) DEFAULT NULL,
+  `no_kk` varchar(255) DEFAULT NULL,
+  `bpjs_kesehatan` varchar(255) DEFAULT NULL,
+  `nik` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_keluarga`
+--
+
+INSERT INTO `tbl_keluarga` (`id`, `id_user`, `npk`, `nama_karyawan`, `nama`, `status`, `no_kk`, `bpjs_kesehatan`, `nik`) VALUES
+(2, 'e10adc3949ba59abbe56e057f20f883e', '123456', 'Dasep', 'Ayu Safitri', 'Istri', '76576767', '67677', '456656'),
+(3, 'e10adc3949ba59abbe56e057f20f883e', '123456', 'Dasep', 'Muhammad Alkahfi', 'Anak ke - 1', '5656', '56565', '876767'),
+(4, 'a2e80aa2ed6e8f87a79188ef1f1b6b08', '220220', 'Murry', 'resa', 'Istri', '756565', '5656', '75757');
 
 --
 -- Indexes for dumped tables
@@ -724,6 +730,12 @@ ALTER TABLE `tbl_karyawan`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_keluarga`
+--
+ALTER TABLE `tbl_keluarga`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -731,13 +743,13 @@ ALTER TABLE `tbl_karyawan`
 -- AUTO_INCREMENT for table `demosi_jabatan`
 --
 ALTER TABLE `demosi_jabatan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `departement`
 --
 ALTER TABLE `departement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `divisi`
@@ -749,19 +761,19 @@ ALTER TABLE `divisi`
 -- AUTO_INCREMENT for table `histori_company`
 --
 ALTER TABLE `histori_company`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `histori_divisi`
 --
 ALTER TABLE `histori_divisi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `histori_golongan`
 --
 ALTER TABLE `histori_golongan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `histori_jabatan`
@@ -773,37 +785,37 @@ ALTER TABLE `histori_jabatan`
 -- AUTO_INCREMENT for table `histori_karir`
 --
 ALTER TABLE `histori_karir`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `histori_nilai_karyawan`
 --
 ALTER TABLE `histori_nilai_karyawan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `histori_npk`
 --
 ALTER TABLE `histori_npk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `histori_pendidikan`
 --
 ALTER TABLE `histori_pendidikan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `histori_pkwt`
 --
 ALTER TABLE `histori_pkwt`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `histori_poin_karyawan`
 --
 ALTER TABLE `histori_poin_karyawan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `histori_promosi`
@@ -815,61 +827,67 @@ ALTER TABLE `histori_promosi`
 -- AUTO_INCREMENT for table `histori_surat_peringatan`
 --
 ALTER TABLE `histori_surat_peringatan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `histori_training`
 --
 ALTER TABLE `histori_training`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `human_value_assets`
 --
 ALTER TABLE `human_value_assets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `mutasi_jabatan`
 --
 ALTER TABLE `mutasi_jabatan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pendidikan`
 --
 ALTER TABLE `pendidikan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `position`
 --
 ALTER TABLE `position`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `promosi_jabatan`
 --
 ALTER TABLE `promosi_jabatan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_golongan`
 --
 ALTER TABLE `tbl_golongan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_jabatan`
 --
 ALTER TABLE `tbl_jabatan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_karyawan`
 --
 ALTER TABLE `tbl_karyawan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tbl_keluarga`
+--
+ALTER TABLE `tbl_keluarga`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -26,7 +26,7 @@
                     </div>
 
                     <div class="form-group">
-                      <select id="new_mutasi" class="form-control">
+                      <select id="new_mutasi" name="mutasi" class="form-control">
                         <option value="">Pilih Mutasi Jabatan Terbaru </option>
                         <?php foreach($jabatan as $jbt) { ?>
                           <option><?= $jbt->nama_jabatan ?></option>
@@ -59,7 +59,6 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>NPK</th>
-                    <th>Golongan</th>
                   </tr>
                   <tbody>
                     <?php $no = 1 ; foreach($karyawan as $f) : ?>
@@ -77,11 +76,11 @@
                         </a>
                       </td>
                       <td><?= $f->npk ?></td>
-                      <td><?= $f->divisi ?></td>
                     </tr>
                     <?php endforeach ?>
                   </tbody>
                 </table>
+                <small class="text-danger"><i>*klik npk untuk pilih karyawan*</i> </small>
                 </div>
              </div>
          </div>
@@ -120,7 +119,7 @@
                    //alert(e);
                    if(e = "sukses"){
                      alert(e);
-                     window.location.href="<?= base_url('superadmin/Promosi/add_promosi_jabatan') ?>"
+                     window.location.href="<?= base_url('superadmin/Promosi/add_mutasi_jabatan') ?>"
                    }else {
                       alert("gagal")
                    }

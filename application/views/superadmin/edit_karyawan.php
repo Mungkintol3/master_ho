@@ -218,7 +218,29 @@
                 <p>SERTIFIKAT</p>
             </div>
             <div class="tab-pane" id="fams">
-                <p>KELUARGA</p>
+                <table class="table">
+                    <tr>
+                        <th>Nama</th>
+                        <th>NIK</th>
+                        <th>NO KK</th>
+                        <th>Status</th>
+                        <th>Opsi</th>
+                    </tr>
+                    <tbody>
+                        <?php foreach($keluarga as $keluarga) { ?>
+                            <tr>
+                                <td><?= $keluarga->nama ?></td>
+                                <td><?= $keluarga->nik ?></td>
+                                <td><?= $keluarga->no_kk ?></td>
+                                <td><?= $keluarga->status ?></td>
+                                <td>
+                                <a href="#" >update</a>
+                                <a href="<?= base_url('superadmin/Karyawan/delkel/' . $keluarga->id . "/" . $keluarga->id_user ) ?>" onclick="return confirm('hapus ?')">hapus</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
             </div>
             <div class="tab-pane" id="historyGol">
                 <table class="table">
