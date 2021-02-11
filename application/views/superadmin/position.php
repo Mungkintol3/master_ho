@@ -11,7 +11,7 @@
                     <table class="table table-hover">
                       <thead class="">
                         <th class="text-center">NO</th>
-                        <th>Departement</th>
+                        <th>Position</th>
                   		<th class="text-right">Action</th>
                        </thead>
                   			<tbody>

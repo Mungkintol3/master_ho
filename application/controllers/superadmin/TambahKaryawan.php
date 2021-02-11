@@ -46,6 +46,7 @@ class TambahKaryawan extends CI_Controller {
 
  		$numrow = 1  ;
  		 $data = array();
+ 		 $pendidikan = array();
  		 $cekNPK= array();
  		foreach($sheet as $row){
 	            if($numrow > 1){
@@ -83,15 +84,25 @@ class TambahKaryawan extends CI_Controller {
 			                	'no_pkwt'					=> $row['X'] ,
 			                	'employment_status'			=> $row['Y'] ,
 			                	'education_join'			=> $row['Z'] ,
+			                	'education_update'			=> $row['Z'] ,
 			                	//
-			                	'education_update'			=> $row['AA'] ,
-			                	'kel_jabatan'				=> $row['AB'] ,
-			                	'karir'						=> $row['AC'] ,
-			                	'alamat_ktp'				=> $row['AD'] ,
-			                	'kontak_darurat'			=> $row['AE'] ,
-			                	'join_date'					=> $row['AF'] ,
+			                	'kel_jabatan'				=> $row['AA'] ,
+			                	'alamat_ktp'				=> $row['AB'] ,
+			                	'kontak_darurat'			=> $row['AC'] ,
+			                	'join_date'					=> $row['AD'] ,
 
 			                ));
+
+			                array_push($pendidikan, array(
+			                	'id_user'					=> md5($row['B']) ,
+			                	'nama'						=> $row['C'] ,
+			                	'npk'						=> $row['B'] ,
+			                	'pendidikan'				=> $row['Z'] ,
+			                	'jurusan'					=> $row['AE'] ,
+			                	'institusi'					=> $row['AG'] ,
+			                	'thn_lulus'					=> $row['AF']
+			                ));
+
 					}
 	            }
             		$numrow++; // Tambah 1
@@ -101,6 +112,7 @@ class TambahKaryawan extends CI_Controller {
         		echo "";
         	}else {
         		$input = $this->m_admin->inputArray("tbl_karyawan",$data);
+        		$input = $this->m_admin->inputArray("pendidikan",$pendidikan);
         			if($input){
         				$this->session->set_flashdata("success","Data telah Di daftar");
 	            		redirect("superadmin/TambahKaryawan");

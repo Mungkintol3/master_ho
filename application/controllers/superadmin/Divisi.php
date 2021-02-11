@@ -25,7 +25,7 @@ class Divisi extends CI_Controller
  	{
  		$id  				= $this->input->post("id");
 		$id_user			= $this->input->post("id_user");
-		$tgl 				= $this->input->post("tgl");
+		$tgl 				= $this->input->post("tanggal");
 		$npk  				= $this->input->post("npk");
 		$nama  				= $this->input->post("nama");
 		$divisi 			= $this->input->post("divisi");
@@ -49,10 +49,11 @@ class Divisi extends CI_Controller
 						'id_user'			=> $id_user ,
 						'nama'				=> $nama ,
 						'npk'				=> $npk ,
-						"divisi"			=> $divisi_old ,
-						"departement"		=> $departement_old ,
-						"position"			=> $posisi_old	,
-						'tahun'				=> $tgl 
+						"divisi"			=> $divisi ,
+						"departement"		=> $departement ,
+						"position"			=> $posisi	,
+						'tanggal'			=> $tgl  ,
+						'tahun'				=> substr($tgl , 0, 4 )
 					);
 				 $this->m_admin->inputData($data,"histori_divisi");
 				echo "data " . $nama . "-" . $npk . " update";
@@ -61,7 +62,7 @@ class Divisi extends CI_Controller
 			}		
  	}
 
-
+/*
  	public function add_mutasi_jabatan()
 	{
 		$data = array(
@@ -71,6 +72,6 @@ class Divisi extends CI_Controller
  		$this->load->view('template/header',$data);
 		$this->load->view("superadmin/add_mutasi_jabatan",$data);
 		$this->load->view('template/footer');
-	}
+	}*/
 
 }

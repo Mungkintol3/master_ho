@@ -80,7 +80,7 @@
                         </a>
                       </td>
                       <td><?= $f->npk ?></td>
-                      <td><?= $f->divisi ?></td>
+                      <td><?= $f->gol_kerja ?></td>
                     </tr>
                     <?php endforeach ?>
                   </tbody>

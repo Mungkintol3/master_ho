@@ -125,7 +125,8 @@ class Promosi extends CI_Controller
 			'id_user'			=> $id_user ,
 			'nama'				=> $nama ,
 			'npk'				=> $npk ,
-			'tahun'				=> $tgl ,
+			'tahun'				=> substr($tgl ,0,4) ,
+			'tanggal'			=> $tgl ,
 			'demosi_jabatan'	=> $demosi
 		);
 

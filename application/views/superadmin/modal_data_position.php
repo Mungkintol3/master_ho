@@ -2,7 +2,7 @@
     <label>Nama Position</label>
     <div class="form-group">
       <input type="hidden" id="id" name="id" value="<?= $results->id ?>" >
-      <input type="text"  value="<?= $results->posisi ?>" name="" id="position1" class="form-control">
+      <input type="text"  value="<?= $results->posisi ?>" name="position" id="position1" class="form-control">
     </div>
     <button type="submit" id="submit1" class="btn btn-info">update</button>
 </form>
@@ -11,9 +11,9 @@
   $(function(){
       $("#editposition").on('submit',function(e){
           e.preventDefault();
-        var nama  , id  ;
+        var postData = new FormData(this)  ;
+        var nama , id ;
         nama    = document.getElementById('position1').value ;
-        id      = document.getElementById('id').value ;
         e.preventDefault();
          if(nama == "" ){
           alert("nama position kosong")
@@ -21,7 +21,10 @@
           $.ajax({
             url : "<?= base_url('superadmin/Position/update') ?>" ,
             method : "POST" ,
-            data :  "position=" + nama +  "&id=" + id, 
+            data : postData ,
+            processData : false ,
+            contentType : false ,
+            cache : false ,
             beforeSend : function(){
               $("#submit1").attr("disabled",true);   
             },

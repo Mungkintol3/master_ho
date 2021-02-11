@@ -14,27 +14,27 @@
                     <div class="form-group">
                       <input type="hidden" name="id" id="id">
                       <input type="hidden" name="id_user" id="id_user">
-                      <input readonly="" type="text" id="nama" placeholder="Enter Nama" class="form-control">
+                      <input readonly="" type="text" id="nama" name="nama" placeholder="Enter Nama" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <input readonly="" type="text" id="npk" placeholder="Enter NPK" class="form-control">
+                      <input readonly="" type="text" name="npk" id="npk" placeholder="Enter NPK" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <input  type="text" id="divisi_old" readonly="" placeholder="Divisi Sekarang" class="form-control">
+                      <input  type="text" id="divisi_old" name="divisi_old" readonly="" placeholder="Divisi Sekarang" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <input readonly="" type="text" id="departement_old" placeholder="Departement Sekarang" class="form-control">
+                      <input readonly="" type="text" name="departement_old" id="departement_old" placeholder="Departement Sekarang" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <input readonly=""  type="text" id="position_old" placeholder="Posisi Sekarang" class="form-control">
+                      <input readonly=""  type="text" name="position_old" id="position_old" placeholder="Posisi Sekarang" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <select id="divisi" class="form-control">
+                      <select id="divisi" name="divisi" class="form-control">
                         <option value="">Pilih Divisi Baru</option>
                         <?php foreach($divisi as $divisi) : ?>
                             <option><?= $divisi->divisi ?></option>
@@ -43,7 +43,7 @@
                     </div>
 
                     <div class="form-group">
-                      <select id="departement" class="form-control">
+                      <select id="departement" name="departement" class="form-control">
                         <option value="">Pilih Departement Baru</option>
                         <?php foreach($departement as $departement) : ?>
                             <option><?= $departement->departement ?></option>
@@ -52,7 +52,7 @@
                     </div>
 
                     <div class="form-group">
-                      <select id="position" class="form-control">
+                      <select id="position"  name="position" class="form-control">
                         <option value="">Pilih Posisi Baru</option>
                         <?php foreach($position as $posisi) : ?>
                             <option><?= $posisi->posisi ?></option>
@@ -61,7 +61,7 @@
                     </div>
 
                     <div class="form-group">
-                      <input   type="text" id="tanggal" placeholder="Tanggal" class="form-control">
+                      <input type="text" id="tanggal" name="tanggal" placeholder="Tanggal" class="form-control">
                     </div>
 
 
@@ -121,18 +121,7 @@
   <script type="text/javascript">
     $(function(){
 			$("#updatedivisi").on('submit',function(e){
-				var nama , id , id_user , npk , tgl ,divisi_old , posistion_old , departement_old , divisi , departement, posistion ;
-				nama 			      = document.getElementById('nama').value ;
-				id 				      = document.getElementById('id').value ;
-        id_user         = document.getElementById('id_user').value ;
-				npk 			      = document.getElementById('npk').value ;
-				tgl 			      = document.getElementById('tanggal').value ;
-        divisi          = document.getElementById('divisi').value ;
-        departement     = document.getElementById('departement').value; 
-        position        = document.getElementById('position').value;
-        divisi_old      = document.getElementById('divisi_old').value ;
-        departement_old = document.getElementById('departement_old').value; 
-        position_old    = document.getElementById('position_old').value;
+				var  postData = new FormData(this);
 
 				e.preventDefault();
 				if(document.getElementById('npk').value == "" ){
@@ -149,7 +138,10 @@
 					$.ajax({
 						url : "<?= base_url('superadmin/Divisi/input') ?>" ,
 						method : "POST" ,
-						data : "npk="+ npk + "&nama=" + nama + "&id="+ id + "&id_user="+ id_user + "&tgl="+ tgl + "&divisi=" + divisi + "&departement=" + departement + "&position=" + position + "&posisi_old=" + position_old + "&divisi_old="+ divisi_old + "&departement_old=" + departement_old ,
+						data : postData ,
+            processData : false ,
+            contentType : false ,
+            cache : false ,
 						beforeSend : function(){
 							$("#submit").attr("disabled",true);		
 						},

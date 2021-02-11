@@ -29,6 +29,7 @@ class Pendidikan extends CI_Controller
 		$old_education 		= $this->input->post("old_education");
 		$new_education 		= $this->input->post("new_education");
 		$institusi 			= $this->input->post("institusi");
+		$jurusan 			= $this->input->post("jurusan");
 
 		//tambah traking histori no pkwt
 		$data  = array(
@@ -37,7 +38,8 @@ class Pendidikan extends CI_Controller
 			'npk'				=> $npk ,
 			'thn_lulus'			=> $tgl ,
 			'pendidikan'		=> $new_education ,
-			'institusi'			=> $institusi
+			'institusi'			=> $institusi ,
+			'jurusan'			=> $jurusan ,
 		);
 
 

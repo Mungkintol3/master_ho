@@ -1,5 +1,4 @@
 <div class="content">
-
 <section class="container">
     <div class="row">
     <?php if($this->session->flashdata("success"))  { ?>
@@ -78,7 +77,7 @@
     $(document).ready( function () {
       $('#table_id').DataTable( {
             "pagingType": "full_numbers"
-        } );
+        });
     } );
   </script>
 

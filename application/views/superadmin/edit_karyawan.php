@@ -279,6 +279,7 @@
                         <th>NPK</th>
                         <th>Jenis Training</th>
                         <th>Tahun</th>
+                        <th>Status</th>
                         <th>Opsi</th>
                     </tr>
                     <tbody>
@@ -287,6 +288,7 @@
                                 <td><?= $training->npk ?></td>
                                 <td><?= $training->jenis_training ?></td>
                                 <td><?= $training->tahun ?></td>
+                                <td><?= $training->keterangan ?></td>
                                 <td>
                                     <a href="">hapus</a>
                                 </td>

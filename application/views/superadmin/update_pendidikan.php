@@ -14,27 +14,31 @@
                     <div class="form-group">
                       <input type="hidden" name="id" id="id">
                       <input type="hidden" name="id_user" id="id_user">
-                      <input readonly="" type="text" id="nama" placeholder="Enter Nama" class="form-control">
+                      <input readonly="" type="text" name="nama" id="nama" placeholder="Enter Nama" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <input readonly="" type="text" id="npk" placeholder="Enter NPK" class="form-control">
+                      <input readonly="" type="text" name="npk" id="npk" placeholder="Enter NPK" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <input type="text" readonly="" name="" id="old_pendidikan" placeholder="Pendidikan Sebelumnya" class="form-control">
+                      <input type="text" readonly="" name="old_education" id="old_pendidikan" placeholder="Pendidikan Sebelumnya" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <input type="text"  id="new_pendidikan" placeholder="Pendidikan Terbaru" class="form-control">
+                      <input type="text"  id="new_pendidikan" name="new_education" placeholder="Pendidikan Terbaru" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                      <input type="text"  id="jurusan" name="jurusan" placeholder="Jurusan Pendidikan" class="form-control">
                     </div>
 
                      <div class="form-group">
-                      <input type="text" name="" id="institusi" placeholder="Sekolah / Kampus" class="form-control">
+                      <input type="text" name="institusi" id="institusi" placeholder="Sekolah / Kampus" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <input  type="text" id="tahun_lulus"  placeholder="Enter Tahun" class="form-control">
+                      <input  type="text" id="tahun_lulus" name="tahun_lulus" placeholder="Enter Tahun Lulus" class="form-control">
                     </div>
 
                     <button type="submit" id="submit" class="btn btn-info">Simpan Perubahan</button>
@@ -93,15 +97,7 @@
       $(function(){
         
           $("#updatepoin").on('submit',function(e){
-            var nama , id , id_user , npk , tgl , old_pendidikan, new_pendidikan , institusi  ;
-            nama               = document.getElementById('nama').value ;
-            id                 = document.getElementById('id').value ;
-            npk                = document.getElementById('npk').value ;
-            old_pendidikan     = document.getElementById('old_pendidikan').value ;
-            new_pendidikan     = document.getElementById('new_pendidikan').value ;
-            id_user            = document.getElementById('id_user').value ;
-            tgl                = document.getElementById('tahun_lulus').value ;
-            institusi          = document.getElementById('institusi').value ;
+            var postData = new FormData(this);
             e.preventDefault();
             if(document.getElementById('npk').value == "" ){
               alert("data karyawan masih kosong")
@@ -115,7 +111,10 @@
               $.ajax({
                 url : "<?= base_url('superadmin/Pendidikan/input_histori') ?>" ,
                 method : "POST" ,
-                data : "id=" + id + "&id_user=" + id_user + "&tahun_lulus=" + tgl  + "&nama=" + nama + "&npk="+ npk + "&old_education=" + old_pendidikan + "&new_education=" + new_pendidikan + "&institusi=" + institusi ,
+                data : postData ,
+                processData : false ,
+                contentType : false ,
+                cache : false ,
                 beforeSend : function(){
                   $("#submit").attr("disabled",true);   
                 },
