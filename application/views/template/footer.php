@@ -32,10 +32,22 @@
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
   <!-- Chartist JS -->
   <script src="<?php echo base_url()?>assets/js/plugins/chartist.min.js"></script>
+  <!-- Datepicker -->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <!--  Notifications Plugin    -->
   <script src="<?php echo base_url()?>assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="<?php echo base_url()?>assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
+  <script>
+  $( function() {
+    $( "#tanggal" ).datepicker({
+      dateFormat: "yy-mm-dd",
+      changeMonth:  true,
+      changeYear:   true
+    });
+  });
+  </script>
+  
   <script>
     $(document).ready(function() {
       // Javascript method's body can be found in assets/js/demos.js

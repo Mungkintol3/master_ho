@@ -1,6 +1,10 @@
 <div class="content">
 <div class="col-md-12">
-  <a data-toggle="modal" data-target="#add" class="btn btn-danger">Tambah Data </a>
+  <a data-toggle="modal" data-target="#add" class="btn btn-danger btn-round">Tambah Data </a>
+  <a data-toogle="modal" href="<?php echo base_url('superadmin/Data_divisi')?>" class="btn btn-default btn-round">
+  <i class="material-icons">assignment_ind</i>
+  Daftar Divisi
+  </a>
               <div class="card card-plain">
                 <div class="card-header card-header-info">
                   <h4 class="card-title mt-0"> DAFTAR DEPARTEMENT KERJA</h4>

@@ -28,7 +28,8 @@ The above copyright notice and this permission notice shall be included in all c
   <link href="<?php echo base_url()?>assets/css/material-dashboard.css" rel="stylesheet" />
    <!--  <script src="<?php echo base_url()?>assets/js/core/jquery.min.js"></script> -->
     <script src="<?php echo base_url()?>assets/js/jquery-3-1.min.js"></script>
-      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 
 <body class="">
@@ -89,7 +90,7 @@ The above copyright notice and this permission notice shall be included in all c
           }?>">
             <a class="nav-link" href="<?php echo base_url()?>superadmin/Jabatan/">
               <i class="material-icons">person</i>
-              <p>Data Jabatan</p>
+              <p>Jabatan & Posisi </p>
             </a>
           </li>
           <li class="nav-item <?php if ($url == 'Golongan'){
@@ -97,7 +98,7 @@ The above copyright notice and this permission notice shall be included in all c
           }?>">
             <a class="nav-link" href="<?php echo base_url()?>superadmin/Golongan">
               <i class="material-icons">person</i>
-              <p>Data Golongan</p>
+              <p>Golongan</p>
             </a>
           </li>
 
@@ -106,27 +107,9 @@ The above copyright notice and this permission notice shall be included in all c
           }?>">
             <a class="nav-link" href="<?php echo base_url()?>superadmin/Departement">
               <i class="material-icons">person</i>
-              <p>Data Departement</p>
+              <p>Departement & Divisi</p>
             </a>
           </li>  
-
-          <li class="nav-item <?php if ($url == 'Position'){
-            echo 'active' ;
-          }?>">
-            <a class="nav-link" href="<?php echo base_url()?>superadmin/Position">
-              <i class="material-icons">person</i>
-              <p>Data Position</p>
-            </a>
-          </li> 
-
-          <li class="nav-item <?php if ($url == 'Data_divisi'){
-            echo 'active' ;
-          }?>">
-            <a class="nav-link" href="<?php echo base_url()?>superadmin/Data_divisi">
-              <i class="material-icons">person</i>
-              <p>Data Divisi</p>
-            </a>
-          </li>       
          
           <li  class="nav-item <?php if ($url == 'Update_pkwt'){
             echo 'active' ;
