@@ -77,9 +77,7 @@
          </div>
      </form>
      </div>
-<!-- end of modal  -->
-
-
+<!-- end of modal  -->                      
   <script type="text/javascript">
       $(function(){
         

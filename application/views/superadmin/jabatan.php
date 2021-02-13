@@ -1,6 +1,12 @@
 <div class="content">
 <div class="col-md-12">
-  <a data-toggle="modal" data-target="#addjabatan" class="btn btn-danger">Tambah Data </a>
+  <a data-toggle="modal" data-target="#addjabatan" class="btn btn-success btn-round">
+   <i class="material-icons">assignment_ind</i> 
+  Tambah Data Jabatan</a>
+  <a data-toogle="modal" href="<?php echo base_url('superadmin/Position')?>" class="btn btn-default btn-round">
+  <i class="material-icons">assignment_ind</i>
+  Tambah Data Posisi
+  </a>
               <div class="card card-plain">
                 <div class="card-header card-header-info">
                   <h4 class="card-title mt-0"> DAFTAR JABATAN</h4>
@@ -24,10 +30,10 @@
                               <td><?= $result->nama_jabatan ?></td>
                               <td><?= $result->keterangan ?></td>
                       				<td class="td-actions text-right">
-                                <a  data-id="<?php echo $result->id ?>" data-toggle="modal" data-target="#detail_jab" class="btn-danger btn-sm">
+                                <a  data-id="<?php echo $result->id ?>" data-toggle="modal" data-target="#detail_jab" class="btn btn-success btn-fab btn-fab-mini btn-round">
       					                    <i class="material-icons">edit</i>
                                 </a>
-                                <a onclick="return confirm('hapus ?')" href="<?= base_url('superadmin/Jabatan/delete/'. $result->id) ?>" class="btn-danger btn-sm">
+                                <a onclick="return confirm('hapus ?')" href="<?= base_url('superadmin/Jabatan/delete/'. $result->id) ?>" class="btn btn-danger btn-fab btn-fab-mini btn-round">
                                     <i class="material-icons">close</i>
                                 </a>
                     					</td>
