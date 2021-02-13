@@ -35,6 +35,9 @@ class Karyawan extends CI_Controller
 
 	public function Edit_karyawan($id)
 	{
+/*		$p = $this->m_admin->showPendidikan1($id)->result();
+		print_r($p);*/
+
 		$data = array(
 			'karyawan'		=> $this->m_admin->cari(array("id_user"=> $id),"tbl_karyawan")->row() ,
 			'golongan'		=> $this->m_admin->cari(array("id_user"=> $id),"histori_golongan")->result() ,
@@ -43,6 +46,7 @@ class Karyawan extends CI_Controller
 			'sp'			=> $this->m_admin->cari(array("id_user"=> $id),"histori_surat_peringatan")->result() ,
 			'pendidikan'	=> $this->m_admin->cari(array("id_user"=> $id),"pendidikan")->result() ,
 			'keluarga'		=> $this->m_admin->cari(array("id_user"=> $id),"tbl_keluarga")->result() ,
+			'join_pendidikan' => $this->m_admin->showPendidikan($id)->result(), 
 			'url' 			=> $this->uri->segment(2)
 		);
 		//$this->output->cache(1);
@@ -56,7 +60,6 @@ class Karyawan extends CI_Controller
 	{
 		$delete = $this->m_admin->delete('tbl_karyawan',array("id_user"  => $id));
 		if($delete){
-
 			$this->m_admin->delete('histori_company',array("id_user"  => $id));
 			$this->m_admin->delete('histori_divisi',array("id_user"  => $id));
 			$this->m_admin->delete('histori_golongan',array("id_user"  => $id));
@@ -72,9 +75,11 @@ class Karyawan extends CI_Controller
 			$this->m_admin->delete('human_value_assets',array("id_user"  => $id));
 			$this->m_admin->delete('mutasi_jabatan',array("id_user"  => $id));
 			$this->m_admin->delete('promosi_jabatan',array("id_user"  => $id));
-
-			rediret('superadmin/Karyawan');
+			$this->m_admin->delete('pendidikan',array("id_user"  => $id));
+			$this->m_admin->delete('tbl_keluarga',array("id_user"  => $id));
+			redirect('superadmin/Karyawan');
 		}
+
 	}
 
 

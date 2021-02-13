@@ -1,5 +1,4 @@
 
-
 <div class="content">
 <div class="col-md-12">
             <div class="card card-plain">
@@ -55,10 +54,3 @@
      <a id="tambahkaryawan" href="<?= base_url('superadmin/TambahKaryawan') ?>" class="btn btn-success">Tambah Data </a>
   </div>
 </div>
-      <script type="text/javascript">
-            $(document).ready( function () {
-              $('#table_id').DataTable( {
-                    "pagingType": "full_numbers"
-                } );
-            } );
-          </script>

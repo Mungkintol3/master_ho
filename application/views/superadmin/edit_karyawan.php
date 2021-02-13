@@ -191,6 +191,31 @@
                         </table>
             </div>
             <div class="tab-pane" id="elementary">
+                Education Join
+                <table class="table">
+                    <tr>
+                        <th>NPK</th>
+                        <th>Pendidikan</th>
+                        <th>Sekolah / Universitas</th>
+                        <th>Tahun Lulus</th>
+                        <th>Opsi</th>
+                    </tr>
+                    <tbody>
+                        <?php foreach($join_pendidikan as $p) { ?>
+                            <tr>
+                                <td><?= $p->npk ?></td>
+                                <td><?= $p->education_join ?></td>
+                                <td><?= $p->institusi ?></td>
+                                <td><?= $p->thn_lulus ?></td>
+                                <td>
+                                    <a href="">hapus</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+                <hr>
+                Education Update
                 <table class="table">
                     <tr>
                         <th>NPK</th>
@@ -215,7 +240,35 @@
                 </table>
             </div>
             <div class="tab-pane" id="sertifikat">
-                <p>SERTIFIKAT</p>
+                <table class="table">
+                    <tr>
+                        <th>NPK</th>
+                        <th>Jenis Training</th>
+                        <th>Sertifikat</th>
+                        <th>Opsi</th>
+                    </tr>
+                    <tbody>
+                        <?php foreach($training as $t) { ?>
+                            <tr>
+                                <td><?= $t->npk ?></td>
+                                <td><?= $t->jenis_training ?></td>
+                                <td>
+                                    <a href="javascript:openT<?=  $t->id ?>('<?= $t->file ?>')">
+                                        klik here
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#">hapus</a>
+                                </td>
+                            </tr>
+                             <script type="text/javascript">
+                                function openT<?= $t->id ?>(file) {
+                                 window.open("<?= base_url('assets/upload/sertifikat/') ?>" + file, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=500,width=680,height=500"); 
+                                }
+                            </script>
+                        <?php } ?>
+                    </tbody>
+                </table>
             </div>
             <div class="tab-pane" id="fams">
                 <table class="table">
@@ -234,7 +287,6 @@
                                 <td><?= $keluarga->no_kk ?></td>
                                 <td><?= $keluarga->status ?></td>
                                 <td>
-                                <a href="#" >update</a>
                                 <a href="<?= base_url('superadmin/Karyawan/delkel/' . $keluarga->id . "/" . $keluarga->id_user ) ?>" onclick="return confirm('hapus ?')">hapus</a>
                                 </td>
                             </tr>

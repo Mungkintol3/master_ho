@@ -42,19 +42,18 @@
   </div>
  <!-- modal form tambah jabatan -->
  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="selectkaryawan" class="modal fade">
-     <div class="modal-dialog modal-xl">
+     <div class="modal-dialog">
          <div class="modal-content">
              <div class="modal-header">
              Data Karyawan
                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
              </div>
              <div class="modal-body" id="hstatus">
-                <table class="table">
+                <table class="table" id="table_id">
                   <tr>
                     <th>No</th>
                     <th>Nama</th>
                     <th>NPK</th>
-                    <th>Divisi</th>
                   </tr>
                   <tbody>
                     <?php $no = 1 ; foreach($karyawan as $f) : ?>
@@ -72,11 +71,11 @@
                         </a>
                       </td>
                       <td><?= $f->npk ?></td>
-                      <td><?= $f->divisi ?></td>
                     </tr>
                     <?php endforeach ?>
                   </tbody>
                 </table>
+                <small class="text-danger"><i>*klik nama untuk pilih karyawan*</i></small>
                 </div>
              </div>
          </div>
