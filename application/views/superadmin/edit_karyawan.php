@@ -158,9 +158,14 @@
                                 <td><?= $karyawan->position ?></td>
                             </tr>
                             <tr class="text-left">
-                                <td class="text-left">Kelompok Jabatan</td>
+                                <td class="text-left">Kelompok Jabatan Awal</td>
                                 <td>:</td>
                                 <td><?= $karyawan->kel_jabatan ?></td>
+                            </tr>
+                            <tr class="text-left">
+                                <td class="text-left">Promosi Jabtan</td>
+                                <td>:</td>
+                                <td><?= $karyawan->promosi_jabatan ?></td>
                             </tr>
                             <tr class="text-left">
                                 <td class="text-left">Wilayah</td>

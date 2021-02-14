@@ -1,4 +1,4 @@
-<!--
+<!-- 
 =========================================================
 Material Dashboard - v2.1.2
 =========================================================
@@ -14,8 +14,8 @@ The above copyright notice and this permission notice shall be included in all c
 
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url()?>assets/img/sigap.png">
-  <link rel="icon" type="image/png" href="<?php echo base_url()?>assets/img/sigap.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/sigap.png">
+  <link rel="icon" type="image/png" href="../assets/img/sigap.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     Master Data HO
@@ -40,7 +40,9 @@ The above copyright notice and this permission notice shall be included in all c
 
         Tip 2: you can also add an image using data-image tag
     -->
-      <div class="logo"><a href="#" class="simple-text logo-normal">
+      <div class="logo">
+      <a href="<?php echo base_url('superadmin/dashboard')?>" class="simple-text logo-normal">
+      <img src="<?php echo base_url()?>assets/img/sigap.png" height="50px" width="50px">
           <b>SISMORO</b> 
         </a></div>
       <div class="sidebar-wrapper">
