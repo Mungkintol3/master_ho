@@ -10,7 +10,7 @@
                     <div class="form-group">
                       <button type="button " data-toggle="modal" data-target="#selectkaryawan" class="btn btn-success">Cari Karyawan <i class="fa fa-search"></i> </button>
                     </div>
-                  <form id="formtraining" class="form-horizontal">
+                  <form id="formtraining" enctype="multipart/form-data" class="form-horizontal">
                     <div class="form-group">
                       <input type="hidden" name="id" id="id">
                       <input type="hidden" name="id_user" id="id_user">
@@ -42,6 +42,8 @@
                       <input  type="text" id="tanggal" name="tgl" placeholder="Enter Tahun" class="form-control">
                     </div>
 
+                    <label>Berkas Pendukung</label>
+                    <input class="form-control" type="file" name="file" id="file">
                     <button type="submit" class="btn btn-info">Simpan Perubahan</button>
                   </form>
               	</div>
@@ -63,7 +65,6 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>NPK</th>
-                    <th>Divisi</th>
                   </tr>
                   <tbody>
                     <?php $no = 1 ; foreach($karyawan as $f) : ?>
@@ -80,11 +81,11 @@
                         </a>
                       </td>
                       <td><?= $f->npk ?></td>
-                      <td><?= $f->divisi ?></td>
                     </tr>
                     <?php endforeach ?>
                   </tbody>
                 </table>
+                 <small class="text-danger"><i>*klik nama untuk pilih karyawan*</i> </small>
                 </div>
              </div>
          </div>
@@ -114,7 +115,9 @@
             alert("status masih kosong");
           }else if(document.getElementById('tanggal').value == ""){
             alert("tanggal masih kosong");
-          } else {
+          }else if(document.getElementById('file').value == ""){
+            alert("berkas pendukung masih kosong");
+          }  else {
             $.ajax({
               url : "<?= base_url('superadmin/Training_histori/add') ?>" ,
               method : "POST" ,

@@ -63,4 +63,29 @@ class M_admin extends CI_Model
 		$this->db->where($where);
 		return $this->db->update($table,$data);
 	}
+
+
+	//show pendidikan join
+	public function showPendidikan($id_user)
+	{
+		$this->db->select('tbl_karyawan.nama, tbl_karyawan.npk , tbl_karyawan.education_join , 
+									pendidikan.institusi ,pendidikan.thn_lulus , pendidikan.jurusan');
+		$this->db->from('tbl_karyawan');
+		$this->db->where("tbl_karyawan.id_user",$id_user);
+		$this->db->join('pendidikan', 'pendidikan.pendidikan = tbl_karyawan.education_join');
+		$query = $this->db->get();
+		return $query;
+	}
+
+	//show pendidikan join
+	public function showPendidikan1($id_user)
+	{
+		$this->db->select('tbl_karyawan.nama, tbl_karyawan.npk , tbl_karyawan.education_join , 
+									pendidikan.institusi, pendidikan.pendidikan ,pendidikan.thn_lulus , pendidikan.jurusan');
+		$this->db->from('tbl_karyawan');
+		$this->db->where("tbl_karyawan.id_user",$id_user);
+		$this->db->join('pendidikan', 'pendidikan.pendidikan != tbl_karyawan.education_join');
+		$query = $this->db->get();
+		return $query;
+	}
 }

@@ -53,6 +53,12 @@
       // Javascript method's body can be found in assets/js/demos.js
       md.initDashboardPageCharts();
     });
+            $(document).ready( function () {
+              $('#table_id').DataTable( {
+                    "pagingType": "full_numbers"
+                } );
+            } );
+
   </script>
 </body>
 

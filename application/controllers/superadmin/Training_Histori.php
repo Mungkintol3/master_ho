@@ -21,6 +21,7 @@ class Training_histori extends CI_Controller
 
 	public function add()
  	{
+
  		$npk  			 = $this->input->post("npk");
  		$nama  			 = $this->input->post("nama");
  		$id_user 		 = $this->input->post("id_user");
@@ -28,14 +29,29 @@ class Training_histori extends CI_Controller
  		$keterangan		 = $this->input->post("keterangan");
  		$jenis_training	 = $this->input->post("jenis_training");
 
-	 		$data = array(
+ 		$file 				 =  $_FILES['file']['name'];
+ 		$filename 			 = $file;
+ 		$npk				 = $this->input->post("npk");
+		$extensi 			 = pathinfo($filename, PATHINFO_EXTENSION);
+ 		$this->load->library('upload');
+ 		$config['allowed_types']   = 'pdf|PDF' ;
+ 		$config['upload_path']     = './assets/upload/sertifikat/' ;
+ 		$config['file_name'] 	   = $npk .  $jenis_training .  md5($filename) . '.' . $extensi ;
+
+ 		$this->upload->initialize($config);
+ 		if(!$this->upload->do_upload('file')){
+ 			echo "failed";
+ 		}else {
+ 			$berkas = $this->upload->data("file_name");
+ 			$data = array(
 	 			"id_user"						=> $id_user,
 	 			"nama"							=> $nama ,
 	 			"jenis_training"				=> $jenis_training , 
 	 			"npk"							=> $npk ,
 	 			"tgl"							=> $tgl ,
 	 			"tahun"							=> substr($tgl, 0,4),
-	 			"keterangan"					=> $keterangan
+	 			"keterangan"					=> $keterangan ,
+	 			"file"							=> $berkas
 	 		);
 	 		
 	 		$input = $this->m_admin->inputData($data,"histori_training");
@@ -43,7 +59,9 @@ class Training_histori extends CI_Controller
 	 				echo "sukses";
 	 			} else {
 	 				echo "gagal";
-	 			}			
+	 			}	
+ 		}
+	 				
  	}
 
 }

@@ -75,7 +75,7 @@
                     <?php endforeach ?>
                   </tbody>
                 </table>
-                <small class="text-danger"><i>*klik npk untuk pilih karyawan*</i> </small>
+                <small class="text-danger"><i>*klik nama untuk pilih karyawan*</i> </small>
                 </div>
              </div>
          </div>

@@ -80,12 +80,11 @@
                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
              </div>
              <div class="modal-body" id="hstatus">
-                <table class="table">
+                <table class="table" id="table_id">
                   <tr>
                     <th>No</th>
                     <th>Nama</th>
                     <th>NPK</th>
-                    <th>Golongan</th>
                   </tr>
                   <tbody>
                     <?php $no = 1 ; foreach($karyawan as $f) : ?>
@@ -105,11 +104,11 @@
                         </a>
                       </td>
                       <td><?= $f->npk ?></td>
-                      <td><?= $f->divisi ?></td>
                     </tr>
                     <?php endforeach ?>
                   </tbody>
                 </table>
+                <small class="text-danger"><i>*klik nama untuk pilih karyawan*</i> </small>
                 </div>
              </div>
          </div>
