@@ -10,7 +10,7 @@
                     <div class="form-group">
                       <button type="button " data-toggle="modal" data-target="#selectkaryawan" class="btn btn-success">Cari Karyawan <i class="fa fa-search"></i> </button>
                     </div>
-                  <form id="formkarir" class="form-horizontal">
+                  <form id="formkarir" enctype="multipart/form-data" class="form-horizontal">
                     <div class="form-group">
                       <input type="hidden" name="id" id="id">
                       <input type="hidden" name="id_user" id="id_user">
@@ -33,6 +33,8 @@
                       <input  type="text" id="tanggal" name="tanggal" placeholder="Enter Tahun" class="form-control">
                     </div>
 
+                    <label>Berkas Pendukung</label>
+                    <input type="file" id="file" name="file" onchange="return cekexe()" class="form-control">
                     <button type="submit" class="btn btn-info">Simpan Perubahan</button>
                   </form>
               	</div>
@@ -86,6 +88,18 @@
 
 
   <script type="text/javascript">
+  function cekexe(){
+      const file = document.getElementById('file');
+      const path  = file.value ;
+      const exe = /(\.pdf)$/i;
+      if(!exe.exec(path)){
+        alert("file harus berbentuk pdf");
+        file.value = "";
+        return ;
+      }
+  }
+
+
     $('.click').on('click',function(e){
         document.getElementById("npk").value = $(this).attr('data-npk');
         document.getElementById("nama").value = $(this).attr('data-nama');
@@ -114,8 +128,13 @@
               contentType : false ,
               cache : false ,
               success : function(e){
-                alert(e)
-                window.location.href="<?= base_url('superadmin/Career/') ?>"
+                if(e = 'sukses'){
+                  alert(e)
+                  window.location.href="<?= base_url('superadmin/Career/') ?>"
+
+                }else {
+                  alert(e)
+                }
               }
             })
           }

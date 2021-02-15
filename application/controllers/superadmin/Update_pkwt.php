@@ -19,33 +19,51 @@ class Update_pkwt extends CI_Controller
 
 	public function update()
 	{
-		$id  		= $this->input->post("id");
-		$id_user	= $this->input->post("id_user");
-		$tgl 		= $this->input->post("tanggal");
-		$pkwt_baru  = $this->input->post("pkwt_baru");
-		$pkwt_lama  = $this->input->post("pkwt_lama");
-		$npk  		= $this->input->post("npk");
-		$nama  		= $this->input->post("nama");
-		//tambah traking histori no pkwt
-		$data  = array(
-			'id_user'			=> $id_user ,
-			'tgl'				=> $tgl ,
-			'tahun'				=> substr($tgl, 0,4) ,
-			"no_pkwt"			=> $pkwt_baru  , 
-			"pkwt_sebelumnya"	=> $pkwt_lama 
-		);
 
-		//update data pkwt
-		$dataupdate = array(
-			'no_pkwt'  => $pkwt_baru 
-		);
+		$file 				 = $_FILES['file']['name'];
+ 		$filename 			 = $file;
+ 		$npk				 = $this->input->post("npk");
+		$extensi 			 = pathinfo($filename, PATHINFO_EXTENSION);
+ 		$this->load->library('upload');
+ 		$config['allowed_types']   = 'pdf|PDF' ;
+ 		$config['upload_path']     = './assets/upload/pkwt/' ;
+ 		$config['file_name'] 	   = $npk .  date('his') .  md5($filename) . '.' . $extensi ;
 
-		$update = $this->m_admin->update($dataupdate,"tbl_karyawan",array("id" => $id));
-			if($update){
-				 $this->m_admin->inputData($data,"histori_pkwt");
-				echo "pkwt " . $nama . "-" . $npk . " update";
-			}else {
-				echo "gagal update";
-			}
+ 		$this->upload->initialize($config);
+ 		if(!$this->upload->do_upload('file')){
+ 			echo "failed";
+ 		}else {
+ 			$berkas     = $this->upload->data("file_name");
+ 			$id  		= $this->input->post("id");
+			$id_user	= $this->input->post("id_user");
+			$tgl 		= $this->input->post("tanggal");
+			$pkwt_baru  = $this->input->post("pkwt_baru");
+			$pkwt_lama  = $this->input->post("pkwt_lama");
+			$npk  		= $npk ;
+			$nama  		= $this->input->post("nama");
+			//tambah traking histori no pkwt
+			$data  = array(
+				'id_user'			=> $id_user ,
+				'tgl'				=> $tgl ,
+				'tahun'				=> substr($tgl, 0,4) ,
+				"no_pkwt"			=> $pkwt_baru  , 
+				"pkwt_sebelumnya"	=> $pkwt_lama ,
+				"file"				=> $berkas 
+			);
+
+			//update data pkwt
+			$dataupdate = array(
+				'no_pkwt'  => $pkwt_baru 
+			);
+
+			$update = $this->m_admin->update($dataupdate,"tbl_karyawan",array("id" => $id));
+				if($update){
+					 $this->m_admin->inputData($data,"histori_pkwt");
+					echo "pkwt " . $nama . "-" . $npk . " update";
+				}else {
+					echo "gagal update";
+				}	
+ 		}
+
 	}
 }

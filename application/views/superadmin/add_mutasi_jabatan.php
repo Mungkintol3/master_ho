@@ -10,7 +10,7 @@
                     <div class="form-group">
                       <button type="button " data-toggle="modal" data-target="#selectkaryawan" class="btn btn-success">Cari Karyawan <i class="fa fa-search"></i> </button>
                     </div>
-                  <form id="mutasijabatan" method="post" action="#" class="form-horizontal">
+                  <form id="mutasijabatan" enctype="multipart/form-data" method="post" action="#" class="form-horizontal">
                     <div class="form-group">
                       <input type="hidden" name="id" id="id">
                       <input type="hidden" name="id_user" id="id_user">
@@ -35,9 +35,11 @@
                     </div>
 
                     <div class="form-group">
-                      <input  type="text" id="tanggal"  placeholder="Enter Tahun" class="form-control">
+                      <input  type="text" id="tanggal" name="tanggal" placeholder="Enter Tahun" class="form-control">
                     </div>
 
+                    <label>Berkas Pendukung</label>
+                    <input type="file" name="file" onchange="return cekexe()"  id="file" class="form-control">
                     <button type="submit" id="submit" class="btn btn-info">Simpan Perubahan</button>
                   </form>
               	</div>
@@ -90,6 +92,17 @@
 
 
   <script type="text/javascript">
+      function cekexe(){
+        const file = document.getElementById('file');
+        const path  = file.value ;
+        const exe = /(\.pdf)$/i;
+        if(!exe.exec(path)){
+          alert("file harus berbentuk pdf");
+          file.value = "";
+          return ;
+        }
+      }
+
       $(function(){
         
           $("#mutasijabatan").on('submit',function(e){

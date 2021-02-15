@@ -10,32 +10,32 @@
                     <div class="form-group">
                       <button type="button " data-toggle="modal" data-target="#selectkaryawan" class="btn btn-success">Cari Karyawan <i class="fa fa-search"></i> </button>
                     </div>
-                  <form id="formpkwt" class="form-horizontal">
+                  <form id="formpkwt" enctype="multipart/form-data" class="form-horizontal">
                     <div class="form-group">
                       <input type="hidden" name="id" id="id">
                       <input type="hidden" name="id_user" id="id_user">
-                      <input readonly="" type="text" id="nama" placeholder="Enter Nama" class="form-control">
+                      <input readonly="" type="text" name="nama" id="nama" placeholder="Enter Nama" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <input readonly="" type="text" id="npk" placeholder="Enter NPK" class="form-control">
+                      <input readonly="" type="text" name="npk" id="npk" placeholder="Enter NPK" class="form-control">
+                    </div>
+
+
+                    <div class="form-group">
+                      <input readonly="" type="text" name="pkwt_lama" id="pkwt_lama"  placeholder="Enter PKWT" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <input readonly="" type="text" id="divisi" placeholder="Enter Divisi" class="form-control">
+                      <input type="text" id="tanggal" name="tanggal" placeholder="Enter Tanggal yyyy-mm-dd" class="form-control">
                     </div>
 
                     <div class="form-group">
-                      <input readonly="" type="text" id="pkwt_lama"  placeholder="Enter PKWT" class="form-control">
+                      <input type="text" id="pkwt_baru" onchange="return cekexe()" name="pkwt_baru"  placeholder="Enter PKWT Update" class="form-control">
                     </div>
 
-                    <div class="form-group">
-                      <input type="text" id="tanggal"  placeholder="Enter Tanggal yyyy-mm-dd" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                      <input type="text" id="pkwt_baru"  placeholder="Enter PKWT Update" class="form-control">
-                    </div>
+                    <label>Berkas Pendukung</label>
+                    <input type="file" name="file" id="file" class="form-control">
                     <button class="btn btn-info">Simpan Perubahan</button>
                   </form>
               	</div>
@@ -88,10 +88,21 @@
 
 
   <script type="text/javascript">
+    function cekexe(){
+      const file = document.getElementById('file');
+      const path  = file.value ;
+      const exe = /(\.pdf)$/i;
+      if(!exe.exec(path)){
+        alert("file harus berbentuk pdf");
+        file.value = "";
+        return ;
+      }
+    }
+
+    
     $('.click').on('click',function(e){
         document.getElementById("npk").value = $(this).attr('data-npk');
         document.getElementById("nama").value = $(this).attr('data-nama');
-        document.getElementById("divisi").value = $(this).attr('data-divisi');
         document.getElementById("pkwt_lama").value = $(this).attr('data-nopkwt');
         document.getElementById("id").value = $(this).attr('data-id');
         document.getElementById("id_user").value = $(this).attr('data-id_user');
@@ -100,14 +111,7 @@
 
     $(function(){
       $("#formpkwt").on('submit',function(e){
-        var id , id_user , tgl ;
-        id      = document.getElementById('id').value;
-        id_user = document.getElementById('id_user').value;
-        tgl     = document.getElementById('tanggal').value;
-        pkwt    = document.getElementById('pkwt_baru').value;
-        pkwt1   = document.getElementById('pkwt_lama').value;
-        nama    = document.getElementById('nama').value;
-        npk     = document.getElementById('npk').value;
+        var postData = new FormData(this);
         e.preventDefault();
           if(document.getElementById('nama').value == ""){
             alert("data karyawan masih kosong")
@@ -115,11 +119,16 @@
             alert("tanggal masih kosong")
           }else if(document.getElementById('pkwt_baru').value == ""){
             alert("no pkwt terupdate masih kosong")
+          }else if(document.getElementById('file').value == ""){
+            alert("berkas pendukung masih kosong")
           } else {
             $.ajax({
               url : "<?= base_url('superadmin/Update_pkwt/update') ?>" ,
               method : "POST" ,
-              data : "id="+ id + "&id_user="+ id_user + "&tanggal="+ tgl + "&pkwt_baru=" + pkwt + "&nama="+ nama + "&npk="+npk + "&pkwt_lama="+ pkwt1 ,
+              data : postData  ,
+              cache : false ,
+              processData : false ,
+              contentType : false ,
               success : function(e){
                 alert(e)
                 window.location.href="<?= base_url('superadmin/Update_pkwt') ?>"

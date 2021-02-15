@@ -10,7 +10,7 @@
                     <div class="form-group">
                       <button type="button " data-toggle="modal" data-target="#selectkaryawan" class="btn btn-success">Cari Karyawan <i class="fa fa-search"></i> </button>
                     </div>
-                  <form id="updatejabatan" method="post" action="#" class="form-horizontal">
+                  <form id="updatejabatan" enctype="multipart/form-data" method="post" action="#" class="form-horizontal">
                     <div class="form-group">
                       <input type="hidden" name="id" id="id">
                       <input type="hidden" name="id_user" id="id_user">
@@ -35,8 +35,11 @@
                     </div>
 
                     <div class="form-group">
-                      <input  type="text" id="tanggal" name="tgl"  placeholder="Enter Tahun" class="form-control">
+                      <input  type="text" id="tanggal" name="tanggal"  placeholder="Enter Tahun" class="form-control">
                     </div>
+
+                    <label>Berkas Pendukung</label>
+                    <input type="file" onchange="return cekexe()" name="file" id="file" class="form-control">
 
                     <button type="submit" id="submit" class="btn btn-info">Simpan Perubahan</button>
                   </form>
@@ -91,6 +94,17 @@
 
 
   <script type="text/javascript">
+     function cekexe(){
+        const file = document.getElementById('file');
+        const path  = file.value ;
+        const exe = /(\.pdf)$/i;
+        if(!exe.exec(path)){
+          alert("file harus berbentuk pdf");
+          file.value = "";
+          return ;
+        }
+      }
+
       $(function(){
         
           $("#updatejabatan").on('submit',function(e){
@@ -102,6 +116,8 @@
               alert("jabatan baru masih kosong")
             }else if(document.getElementById('tanggal').value == "" ){
               alert("tanggal masih kosong")
+            }else if(document.getElementById('file').value == "" ){
+              alert("berkas pendukung masih kosong")
             }else {
               $.ajax({
                 url : "<?= base_url('superadmin/Promosi/input_jabatan') ?>" ,

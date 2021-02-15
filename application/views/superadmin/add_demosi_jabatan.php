@@ -35,9 +35,11 @@
                     </div>
 
                     <div class="form-group">
-                      <input  type="text" id="tanggal" name="tgl"  placeholder="Enter Tahun" class="form-control">
+                      <input  type="text" id="tanggal"  name="tanggal"  placeholder="Enter Tahun" class="form-control">
                     </div>
 
+                    <label>Berkas Pendukung</label>
+                    <input type="file" name="file" onchange="return cekexe()" id="file" class="form-control">
                     <button type="submit" id="submit" class="btn btn-info">Simpan Perubahan</button>
                   </form>
               	</div>
@@ -90,6 +92,17 @@
 
 
   <script type="text/javascript">
+    function cekexe(){
+        const file = document.getElementById('file');
+        const path  = file.value ;
+        const exe = /(\.pdf)$/i;
+        if(!exe.exec(path)){
+          alert("file harus berbentuk pdf");
+          file.value = "";
+          return ;
+        }
+      }
+
       $(function(){
         
           $("#demosijabatan").on('submit',function(e){
@@ -98,9 +111,11 @@
             if(document.getElementById('npk').value == "" ){
               alert("data karyawan masih kosong")
             }else if(document.getElementById('new_demosi').value == "" ){
-              alert("mutasi jabatan masih kosong")
+              alert("demosi jabatan masih kosong")
             }else if(document.getElementById('tanggal').value == "" ){
               alert("tanggal masih kosong")
+            }else if(document.getElementById('file').value == "" ){
+              alert("berkas pendukung masih kosong")
             }else {
               $.ajax({
                 url : "<?= base_url('superadmin/Promosi/input_demosi') ?>" ,
