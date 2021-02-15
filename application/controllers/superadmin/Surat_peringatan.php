@@ -21,29 +21,46 @@ class Surat_peringatan extends CI_Controller
 
 	public function add()
  	{
- 		$npk  			 = $this->input->post("npk");
- 		$nama  			 = $this->input->post("nama");
- 		$id_user 		 = $this->input->post("id_user");
- 		$tgl  			 = $this->input->post("tgl");
- 		$tipe 			 = $this->input->post("tipe_sp");
- 		$keterangan		 = $this->input->post("keterangan");
+ 		$file 				 = $_FILES['file']['name'];
+ 		$filename 			 = $file;
+ 		$npk				 = $this->input->post("npk");
+		$extensi 			 = pathinfo($filename, PATHINFO_EXTENSION);
+ 		$this->load->library('upload');
+ 		$config['allowed_types']   = '*' ;
+ 		$config['upload_path']     = './assets/upload/surat_peringatan/' ;
+ 		$config['file_name'] 	   = $npk .  date('his') .  md5($filename) . '.' . $extensi ;
 
-	 		$data = array(
-	 			"id_user"						=> $id_user,
-	 			"nama"							=> $nama , 
-	 			"npk"							=> $npk ,
-	 			"tgl"							=> $tgl ,
-	 			"tahun"							=> substr($tgl,0,4),
-	 			"jenis_surat_peringatan"		=> $tipe ,
-	 			"keterangan"					=> $keterangan
-	 		);
+ 		$this->upload->initialize($config);
+ 		if(!$this->upload->do_upload('file')){
+ 			echo "failed";
+ 		}else {
+ 			$berkas     = $this->upload->data("file_name");
+ 			$npk  			 = $this->input->post("npk");
+	 		$nama  			 = $this->input->post("nama");
+	 		$id_user 		 = $this->input->post("id_user");
+	 		$tgl  			 = $this->input->post("tanggal");
+	 		$tipe 			 = $this->input->post("tipe_sp");
+	 		$keterangan		 = $this->input->post("keterangan");
 
-	 		$input = $this->m_admin->inputData($data,"histori_surat_peringatan");
-	 			if($input == true){
-	 				echo "sukses";
-	 			} else {
-	 				echo "gagal";
-	 			}			
+		 		$data = array(
+		 			"id_user"						=> $id_user,
+		 			"nama"							=> $nama , 
+		 			"npk"							=> $npk ,
+		 			"tgl"							=> $tgl ,
+		 			"tahun"							=> substr($tgl,0,4),
+		 			"jenis_surat_peringatan"		=> $tipe ,
+		 			"keterangan"					=> $keterangan ,
+		 			'file'							=> $berkas
+		 		);
+
+		 		$input = $this->m_admin->inputData($data,"histori_surat_peringatan");
+		 			if($input == true){
+		 				echo "sukses";
+		 			} else {
+		 				echo "gagal";
+		 			}	
+ 		}
+ 		/**/			
  	}
 
 }

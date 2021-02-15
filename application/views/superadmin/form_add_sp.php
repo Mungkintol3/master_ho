@@ -10,7 +10,7 @@
                     <div class="form-group">
                       <button type="button " data-toggle="modal" data-target="#selectkaryawan" class="btn btn-success">Cari Karyawan <i class="fa fa-search"></i> </button>
                     </div>
-                  <form id="addSP" method="post" class="form-horizontal">
+                  <form id="addSP" method="post" enctype="multipart/form-data" class="form-horizontal">
                     <div class="form-group">
                       <input type="hidden" name="id" id="id">
                       <input type="hidden" name="id_user" id="id_user">
@@ -31,9 +31,11 @@
 
 
                     <div class="form-group">
-                      <input  type="text" id="tanggal" name="tgl" placeholder="Tahun" class="form-control">
+                      <input  type="text" id="tanggal" name="tanggal" placeholder="Tahun" class="form-control">
                     </div>
 
+                    <label>Berkas Pendukung</label>
+                    <input type="file" id="file" onchange="return cekexe()" name="file" class="form-control">
                     <button type="submit" class="btn btn-info">Simpan Perubahan</button>
                   </form>
               	</div>
@@ -85,49 +87,61 @@
 
 
   <script type="text/javascript">
-$(function(){
-      $("#addSP").on('submit',function(e){
-        var postData = new FormData(this);
-        e.preventDefault();
-        if(document.getElementById('nama').value == "" ){
-          alert("data karyawan masih kosong")
-        }else if(document.getElementById('tipe_sp').value == "" ){
-          alert("jenis surat Peringatan kosong")
-        }else if(document.getElementById('keterangan').value == "" ){
-          alert("keterangan masih kosong")
-        }else if(document.getElementById('tanggal').value == "" ){
-          alert("tanggal masih kosong")
-        }else {
-          $.ajax({
-            url : "<?= base_url('superadmin/Surat_peringatan/add') ?>" ,
-            method : "POST" ,
-            data : postData ,
-            processData : false ,
-            contentType : false ,
-            cache : false ,
-            beforeSend : function(){
-              $("#submit").attr("disabled",true);   
-            },
-            complete : function(){
-              $("#submit").attr("disabled",false);    
-            },
-            success : function(e){
-                if(e = "sukses"){
-                  alert("berhasil");
-                  window.location.href='<?= base_url('superadmin/Surat_peringatan/form_add') ?>'
+     function cekexe(){
+      const file = document.getElementById('file');
+      const path  = file.value ;
+      const exe = /(\.pdf)$/i;
+      if(!exe.exec(path)){
+        alert("file harus berbentuk pdf");
+        file.value = "";
+        return ;
+      }
+    }
+
+        $(function(){
+              $("#addSP").on('submit',function(e){
+                var postData = new FormData(this);
+                e.preventDefault();
+                if(document.getElementById('nama').value == "" ){
+                  alert("data karyawan masih kosong")
+                }else if(document.getElementById('tipe_sp').value == "" ){
+                  alert("jenis surat Peringatan kosong")
+                }else if(document.getElementById('keterangan').value == "" ){
+                  alert("keterangan masih kosong")
+                }else if(document.getElementById('tanggal').value == "" ){
+                  alert("tanggal masih kosong")
                 }else {
-                  alert("gagal")
+                  $.ajax({
+                    url : "<?= base_url('superadmin/Surat_peringatan/add') ?>" ,
+                    method : "POST" ,
+                    data : postData ,
+                    processData : false ,
+                    contentType : false ,
+                    cache : false ,
+                    beforeSend : function(){
+                      $("#submit").attr("disabled",true);   
+                    },
+                    complete : function(){
+                      $("#submit").attr("disabled",false);    
+                    },
+                    success : function(e){
+                        if(e = "sukses"){
+                          alert("berhasil");
+                          window.location.href='<?= base_url('superadmin/Surat_peringatan/form_add') ?>'
+                        }else {
+                          alert("gagal")
+                        }
+                    }
+                  })
                 }
-            }
-          })
-        }
-      })
-    })
+              })
+            })
+        
       $('.click').on('click',function(e){
-              document.getElementById("npk").value     = $(this).attr('data-npk');
-              document.getElementById("id").value      = $(this).attr('data-id');
-              document.getElementById("id_user").value = $(this).attr('data-id_user');
-              document.getElementById("nama").value    =  $(this).attr('data-nama');
-              $('#selectkaryawan').modal('hide');
-          })
+          document.getElementById("npk").value     = $(this).attr('data-npk');
+          document.getElementById("id").value      = $(this).attr('data-id');
+          document.getElementById("id_user").value = $(this).attr('data-id_user');
+          document.getElementById("nama").value    =  $(this).attr('data-nama');
+          $('#selectkaryawan').modal('hide');
+      })
   </script>
