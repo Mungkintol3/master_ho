@@ -84,7 +84,7 @@
 
 
  	//histori golongan kerja karyawan
- 	public function add_histori_golongan_pegawai()
+ 	/*public function add_histori_golongan_pegawai()
  	{
  		$data   = array(
  			'golongan' 			=>  $this->m_admin->getData("tbl_golongan")->result() ,
@@ -143,7 +143,7 @@
  			}
 
 
- 	}
+ 	}*/
 
 
 

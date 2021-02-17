@@ -26,14 +26,24 @@
                     </div>
 
                     <div class="form-group">
-                      <select id="new_demosi" name="demosi" class="form-control">
+                      <select id="new_jabatan" name="jabatan" class="form-control">
                         <option value="">Pilih Kelompok Jabatan Terbaru </option>
+                        <?php foreach($jabatan as $jbt) { ?>
+                          <option><?= $jbt->nama_jabatan ?></option>
+                        <?php } ?>
                       </select>
                     </div>
                     <div class="form-group">
-                      <select id="new_demosi" name="demosi" class="form-control">
-                        <option value="">Pilih  Golongan Kerja Terbaru </option>
+                      <select id="range" name="range_golongan" class="form-control">
+                        <option value="">Pilih Golongan Kerja Terbaru </option>
+                        <?php foreach($jabatan as $jbt) { ?>
+                          <option><?= $jbt->range ?></option>
+                        <?php } ?>
                       </select>
+                    </div>
+
+                    <div class="form-group">
+                      <input type="text"  name="golongan" id="golongan" placeholder="Input Golongan Kerja" class="form-control">
                     </div>
 
                     <div class="form-group">
@@ -112,8 +122,12 @@
             e.preventDefault();
             if(document.getElementById('npk').value == "" ){
               alert("data karyawan masih kosong")
-            }else if(document.getElementById('new_demosi').value == "" ){
+            }else if(document.getElementById('new_jabatan').value == "" ){
               alert("demosi jabatan masih kosong")
+            }else if(document.getElementById('range').value == "" ){
+              alert("range golongan masih kosong")
+            }else if(document.getElementById('golongan').value == "" ){
+              alert("demosi golongan baru masih kosong")
             }else if(document.getElementById('tanggal').value == "" ){
               alert("tanggal masih kosong")
             }else if(document.getElementById('file').value == "" ){

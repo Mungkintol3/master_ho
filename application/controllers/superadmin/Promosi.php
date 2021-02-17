@@ -41,6 +41,8 @@ class Promosi extends CI_Controller
 			$npk  		= $this->input->post("npk");
 			$nama  		= $this->input->post("nama");
 			$jabatan 	= $this->input->post("jabatan");
+			$range_gol	= $this->input->post("range_golongan");
+			$golongan 	= $this->input->post("golongan");
 			//tambah traking histori no pkwt
 			$data  = array(
 				'id_user'			=> $id_user ,
@@ -52,21 +54,35 @@ class Promosi extends CI_Controller
 				"file"				=> $berkas 
 			);
 
+			//tambah histori golongan 
+			$data2 = array(
+				'id_user'			=> $id_user ,
+				'nama'				=> $nama ,
+				'npk'				=> $npk ,
+				'tahun'				=> substr($tgl,0 ,4 ) ,
+				'tgl'				=> $tgl ,
+				"berkas"			=> $berkas ,
+				"gol_update"		=> $golongan 
+			);
 
-			//update data pkwt
+
+			//update data 
 			$dataupdate = array(
-				'promosi_jabatan'  => $jabatan ,
-				'latest_promosi'	=> $tgl
+				'promosi_jabatan'   => $jabatan ,
+				'latest_promosi'	=> $tgl ,
+				'kel_jabatan'		=> $jabatan ,
+				'gol_kerja'			=> $golongan ,
+				'range_golongan'	=> $range_gol ,
 			);
 
 			$update = $this->m_admin->update($dataupdate,"tbl_karyawan",array("id" => $id));
 				if($update){
 					 $this->m_admin->inputData($data,"promosi_jabatan");
-					echo "jabatan " . $nama . "-" . $npk . " update";
+					 $this->m_admin->inputData($data2,"histori_golongan");
+					echo "berhasil";
 				}else {
 					echo "gagal update";
 				}
-	 				
 	 		}
  		/**/		
  	}
@@ -171,8 +187,12 @@ class Promosi extends CI_Controller
 			$tgl 		= $this->input->post("tanggal");
 			$npk  		= $this->input->post("npk");
 			$nama  		= $this->input->post("nama");
-			$demosi 	= $this->input->post("demosi");
-			//tambah traking histori no pkwt
+			$demosi 	= $this->input->post("jabatan");
+			$range_gol	= $this->input->post("range_golongan");
+			$golongan 	= $this->input->post("golongan");
+
+
+			//tambah traking histori demosi
 			$data  = array(
 				'id_user'			=> $id_user ,
 				'nama'				=> $nama ,
@@ -183,16 +203,32 @@ class Promosi extends CI_Controller
 				'file'				=> $berkas
 			);
 
+			//tambah histori golongan 
+			$data2 = array(
+				'id_user'			=> $id_user ,
+				'nama'				=> $nama ,
+				'npk'				=> $npk ,
+				'tahun'				=> substr($tgl,0 ,4 ) ,
+				'tgl'				=> $tgl ,
+				"berkas"			=> $berkas ,
+				"gol_update"		=> $golongan 
+			);
 
-			//update data pkwt
+
+			//update data 
 			$dataupdate = array(
-				'demosi_jabatan'  => $demosi
+				'demosi_jabatan'    => $demosi ,
+				'latest_promosi'	=> $tgl ,
+				'kel_jabatan'		=> $demosi ,
+				'gol_kerja'			=> $golongan ,
+				'range_golongan'	=> $range_gol ,
 			);
 
 			$update = $this->m_admin->update($dataupdate,"tbl_karyawan",array("id" => $id));
 				if($update){
 					 $this->m_admin->inputData($data,"demosi_jabatan");
-					echo "demosi jabatan " . $nama . "-" . $npk . "";
+					 $this->m_admin->inputData($data2,"histori_golongan");
+					echo "sukses";
 				}else {
 					echo "gagal update";
 				}

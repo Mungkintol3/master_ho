@@ -1,8 +1,8 @@
 <form method="post"  action="#" id="editjabatan">
-    <label>Kode Jabatan</label>
+    <label>Range Jabatan</label>
     <div class="form-group">
       <input type="hidden" id="id" name="id" value="<?= $results->id ?>" >
-      <input type="text"  value="<?= $results->kode_jabatan ?>" name="kode_jabatan" id="kode_jabatan1" class="form-control">
+      <input type="text"  value="<?= $results->range ?>" name="range" id="kode_jabatan1" class="form-control">
     </div>
     <label>Nama Jabatan</label>
     <div class="form-group">
@@ -18,6 +18,7 @@
 <script type="text/javascript">
   $(function(){
       $("#editjabatan").on('submit',function(e){
+        var postData = new FormData(this);
           e.preventDefault();
         var nama  , kode , keterangan ;
         nama    = document.getElementById('nama_jabatan1').value ;
@@ -33,7 +34,10 @@
           $.ajax({
             url : "<?= base_url('superadmin/Jabatan/update') ?>" ,
             method : "POST" ,
-            data :  "nama_jabatan=" + nama + "&kode_jabatan="+ kode + "&keterangan="+ ket + "&id=" + id, 
+            data : postData ,
+            processData : false ,
+            contentType : false ,
+            cache : false ,
             beforeSend : function(){
               $("#submit1").attr("disabled",true);   
             },

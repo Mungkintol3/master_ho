@@ -28,12 +28,12 @@
 
  	public function update()
  	{
- 		$kode 			 = $this->input->post("kode_jabatan");
+ 		$kode 			 = $this->input->post("range");
  		$nama  			 = $this->input->post("nama_jabatan");
  		$keterangan		 = $this->input->post("keterangan");
  		$id 			 = $this->input->post("id");
  		$data = array(
- 			"kode_jabatan"			=> $kode ,
+ 			"range"					=> $kode ,
  			"nama_jabatan"			=> $nama ,
  			"keterangan"			=> $keterangan
 	 	);
@@ -49,7 +49,7 @@
 
  	public function add()
  	{
- 		$kode 			 = $this->input->post("kode_jabatan");
+ 		$kode 			 = $this->input->post("range");
  		$nama  			 = $this->input->post("nama_jabatan");
  		$keterangan		 = $this->input->post("keterangan");
  		$cek			 = $this->m_admin->cari(array("kode_jabatan" => $kode),"tbl_jabatan")->num_rows();
@@ -57,7 +57,7 @@
  			echo "kode sudah digunakan";
  		}else {
 	 		$data = array(
-	 			"kode_jabatan"			=> $kode ,
+	 			"range"			=> $kode ,
 	 			"nama_jabatan"			=> $nama ,
 	 			"keterangan"			=> $keterangan
 	 		);

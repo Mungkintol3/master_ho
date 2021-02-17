@@ -17,18 +17,16 @@
                     <table class="table table-hover">
                       <thead class="">
                         <th class="text-center">NO</th>
-                        <th>Kode Jabatan</th>
-                      	<th >Nama Jabatan</th>
-                  		<th>Keterangan</th>
+                      	<th>Nama Jabatan</th>
+                        <th>Range</th>
                   		<th class="text-right">Action</th>
                        </thead>
                   			<tbody>
-                          <?php foreach($jabatan as $result) :  ?>
+                          <?php $no = 1 ; foreach($jabatan as $result) :  ?>
                       			<tr>
-                      				<td class="text-center">1</td>
-                      				<td><?= $result->kode_jabatan ?></td>
+                      				<td class="text-center"><?= $no++ ?></td>
                               <td><?= $result->nama_jabatan ?></td>
-                              <td><?= $result->keterangan ?></td>
+                      				<td><?= $result->range ?></td>
                       				<td class="td-actions text-right">
                                 <a  data-id="<?php echo $result->id ?>" data-toggle="modal" data-target="#detail_jab" class="btn btn-success btn-fab btn-fab-mini btn-round">
       					                    <i class="material-icons">edit</i>

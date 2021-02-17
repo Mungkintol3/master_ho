@@ -34,10 +34,16 @@
                       </select>
                     </div>
                     <div class="form-group">
-                      <select id="new_jabatan" name="jabatan" class="form-control">
-                        <option value="">Pilih Golonga Kerja Terbaru </option>
-                        <option></option>
+                      <select id="range" name="range_golongan" class="form-control">
+                        <option value="">Pilih Golongan Kerja Terbaru </option>
+                        <?php foreach($jabatan as $jbt) { ?>
+                          <option><?= $jbt->range ?></option>
+                        <?php } ?>
                       </select>
+                    </div>
+
+                     <div class="form-group">
+                      <input type="text"  name="golongan" id="golongan" placeholder="Input Golongan Kerja" class="form-control">
                     </div>
 
                     <div class="form-group">
@@ -120,6 +126,10 @@
               alert("data karyawan masih kosong")
             }else if(document.getElementById('new_jabatan').value == "" ){
               alert("jabatan baru masih kosong")
+            }else if(document.getElementById('range').value == "" ){
+              alert("range golongan masih kosong")
+            }else if(document.getElementById('golongan').value == "" ){
+              alert("golongan kerja masih kosong")
             }else if(document.getElementById('tanggal').value == "" ){
               alert("tanggal masih kosong")
             }else if(document.getElementById('file').value == "" ){
