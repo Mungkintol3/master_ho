@@ -139,6 +139,14 @@ The above copyright notice and this permission notice shall be included in all c
               <p>Tambah Keluarga</p>
             </a>
           </li>
+          <li  class="nav-item <?php if ($url == 'Pinjaman_karyawan'){
+            echo 'active' ;
+          }?>">
+            <a class="nav-link" href="<?= base_url('superadmin/Pinjaman_karyawan/') ?>">
+              <i class="material-icons">library_books</i>
+              <p>Peminjaman Karyawan</p>
+            </a>
+          </li>
 
         </ul>
       </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2021 at 01:12 PM
+-- Generation Time: Feb 17, 2021 at 01:41 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.26
 
@@ -500,7 +500,7 @@ INSERT INTO `tbl_golongan` (`id`, `golongan_kerja`, `kode_golongan`, `keterangan
 CREATE TABLE `tbl_jabatan` (
   `id` int(11) NOT NULL,
   `nama_jabatan` varchar(100) DEFAULT NULL,
-  `kode_jabatan` varchar(100) DEFAULT NULL,
+  `range` varchar(100) DEFAULT NULL,
   `keterangan` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -508,7 +508,7 @@ CREATE TABLE `tbl_jabatan` (
 -- Dumping data for table `tbl_jabatan`
 --
 
-INSERT INTO `tbl_jabatan` (`id`, `nama_jabatan`, `kode_jabatan`, `keterangan`) VALUES
+INSERT INTO `tbl_jabatan` (`id`, `nama_jabatan`, `range`, `keterangan`) VALUES
 (1, 'Junior Analyst', 'JA', ''),
 (2, 'Department Head', 'DH', ''),
 (3, 'Admin 2', 'ADM 2', '');
@@ -601,6 +601,64 @@ INSERT INTO `tbl_keluarga` (`id`, `id_user`, `npk`, `nama_karyawan`, `nama`, `st
 (4, 'a2e80aa2ed6e8f87a79188ef1f1b6b08', '220220', 'Murry', 'resa', 'Istri', '756565', '5656', '75757'),
 (6, 'e10adc3949ba59abbe56e057f20f883e', '123456', 'Dasep', 'Ayu Safitri', 'Istri', '76576767', '898989', '98989'),
 (7, 'e10adc3949ba59abbe56e057f20f883e', '123456', 'Dasep', 'Keisha Alvaro Muhammad', 'Anak ke - 1', '5656', '5656', '2122');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_pembayaran`
+--
+
+CREATE TABLE `tbl_pembayaran` (
+  `id` int(11) NOT NULL,
+  `id_user` varchar(255) DEFAULT NULL,
+  `nama` varchar(100) DEFAULT NULL,
+  `npk` int(6) DEFAULT NULL,
+  `pembayaran_ke` int(3) DEFAULT NULL,
+  `jumlah_bayar` int(100) DEFAULT NULL,
+  `bunga` int(100) DEFAULT NULL,
+  `pokok` int(100) DEFAULT NULL,
+  `id_pinjam` varchar(100) DEFAULT NULL,
+  `tanggal` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_pembayaran`
+--
+
+INSERT INTO `tbl_pembayaran` (`id`, `id_user`, `nama`, `npk`, `pembayaran_ke`, `jumlah_bayar`, `bunga`, `pokok`, `id_pinjam`, `tanggal`) VALUES
+(1, 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', 123456, 1, 1120000, 120000, 1000000, '1', '2020-01-01'),
+(2, 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', 123456, 2, 1120000, 120000, 1000000, '1', '2020-02-01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_peminjaman`
+--
+
+CREATE TABLE `tbl_peminjaman` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(100) DEFAULT NULL,
+  `npk` int(6) DEFAULT NULL,
+  `id_user` varchar(255) DEFAULT NULL,
+  `vendor_pinjam` varchar(60) DEFAULT NULL,
+  `id_pinjam` varchar(60) DEFAULT NULL,
+  `total_pinjam` int(10) DEFAULT NULL,
+  `persentase_bunga` varchar(100) DEFAULT NULL,
+  `total_bunga` int(100) DEFAULT NULL,
+  `pokok` varchar(20) DEFAULT NULL,
+  `cicilan` varchar(20) DEFAULT NULL,
+  `tenor` varchar(20) DEFAULT NULL,
+  `setor_perbulan` int(20) DEFAULT NULL,
+  `sisa_pinjaman` varchar(20) DEFAULT NULL,
+  `tanggal` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_peminjaman`
+--
+
+INSERT INTO `tbl_peminjaman` (`id`, `nama`, `npk`, `id_user`, `vendor_pinjam`, `id_pinjam`, `total_pinjam`, `persentase_bunga`, `total_bunga`, `pokok`, `cicilan`, `tenor`, `setor_perbulan`, `sisa_pinjaman`, `tanggal`) VALUES
+(1, 'Dasep', 123456, 'e10adc3949ba59abbe56e057f20f883e', 'KAI', '1', 6000000, '0.02', 120000, '1000000', '1120000', '6', 1120000, NULL, '2020-12-30');
 
 --
 -- Indexes for dumped tables
@@ -757,6 +815,18 @@ ALTER TABLE `tbl_keluarga`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_pembayaran`
+--
+ALTER TABLE `tbl_pembayaran`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_peminjaman`
+--
+ALTER TABLE `tbl_peminjaman`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -909,6 +979,18 @@ ALTER TABLE `tbl_karyawan`
 --
 ALTER TABLE `tbl_keluarga`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `tbl_pembayaran`
+--
+ALTER TABLE `tbl_pembayaran`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tbl_peminjaman`
+--
+ALTER TABLE `tbl_peminjaman`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

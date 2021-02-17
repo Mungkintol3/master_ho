@@ -27,10 +27,12 @@
 
                     <div class="form-group">
                       <select id="new_demosi" name="demosi" class="form-control">
-                        <option value="">Pilih Demosi Jabatan Terbaru </option>
-                        <?php foreach($jabatan as $jbt) { ?>
-                          <option><?= $jbt->nama_jabatan ?></option>
-                        <?php } ?>
+                        <option value="">Pilih Kelompok Jabatan Terbaru </option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <select id="new_demosi" name="demosi" class="form-control">
+                        <option value="">Pilih  Golongan Kerja Terbaru </option>
                       </select>
                     </div>
 
