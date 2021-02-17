@@ -1,9 +1,7 @@
 <?php
 
 
-/**
- * 
- */
+/*
 class Career extends CI_Controller
 {
 	
@@ -65,9 +63,11 @@ class Career extends CI_Controller
 					echo "gagal update";
 				}	
  		}
-		/**/
 	}
 
 
 
+
 }
+
+*/

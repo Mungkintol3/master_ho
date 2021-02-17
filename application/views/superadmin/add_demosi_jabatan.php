@@ -47,6 +47,14 @@
                     </div>
 
                     <div class="form-group">
+                      <select id="status" name="status" class="form-control">
+                        <option value="">Pilih Status </option>
+                        <option>Meet</option>
+                        <option>Below</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group">
                       <input  type="text" id="tanggal"  name="tanggal"  placeholder="Enter Tahun" class="form-control">
                     </div>
 
@@ -128,6 +136,8 @@
               alert("range golongan masih kosong")
             }else if(document.getElementById('golongan').value == "" ){
               alert("demosi golongan baru masih kosong")
+            }else if(document.getElementById('status').value == "" ){
+              alert("status masih kosong")
             }else if(document.getElementById('tanggal').value == "" ){
               alert("tanggal masih kosong")
             }else if(document.getElementById('file').value == "" ){

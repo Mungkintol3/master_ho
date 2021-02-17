@@ -22,25 +22,25 @@
                     </div>
 
                     <div class="form-group">
-                      <input type="text" readonly="" name="mutasi" id="mutasi" placeholder="Mutasi Jabatan Sebelumnya" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                      <select id="new_mutasi" name="mutasi" class="form-control">
+                      <select id="departement" name="departement" class="form-control">
                         <option value="">Pilih Department Terbaru </option>
+                        <?php foreach ($departement as  $value) : ?>
+                          <option><?= $value->departement ?></option>
+                        <?php endforeach ; ?>
                       </select>
                     </div>
 
                     <div class="form-group">
-                      <select id="new_mutasi" name="mutasi" class="form-control">
+                      <select id="divisi" name="divisi" class="form-control">
                         <option value="">Pilih Divisi Terbaru </option>
+                        <?php foreach($divisi as $divisi) : ?>
+                          <option><?= $divisi->divisi ?></option>
+                        <?php endforeach ; ?>
                       </select>
                     </div>
 
                     <div class="form-group">
-                      <select id="new_mutasi" name="mutasi" class="form-control">
-                        <option value="">Pilih Posisi Terbaru </option>
-                      </select>
+                      <input type="text" placeholder="Posisi Terbaru" id="posisi" name="posisi" class="form-control">
                     </div>
 
                     <div class="form-group">
@@ -119,10 +119,16 @@
             e.preventDefault();
             if(document.getElementById('npk').value == "" ){
               alert("data karyawan masih kosong")
-            }else if(document.getElementById('new_mutasi').value == "" ){
-              alert("mutasi jabatan masih kosong")
+            }else if(document.getElementById('departement').value == "" ){
+              alert("departement masih kosong")
+            }else if(document.getElementById('divisi').value == "" ){
+              alert("divisi masih kosong")
+            }else if(document.getElementById('posisi').value == "" ){
+              alert("posisi masih kosong")
             }else if(document.getElementById('tanggal').value == "" ){
               alert("tanggal masih kosong")
+            }else if(document.getElementById('file').value == "" ){
+              alert("berkas masih kosong")
             }else {
               $.ajax({
                 url : "<?= base_url('superadmin/Promosi/input_mutasi') ?>" ,
@@ -157,7 +163,6 @@
       document.getElementById("nama").value      = $(this).attr('data-nama');
       document.getElementById("id").value        = $(this).attr('data-id');
       document.getElementById("id_user").value   = $(this).attr('data-id_user');
-      document.getElementById("mutasi").value   = $(this).attr('data-promosi');
       $('#selectkaryawan').modal('hide');
   })
 

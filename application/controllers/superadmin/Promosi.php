@@ -43,6 +43,7 @@ class Promosi extends CI_Controller
 			$jabatan 	= $this->input->post("jabatan");
 			$range_gol	= $this->input->post("range_golongan");
 			$golongan 	= $this->input->post("golongan");
+			$status 	= $this->input->post("status");
 			//tambah traking histori no pkwt
 			$data  = array(
 				'id_user'			=> $id_user ,
@@ -73,6 +74,7 @@ class Promosi extends CI_Controller
 				'kel_jabatan'		=> $jabatan ,
 				'gol_kerja'			=> $golongan ,
 				'range_golongan'	=> $range_gol ,
+				'status'			=> $status
 			);
 
 			$update = $this->m_admin->update($dataupdate,"tbl_karyawan",array("id" => $id));
@@ -91,9 +93,10 @@ class Promosi extends CI_Controller
  	public function add_mutasi_jabatan()
 	{
 		$data = array(
- 		  		'url'		 => $this->uri->segment(2) ,
- 		  		'jabatan'	 => $this->m_admin->getData("tbl_jabatan")->result() ,
- 		  		'karyawan'	 => $this->m_admin->getData("tbl_karyawan")->result()
+ 		  		'url'		 	 => $this->uri->segment(2) ,
+ 		  		'departement'	 => $this->m_admin->getData("departement")->result() ,
+ 		  		'divisi'	 => $this->m_admin->getData("divisi")->result() ,
+ 		  		'karyawan'		 => $this->m_admin->getData("tbl_karyawan")->result()
  		  );
  		$this->load->view('template/header',$data);
 		$this->load->view("superadmin/add_mutasi_jabatan",$data);
@@ -110,41 +113,47 @@ class Promosi extends CI_Controller
 		$extensi 			 = pathinfo($filename, PATHINFO_EXTENSION);
  		$this->load->library('upload');
  		$config['allowed_types']   = '*' ;
- 		$config['upload_path']     = './assets/upload/mutasi_jabatan/' ;
+ 		$config['upload_path']     = './assets/upload/mutasi/' ;
  		$config['file_name'] 	   = $npk .  date('his') .  md5($filename) . '.' . $extensi ;
 
  		$this->upload->initialize($config);
  		if(!$this->upload->do_upload('file')){
  			echo "failed";
  		}else {
- 			$berkas     = $this->upload->data("file_name");
- 			$id  		= $this->input->post("id");
-			$id_user	= $this->input->post("id_user");
-			$tgl 		= $this->input->post("tanggal");
-			$npk  		= $this->input->post("npk");
-			$nama  		= $this->input->post("nama");
-			$mutasi 	= $this->input->post("mutasi");
-			//tambah traking histori no pkwt
-			$data  = array(
+ 			$berkas     	= $this->upload->data("file_name");
+ 			$id  			= $this->input->post("id");
+			$id_user		= $this->input->post("id_user");
+			$tgl 			= $this->input->post("tanggal");
+			$npk  			= $this->input->post("npk");
+			$nama  			= $this->input->post("nama");
+			$departement 	= $this->input->post("departement");
+			$divisi 		= $this->input->post("divisi");
+			$posisi 		= $this->input->post("posisi");
+
+
+			//histori_karir 
+			$data = array(
 				'id_user'			=> $id_user ,
 				'nama'				=> $nama ,
 				'npk'				=> $npk ,
 				'tahun'				=> substr($tgl , 0, 4) ,
 				'tanggal'			=> $tgl ,
-				'mutasi'			=> $mutasi ,
+				'departement'		=> $departement ,
+				'divisi'			=> $divisi ,
+				'posisi'			=> $posisi ,
 				'file'				=> $berkas 
 			);
-
-
 			//update data pkwt
 			$dataupdate = array(
-				'mutasi_jabatan'  => $mutasi
+				'divisi' 		 => $divisi ,
+				'departement'  	 => $departement, 
+				'position'  	 => $posisi
 			);
 
 			$update = $this->m_admin->update($dataupdate,"tbl_karyawan",array("id" => $id));
 				if($update){
-					 $this->m_admin->inputData($data,"mutasi_jabatan");
-					echo "jabatan " . $nama . "-" . $npk . " di mutasi";
+					 $this->m_admin->inputData($data,"histori_karir");
+					echo "sukses";
 				}else {
 					echo "gagal update";
 				}
@@ -174,7 +183,7 @@ class Promosi extends CI_Controller
 		$extensi 			 = pathinfo($filename, PATHINFO_EXTENSION);
  		$this->load->library('upload');
  		$config['allowed_types']   = '*' ;
- 		$config['upload_path']     = './assets/upload/demosi_jabatan/' ;
+ 		$config['upload_path']     = './assets/upload/promosi_jabatan/' ;
  		$config['file_name'] 	   = $npk .  date('his') .  md5($filename) . '.' . $extensi ;
 
  		$this->upload->initialize($config);
@@ -190,6 +199,7 @@ class Promosi extends CI_Controller
 			$demosi 	= $this->input->post("jabatan");
 			$range_gol	= $this->input->post("range_golongan");
 			$golongan 	= $this->input->post("golongan");
+			$status 	= $this->input->post("status");
 
 
 			//tambah traking histori demosi
@@ -222,6 +232,7 @@ class Promosi extends CI_Controller
 				'kel_jabatan'		=> $demosi ,
 				'gol_kerja'			=> $golongan ,
 				'range_golongan'	=> $range_gol ,
+				'status'			=> $status
 			);
 
 			$update = $this->m_admin->update($dataupdate,"tbl_karyawan",array("id" => $id));
