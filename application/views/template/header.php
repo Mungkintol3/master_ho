@@ -20,7 +20,9 @@ The above copyright notice and this permission notice shall be included in all c
   <title>
     Master Data HO
   </title>
-  <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+  <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport'/>
+  <!-- chartis -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/assets/css/font-google.css" />
   <link rel="stylesheet" href="<?= base_url() ?>/assets/font-awesome/css/font-awesome.min.css">
@@ -91,24 +93,24 @@ The above copyright notice and this permission notice shall be included in all c
             echo 'active' ;
           }?>">
             <a class="nav-link" href="<?php echo base_url()?>superadmin/Jabatan/">
-              <i class="material-icons">person</i>
+              <i class="material-icons">markunread_mailbox</i>
               <p>Jabatan & Posisi </p>
             </a>
           </li>
-          <li class="nav-item <?php if ($url == 'Golongan'){
+         <!--  <li class="nav-item <?php if ($url == 'Golongan'){
             echo 'active' ;
           }?>">
             <a class="nav-link" href="<?php echo base_url()?>superadmin/Golongan">
-              <i class="material-icons">person</i>
+              <i class="material-icons">input</i>
               <p>Golongan</p>
             </a>
-          </li>
+          </li> -->
 
           <li class="nav-item <?php if ($url == 'Departement'){
             echo 'active' ;
           }?>">
             <a class="nav-link" href="<?php echo base_url()?>superadmin/Departement">
-              <i class="material-icons">person</i>
+              <i class="material-icons">note_add</i>
               <p>Departement & Divisi</p>
             </a>
           </li>  
@@ -117,8 +119,17 @@ The above copyright notice and this permission notice shall be included in all c
             echo 'active' ;
           }?>">
             <a class="nav-link" href="<?= base_url('superadmin/Update_pkwt') ?>">
-              <i class="material-icons">library_books</i>
+              <i class="material-icons">print</i>
               <p>Perbarui PKWT</p>
+            </a>
+          </li>
+
+            <li  class="nav-item <?php if ($url == 'Upload_berkas'){
+            echo 'active' ;
+          }?>">
+            <a class="nav-link" href="<?= base_url('superadmin/Upload_berkas') ?>">
+              <i class="material-icons">queue</i>
+              <p>Upload Berkas Karyawan</p>
             </a>
           </li>
 
@@ -126,7 +137,7 @@ The above copyright notice and this permission notice shall be included in all c
             echo 'active' ;
           }?>">
             <a class="nav-link" href="<?= base_url('superadmin/NPK') ?>">
-              <i class="material-icons">library_books</i>
+              <i class="material-icons">contact_mail</i>
               <p>Perbarui NPK</p>
             </a>
           </li>
@@ -135,18 +146,18 @@ The above copyright notice and this permission notice shall be included in all c
             echo 'active' ;
           }?>">
             <a class="nav-link" href="<?= base_url('superadmin/Keluarga/form_add') ?>">
-              <i class="material-icons">library_books</i>
+              <i class="material-icons">pregnant_woman</i>
               <p>Tambah Keluarga</p>
             </a>
           </li>
-          <li  class="nav-item <?php if ($url == 'Pinjaman_karyawan'){
-            echo 'active' ;
-          }?>">
-            <a class="nav-link" href="<?= base_url('superadmin/Pinjaman_karyawan/') ?>">
-              <i class="material-icons">library_books</i>
-              <p>Peminjaman Karyawan</p>
-            </a>
-          </li>
+            <!-- <li  class="nav-item <?php if ($url == 'Pinjaman_karyawan'){
+              echo 'active' ;
+            }?>">
+              <a class="nav-link" href="<?= base_url('superadmin/Pinjaman_karyawan/') ?>">
+                <i class="material-icons">credit_card</i>
+                <p>Peminjaman Karyawan</p>
+              </a>
+            </li> -->
 
         </ul>
       </div>
@@ -166,15 +177,6 @@ The above copyright notice and this permission notice shall be included in all c
             <span class="navbar-toggler-icon icon-bar"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end">
-            <form class="navbar-form">
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                  <i class="material-icons">search</i>
-                  <div class="ripple-container"></div>
-                </button>
-              </div>
-            </form>
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="javascript:;">

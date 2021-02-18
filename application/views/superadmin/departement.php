@@ -12,7 +12,7 @@
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table id="table_id" class="table table-hover">
                       <thead class="">
                         <th class="text-center">NO</th>
                         <th>Departement</th>
@@ -24,10 +24,10 @@
                       				<td class="text-center"><?= $no++ ?></td>
                       				<td><?= $result->departement ?></td>
                       				<td class="td-actions text-right">
-                                <a  data-id="<?php echo $result->id ?>" data-toggle="modal" data-target="#detail_departement" class="btn-danger btn-sm">
+                                <a  data-id="<?php echo $result->id ?>" data-toggle="modal" data-target="#detail_departement" class="btn btn-info btn-fab btn-fab-mini btn-round">
       					                    <i class="material-icons">edit</i>
                                 </a>
-                                <a onclick="return confirm('hapus ?')" href="<?= base_url('superadmin/Departement/delete/'. $result->id) ?>" class="btn-danger btn-sm">
+                                <a onclick="return confirm('hapus ?')" href="<?= base_url('superadmin/Departement/delete/'. $result->id) ?>" class="btn btn-danger btn-fab btn-fab-mini btn-round">
                                     <i class="material-icons">close</i>
                                 </a>
                     					</td>
