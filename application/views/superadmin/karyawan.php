@@ -28,8 +28,8 @@
                      <td class="text-center"><?= $result->divisi?></td>
                      <td class="text-center"><?= $result->position?></td>
                      <td class="text-center"><?= $result->wilayah?></td>
-                     <td class="td-actions text-center">
-                          <a href="#" class="btn btn-success btn-fab btn-fab-mini btn-round">
+                     <td class="td-actions text-center">  
+                          <a type="button" class="btn btn-success btn-fab btn-fab-mini btn-round" data-toggle="modal" data-target="#berkas_karyawan">
                             <i class="material-icons">person</i>
                           </a>
                           <a href="<?= base_url('superadmin/Karyawan/Edit_karyawan/' . $result->id_user) ?>" class="btn btn-info btn-fab btn-fab-mini btn-round">
@@ -50,7 +50,37 @@
         float: right;
       }  
     </style>
-
      <a id="tambahkaryawan" href="<?= base_url('superadmin/TambahKaryawan') ?>" class="btn btn-success">Tambah Data </a>
   </div>
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="berkas_karyawan" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                       <h3 align="center">Berkas Karyawan</h3>
+                        <form method="post" id="#">
+                                    <div class="form-row">
+                            
+                                  </div>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+<!-- End of modal update biodata karyawan -->
 </div>
+
+<script type="text/javascript">
+      //tampilkan data berkas dan tracking pkwt user di modal
+     $('#berkas_karyawan').on('show.bs.modal', function (event) {
+             var div = $(event.relatedTarget)  ;// Tombol dimana modal di tampilkan
+             var modal          = $(this) ;
+             var id = div.data('id');
+             // kirim data ke controller anggota lewat ajax
+             $.ajax({
+                url :"<?= base_url("superadmin/Karyawan/loadModal") ?>",
+                method : "GET",
+                data : "id"+ id ,
+                success : function(response){
+                    $("#berkas_karyawan").html(response);
+                }
+             })
+         });
+</script>

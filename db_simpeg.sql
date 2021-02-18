@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 17, 2021 at 03:54 PM
+-- Generation Time: Feb 18, 2021 at 09:29 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.26
 
@@ -559,8 +559,14 @@ CREATE TABLE `tbl_pembayaran` (
 --
 
 INSERT INTO `tbl_pembayaran` (`id`, `id_user`, `nama`, `npk`, `pembayaran_ke`, `jumlah_bayar`, `bunga`, `pokok`, `id_pinjam`, `tanggal`) VALUES
-(1, 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', 123456, 1, 1120000, 120000, 1000000, '1', '2020-01-01'),
-(2, 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', 123456, 2, 1120000, 120000, 1000000, '1', '2020-02-01');
+(4, 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', 123456, 1, 1120000, 120000, 1000000, '123456Feb08254921', '2021-02-18'),
+(5, 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', 123456, 2, 1120000, 120000, 1000000, '123456Feb08254921', '2021-03-18'),
+(6, 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', 123456, 3, 1120000, 120000, 1000000, '123456Feb08254921', '2021-04-18'),
+(7, 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', 123456, 4, 1120000, 120000, 1000000, '123456Feb08254921', '2021-05-18'),
+(8, 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', 123456, 5, 1120000, 120000, 1000000, '123456Feb08254921', '2021-06-18'),
+(9, 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', 123456, 6, 1120000, 120000, 1000000, '123456Feb08254921', '2021-07-18'),
+(10, 'a2e80aa2ed6e8f87a79188ef1f1b6b08', 'Murry', 220220, 1, 600000, 100000, 500000, '220220Feb08274721', '2021-02-18'),
+(11, 'a2e80aa2ed6e8f87a79188ef1f1b6b08', 'Murry', 220220, 2, 600000, 100000, 500000, '220220Feb08274721', '2021-03-18');
 
 -- --------------------------------------------------------
 
@@ -578,20 +584,22 @@ CREATE TABLE `tbl_peminjaman` (
   `total_pinjam` int(10) DEFAULT NULL,
   `persentase_bunga` varchar(100) DEFAULT NULL,
   `total_bunga` int(100) DEFAULT NULL,
-  `pokok` varchar(20) DEFAULT NULL,
-  `cicilan` varchar(20) DEFAULT NULL,
-  `tenor` varchar(20) DEFAULT NULL,
+  `pokok` int(20) DEFAULT NULL,
+  `tenor` int(20) DEFAULT NULL,
   `setor_perbulan` int(20) DEFAULT NULL,
-  `sisa_pinjaman` varchar(20) DEFAULT NULL,
-  `tanggal` varchar(100) DEFAULT NULL
+  `tanggal` date DEFAULT NULL,
+  `file` varchar(255) DEFAULT NULL,
+  `status` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_peminjaman`
 --
 
-INSERT INTO `tbl_peminjaman` (`id`, `nama`, `npk`, `id_user`, `vendor_pinjam`, `id_pinjam`, `total_pinjam`, `persentase_bunga`, `total_bunga`, `pokok`, `cicilan`, `tenor`, `setor_perbulan`, `sisa_pinjaman`, `tanggal`) VALUES
-(1, 'Dasep', 123456, 'e10adc3949ba59abbe56e057f20f883e', 'KAI', '1', 6000000, '0.02', 120000, '1000000', '1120000', '6', 1120000, NULL, '2020-12-30');
+INSERT INTO `tbl_peminjaman` (`id`, `nama`, `npk`, `id_user`, `vendor_pinjam`, `id_pinjam`, `total_pinjam`, `persentase_bunga`, `total_bunga`, `pokok`, `tenor`, `setor_perbulan`, `tanggal`, `file`, `status`) VALUES
+(9, 'Dasep', 123456, 'e10adc3949ba59abbe56e057f20f883e', 'KOP SIGAP', '123456Feb08254921', 6000000, '2%', 120000, 1000000, 6, 1120000, '2021-02-18', '123456082549fae2e1f097f394b7f5813cf94286e2bb.pdf', NULL),
+(10, 'Murry', 220220, 'a2e80aa2ed6e8f87a79188ef1f1b6b08', 'KAI', '220220Feb08274721', 5000000, '2%', 100000, 500000, 10, 600000, '2021-02-18', '220220082747fae2e1f097f394b7f5813cf94286e2bb.pdf', NULL),
+(11, 'Dasep', 123456, 'e10adc3949ba59abbe56e057f20f883e', 'KAI', '123456Feb08330321', 1000000, '4%', 40000, 200000, 5, 240000, '2021-01-01', '123456083303fae2e1f097f394b7f5813cf94286e2bb.pdf', NULL);
 
 --
 -- Indexes for dumped tables
@@ -905,13 +913,13 @@ ALTER TABLE `tbl_keluarga`
 -- AUTO_INCREMENT for table `tbl_pembayaran`
 --
 ALTER TABLE `tbl_pembayaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tbl_peminjaman`
 --
 ALTER TABLE `tbl_peminjaman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

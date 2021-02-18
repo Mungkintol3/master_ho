@@ -1,51 +1,61 @@
 <div class="content">
-<div class="col-md-12">
-  <a data-toggle="modal" data-target="#addjabatan" class="btn btn-success btn-round">
-   <i class="material-icons">assignment_ind</i> 
-  Tambah Data Jabatan</a>
-  <a data-toogle="modal" href="<?php echo base_url('superadmin/Position')?>" class="btn btn-default btn-round">
-  <i class="material-icons">assignment_ind</i>
-  Tambah Data Posisi
-  </a>
-              <div class="card card-plain">
-                <div class="card-header card-header-info">
-                  <h4 class="card-title mt-0"> DAFTAR JABATAN</h4>
-                  <p class="card-category"> SIGAP PRIMA ASTREA & SIGAP GARDA PRATAMA</p>
-                </div>
+<div class="container-fluid">
+  <div class="card card-nav-tabs card-plain">
+    <div class="card-header card-header-info">
+       <div class="nav-tabs-navigation">
+             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="nav-tabs-wrapper">
+                <ul class="nav nav-tabs" data-tabs="tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#jabatan" data-toggle="tab">Daftar  Jabatan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#employee" data-toggle="tab">Tambah Posisi</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+      </div>
                 <div class="card-body">
+                   <div class="tab-pane active" id="jabatan">
+                  <a data-toggle="modal" data-target="#addjabatan" class="btn btn-success btn-round" style="float: right;">
+                   <i class="material-icons">assignment_ind</i> 
+                  Tambah Data Jabatan</a>
                   <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table id="table_id" class="table table-hover">
                       <thead class="">
                         <th class="text-center">NO</th>
-                      	<th>Nama Jabatan</th>
+                        <th>Nama Jabatan</th>
                         <th>Range</th>
-                  		<th class="text-right">Action</th>
+                      <th class="text-right">Action</th>
                        </thead>
-                  			<tbody>
+                        <tbody>
                           <?php $no = 1 ; foreach($jabatan as $result) :  ?>
-                      			<tr>
-                      				<td class="text-center"><?= $no++ ?></td>
+                            <tr>
+                              <td class="text-center"><?= $no++ ?></td>
                               <td><?= $result->nama_jabatan ?></td>
-                      				<td><?= $result->range ?></td>
-                      				<td class="td-actions text-right">
+                              <td><?= $result->range ?></td>
+                              <td class="td-actions text-right">
                                 <a  data-id="<?php echo $result->id ?>" data-toggle="modal" data-target="#detail_jab" class="btn btn-success btn-fab btn-fab-mini btn-round">
-      					                    <i class="material-icons">edit</i>
+                                    <i class="material-icons">edit</i>
                                 </a>
                                 <a onclick="return confirm('hapus ?')" href="<?= base_url('superadmin/Jabatan/delete/'. $result->id) ?>" class="btn btn-danger btn-fab btn-fab-mini btn-round">
                                     <i class="material-icons">close</i>
                                 </a>
-                    					</td>
-                      			</tr>
-                          <?php endforeach  ?>                  		                  	
-                  			</tbody>
+                              </td>
+                            </tr>
+                          <?php endforeach  ?>                                          
+                        </tbody>
                     </table>
-              	</div>
+                  </div>
+                </div>
               </div>
-          </div>
-      </div>
-  </div>
+            </div>
+                  
+
+
  <!-- modal form tambah jabatan -->
- <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="addjabatan" class="modal fade">
+  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="addjabatan" class="modal fade">
      <div class="modal-dialog modal-xl">
          <div class="modal-content">
              <div class="modal-header">
@@ -76,7 +86,7 @@
 <!-- end of modal  -->
 
  <!-- modal edit jabatan -->
- <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="detail_jab" class="modal fade">
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="detail_jab" class="modal fade">
      <div class="modal-dialog modal-xl">
          <div class="modal-content">
              <div class="modal-header">
@@ -143,3 +153,7 @@
             })
         })
   </script>
+
+
+
+  

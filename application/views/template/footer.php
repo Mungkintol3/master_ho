@@ -15,7 +15,7 @@
             </ul>
           </nav>
           <div class="copyright float-right">
-            mix with <i class="material-icons">favorite</i> by
+            mix with
             <a href="https://wa.me/6287886511096?text=Murray%20are%20you%20there" target="_blank">Murry Febrians</a> for a better future.
           </div>  
         </div>
@@ -23,15 +23,13 @@
     </div>
   </div>
    <!--   Core JS Files   -->
-
+   <!-- chartis js -->
   <script src="<?php echo base_url()?>assets/js/core/popper.min.js"></script>
   <script src="<?php echo base_url()?>assets/js/core/bootstrap-material-design.min.js"></script>
   <script src="<?php echo base_url()?>assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
  <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script> -->
   <!-- DataTables -->
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
-  <!-- Chartist JS -->
-  <script src="<?php echo base_url()?>assets/js/plugins/chartist.min.js"></script>
   <!-- Datepicker -->
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <!--  Notifications Plugin    -->

@@ -27,10 +27,30 @@ class Karyawan extends CI_Controller
 		
 	}
 
-	public function LoadModal()
+
+
+	public function UpdateBiodata($id)
 	{
-		$this->load->view('superadmin/modal_karyawan');
-		
+		$data = array(
+			'no_ktp'  			=> $this->input->post("no_ktp"),
+			'no_kk'  			=> $this->input->post("no_kk"),
+			'status_pajak'  	=> $this->input->post("status_pajak"),
+			'no_npwp'  			=> $this->input->post("no_npwp"),
+			'status_kawin'  	=> $this->input->post("status_kawin"),
+			'alamat_ktp'  		=> $this->input->post("alamat_ktp"),
+			'address'  			=> $this->input->post("address"),
+			'email'  			=> $this->input->post("email"),
+			'no_telp'  			=> $this->input->post("no_telp"),
+			'kontak_darurat'  	=> $this->input->post("kontak_darurat")
+		);
+
+		$update = $this->m_admin->update('tbl_karyawan',array("id_user" => $id),"tbl_karyawan")->result();
+			if ($update) {
+				echo "sukses";
+			}else{
+				echo "gagal";
+			}
+
 	}
 
 	public function Edit_karyawan($id)
@@ -102,4 +122,14 @@ class Karyawan extends CI_Controller
 	 		redirect('superadmin/Karyawan/Edit_karyawan/' . $id_user);
  	
 	}
+
+	public function loadModal($id)
+  	{
+    $npk = $this->input->get("npk");
+    $data['npk'] = $id ;
+    $data['berkas'] = $id ;
+
+    $data['row']  = $this->m_admin->getKar("tbl_karyawan" ,array('id_user' => $id))->row();
+    $this->load->view("superadmin/karyawan",$data);
+  	}
 }
