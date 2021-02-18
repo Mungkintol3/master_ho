@@ -1,6 +1,8 @@
 <div class="content">
 <section class="container">
     <div class="row">
+    <h3>Tambah Data Pegawai</h3>
+    <div class="container-fluid">
     <?php if($this->session->flashdata("success"))  { ?>
       <div class="alert alert-info">
         <?= $this->session->flashdata("success") ?>
@@ -10,8 +12,6 @@
         <?= $this->session->flashdata("error") ?>
       </div>
     <?php } ?>
-    <h3>Tambah Data Pegawai</h3>
-    <div class="container-fluid">
     <div>
       <form method="post" onsubmit="return validasi()" enctype="multipart/form-data" action="" id="uploadpegawai">
           <input type="file" onchange="return cekexe()" name="file" id="file" class="form-control">
@@ -27,8 +27,7 @@
     <?php 
       if(isset($_POST['submit'])){ ?>
     <form action="<?= base_url('superadmin/TambahKaryawan/upload') ?>" method="post" >
-      <table id="table_id" class="table">
-
+      <table id="table" class="table">
         <thead>
           <tr>
             <th>No</th>
@@ -74,11 +73,9 @@
       }
     }
 
-    $(document).ready( function () {
-      $('#table_id').DataTable( {
-            "pagingType": "full_numbers"
-        });
-    } );
+    $(document).ready(function(){
+      $("#table").DataTable();
+    });
   </script>
 
   </div>

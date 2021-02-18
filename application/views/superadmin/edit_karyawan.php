@@ -69,7 +69,7 @@
                             <tr class="text-right">
                                 <td class="text-left">Status Pajak</td>
                                 <td>:</td>
-                                <td>K/0</td>
+                                <td><?= $karyawan->status_pajak ?></td>
                             </tr>
                 			<tr class="text-right">
                 				<td class="text-left">Kartu Keluarga</td>
@@ -79,22 +79,22 @@
                             <tr class="text-right">
                                 <td class="text-left">Status Perkawinan</td>
                                 <td>:</td>
-                                <td>Single</td>
+                                <td><?= $karyawan->status_kawin ?></td>
                             </tr>
                 			<tr class="text-right">
                 				<td class="text-left">Tempat,Tanggal Lahir</td>
                 				<td>:</td>
-                				<td><?=  $karyawan->tgl_lahir ?></td>
+                				<td><?= $karyawan->tempat_lahir . "," .  $karyawan->tgl_lahir ?></td>
                 			</tr>
                             <tr class="text-right">
                                 <td class="text-left">Jenis Kelamin</td>
                                 <td>:</td>
-                                <td>Laki Laki</td>
+                                <td><?= $karyawan->gender ?></td>
                             </tr>
                             <tr class="text-right">
                                 <td class="text-left">Umur</td>
                                 <td>:</td>
-                                <td>22 </td>
+                                <td><?= $karyawan->age ?> </td>
                             </tr>
                 			<tr class="text-right">
                 				<td class="text-left">Alamat KTP</td>
@@ -114,7 +114,7 @@
                             <tr class="text-right">
                                 <td class="text-left">Email</td>
                                 <td>:</td>
-                                <td>murry.febrian@gmail.com</td>
+                                <td><?= $karyawan->email ?></td>
                             </tr>
                 			<tr class="text-right">
                 				<td class="text-left">Nomor Kontak Darurat</td>
@@ -129,7 +129,7 @@
                 		</table>
                 	</div>
                 </div>
-                <button style="float: right;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#update_biodata<?= $karyawan->id_user?>">Update Biodata</button>
+                <button style="float: right;" data-id="<?php echo $karyawan->id ?>" type="button" class="btn btn-primary" data-toggle="modal" data-target="#update_biodata">Update Biodata</button>
 
                 
             </div>
@@ -196,7 +196,7 @@
                                 <td><?= $karyawan->nama_bank ?> / <?= $karyawan->no_rekening ?> </td>
                             </tr>
                         </table>
-                        <button style="float: right;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#update_informasi">Update Informasi Karyawan</button>
+                        <button style="float: right;" data-info="<?= $karyawan->id ?>" type="button" class="btn btn-primary" data-toggle="modal" data-target="#update_informasi">Update Informasi Karyawan</button>
             </div>
             <div class="tab-pane" id="elementary">
                 Education Join
@@ -408,124 +408,83 @@
   </div>
 
 </div>
-<!-- Modal Update Biodata Karyawan -->
-            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="update_biodata<?= $karyawan->id_user?>" aria-hidden="true">
-                  <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                       <h3 align="center">Update Biodata</h3>
-                        <form method="post" id="#">
-                                    <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                      <input type="text" name="no_ktp" id="no_ktp" class="form-control" placeholder=" Nomor Induk Kependudukan">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                      <input type="text" name="no_npwp" id="no_npwp" class="form-control" placeholder="  Nomor Pokok Wajib Pajak">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                      <input type="text" name="status_pajak" id="status_pajak" class="form-control" placeholder=" Status Pajak">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                      <input type="text" name="no_kk" id="no_kk" class="form-control" placeholder=" Nomor Kartu Keluarga">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                      <input type="text" name="status_kawin" id="status_kawin" class="form-control" placeholder=" Status Perkawinan">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                      <input type="text" name="alamat_ktp" id="alamat_ktp" class="form-control" placeholder=" Alamat KTP">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                      <input type="text" name="address" id="address" class="form-control" placeholder=" Alamat Sesuai Domisili">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                      <input type="email" name="email" id="email" class="form-control" placeholder=" Alamat Email">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                      <input type="tel" name="no_telp" id="no_telp" class="form-control" placeholder="  Nomor Handphone">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                      <input type="tel" name="kontak_darurat" id="kontak_darurat" class="form-control" placeholder="  Nomor Kontak Darurat">
-                                    </div>
-                                  </div>
-                      <button type="submit" id="submit" class="btn btn-primary">Simpan Data</button>
-                    </form>
-                    </div>
-                  </div>
-                </div>
-<!-- End of modal update biodata karyawan -->
-<script type="text/javascript">
-    
-      $(document).ready(function(){
-          $("#update_biodata<?=$karyawan->id_user?>").on('submit',function(e){
-            var postData = new FormData(this);
-            e.preventDefault();
-            if(document.getElementById('no_ktp').value == "" ){
-              alert("data karyawan masih kosong")
-            }else if(document.getElementById('no_npwp').value == "" ){
-              alert("departement masih kosong")
-            }else if(document.getElementById('status_pajak').value == "" ){
-              alert("divisi masih kosong")
-            }else if(document.getElementById('no_kk').value == "" ){
-              alert("posisi masih kosong")
-            }else if(document.getElementById('status_kawin').value == "" ){
-              alert("tanggal masih kosong")
-            }else if(document.getElementById('alamat_ktp').value == "" ){
-              alert("berkas masih kosong")
-            }else if(document.getElementById('address').value == "" ){
-              alert("tanggal masih kosong")
-            }else if(document.getElementById('email').value == "" ){
-              alert("tanggal masih kosong")
-            }else if(document.getElementById('no_telp').value == "" ){
-              alert("tanggal masih kosong")
-            }else if(document.getElementById('kontak_darurat').value == "" ){
-              alert("tanggal masih kosong")
-            }else {
-              $.ajax({
-                url : "<?= base_url('superadmin/karyawan/UpdateBiodata') ?>" ,
-                method : "POST" ,
-                data : postData,
-                processData: false,
-                contentType: false,
-                cache  : false ,
-                beforeSend : function(){
-                  $("#submit").attr("disabled",true);   
-                },
-                complete : function(){
-                  $("#submit").attr("disabled",false);    
-                },
-                success : function(e){
-                   //alert(e);
-                   if(e = "sukses"){
-                     alert(e);
-                     window.location.href="<?= base_url('superadmin/karyawan/edit_karyawan') ?>"
-                   }else {
-                      alert("gagal")
-                   }
-                }
-              })
-            }
-          })
+ <!-- modal detail edit biodata karyawan -->
+ <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="update_biodata" class="modal fade">
+     <div class="modal-dialog modal-lg">
+         <div class="modal-content">
+             <div class="modal-header">
+              <h4>Perbarui Biodata <?= $karyawan->nama ?></h4>
+                 <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+             </div>
+             <div class="modal-body" id="editbiodataKaryawan">
 
+             </div>
+             <div class="modal-footer">
+         </div>
+             </div>
+         </div>
+     </form>
+     </div>
+<!-- end of modal  -->
+
+ <!-- modal detail edit informasi karyawan -->
+ <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="update_informasi" class="modal fade">
+     <div class="modal-dialog modal-lg">
+         <div class="modal-content">
+             <div class="modal-header">
+              <h4>Perbarui Informasi <?= $karyawan->nama ?></h4>
+                 <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+             </div>
+             <div class="modal-body" id="editinformasiKaryawan">
+
+             </div>
+             <div class="modal-footer">
+         </div>
+             </div>
+         </div>
+     </form>
+     </div>
+<!-- end of modal  -->
+
+
+
+<script type="text/javascript">    
+//load modal update biodata karyawan
+    $("#update_biodata").on("show.bs.modal",function(event){
+      var div = $(event.relatedTarget);
+      var modal = $(this);
+      var id = div.data('id');
+        //kirim data ke controller supplier
+        $.ajax({
+          url : "<?php echo base_url("superadmin/Karyawan/modaleditBiodata/") ?>",
+          data : "id="+id ,
+          method : "POST",
+          success : function(response){
+            $("#editbiodataKaryawan").html(response);
+          }
+        })
+    })
+
+//load modal update informasi karyawan
+    $("#update_informasi").on("show.bs.modal",function(event){
+      var div = $(event.relatedTarget);
+      var modal = $(this);
+      var id = div.data('info');
+        //kirim data ke controller supplier
+        $.ajax({
+          url : "<?php echo base_url("superadmin/Karyawan/modaleditInformasi/") ?>",
+          data : "id="+id ,
+          method : "POST",
+          success : function(response){
+            $("#editinformasiKaryawan").html(response);
+          }
+        })
     })
 
 </script>
-<!-- Modal Update Informasi Karyawan -->
-             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="update_informasi" aria-hidden="true">
-                          <div class="modal-dialog modal-lg" >
-                            <div class="modal-content">
-                                <label align="center">UPDATE INFORMASI KARYAWAN</label>
-                                <form method="post" id="#">
-                                    <div class="row">
-                                        <div class="col">
-                                            <input type="text" class="form-control" name="" placeholder=" NOMOR BPJS KETENAGAKERJAAN">
-                                            <input type="text" class="form-control" name="" placeholder=" NOMOR BPJS KESEHATAN">
-                                            <input type="text" class="form-control" name="" placeholder=" NOMOR DPLK ATAU ASURANSI">
-                                            <input type="text" class="form-control" name="" placeholder=" NAMA BANK & REKENING">
-                                            <button type="submit" id="submit" class="btn btn-primary">Simpan Data</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                          </div>
-                        </div>
-<!-- End of modal informasi karyawan -->
+
+
+
+
+
 

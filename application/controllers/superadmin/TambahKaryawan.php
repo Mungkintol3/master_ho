@@ -58,7 +58,7 @@ class TambahKaryawan extends CI_Controller {
 					}else {
 							// push data karyawan ke tabel karyawan
 			                array_push($data, array(
-			                	'id_user'					=> md5($row['B']) ,
+			                	'id_user'					=> $row['B'] ,
 			                	'npk'						=> $row['B'] ,
 			                	'nama'						=> $row['C'] ,
 			                	'wilayah'					=> $row['D'] ,
@@ -114,7 +114,7 @@ class TambahKaryawan extends CI_Controller {
         		$input = $this->m_admin->inputArray("tbl_karyawan",$data);
         		$input = $this->m_admin->inputArray("pendidikan",$pendidikan);
         			if($input){
-        				$this->session->set_flashdata("success","Data telah Di daftar");
+        				$this->session->set_flashdata("success","Karyawan tersimpan di data master");
 	            		redirect("superadmin/TambahKaryawan");
         			}else {
         				echo "Gagal";

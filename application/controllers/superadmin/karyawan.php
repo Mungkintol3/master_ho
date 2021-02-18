@@ -44,7 +44,26 @@ class Karyawan extends CI_Controller
 			'kontak_darurat'  	=> $this->input->post("kontak_darurat")
 		);
 
-		$update = $this->m_admin->update('tbl_karyawan',array("id_user" => $id),"tbl_karyawan")->result();
+		$update = $this->m_admin->update($data,"tbl_karyawan",array("id" => $id));
+			if ($update) {
+				echo "sukses";
+			}else{
+				echo "gagal";
+			}
+
+	}
+
+	public function UpdateInformasi($id)
+	{
+		$data = array(
+			'bpjs_kesehatan'	=> $this->input->post("bpjs_kesehatan"),
+			'bpjs_tenagakerja'	=> $this->input->post("bpjs_tenagakerja"),
+			'no_dplk'			=> $this->input->post("no_dplk"),
+			'nama_bank'			=> $this->input->post("nama_bank"),
+			'no_rekening'		=> $this->input->post("rekening"),
+		);
+
+		$update = $this->m_admin->update($data,"tbl_karyawan",array("id" => $id));
 			if ($update) {
 				echo "sukses";
 			}else{
@@ -55,9 +74,6 @@ class Karyawan extends CI_Controller
 
 	public function Edit_karyawan($id)
 	{
-/*		$p = $this->m_admin->showPendidikan1($id)->result();
-		print_r($p);*/
-
 		$data = array(
 			'karyawan'		=> $this->m_admin->cari(array("id_user"=> $id),"tbl_karyawan")->row() ,
 			'golongan'		=> $this->m_admin->cari(array("id_user"=> $id),"histori_golongan")->result() ,
@@ -97,6 +113,8 @@ class Karyawan extends CI_Controller
 			$this->m_admin->delete('promosi_jabatan',array("id_user"  => $id));
 			$this->m_admin->delete('pendidikan',array("id_user"  => $id));
 			$this->m_admin->delete('tbl_keluarga',array("id_user"  => $id));
+			$this->m_admin->delete('tbl_peminjaman',array("id_user"  => $id));
+			$this->m_admin->delete('tbl_pembayaran',array("id_user"  => $id));
 			redirect('superadmin/Karyawan');
 		}
 
@@ -132,4 +150,26 @@ class Karyawan extends CI_Controller
     $data['row']  = $this->m_admin->getKar("tbl_karyawan" ,array('id_user' => $id))->row();
     $this->load->view("superadmin/karyawan",$data);
   	}
-}
+
+
+
+
+  	//modal edit biodata data karyawan
+  	public function modaleditBiodata()
+  	{
+  		$id = $this->input->post('id');
+  		$data['karyawan'] = $this->m_admin->cari(array("id"=> $id),"tbl_karyawan")->row() ;
+  		$this->load->view('superadmin/update_modalbiodata_karyawan',$data);
+  	}
+
+
+  	//modal edit informasi karyawan
+  	public function modaleditInformasi()
+  	{
+  		$id = $this->input->post("id");
+  		$data['karyawan'] = $this->m_admin->cari(array("id"=> $id),"tbl_karyawan")->row() ;
+  		$this->load->view('superadmin/update_modalinformasi_karyawan',$data);
+  	}
+
+
+  }
