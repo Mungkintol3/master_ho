@@ -47,4 +47,67 @@ class Pinjaman_karyawan extends CI_Controller
 	}
 
 
+
+	public function input_pinjaman($value='')
+	{
+
+		$file 				 = $_FILES['file']['name'];
+ 		$filename 			 = $file;
+ 		$npk				 = $this->input->post("npk");
+		$extensi 			 = pathinfo($filename, PATHINFO_EXTENSION);
+ 		$this->load->library('upload');
+ 		$config['allowed_types']   = '*' ;
+ 		$config['upload_path']     = './assets/upload/bukti_peminjaman/' ;
+ 		$config['file_name'] 	   = $npk .  date('his') .  md5($filename) . '.' . $extensi ;
+
+ 		$this->upload->initialize($config);
+ 		if(!$this->upload->do_upload('file')){
+ 			echo "failed";
+ 		}else {
+ 			//data peminjam
+		$id_user 			= $this->input->post("id_user");
+		$nama 				= $this->input->post("nama");
+
+		//data peminjaman
+		$berkas 		    = $this->upload->data("file_name");
+		$vendor 			= $this->input->post("vendor_pinjam");
+		$id_pinjam 			= $npk . date('Mhisy') ;
+		$bunga  			= $this->input->post("total_bunga") ;
+		$persentaseBunga	= $this->input->post("persentase_bunga") . "%" ;
+		$tenor  			= $this->input->post("tenor");
+		$totalPinjam 		= $this->input->post("total_pinjam");
+		$pokokBayar 		= $this->input->post("pokok");
+		$setorBulanan		= $this->input->post("setor_perbulan");
+		$tanggal 			= $this->input->post("tanggal");
+
+		$data = array(
+			'nama'				=> $nama ,
+			'id_user'			=> $id_user ,
+			'npk'				=> $npk ,
+			'vendor_pinjam'		=> $vendor ,
+			'id_pinjam'			=> $id_pinjam ,
+			'total_pinjam'		=> $totalPinjam ,
+			'persentase_bunga'	=> $persentaseBunga ,
+			'total_bunga'		=> $bunga ,
+			'pokok'				=> $pokokBayar ,
+			'setor_perbulan'	=> $setorBulanan ,
+			'tenor'				=> $tenor ,
+			'tanggal'			=> $tanggal ,
+			'file'				=> $berkas
+		);
+
+		$input = $this->m_admin->inputData($data,"tbl_peminjaman");
+		if($input){
+			echo "sukses";
+		}else {
+			echo "error";
+		}
+ 		}
+
+		
+
+	
+	}
+
+
 }
