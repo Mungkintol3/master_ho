@@ -27,11 +27,6 @@ class Karyawan extends CI_Controller
 		
 	}
 
-	public function LoadModal()
-	{
-		$this->load->view('superadmin/modal_karyawan');
-		
-	}
 
 
 	public function UpdateBiodata($id)
@@ -127,4 +122,14 @@ class Karyawan extends CI_Controller
 	 		redirect('superadmin/Karyawan/Edit_karyawan/' . $id_user);
  	
 	}
+
+	public function loadModal($id)
+  	{
+    $npk = $this->input->get("npk");
+    $data['npk'] = $id ;
+    $data['berkas'] = $id ;
+
+    $data['row']  = $this->m_admin->getKar("tbl_karyawan" ,array('id_user' => $id))->row();
+    $this->load->view("superadmin/karyawan",$data);
+  	}
 }
