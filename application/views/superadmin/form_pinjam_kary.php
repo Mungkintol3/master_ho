@@ -144,6 +144,14 @@
             e.preventDefault();
             if(document.getElementById('npk').value == "" ){
               alert("data karyawan masih kosong")
+            }else if(document.getElementById('vendor_pinjam').value == "" ){
+              alert("vendor pinjam masih kosong")
+            }else if(document.getElementById('total_pinjam').value == "" ){
+              alert("total pinjam masih kosong")
+            }else if(document.getElementById('tenor').value == "" ){
+              alert("tenor pembayaran masih kosong")
+            }else if(document.getElementById('persentase_bunga').value == "" ){
+              alert("bunga pembayaran masih kosong")
             }else if(document.getElementById('tanggal').value == "" ){
               alert("tanggal masih kosong")
             }else if(document.getElementById('file').value == "" ){

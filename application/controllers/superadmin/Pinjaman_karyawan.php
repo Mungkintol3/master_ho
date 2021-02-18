@@ -96,17 +96,15 @@ class Pinjaman_karyawan extends CI_Controller
 			'file'				=> $berkas
 		);
 
-		$input = $this->m_admin->inputData($data,"tbl_peminjaman");
-		if($input){
-			echo "sukses";
-		}else {
-			echo "error";
-		}
+			$input = $this->m_admin->inputData($data,"tbl_peminjaman");
+			if($input){
+				echo "sukses";
+			}else {
+				echo "error";
+			}
  		}
 
 		
-
-	
 	}
 
 

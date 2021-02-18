@@ -17,7 +17,8 @@
                         <th>NPK</th>
                         <th>Total Pinjaman</th>
                         <th>Tenor Pembayaran</th>
-                      <th class="text-right">Action</th>
+                        <th>Pembayaran</th>
+                      <th class="text-right">Histori</th>
                        </thead>
                         <tbody>
                           <?php foreach($pinjaman as $result) :  ?>
@@ -27,7 +28,12 @@
                               <td><?= $result->npk ?></td>
                               <td><?= $result->total_pinjam ?></td>
                               <td><?= $result->tenor ?> x </td>
-                              <td class="td-actions text-right">
+                              <td>
+                                <a  href="<?= base_url('superadmin/Pembayaran/form_bayar/'. $result->id_pinjam) ?>" class="btn btn-success btn-fab btn-fab-mini btn-round">
+                                   <i class="material-icons">edit</i> 
+                                </a>
+                              </td>
+                              <td class="td-actions text-right" >
                                 <a  href="<?= base_url('superadmin/Pinjaman_karyawan/rincian/' . $result->id_pinjam) ?>" class="btn btn-success btn-fab btn-fab-mini btn-round">
                                     <i class="material-icons">edit</i>
                                 </a>
