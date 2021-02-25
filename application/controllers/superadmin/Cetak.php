@@ -4,12 +4,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Cetak extends CI_Controller {
 
-	public function index()
+	public function view($id)
 	{
 
 		// $this->load->view('mpdf');
 		$mpdf = new \Mpdf\Mpdf();
-		$data = $this->load->view('mpdf', [], TRUE);
+		$data2 = array(
+			'info'  => $this->m_admin->cari(array('id_user' => $id),"tbl_karyawan")->row(),
+		);
+		var_dump($data2[0]);
+		$data = $this->load->view('superadmin/mpdf', [] ,TRUE);
 		$mpdf->WriteHTML($data);
 		$mpdf->Output();
 	// }

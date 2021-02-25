@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 18, 2021 at 11:54 AM
+-- Generation Time: Feb 25, 2021 at 09:32 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.26
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_simpeg`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `akun`
+--
+
+CREATE TABLE `akun` (
+  `id` int(11) NOT NULL,
+  `npk` int(6) DEFAULT NULL,
+  `nama` varchar(100) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `role_id` int(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `akun`
+--
+
+INSERT INTO `akun` (`id`, `npk`, `nama`, `photo`, `password`, `role_id`) VALUES
+(1, 220221, 'Murry Febriansyah Dasep', NULL, '202cb962ac59075b964b07152d234b70', 1);
 
 -- --------------------------------------------------------
 
@@ -364,7 +386,9 @@ CREATE TABLE `pendidikan` (
 
 INSERT INTO `pendidikan` (`id`, `id_user`, `nama`, `npk`, `pendidikan`, `jurusan`, `institusi`, `thn_lulus`) VALUES
 (19, 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', '123456', 'SMA', 'IPA', 'SMK DWIPA', '2017'),
-(20, 'a2e80aa2ed6e8f87a79188ef1f1b6b08', 'Murry', '220220', 'SMK', 'IPS', 'SMAN 1 ', '2015');
+(20, 'a2e80aa2ed6e8f87a79188ef1f1b6b08', 'Murry', '220220', 'SMK', 'IPS', 'SMAN 1 ', '2015'),
+(21, 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', '123456', 'SMA', 'IPA', 'SMK DWIPA', '2017'),
+(22, 'a2e80aa2ed6e8f87a79188ef1f1b6b08', 'Murry', '220220', 'SMK', 'IPS', 'SMAN 1 ', '2015');
 
 -- --------------------------------------------------------
 
@@ -488,6 +512,14 @@ CREATE TABLE `tbl_karyawan` (
   `photo` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tbl_karyawan`
+--
+
+INSERT INTO `tbl_karyawan` (`id`, `id_user`, `npk`, `nama`, `divisi`, `departement`, `position`, `wilayah`, `gender`, `martial_status`, `address`, `tgl_lahir`, `age`, `no_telp`, `email`, `gol_darah`, `no_ktp`, `no_kk`, `bpjs_kesehatan`, `bpjs_tenagakerja`, `no_dplk`, `no_npwp`, `nama_bank`, `no_rekening`, `status_pajak`, `status_kawin`, `no_pkwt`, `promosi_jabatan`, `mutasi_jabatan`, `demosi_jabatan`, `status`, `employment_status`, `company`, `join_date`, `length_of_service`, `education_join`, `education_update`, `kel_jabatan`, `gol_kerja`, `range_golongan`, `latest_promotion`, `karir`, `alamat_ktp`, `tempat_lahir`, `kontak_darurat`, `latest_promosi`, `photo`) VALUES
+(19, '123456', 123456, 'Dasep', NULL, NULL, NULL, 'Head Office', 'Laki-Laki', 'Single', 'BLOK KAMIS, RT 004/RW 002, KEL. MAJA UTARA, KEC. MAJA', '1999-04-01', 51, '0821-1285-0847', 'a@gmail.com', 'A', '3175042312881012', '3175042312881088', '000124567891', '120J12345', '0001G31219800', '246155097024000', 'Bank Central Asia', '6930347998', 'TK/0', 'LAJANG', '123456', NULL, NULL, NULL, NULL, 'Permanent Employee', NULL, '2014/11/12', NULL, 'SMA', 'SMA', 'Junior Analyst', NULL, NULL, NULL, NULL, 'Priuk Jakarta Utara', 'Jakarta', '01212121212', NULL, NULL),
+(20, '220220', 220220, 'Murry', NULL, NULL, NULL, 'Head Offie', 'Laki-Laki', 'Single', 'Lodan Dalam II C RT 06 / RW 08 KEL.ANCOL JAKARTA UTARA', '1998-04-13', 21, '0812-1212-2244', 'murrry@gmail.com', 'AB', '3175042312881111', '3175042312881089', '000124567892', '120J12344', '0001G31219801', '246155097024001', 'Bank Central Asia', '6930347991', 'TK/0', 'KAWIN', '123457', NULL, NULL, NULL, NULL, 'Permanent Employee', NULL, '2011/11/06', NULL, 'SMK', 'SMK', 'Operational', NULL, NULL, NULL, NULL, 'Ancol Jakarta Utara', 'Bandung', '0121212121', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -525,6 +557,18 @@ CREATE TABLE `tbl_pembayaran` (
   `tanggal` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tbl_pembayaran`
+--
+
+INSERT INTO `tbl_pembayaran` (`id`, `id_user`, `nama`, `npk`, `pembayaran_ke`, `jumlah_bayar`, `bunga`, `pokok`, `id_pinjam`, `tanggal`) VALUES
+(12, '123456', 'Dasep', 123456, 1, 1040000, 40000, 1000000, '123456Feb07512821', '2021-02-25'),
+(13, '123456', 'Dasep', 123456, 2, 1040000, 40000, 1000000, '123456Feb07512821', '2021-02-25'),
+(14, '123456', 'Dasep', 123456, 3, 1040000, 40000, 1000000, '123456Feb07512821', '2021-02-25'),
+(15, '123456', 'Dasep', 123456, 4, 1040000, 40000, 1000000, '123456Feb07512821', '2021-02-25'),
+(16, '123456', 'Dasep', 123456, 5, 1040000, 40000, 1000000, '123456Feb07512821', '2021-02-25'),
+(17, '123456', 'Dasep', 123456, 6, 1040000, 40000, 1000000, '123456Feb07512821', '2021-02-25');
+
 -- --------------------------------------------------------
 
 --
@@ -550,8 +594,21 @@ CREATE TABLE `tbl_peminjaman` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `tbl_peminjaman`
+--
+
+INSERT INTO `tbl_peminjaman` (`id`, `nama`, `npk`, `id_user`, `vendor_pinjam`, `id_pinjam`, `total_pinjam`, `persentase_bunga`, `total_bunga`, `pokok`, `tenor`, `setor_perbulan`, `tanggal`, `file`, `status`) VALUES
+(12, 'Dasep', 123456, '123456', 'KAI', '123456Feb07512821', 6000000, '4%', 40000, 1000000, 6, 1040000, '2021-01-01', '123456075128fae2e1f097f394b7f5813cf94286e2bb.pdf', NULL);
+
+--
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `akun`
+--
+ALTER TABLE `akun`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `demosi_jabatan`
@@ -714,6 +771,12 @@ ALTER TABLE `tbl_peminjaman`
 --
 
 --
+-- AUTO_INCREMENT for table `akun`
+--
+ALTER TABLE `akun`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `demosi_jabatan`
 --
 ALTER TABLE `demosi_jabatan`
@@ -825,7 +888,7 @@ ALTER TABLE `mutasi_jabatan`
 -- AUTO_INCREMENT for table `pendidikan`
 --
 ALTER TABLE `pendidikan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `position`
@@ -849,7 +912,7 @@ ALTER TABLE `tbl_jabatan`
 -- AUTO_INCREMENT for table `tbl_karyawan`
 --
 ALTER TABLE `tbl_karyawan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `tbl_keluarga`
@@ -861,13 +924,13 @@ ALTER TABLE `tbl_keluarga`
 -- AUTO_INCREMENT for table `tbl_pembayaran`
 --
 ALTER TABLE `tbl_pembayaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `tbl_peminjaman`
 --
 ALTER TABLE `tbl_peminjaman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

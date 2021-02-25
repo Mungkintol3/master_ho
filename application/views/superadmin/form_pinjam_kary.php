@@ -197,11 +197,11 @@
         $("#persentase_bunga").on('change',function(){
             var persentaseBunga = document.getElementById('persentase_bunga').value  / 100;
             var totalPinjam = document.getElementById('total_pinjam').value ;
-
+            var tenor = $('option:selected','select[name=tenor]',this).attr('data-tenor');
             var bunga   = totalPinjam * persentaseBunga ;
             
 
-            var bungaBayar = document.getElementById('total_bunga').value  = bunga;
+            var bungaBayar = document.getElementById('total_bunga').value  = bunga / parseInt(tenor);
 
 
             //total bungan + pokok pinjaman
@@ -210,7 +210,7 @@
             
             //jumlah cicilan per bulan
             document.getElementById('setor_perbulan').value = totalCicilan ;
-           
+           console.log(tenor);
         })
 
     })

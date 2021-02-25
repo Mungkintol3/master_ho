@@ -68,7 +68,7 @@ mpdf-->
                 				<td class="text-left">NPK</td>
                 				<td class="text-center">:</td>
                 				<td>    </td>
-                				<td class="text-right">220927</td>
+                				<td class="text-right"><?= $info->npk ?></td>
                 			</tr>
                 			<tr>
                 				<td class="text-left">Nama Lengkap</td>

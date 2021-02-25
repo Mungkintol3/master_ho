@@ -1,3 +1,7 @@
+<?php
+
+$akun = $this->m_admin->cari(array('id' => $this->session->userdata('id')),"akun")->row();
+?>
 <!-- 
 =========================================================
 Material Dashboard - v2.1.2
@@ -200,9 +204,9 @@ The above copyright notice and this permission notice shall be included in all c
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                   <a class="dropdown-item" href="#">Profile</a>
-                  <a class="dropdown-item" href="#">Settings</a>
+                  <a class="dropdown-item" href="<?= base_url('superadmin/Setting') ?>">Settings</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Log out</a>
+                  <a class="dropdown-item" href="<?= base_url('Logout') ?>">Log out</a>
                 </div>
               </li>
             </ul>
