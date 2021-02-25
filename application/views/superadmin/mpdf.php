@@ -74,91 +74,91 @@ mpdf-->
                 				<td class="text-left">Nama Lengkap</td>
                 				<td class="text-center">:</td>
                 				<td>    </td>
-                				<td class="text-right">Murry Febriansyah </td>
+                				<td class="text-right"><?= $info->nama ?> </td>
                 			</tr>
                 			<tr>
                 				<td class="text-left">Nomor Induk Kependudukan</td>
                 				<td class="text-center">:</td>
                 				<td>    </td>
-                				<td class="text-right">3172021402980003</td>
+                				<td class="text-right"><?= $info->no_ktp ?></td>
                 			</tr>
                 			<tr class="text-right">
                 				<td class="text-left">NPWP</td>
                 				<td>:</td>
                 				<td>    </td>
-                				<td>2831382918123</td>
+                				<td><?= $info->no_npwp ?></td>
                 			</tr>
                             <tr class="text-right">
                                 <td class="text-left">Status Pajak</td>
                                 <td>:</td>
                                 <td>     </td>
-                                <td>K/0</td>
+                                <td><?= $info->status_pajak ?></td>
                             </tr>
                 			<tr class="text-right">
                 				<td class="text-left">Kartu Keluarga</td>
                 				<td>:</td>
                 				<td>     </td>
-                				<td>3132192389231</td>
+                				<td><?= $info->no_kk ?></td>
                 			</tr>
                             <tr class="text-right">
                                 <td class="text-left">Status Perkawinan</td>
                                 <td>:</td>
                                 <td></td>
-                                <td>Single</td>
+                                <td><?= $info->status_kawin ?></td>
                             </tr>
                 			<tr class="text-right">
                 				<td class="text-left">Tempat,Tanggal Lahir</td>
                 				<td>:</td>
                 				<td>     </td>
-                				<td>14-02-1998</td>
+                				<td><?= $info->tempat_lahir . "," . $info->tgl_lahir ?></td>
                 			</tr>
                             <tr class="text-right">
                                 <td class="text-left">Jenis Kelamin</td>
                                 <td>:</td>
                                 <td>     </td>
-                                <td>Laki Laki</td>
+                                <td><?= $info->gender ?></td>
                             </tr>
                             <tr class="text-right">
                                 <td class="text-left">Umur</td>
                                 <td>:</td>
                                 <td>     </td>
-                                <td>22 </td>
+                                <td><?= $info->age ?></td>
                             </tr>
                 			<tr class="text-right">
                 				<td class="text-left">Alamat KTP</td>
                 				<td>:</td>
                 				<td>      </td>
-                				<td>Jl.Warakas IV gg.14 No.30 Rt.011/Rw.011</td>
+                				<td><?= $info->alamat_ktp ?></td>
                 			</tr>
                 			<tr class="text-right">
                 				<td class="text-left">Alamat Sekarang</td>
                 				<td>:</td>
                 				<td>     </td>
-                				<td>Jl.Warakas IV gg.14 No.30 Rt.011/Rw.011</td>
+                				<td><?= $info->address ?></td>
                 			</tr>
                 			<tr class="text-right">
                 				<td class="text-left">Nomor Telepon</td>
                 				<td>:</td>
                 				<td>     </td>
-                				<td>087886511096</td>
+                				<td><?= $info->no_telp ?></td>
                 			</tr>
                             <tr class="text-right">
                                 <td class="text-left">Email</td>
                                 <td>:</td>
                             	<td>    </td>
-                                <td>murry.febrian@gmail.com</td>
+                                <td><?= $info->email ?></td>
                             </tr>
                 			<tr class="text-right">
                 				<td class="text-left">Nomor Kontak Darurat</td>
                 				<td>:</td>
                 				<td>       </td>
-                				<td>02199796158</td>
+                				<td><?= $info->kontak_darurat ?></td>
                 			</tr>
                 			<tr class="text-right">
                 				<td class="text-left">Golongan Darah</td>
                 				<td>:</td>
                 				<td>     </td>
-                				<td>A</td>
+                				<td><?= $info->gol_darah ?></td>
                 			</tr>
                 		</table><br>
 
@@ -176,62 +176,62 @@ mpdf-->
                 			<tr class="text-right">
                 				<td class="text-left">Tanggal Bergabung</td>
                 				<td>:</td>
-                  				<td>2018-10-18</td>
+                  				<td><?= $info->join_date ?></td>
                 			</tr>
                 			<tr class="text-right">
                 				<td class="text-left">Departmen</td>
                 				<td>:</td>
-                				<td>GA</td>
+                				<td><?= $info->departement ?></td>
                 			</tr>	
                 			<tr class="text-right">
                 				<td class="text-left">Divisi</td>
                 				<td>:</td>
-                				<td>A</td>
+                				<td><?= $info->divisi ?></td>
                 			</tr>
                 			<tr class="text-right">
                 				<td class="text-left">Golongan Darah</td>
                 				<td>:</td>
-                				<td>GA</td>
+                				<td><?= $info->gol_darah ?></td>
                 			</tr>
                 			<tr class="text-right">
                 				<td class="text-left">Posisi</td>
                 				<td>:</td>
-                				<td>GA Dept Head</td>
+                				<td><?= $info->position ?></td>
                 			</tr>
                 			<tr class="text-right">
                 				<td class="text-left">Kelompok Jabatan</td>
                 				<td>:</td>
-                				<td>Admin 2</td>
+                				<td><?= $info->kel_jabatan ?></td>
                 			</tr>
                 			<tr class="text-right">
                 				<td class="text-left">Promosi Jabatan</td>
                 				<td>:</td>
-                				<td>Departmen Head</td>
+                				<td><?= $info->promosi_jabatan ?></td>
                 			</tr>
                 			<tr class="text-right">
                 				<td class="text-left">Wilayah</td>
                 				<td>:</td>
-                				<td>Head Office</td>
+                				<td><?= $info->wilayah ?></td>
                 			</tr>
                 			<tr class="text-right">
                 				<td class="text-left">Nomor BPJS Ketenagakerjaan</td>
                 				<td>:</td>
-                				<td>120J12345</td>
+                				<td><?= $info->bpjs_tenagakerja ?></td>
                 			</tr>
                 			<tr class="text-right">
                 				<td class="text-left">Nomor BPJS Kesehatan</td>
                 				<td>:</td>
-                				<td>000124567891</td>
+                				<td><?= $info->bpjs_kesehatan ?></td>
                 			</tr>
                 			<tr class="text-right">
                 				<td class="text-left">Nomor DPLK/Asuransi</td>
                 				<td>:</td>
-                				<td>0001G31219800</td>
+                				<td><?= $info->no_dplk ?></td>
                 			</tr>
                 			<tr class="text-right">
                 				<td class="text-left">Nama Bank / Nomor Rekening</td>
                 				<td>:</td>
-                				<td>Bank Permata / 4146548011</td>
+                				<td><?= $info->nama_bank .' / ' . $info->no_rekening ?></td>
                 			</tr>
                 		</table>
 
@@ -246,12 +246,14 @@ mpdf-->
 						</thead>
 						<tbody>
 						<!-- ITEMS HERE -->
-						<tr>
-						<td align="center">SMA</td>
-						<td align="center">SMA Negri 18 Jakarta</td>
-						<td align="center">Ilmu Pengetahuan Alam</td>
-						<td align="center">2017</td>
-						</tr>
+                        <?php foreach($pendidikan as $pd) : ?>
+    						<tr>
+        						<td align="center"><?= $pd->pendidikan ?></td>
+        						<td align="center">SMA Negri 18 Jakarta</td>
+        						<td align="center">Ilmu Pengetahuan Alam</td>
+        						<td align="center">2017</td>
+    						</tr>
+                         <?php endforeach ?>
 						</tbody>
 						</table>
 						<br>

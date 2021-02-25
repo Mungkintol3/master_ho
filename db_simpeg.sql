@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 25, 2021 at 09:32 AM
+-- Generation Time: Feb 25, 2021 at 10:05 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.26
 
@@ -385,10 +385,8 @@ CREATE TABLE `pendidikan` (
 --
 
 INSERT INTO `pendidikan` (`id`, `id_user`, `nama`, `npk`, `pendidikan`, `jurusan`, `institusi`, `thn_lulus`) VALUES
-(19, 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', '123456', 'SMA', 'IPA', 'SMK DWIPA', '2017'),
-(20, 'a2e80aa2ed6e8f87a79188ef1f1b6b08', 'Murry', '220220', 'SMK', 'IPS', 'SMAN 1 ', '2015'),
-(21, 'e10adc3949ba59abbe56e057f20f883e', 'Dasep', '123456', 'SMA', 'IPA', 'SMK DWIPA', '2017'),
-(22, 'a2e80aa2ed6e8f87a79188ef1f1b6b08', 'Murry', '220220', 'SMK', 'IPS', 'SMAN 1 ', '2015');
+(19, '123456', 'Dasep', '123456', 'SMA', 'IPA', 'SMK DWIPA', '2017'),
+(20, '220220', 'Murry', '220220', 'SMK', 'IPS', 'SMAN 1 ', '2015');
 
 -- --------------------------------------------------------
 

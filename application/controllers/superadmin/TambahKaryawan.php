@@ -94,7 +94,7 @@ class TambahKaryawan extends CI_Controller {
 			                ));
 
 			                array_push($pendidikan, array(
-			                	'id_user'					=> md5($row['B']) ,
+			                	'id_user'					=> $row['B'] ,
 			                	'nama'						=> $row['C'] ,
 			                	'npk'						=> $row['B'] ,
 			                	'pendidikan'				=> $row['Z'] ,
