@@ -21,6 +21,7 @@ class Surat_peringatan extends CI_Controller
 
 	public function add()
  	{
+ 		
  		$file 				 = $_FILES['file']['name'];
  		$filename 			 = $file;
  		$npk				 = $this->input->post("npk");

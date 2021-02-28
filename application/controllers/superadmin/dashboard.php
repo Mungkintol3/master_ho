@@ -11,15 +11,19 @@ class Dashboard extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->helper('url');
-		$this->load->library('encryption');
+		// $this->load->library('encryption');
 	}
 
 	public function index()
 	{
 
-		$data['url']=  $this->uri->segment(2);
+		$karyawan = $this->m_admin->getData("tbl_karyawan")->result();
+		$data = array(
+			'karyawan' =>  $karyawan ,
+			'url' 	   =>   $this->uri->segment(2),
+		);
 		$this->load->view('template/header',$data);
-		$this->load->view('superadmin/dashboard');
+		$this->load->view('superadmin/dashboard',$data);
 		$this->load->view('template/footer');
 		
 	}

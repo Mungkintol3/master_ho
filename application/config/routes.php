@@ -52,5 +52,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
-$route['cachecontroller'] = 'Cache_controller';
-$route['cachecontroller/delete'] = 'Cache_controller/delete_file_cache';
+// $route['cachecontroller'] = 'Cache_controller';
+// $route['cachecontroller/delete'] = 'Cache_controller/delete_file_cache';

@@ -1,28 +1,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
  <div class="content">
         <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-warning card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">content_copy</i>
-                  </div>
-                  <p class="card-category">Penyimpanan Telah Terpakai</p>
-                  <h3 class="card-title">...
-                    <small>GB</small>
-                  </h3>
-                </div> 
-                <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons text-danger">warning</i>
-                    <a href="javascript:;">Get More Space...</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </div>
           <div class="row">
             <div class="col-md-4">
               <h3 align="center">Usia</h3>
@@ -56,8 +34,6 @@
                                 "#84FF63",
                                 "#8463FF"
                             ]
-
-
                 }]
               },
 
@@ -100,18 +76,24 @@
 
                       // The data for our dataset
                       data: {
-                          labels: ["18-27", "28-35", "36-45", "46-55"],
+                          labels: [
+                              "45-55",
+                              "18-25"
+                          ],
                           datasets: [{
-                              label: "Data Pendidikan ",
+                              label: "Umur ",
                               backgroundColor: ["#ff6384",
-                                                "#36a2eb",
-                                                "#cc65fe",
-                                                "#ffce56"],
-                              data: [100, 50, 20, 30]
+                                                "#36a2eb",],
+                              data: [
+                              <?php
+                              if (count($karyawan)>0) {
+                                 foreach ($karyawan as $data) {
+                                    echo $data->age .",";
+                                  } 
+                              }
+                              ?>
+                              ]
                           }]
                       },
-
-                      // Configuration options go here
-                      options: {}
                   });
               </script>

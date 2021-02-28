@@ -1,42 +1,34 @@
 <div class="content">
-<div class="container-fluid">
-  <div class="card card-nav-tabs card-plain">
-    <div class="card-header card-header-info">
-       <div class="nav-tabs-navigation">
-             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <div class="nav-tabs-wrapper">
-                <ul class="nav nav-tabs" data-tabs="tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#jabatan" data-toggle="tab">Daftar  Jabatan</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#employee" data-toggle="tab">Tambah Posisi</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-      </div>
+<div class="col-md-12">
+  <a data-toggle="modal" data-target="#addjabatan" class="btn btn-success btn-round">
+   <i class="material-icons">assignment_ind</i> 
+  Tambah Data Jabatan</a>
+  <a data-toogle="modal" href="<?php echo base_url('superadmin/Position')?>" class="btn btn-default btn-round">
+  <i class="material-icons">assignment_ind</i>
+  Tambah Data Posisi
+  </a>
+              <div class="card card-plain">
+                <div class="card-header card-header-info">
+                  <h4 class="card-title mt-0"> DAFTAR JABATAN</h4>
+                  <p class="card-category"> SIGAP PRIMA ASTREA & SIGAP GARDA PRATAMA</p>
+                </div>
                 <div class="card-body">
-                   <div class="tab-pane active" id="jabatan">
-                  <a data-toggle="modal" data-target="#addjabatan" class="btn btn-success btn-round" style="float: right;">
-                   <i class="material-icons">assignment_ind</i> 
-                  Tambah Data Jabatan</a>
                   <div class="table-responsive">
                     <table id="table_id" class="table table-hover">
                       <thead class="">
                         <th class="text-center">NO</th>
                         <th>Nama Jabatan</th>
-                        <th>Range</th>
+                        <th>Range Jabatan</th>
                       <th class="text-right">Action</th>
                        </thead>
                         <tbody>
-                          <?php $no = 1 ; foreach($jabatan as $result) :  ?>
+                          <?php $no = 1 ;  foreach($jabatan as $result) :  ?>
                             <tr>
                               <td class="text-center"><?= $no++ ?></td>
                               <td><?= $result->nama_jabatan ?></td>
-                              <td><?= $result->range ?></td>
+                              <td><?= $result->range?></td>
                               <td class="td-actions text-right">
-                                <a  data-id="<?php echo $result->id ?>" data-toggle="modal" data-target="#detail_jab" class="btn btn-success btn-fab btn-fab-mini btn-round">
+                                <a  data-id="<?php echo $result->id ?>" data-toggle="modal" data-target="#detail_jab" class="btn btn-info btn-fab btn-fab-mini btn-round">
                                     <i class="material-icons">edit</i>
                                 </a>
                                 <a onclick="return confirm('hapus ?')" href="<?= base_url('superadmin/Jabatan/delete/'. $result->id) ?>" class="btn btn-danger btn-fab btn-fab-mini btn-round">
@@ -47,12 +39,11 @@
                           <?php endforeach  ?>                                          
                         </tbody>
                     </table>
-                  </div>
                 </div>
               </div>
-            </div>
-                  
-
+          </div>
+        </div>
+      </div>
 
  <!-- modal form tambah jabatan -->
   <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="addjabatan" class="modal fade">
@@ -64,9 +55,9 @@
              </div>
              <div class="modal-body" id="hstatus">
                 <form method="post"  action="#" id="addjabatan">
-                  <label>Kode Jabatan</label>
+                  <label>Range Jabatan</label>
                   <div class="form-group">
-                    <input type="text"  name="kode_jabatan" id="kode_jabatan" class="form-control">
+                    <input type="text"  name="range" id="range" class="form-control">
                   </div>
                   <label>Nama Jabatan</label>
                   <div class="form-group">
@@ -108,10 +99,10 @@
       $("#addjabatan").on('submit',function(e){
         var nama  , kode , keterangan ;
         nama = document.getElementById('nama_jabatan').value ;
-        kode = document.getElementById('kode_jabatan').value ;
+        kode = document.getElementById('range').value ;
         ket = document.getElementById('keterangan').value ;
         e.preventDefault();
-        if(document.getElementById('kode_jabatan').value == "" ){
+        if(document.getElementById('range').value == "" ){
           alert("kode jabatan kosong")
         }else if(document.getElementById('nama_jabatan').value == "" ){
           alert("nama jabatan kosong")
@@ -119,7 +110,7 @@
           $.ajax({
             url : "<?= base_url('superadmin/Jabatan/add') ?>" ,
             method : "POST" ,
-            data :  "nama_jabatan=" + nama + "&kode_jabatan="+ kode + "&keterangan="+ ket, 
+            data :  "nama_jabatan=" + nama + "&range="+ kode + "&keterangan="+ ket, 
             beforeSend : function(){
               $("#submit").attr("disabled",true);   
             },

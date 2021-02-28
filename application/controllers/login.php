@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller
 {
-	
+
 	public function index()
 	{
 		$this->load->view('login');
@@ -19,26 +19,58 @@ class Login extends CI_Controller
 		date_default_timezone_set('Asia/Jakarta');
 		$username 	= $this->input->post('npk');
 		$password   = md5($this->input->post('password'));
+
+		var_dump($password,$username);
 			
-			$cekakun = $this->m_admin->cari(array("npk" => $username , "password" => $password),"akun");
-			if($cekakun->num_rows() > 0 ){
-				$data = $cekakun->row();
+		// var_dump($username,$password);
+		// 	$cekakun = $this->m_admin->cari(array("npk" => $username , "password" => $password),"akun");
+		// 	if($cekakun->num_rows() > 0 ){
+		// 		$data = $cekakun->row();
 				 
-				switch ($data->role_id) {
-					case '1':
-						$this->session->set_userdata("npk",$data->npk);
-				 		$this->session->set_userdata("nama",$data->nama);
-				 		$this->session->set_userdata("id",$data->id);
-						redirect('superadmin/Dashboard');
-						break;
+		// 		switch ($data->role_id) {
+		// 			case '1':
+		// 				$this->session->set_userdata("npk",$data->npk);
+		// 		 		$this->session->set_userdata("nama",$data->nama);
+		// 		 		$this->session->set_userdata("id",$data->id);
+		// 				redirect('superadmin/Dashboard');
+		// 				break;
 					
-					default:
-						# code...
-						break;
-				}
-			}else {
-				$this->session->set_flashdata("nouser","akun tidak di temukan");
-				redirect("login");
-			}
+		// 			default:
+		// 				# code...
+		// 				break;
+		// 		}
+		// 	}else {
+		// 		$this->session->set_flashdata("nouser","akun tidak di temukan");
+		// 		redirect("login");
+		// 	}
+	}
+
+	public function Create_akun()
+	{
+		$this->load->view('Create_akun');
+	}
+
+	public function Create()
+	{
+
+			 $data= [
+			 	'npk'		 	=> $this->input->post('npk'),
+			 	'nama' 		 	=> $this->input->post('nama'),
+			 	'email' 		=> $this->input->post('email'),
+			 	'photo' 	 	=> 'default.jpg',
+			 	'password'   	=> md5($this->input->post('password')),
+			 	'role_id'    	=> 1,
+			 	'is_active'  	=> 1,
+			 	'date_create' 	=> date("d-m-Y H:i")
+			 ];
+			 
+			var_dump($data);
+			 // $this->db->insert('akun',$data);
+			
+	}
+
+	public function Lupapass()
+	{
+		$this->load->view('Lupapass');
 	}
 }

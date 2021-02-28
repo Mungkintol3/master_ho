@@ -27,9 +27,11 @@
                             History Karyawan
                           </a>
                           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" data-toggle="tab">
+                            <a  class="dropdown-item" href="#historyNilai" data-toggle="tab">History Nilai</a>
+                            <a  class="dropdown-item" href="#historyDeptDiv" data-toggle="tab">History Departmen & Divisi</a>
+                            <a  class="dropdown-item" href="#historyPoint" data-toggle="tab">History Point</a>
                             <a  class="dropdown-item" href="#historyGol" data-toggle="tab">History Golongan</a>
                             <a class="dropdown-item" href="#historyComp" data-toggle="tab">History Company</a>
-                            <a class="dropdown-item" href="#historySert" data-toggle="tab">History Training</a>
                             <a class="dropdown-item" href="#historySp" data-toggle="tab">History Peringatan</a>
                           </div>
                     </li>
@@ -132,6 +134,9 @@
                 <button style="float: right;" data-id="<?php echo $karyawan->id ?>" type="button" class="btn btn-primary" data-toggle="modal" data-target="#update_biodata">Update Biodata</button>
 
                 
+            </div>
+            <div class="tab-pane" id="historyPoint">
+                Lorem Ipsum
             </div>
             <div class="tab-pane" id="employee">
                 <table class="table table-hover">
@@ -247,26 +252,27 @@
                     </tbody>
                 </table>
             </div>
+            <div class="tab-pane" id="historyDeptDiv">
+                Departmen dan divisi
+            </div>
             <div class="tab-pane" id="sertifikat">
                 <table class="table">
                     <tr>
                         <th>NPK</th>
                         <th>Jenis Training</th>
-                        <th>Sertifikat</th>
+                        <th>Tahun</th>
+                        <th>Status</th>
                         <th>Opsi</th>
                     </tr>
                     <tbody>
-                        <?php foreach($training as $t) { ?>
+                        <?php foreach($training as $training) { ?>
                             <tr>
-                                <td><?= $t->npk ?></td>
-                                <td><?= $t->jenis_training ?></td>
+                                <td><?= $training->npk ?></td>
+                                <td><?= $training->jenis_training ?></td>
+                                <td><?= $training->tahun ?></td>
+                                <td><?= $training->keterangan ?></td>
                                 <td>
-                                    <a href="javascript:openT<?=  $t->id ?>('<?= $t->file ?>')">
-                                        klik here
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="#">hapus</a>
+                                    <a href="">hapus</a>
                                 </td>
                             </tr>
                              <script type="text/javascript">
@@ -277,6 +283,9 @@
                         <?php } ?>
                     </tbody>
                 </table>
+            </div>
+            <div class="tab-pane" id="historySert">
+                
             </div>
             <div class="tab-pane" id="fams">
                 <table class="table">
@@ -301,6 +310,9 @@
                         <?php } ?>
                     </tbody>
                 </table>
+            </div>
+            <div class="tab-pane" id="historyNilai">
+                Lorem Isum 
             </div>
             <div class="tab-pane" id="historyGol">
                 <table class="table">
@@ -355,30 +367,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="tab-pane" id="historySert">
-                <table class="table">
-                    <tr>
-                        <th>NPK</th>
-                        <th>Jenis Training</th>
-                        <th>Tahun</th>
-                        <th>Status</th>
-                        <th>Opsi</th>
-                    </tr>
-                    <tbody>
-                        <?php foreach($training as $training) { ?>
-                            <tr>
-                                <td><?= $training->npk ?></td>
-                                <td><?= $training->jenis_training ?></td>
-                                <td><?= $training->tahun ?></td>
-                                <td><?= $training->keterangan ?></td>
-                                <td>
-                                    <a href="">hapus</a>
-                                </td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-            </div>
+            
             <div class="tab-pane" id="historySp">
                 <table class="table">
                     <tr>
