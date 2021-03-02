@@ -9,6 +9,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Login extends CI_Controller
 {
 
+	public function __construct()
+	{
+		parent::__construct();
+		
+	}
+
 	public function index()
 	{
 		$this->load->view('login');
@@ -53,18 +59,16 @@ class Login extends CI_Controller
 	public function Create()
 	{
 
-			 $data= [
-			 	'npk'		 	=> $this->input->post('npk'),
-			 	'nama' 		 	=> $this->input->post('nama'),
-			 	'email' 		=> $this->input->post('email'),
-			 	'photo' 	 	=> 'default.jpg',
-			 	'password'   	=> md5($this->input->post('password')),
-			 	'role_id'    	=> 1,
-			 	'is_active'  	=> 1,
-			 	'date_create' 	=> date("d-m-Y H:i")
-			 ];
+			 	$npk		 	= $this->input->post('npk');
+			 	$nama 		 	= $this->input->post('nama');
+			 	$email 			= $this->input->post('email');
+			 	$photo 	 		= 'default.jpg';
+			 	$pass  			= md5($this->input->post('password'));
+			 	$role_id    	= 1;
+			 	$is_active  	= 1;
+			 	$date_create 	= date("d-m-Y H:i");
 			 
-			var_dump($data);
+			var_dump($npk,$nama,$email,$photo,$pass,$role_id,$is_active,$date_create);
 			 // $this->db->insert('akun',$data);
 			
 	}

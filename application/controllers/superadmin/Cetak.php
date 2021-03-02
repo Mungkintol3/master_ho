@@ -19,9 +19,12 @@ class Cetak extends CI_Controller {
 			'pendidikan'  	=> $this->m_admin->cari(array('id_user' => $id),"pendidikan")->result(),
 			'golongan'		=> $this->m_admin->cari(array("id_user"=> $id),"histori_golongan")->result() ,
 			'company'		=> $this->m_admin->cari(array("id_user"=> $id),"histori_company")->result() ,
+			'jabatan'		=> $this->m_admin->cari(array("id_user" => $id), "promosi_jabatan")->result(),
 			'training'		=> $this->m_admin->cari(array("id_user"=> $id),"histori_training")->result() ,
 			'sp'			=> $this->m_admin->cari(array("id_user"=> $id),"histori_surat_peringatan")->result() ,
 			'keluarga'		=> $this->m_admin->cari(array("id_user"=> $id),"tbl_keluarga")->result() ,
+			'nilai'			=> $this->m_admin->cari(array("id_user" => $id),"histori_nilai_karyawan")->result(),
+			'human_value_assets' => $this->m_admin->cari(array("id_user" => $id),"human_value_assets")->result(),
 		);
 		$data = $this->load->view('superadmin/mpdf', $data2 ,TRUE);
 		$mpdf->SetProtection(array('print'));

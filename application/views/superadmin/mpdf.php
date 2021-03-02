@@ -247,7 +247,7 @@ mpdf-->
                 				<td><?= $info->nama_bank .' / ' . $info->no_rekening ?></td>
                 			</tr>
                 		</table>
-
+                            <br>
                         <table class="items" width="100%" style="font-size: 9pt; border-collapse: collapse;" 
                         cellpadding="3">
                             <thead>
@@ -272,7 +272,7 @@ mpdf-->
                             <?php endforeach?>
                             </tbody>
                         </table><br>
-                		<table class="items" width="100%" style="font-size: 9pt; border-collapse: collapse; " cellpadding="8">
+                		<table class="items" width="100%" style="font-size: 9pt; border-collapse: collapse; " cellpadding="3">
 						<thead>
 						<tr>
 						<td width="25%"><b>Pendidikan</b></td>
@@ -294,7 +294,7 @@ mpdf-->
 						</tbody>
 						</table>
 						<br>
-                        <table class="items" width="100%" style="font-size: 9pt; border-collapse: collapse; " cellpadding="8" >
+                        <table class="items" width="100%" style="font-size: 9pt; border-collapse: collapse; " cellpadding="3" >
                             <thead>
                                 <tr>
                                     <td>Company</td>
@@ -314,7 +314,7 @@ mpdf-->
                             </tbody>
                         </table>
                         <br>
-						<table class="items" width="100%" style="font-size: 9pt; border-collapse: collapse; " cellpadding="8">
+						<table class="items" width="100%" style="font-size: 9pt; border-collapse: collapse; " cellpadding="3">
 						<thead>
 						<tr>
 						<td width="50%"><b>Penilaian Karyawan</b></td>
@@ -323,19 +323,17 @@ mpdf-->
 						</thead>
 						<tbody>
 						<!-- ITEMS HERE -->
-						<tr>
-						<td align="center">B</td>
-						<td align="center">2018</td>
-						</tr>
-						<tr>
-						<td align="center">B+</td>
-						<td align="center">2019</td>
-						</tr>
-						</tbody>
+						<?php foreach($nilai as $nilai) :?>
+                            <tr>
+                                <td align="center"><?=$nilai->nilai_pk?></td>
+                                <td align="center"><?=$nilai->tahun?></td>
+                            </tr>
+						<?php endforeach?>
+                        </tbody>
 						</table>
 						<br>
 
-						<table class="items" width="100%" style="font-size: 9pt; border-collapse: collapse; " cellpadding="8">
+						<table class="items" width="100%" style="font-size: 9pt; border-collapse: collapse; " cellpadding="3">
 						<thead>
 						<tr>
 						<td width="50%"><b>History Jabatan</b></td>
@@ -344,63 +342,77 @@ mpdf-->
 						</thead>
 						<tbody>
 						<!-- ITEMS HERE -->
-						<tr>
-						<td align="center">Admin 2</td>
-						<td align="center">2018</td>
-						</tr>
-						<tr>
-						<td align="center">Junior Analyst</td>
-						<td align="center">2019</td>
-						</tr>
-						</tbody>
+					   <?php foreach ($jabatan as $jab ) :?>
+                        <tr>
+						  <td align="center"><?= $jab->latest_promosi?></td>
+                          <td align="center"><?= $jab->tahun?></td>
+                        </tr>
+                        <?php endforeach?>
 						</table>
 						<br>
 
-						<table class="items" width="100%" style="font-size: 9pt; border-collapse: collapse; " cellpadding="8">
+                        <table class="items" width="100%" style="font-size: 9pt; border-collapse: collapse;" cellpadding="3">
+                            <thead>
+                            <tr>
+                            <td width="50%"><B>History Golongan</B></td>
+                            <td width="50%"><B>History Tahun</B></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($golongan as $gol):?>
+                                <tr>
+                                <td align="center"><?= $gol->gol_update?></td>
+                                <td align="center"><?= $gol->tahun?></td>
+                                </tr>
+                            <?php endforeach?>
+                            </tbody>
+                        </table>
+                        <br>
+
+						<table class="items" width="100%" style="font-size: 9pt; border-collapse: collapse; " cellpadding="3">
 						<thead>
 						<tr>
-						<td width="50%"><b>History Pelatihan</b></td>
-						<td width="50%"><b>Tahun</b></td>
+						<td width="50%"><b>Jenis Pelatihan</b></td>
+						<td width="25%"><b>Tahun</b></td>
+                        <td width="25%"><b>Berkas</b></td>
 						</tr>
 						</thead>
 						<tbody>
 						<!-- ITEMS HERE -->
-						<tr>
-						<td align="center">Gada Pratama</td>
-						<td align="center">2018</td>
-						</tr>
-						<tr>
-						<td align="center">Gada Madya</td>
-						<td align="center">2019</td>
-						</tr>
+						<?php foreach($training as $training ) :?>
+                            <tr>
+                                <td align="center"><?= $training->jenis_training?></td>
+                                <td align="center"><?= $training->tahun?></td>
+                                <td align="center"><?= $training->keterangan?></td>
+                            </tr>
+                        <?php endforeach?>
 						</tbody>
 						</table>
 						<br>
 
-						<table class="items" width="100%" style="font-size: 9pt; border-collapse: collapse; " cellpadding="8">
+						<table class="items" width="100%" style="font-size: 9pt; border-collapse: collapse; " cellpadding="3">
 						<thead>
 						<tr>
 						<td width="20%"><b>Assets Value</b></td>
 						<td width="20%"><b>Kekuatan</b></td>
 						<td width="20%"><b>Kelemahan</b></td>
+						<td width="20%"><b>Keterangan</b></td>
 						<td width="20%"><b>Tahun</b></td>
-						<td width="20%">Keterangan</td>
 						</tr>
 						</thead>
 						<tbody>
 						<!-- ITEMS HERE -->
-						<tr>
-						<td align="center">Potential Candidate</td>
-						<td align="center">Mampu Berkomunikasi</td>
-						<td align="center">Kurang Aktif</td>
-						<td align="center">2019</td>
-						<td align="center"></td>
-						</tr>
+						<?php foreach($human_value_assets as $human) {?>
+                        <tr>
+                            <td align="center"><?= $human->asset_value?></td>
+                            <td align="left"><?= $human->kekuatan?></td>
+                            <td align="left"><?= $human->kelemahan?></td>
+                            <td align="left"><?= $human->keterangan?></td>
+                            <td align="center"><?= $human->tahun?></td>
+                        </tr>
+                        <?php } ?> 
 						</tbody>
 						</table>
-						<br>
-
-
                 	</div>
                 </div>
             </div>

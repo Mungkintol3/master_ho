@@ -75,14 +75,18 @@ class Karyawan extends CI_Controller
 	public function Edit_karyawan($id)
 	{
 		$data = array(
-			'karyawan'		=> $this->m_admin->cari(array("id_user"=> $id),"tbl_karyawan")->row() ,
-			'golongan'		=> $this->m_admin->cari(array("id_user"=> $id),"histori_golongan")->result() ,
-			'company'		=> $this->m_admin->cari(array("id_user"=> $id),"histori_company")->result() ,
-			'training'		=> $this->m_admin->cari(array("id_user"=> $id),"histori_training")->result() ,
-			'sp'			=> $this->m_admin->cari(array("id_user"=> $id),"histori_surat_peringatan")->result() ,
-			'pendidikan'	=> $this->m_admin->cari(array("id_user"=> $id),"pendidikan")->result() ,
-			'keluarga'		=> $this->m_admin->cari(array("id_user"=> $id),"tbl_keluarga")->result() ,
+			'karyawan'		=> $this->m_admin->cari(array("id_user"=> $id),"tbl_karyawan")->row(),
+			'golongan'		=> $this->m_admin->cari(array("id_user"=> $id),"histori_golongan")->result(),
+			'company'		=> $this->m_admin->cari(array("id_user"=> $id),"histori_company")->result(),
+			'training'		=> $this->m_admin->cari(array("id_user"=> $id),"histori_training")->result(),
+			'sp'			=> $this->m_admin->cari(array("id_user"=> $id),"histori_surat_peringatan")->result(),
+			'pendidikan'	=> $this->m_admin->cari(array("id_user"=> $id),"pendidikan")->result(),
+			'point'			=> $this->m_admin->cari(array("id_user"=> $id),"histori_poin_karyawan")->result(),
+			'dept_divi' 	=> $this->m_admin->cari(array("id_user" => $id),"histori_divisi")->result(),
+			'nilai'			=> $this->m_admin->cari(array("id_user" => $id),"histori_nilai_karyawan")->result(),
+			'keluarga'		=> $this->m_admin->cari(array("id_user"=> $id),"tbl_keluarga")->result(),
 			'join_pendidikan' => $this->m_admin->showPendidikan($id)->result(), 
+			'human_value_assets' => $this->m_admin->cari(array("id_user" => $id),"human_value_assets")->result(),
 			'url' 			=> $this->uri->segment(2)
 		);
 		//$this->output->cache(1);

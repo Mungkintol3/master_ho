@@ -35,11 +35,11 @@
                           <a href="<?= base_url('superadmin/Karyawan/Edit_karyawan/' . $result->id_user) ?>" class="btn btn-info btn-fab btn-fab-mini btn-round">
                             <i class="material-icons">edit</i>
                           </a>
+                          <a  href="<?= base_url('superadmin/Cetak/view/' . $result->id_user) ?>" class="btn btn-danger btn-fab btn-fab-mini btn-round">
+                            <i class="material-icons">face</i>
+                          </a>
                           <a onclick="return confirm('hapus semua data karyawan')" href="<?= base_url('superadmin/Karyawan/delete/' . $result->id_user) ?>" class="btn btn-danger btn-fab btn-fab-mini btn-round">
                             <i class="material-icons">close</i>
-                          </a>
-                          <a  href="<?= base_url('superadmin/Cetak/view/' . $result->id_user) ?>" class="btn btn-danger btn-fab btn-fab-mini btn-round">
-                            <i class="material-icons">cetak</i>
                           </a>
                      </td>
                   </tr>
