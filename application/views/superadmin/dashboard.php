@@ -25,7 +25,7 @@
     </div>
     <div class="row">
       <div class="col-md-4">
-        <h3 align="center">Usia <?php print_r($totalSma) ?></h3>
+        <h3 align="center">Usia</h3>
         <canvas id="umur" width="350" height="350">Usia</canvas>
       </div>
       <div class="col-md-4">
