@@ -83,7 +83,7 @@ class Promosi extends CI_Controller
 					 $this->m_admin->inputData($data2,"histori_golongan");
 					echo "berhasil";
 				}else {
-					echo "gagal update";
+					echo "error";
 				}
 	 		}
  		/**/		
@@ -183,7 +183,7 @@ class Promosi extends CI_Controller
 		$extensi 			 = pathinfo($filename, PATHINFO_EXTENSION);
  		$this->load->library('upload');
  		$config['allowed_types']   = '*' ;
- 		$config['upload_path']     = './assets/upload/promosi_jabatan/' ;
+ 		$config['upload_path']     = './assets/upload/demosi_jabatan/' ;
  		$config['file_name'] 	   = $npk .  date('his') .  md5($filename) . '.' . $extensi ;
 
  		$this->upload->initialize($config);

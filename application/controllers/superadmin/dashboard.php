@@ -11,13 +11,14 @@ class Dashboard extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->helper('url');
-		$this->load->library('encryption');
+		// $this->load->library('encryption');
 	}
 
 	public function index()
 	{
 
 		$data =  array(
+			'karyawan'			=>   $this->m_admin->getData("tbl_karyawan")->result() ,
 			'url' 				=> $this->uri->segment(2) ,
 			'range18_27'		=> $this->m_admin->rangeUmur(18 , 27) ,
 			'range28_35'		=> $this->m_admin->rangeUmur(28 , 35) ,
@@ -33,6 +34,7 @@ class Dashboard extends CI_Controller
  		$this->load->view('template/header',$data);
 		$this->load->view('superadmin/dashboard');
 		$this->load->view('template/footer'); 
+
 		
 	}
 

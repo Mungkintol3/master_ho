@@ -39,7 +39,7 @@ class Nilai_karyawan extends CI_Controller
 	 			"tgl"					=> $tgl ,
 	 		);
 
-/*	 		var_dump($data);*/
+			// var_dump($data);
 	 		$input = $this->m_admin->inputData($data,"histori_nilai_karyawan");
 	 			if($input == true){
 			 		echo "sukses";

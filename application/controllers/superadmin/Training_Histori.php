@@ -29,8 +29,8 @@ class Training_histori extends CI_Controller
  		$keterangan		 = $this->input->post("keterangan");
  		$jenis_training	 = $this->input->post("jenis_training");
 
- 		$file 				 =  $_FILES['file']['name'];
- 		$filename 			 = $file;
+ 		$file 			 	 =  $_FILES["file"]["name"];
+ 		$filename 			 = 	$file;
  		$npk				 = $this->input->post("npk");
 		$extensi 			 = pathinfo($filename, PATHINFO_EXTENSION);
  		$this->load->library('upload');
@@ -42,7 +42,7 @@ class Training_histori extends CI_Controller
  		if(!$this->upload->do_upload('file')){
  			echo "failed";
  		}else {
- 			$berkas = $this->upload->data("file_name");
+ 			$file = $this->upload->data("file_name");
  			$data = array(
 	 			"id_user"						=> $id_user,
 	 			"nama"							=> $nama ,
@@ -51,15 +51,14 @@ class Training_histori extends CI_Controller
 	 			"tgl"							=> $tgl ,
 	 			"tahun"							=> substr($tgl, 0,4),
 	 			"keterangan"					=> $keterangan ,
-	 			"file"							=> $berkas
+	 			"file"							=> $file
 	 		);
-	 		
 	 		$input = $this->m_admin->inputData($data,"histori_training");
 	 			if($input == true){
-	 				echo "sukses";
-	 			} else {
-	 				echo "gagal";
-	 			}	
+	 			echo "sukses";
+	 		 	} else {
+	 		 		echo "gagal";
+	 		 	}	
  		}
 	 				
  	}

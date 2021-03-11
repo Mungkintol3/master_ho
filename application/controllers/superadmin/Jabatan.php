@@ -52,12 +52,12 @@
  		$kode 			 = $this->input->post("range");
  		$nama  			 = $this->input->post("nama_jabatan");
  		$keterangan		 = $this->input->post("keterangan");
- 		$cek			 = $this->m_admin->cari(array("kode_jabatan" => $kode),"tbl_jabatan")->num_rows();
+ 		$cek			 = $this->m_admin->cari(array("range" => $kode),"tbl_jabatan")->num_rows();
  		if($cek > 0 ){
  			echo "kode sudah digunakan";
  		}else {
 	 		$data = array(
-	 			"range"			=> $kode ,
+	 			"range"					=> $kode ,
 	 			"nama_jabatan"			=> $nama ,
 	 			"keterangan"			=> $keterangan
 	 		);

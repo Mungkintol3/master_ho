@@ -115,8 +115,6 @@
             alert("status masih kosong");
           }else if(document.getElementById('tanggal').value == ""){
             alert("tanggal masih kosong");
-          }else if(document.getElementById('file').value == ""){
-            alert("berkas pendukung masih kosong");
           }  else {
             $.ajax({
               url : "<?= base_url('superadmin/Training_histori/add') ?>" ,

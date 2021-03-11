@@ -6,43 +6,37 @@ class Cetak extends CI_Controller {
 
 	public function view($id)
 	{
-
-		// $this->load->view('mpdf');
-		$mpdf = new \Mpdf\Mpdf();
+		$mpdf = new \Mpdf\Mpdf([
+				'margin_left' => 20,
+				'margin_right' => 15,
+				'margin_top' => 48,
+				'margin_bottom' => 25,
+				'margin_header' => 10,
+				'margin_footer' => 10
+		]);
 		$data2 = array(
 			'info'  => $this->m_admin->cari(array('id_user' => $id),"tbl_karyawan")->row(),
-			'pendidikan'  => $this->m_admin->cari(array('id_user' => $id),"pendidikan")->result(),
+			'pendidikan'  	=> $this->m_admin->cari(array('id_user' => $id),"pendidikan")->result(),
+			'golongan'		=> $this->m_admin->cari(array("id_user"=> $id),"histori_golongan")->result() ,
+			'company'		=> $this->m_admin->cari(array("id_user"=> $id),"histori_company")->result() ,
+			'jabatan'		=> $this->m_admin->cari(array("id_user" => $id), "promosi_jabatan")->result(),
+			'training'		=> $this->m_admin->cari(array("id_user"=> $id),"histori_training")->result() ,
+			'sp'			=> $this->m_admin->cari(array("id_user"=> $id),"histori_surat_peringatan")->result() ,
+			'keluarga'		=> $this->m_admin->cari(array("id_user"=> $id),"tbl_keluarga")->result() ,
+			'nilai'			=> $this->m_admin->cari(array("id_user" => $id),"histori_nilai_karyawan")->result(),
+			'human_value_assets' => $this->m_admin->cari(array("id_user" => $id),"human_value_assets")->result(),
 		);
 		$data = $this->load->view('superadmin/mpdf', $data2 ,TRUE);
-		$mpdf->WriteHTML($data);
-		$mpdf->Output();
-	}
-
-	public function test()
-	{
-		$mpdf = new \Mpdf\Mpdf([
-		'margin_left' => 20,
-		'margin_right' => 15,
-		'margin_top' => 48,
-		'margin_bottom' => 25,
-		'margin_header' => 10,
-		'margin_footer' => 10
-		]);
-			$test = $this->load->view('mpdf', [], True);
-			$mpdf->SetProtection(array('print'));
+		$mpdf->SetProtection(array('print'));
 			$mpdf->SetTitle("Biodata Karyawan");
-			$mpdf->SetAuthor("Murry.inc");
+			$mpdf->SetAuthor("Murry Fuckin' Febrians");
 			$mpdf->SetWatermarkText("SIGAP");
 			$mpdf->showWatermarkText = true;
 			$mpdf->watermark_font = 'DejaVuSansCondensed';
 			$mpdf->watermarkTextAlpha = 0.1;
 			$mpdf->SetDisplayMode('fullpage');
-
-			$mpdf->WriteHTML($test);
-
-			$mpdf->Output();
+		$mpdf->WriteHTML($data);
+		$mpdf->Output();
 	}
 }
-
-
 ?>

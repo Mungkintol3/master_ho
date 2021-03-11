@@ -27,10 +27,13 @@
                             History Karyawan
                           </a>
                           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" data-toggle="tab">
+                            <a  class="dropdown-item" href="#historyNilai" data-toggle="tab">History Nilai</a>
+                            <a  class="dropdown-item" href="#historyDeptDiv" data-toggle="tab">History Departmen & Divisi</a>
+                            <a  class="dropdown-item" href="#historyPoint" data-toggle="tab">History Point</a>
                             <a  class="dropdown-item" href="#historyGol" data-toggle="tab">History Golongan</a>
                             <a class="dropdown-item" href="#historyComp" data-toggle="tab">History Company</a>
-                            <a class="dropdown-item" href="#historySert" data-toggle="tab">History Training</a>
                             <a class="dropdown-item" href="#historySp" data-toggle="tab">History Peringatan</a>
+                            <a class="dropdown-item" href="#historyHAV" data-toggle="tab">Human Assets Value</a>
                           </div>
                     </li>
                 </ul>
@@ -130,70 +133,69 @@
                 	</div>
                 </div>
                 <button style="float: right;" data-id="<?php echo $karyawan->id ?>" type="button" class="btn btn-primary" data-toggle="modal" data-target="#update_biodata">Update Biodata</button>
-
-                
             </div>
+            
             <div class="tab-pane" id="employee">
                 <table class="table table-hover">
                             <tr class="text-left">
                                 <td class="text-left">Perusahaan</td>
                                 <td>:</td>
-                                <td><?= $karyawan->company ?></td>
+                                <td align="right"><?= $karyawan->company ?></td>
                             </tr>
                             <tr class="text-left">
                                 <td class="text-left">Tanggal Bergabung</td>
                                 <td>:</td>
-                                <td><?= $karyawan->join_date ?></td>
+                                <td align="right"><?= $karyawan->join_date ?></td>
                             </tr>
                             <tr class="text-left">
                                 <td class="text-left">Department</td>
                                 <td>:</td>
-                                <td><?= $karyawan->departement ?></td>
+                                <td align="right"><?= $karyawan->departement ?></td>
                             </tr>
                             <tr class="text-left">
                                 <td class="text-left">Division</td>
                                 <td>:</td>
-                                <td><?= $karyawan->divisi ?></td>
+                                <td align="right"><?= $karyawan->divisi ?></td>
                             </tr>
                             <tr class="text-left">
                                 <td class="text-left">Position</td>
                                 <td>:</td>
-                                <td><?= $karyawan->position ?></td>
+                                <td align="right"><?= $karyawan->position ?></td>
                             </tr>
                             <tr class="text-left">
                                 <td class="text-left">Kelompok Jabatan Awal</td>
                                 <td>:</td>
-                                <td><?= $karyawan->kel_jabatan ?></td>
+                                <td align="right"><?= $karyawan->kel_jabatan ?></td>
                             </tr>
                             <tr class="text-left">
                                 <td class="text-left">Promosi Jabtan</td>
                                 <td>:</td>
-                                <td><?= $karyawan->promosi_jabatan ?></td>
+                                <td align="right"><?= $karyawan->promosi_jabatan ?></td>
                             </tr>
                             <tr class="text-left">
                                 <td class="text-left">Wilayah</td>
                                 <td>:</td>
-                                <td><?= $karyawan->wilayah ?></td>
+                                <td align="right"><?= $karyawan->wilayah ?></td>
                             </tr>
                             <tr class="text-left">
                                 <td class="text-left">Nomor BPJS Ketenagakerjaan</td>
                                 <td>:</td>
-                                <td><?= $karyawan->bpjs_tenagakerja ?></td>
+                                <td align="right"><?= $karyawan->bpjs_tenagakerja ?></td>
                             </tr>
                             <tr class="text-left">
                                 <td class="text-left">Nomor BPJS Kesehatan</td>
                                 <td>:</td>
-                                <td><?= $karyawan->bpjs_kesehatan ?></td>
+                                <td align="right"><?= $karyawan->bpjs_kesehatan ?></td>
                             </tr>
                             <tr class="text-left">
                                 <td class="text-left">No.DPLK/Asuransi</td>
                                 <td>:</td>
-                                <td><?= $karyawan->no_dplk ?></td>
+                                <td align="right"><?= $karyawan->no_dplk ?></td>
                             </tr>
                             <tr class="text-left">
                                 <td class="text-left">Nama Bank / Nomor Rekening</td>
                                 <td>:</td>
-                                <td><?= $karyawan->nama_bank ?> / <?= $karyawan->no_rekening ?> </td>
+                                <td align="right"><?= $karyawan->nama_bank ?> / <?= $karyawan->no_rekening ?> </td>
                             </tr>
                         </table>
                         <button style="float: right;" data-info="<?= $karyawan->id ?>" type="button" class="btn btn-primary" data-toggle="modal" data-target="#update_informasi">Update Informasi Karyawan</button>
@@ -247,36 +249,81 @@
                     </tbody>
                 </table>
             </div>
+            <div class="tab-pane" id="historyDeptDiv">
+                <table class="table">
+                    <tr>
+                        <th>Department</th>
+                        <th>Divisi</th>
+                        <th>Posisi</th>
+                        <th>Tahun</th>
+                    </tr>
+                    <tbody>
+                        <?php foreach ($dept_divi as $dept_divi ):?>
+                            <tr>
+                                <td><?= $dept_divi->departement?></td>
+                                <td><?= $dept_divi->divisi?></td>
+                                <td><?= $dept_divi->position?></td>
+                                <td><?= $dept_divi->tahun?></td>
+                            </tr>
+                        <?php endforeach?>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tab-pane" id="historyPoint">
+                <table class="table">
+                    <tr>
+                        <th>Poin</th>
+                        <th>Tanggal</th>
+                        <th>Tahun</th>
+                    </tr>
+                    <tbody>
+                        <?php foreach ($point as $point) :?>
+                            <tr>
+                                <td><?= $point->poin?></td>
+                                <td><?= $point->tgl?></td>
+                                <td><?= $point->tahun?></td>
+                            </tr>
+                        <?php endforeach?>
+                    </tbody>
+                </table>
+            </div>
+
             <div class="tab-pane" id="sertifikat">
                 <table class="table">
                     <tr>
                         <th>NPK</th>
                         <th>Jenis Training</th>
-                        <th>Sertifikat</th>
-                        <th>Opsi</th>
+                        <th>Status</th>
+                        <th>Tahun</th>
+                        <th>Berkas</th>
+                        <!-- <th>Opsi</th> -->
                     </tr>
                     <tbody>
-                        <?php foreach($training as $t) { ?>
+                        <?php foreach($training as $training) { ?>
                             <tr>
-                                <td><?= $t->npk ?></td>
-                                <td><?= $t->jenis_training ?></td>
+                                <td><?= $training->npk ?></td>
+                                <td><?= $training->jenis_training ?></td>
+                                <td><?= $training->keterangan ?></td>
+                                <td><?= $training->tahun ?></td>
                                 <td>
-                                    <a href="javascript:openT<?=  $t->id ?>('<?= $t->file ?>')">
-                                        klik here
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="#">hapus</a>
-                                </td>
+                                  <?php
+                                    if(empty($training->file)){ ?>
+                                      <button class="btn btn-sm btn-danger">Tidak Ada</button>
+                                    <?php }else { ?>
+                                      <a href="javascript:open0('<?= $training->file ?>')" class="btn btn-sm btn-success">Ada</a>
+                                   <?php } ?>
+                                  </td>
+                                <!-- <td>
+                                    <a href="">hapus</a>
+                                </td> -->
                             </tr>
-                             <script type="text/javascript">
-                                function openT<?= $t->id ?>(file) {
-                                 window.open("<?= base_url('assets/upload/sertifikat/') ?>" + file, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=500,width=680,height=500"); 
-                                }
-                            </script>
                         <?php } ?>
                     </tbody>
                 </table>
+            </div>
+            <div class="tab-pane" id="historySert">
+                
             </div>
             <div class="tab-pane" id="fams">
                 <table class="table">
@@ -302,6 +349,22 @@
                     </tbody>
                 </table>
             </div>
+            <div class="tab-pane" id="historyNilai">
+                <table class="table">
+                    <tr>
+                        <th>Penilaian Karyawan</th>
+                        <th>Tahun</th>
+                    </tr>
+                    <tbody>
+                        <?php foreach($nilai as $nilai) :?>
+                            <tr>
+                                <td><?=$nilai->nilai_pk?></td>
+                                <td><?=$nilai->tahun?></td>
+                            </tr>
+                        <?php endforeach?>
+                    </tbody>
+                </table>
+            </div>
             <div class="tab-pane" id="historyGol">
                 <table class="table">
                     <tr>
@@ -309,7 +372,7 @@
                         <th>Golongan Kerja</th>
                         <th>Tahun</th>
                         <th>Berkas</th>
-                        <th>Opsi</th>
+                        <!-- <th>Opsi</th> -->
                     </tr>
                     <tbody>
                         <?php foreach($golongan as $golongan) { ?>
@@ -317,22 +380,47 @@
                                 <td><?= $golongan->npk ?></td>
                                 <td><?= $golongan->gol_update ?></td>
                                 <td><?= $golongan->tahun ?></td>
+                                <!-- <td>
+                                    <a href='javascript:open<?= $golongan->id ?>("<?= $golongan->berkas ?>")' >bukti</td> -->
                                 <td>
-                                    <a href='javascript:open<?= $golongan->id ?>("<?= $golongan->berkas ?>")' >bukti</td>
-                                <td>
-                                    <a href="<?= base_url('superadmin/Karyawan/delgol/' . $golongan->id . "/" . $golongan->id_user . "/"  . $golongan->berkas) ?>" onclick="return confirm('hapus ?')">hapus</a>
+                                <?php
+                                    if(empty($golongan->berkas)){ ?>
+                                      <button class="btn btn-sm btn-danger">Tidak Ada</button>
+                                    <?php }else { ?>
+                                      <a href="javascript:open3('<?= $golongan->berkas ?>')" class="btn btn-sm btn-success">Ada</a>
+                                <?php } ?>
                                 </td>
-                            </tr>
-
-                            <script type="text/javascript">
-                                function open<?= $golongan->id ?>(file) {
-                                 window.open("<?= base_url('assets/upload/histori_golongan/') ?>" + file, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=500,width=680,height=500"); 
-                                }
-                            </script>
+                                <!-- <td>
+                                    <a href="<?= base_url('superadmin/Karyawan/delgol/' . $golongan->id . "/" . $golongan->id_user . "/"  . $golongan->berkas) ?>" onclick="return confirm('hapus ?')">hapus</a>
+                                </td> -->
                         <?php } ?>
                     </tbody>
                 </table>
             </div>
+
+            <div class="tab-pane" id="historyHAV">
+                <table class="table">
+                    <tr>
+                        <th>Human Assets Value</th>
+                        <th>Kekuatan</th>
+                        <th>Kelemahan</th>
+                        <th>Keterangan</th>
+                        <th>Tahun</th>
+                    </tr>
+                    <tbody>
+                        <?php foreach($human_value_assets as $human) {?>
+                        <tr>
+                            <td><?= $human->asset_value?></td>
+                            <td><?= $human->kekuatan?></td>
+                            <td><?= $human->kelemahan?></td>
+                            <td><?= $human->keterangan?></td>
+                            <td><?= $human->tahun?></td>
+                        </tr>
+                        <?php } ?>                    
+                    </tbody>
+                </table>
+            </div>
+
             <div class="tab-pane" id="historyComp">
                 <table class="table">
                     <tr>
@@ -355,30 +443,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="tab-pane" id="historySert">
-                <table class="table">
-                    <tr>
-                        <th>NPK</th>
-                        <th>Jenis Training</th>
-                        <th>Tahun</th>
-                        <th>Status</th>
-                        <th>Opsi</th>
-                    </tr>
-                    <tbody>
-                        <?php foreach($training as $training) { ?>
-                            <tr>
-                                <td><?= $training->npk ?></td>
-                                <td><?= $training->jenis_training ?></td>
-                                <td><?= $training->tahun ?></td>
-                                <td><?= $training->keterangan ?></td>
-                                <td>
-                                    <a href="">hapus</a>
-                                </td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-            </div>
+            
             <div class="tab-pane" id="historySp">
                 <table class="table">
                     <tr>
@@ -386,6 +451,7 @@
                         <th>Surat Peringatan</th>
                         <th>Tanggal</th>
                         <th>Keterangan</th>
+                        <th>Berkas</th>
                         <th>Opsi</th>
                     </tr>
                     <tbody>
@@ -395,6 +461,15 @@
                                 <td><?= $sp->jenis_surat_peringatan ?></td>
                                 <td><?= $sp->tahun ?></td>
                                 <td><?= $sp->keterangan ?></td>
+                                <td>
+                                <?php
+                                    if(empty($sp->file)){ ?>
+                                      <button class="btn btn-sm btn-danger">Tidak Ada</button>
+                                    <?php }else { ?>
+                                      <a href="javascript:open4('<?= $sp->file ?>')" class="btn btn-sm btn-success">Ada</a>
+                                <?php } ?>
+                                    
+                                </td>
                                 <td>
                                     <a href="">hapus</a>
                                 </td>
@@ -482,7 +557,15 @@
     })
 
 </script>
-
+    <?php
+    $folder = array('sertifikat','demosi_jabatan','mutasi','promosi_jabatan','surat_peringatan');
+    for ($i=0; $i < count($folder) ; $i++) { ?>
+    <script type="text/javascript">
+      function open<?= $i ?>(file){
+       window.open("<?= base_url("assets/upload/".$folder[$i] . "/") ?>"+file,"width=650","height=650","menubar=yes","resizeable=yes");
+      }
+    </script>
+  <?php } ?>
 
 
 

@@ -21,10 +21,26 @@
                       <input readonly="" type="text" id="npk" name="npk" placeholder="Enter NPK" class="form-control">
                     </div>
 
-                    <div class="form-group">
-                      <input  type="text" id="human_assets" name="assets_value" placeholder="Enter New Human Assets" class="form-control">
-                    </div>
-
+                     <div class="form-group">
+                        <label for="exampleFormControlSelect1">Human Assets Value</label>
+                        <select class="form-control selectpicker" data-style="btn btn-link" id="assets_value" name="assets_value">
+                          <option >Star</option>
+                          <option>Futere Star</option>
+                          <option>Potential Candidate</option>
+                          <option>Raw Diamond</option>
+                          <option>Top Performers</option>
+                          <option>Strong Performers</option>
+                          <option>Career Person</option>
+                          <option>Most Unfit Employee</option>
+                          <option>Unfit Employee</option>
+                          <option>Problem Employee</option>
+                          <option>Maksimal Contributor</option>
+                          <option>Contributor</option>
+                          <option>Minimal Contributor</option>
+                          <option>DeadWood</option>
+                        </select>
+                      </div>
+                      
                     <div class="form-group">
                       <input  type="text" id="kekuatan" name="kekuatan" placeholder="Enter Kekuatan" class="form-control">
                     </div>
@@ -107,7 +123,7 @@
         e.preventDefault();
           if(document.getElementById('nama').value == ""){
             alert("data karyawan masih kosong");
-          }else if(document.getElementById('human_assets').value == ""){
+          }else if(document.getElementById('assets_value').value == ""){
             alert("human assets masih kosong");
           }else if(document.getElementById('kekuatan').value == ""){
             alert("kekuatan masih kosong");
