@@ -18,7 +18,7 @@ class Dashboard extends CI_Controller
 	{
 
 		$data =  array(
-			'karyawan'			=>   $this->m_admin->getData("tbl_karyawan")->result() ,
+			'karyawan'			=> $this->m_admin->getData("tbl_karyawan")->result() ,
 			'url' 				=> $this->uri->segment(2) ,
 			'range18_27'		=> $this->m_admin->rangeUmur(18 , 27) ,
 			'range28_35'		=> $this->m_admin->rangeUmur(28 , 35) ,
@@ -30,7 +30,6 @@ class Dashboard extends CI_Controller
 			'totalD3'			=> $this->m_admin->countPendidikan("D3"),
 			'totalD4'			=> $this->m_admin->countPendidikan("D4"),
 		);
-
  		$this->load->view('template/header',$data);
 		$this->load->view('superadmin/dashboard');
 		$this->load->view('template/footer'); 
