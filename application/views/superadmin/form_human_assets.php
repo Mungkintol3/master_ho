@@ -132,7 +132,7 @@
             alert("tanggal masih kosong");
           } else {
             $.ajax({
-              url : "<?= base_url('superadmin/human_assets_value/add') ?>" ,
+              url : "<?= base_url('superadmin/Human_assets_value/add') ?>" ,
               method : "POST" ,
               data : postData ,
               processData : false ,

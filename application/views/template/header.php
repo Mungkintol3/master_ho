@@ -164,6 +164,15 @@ The above copyright notice and this permission notice shall be included in all c
               </a>
             </li> 
 
+            <li  class="nav-item <?php if ($url == 'Admin'){
+              echo 'active' ;
+            }?>">
+              <a class="nav-link" href="<?= base_url('superadmin/Admin/') ?>">
+                <i class="material-icons">credit_card</i>
+                <p>Administrator</p>
+              </a>
+            </li> 
+
         </ul>
       </div>
     </div>

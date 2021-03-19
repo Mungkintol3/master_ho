@@ -11,6 +11,7 @@ class Setting extends CI_Controller
 		$data = array(
  		  		'url' => $this->uri->segment(2) ,
  		  );
+
  		$this->load->view('template/header',$data);
 		$this->load->view('superadmin/setting',$data);
 		$this->load->view('template/footer');
@@ -55,4 +56,6 @@ class Setting extends CI_Controller
 				}
 			}
 	}
+
+	
 }
