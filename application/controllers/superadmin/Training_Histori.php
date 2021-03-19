@@ -18,6 +18,8 @@ class Training_histori extends CI_Controller
 		}
 	}
 
+
+	//form input histori training karyawan
 	public function form_add()
 	{
 		$data = array(
@@ -30,6 +32,8 @@ class Training_histori extends CI_Controller
 	}
 
 
+
+	//simpan histori training karyawan
 	public function add()
 	{
 

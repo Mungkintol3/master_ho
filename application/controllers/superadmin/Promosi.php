@@ -57,6 +57,7 @@ class Promosi extends CI_Controller
 			$range_gol	= $this->input->post("range_golongan");
 			$golongan 	= $this->input->post("golongan");
 			$status 	= $this->input->post("status");
+
 			//tambah traking histori no pkwt
 			$data  = array(
 				'id_user'			=> $id_user,

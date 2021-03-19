@@ -127,23 +127,7 @@ class Karyawan extends CI_Controller
 	}
 
 
-	//hapus data golongan
-	public function delgol($id, $id_user, $file)
-	{
-		$dir   = './assets/upload/histori_golongan/' . $file;
-		if (file_exists($dir)) {
-			unlink($dir);
-			$this->m_admin->delete("histori_golongan", array("id" => $id));
-			redirect('superadmin/Karyawan/Edit_karyawan/' . $id_user);
-		}
-	}
 
-	public function delkel($id, $id_user)
-	{
-
-		$this->m_admin->delete("tbl_keluarga", array("id" => $id));
-		redirect('superadmin/Karyawan/Edit_karyawan/' . $id_user);
-	}
 
 	public function loadModal($id)
 	{
@@ -173,5 +157,105 @@ class Karyawan extends CI_Controller
 		$id = $this->input->post("id");
 		$data['karyawan'] = $this->m_admin->cari(array("id" => $id), "tbl_karyawan")->row();
 		$this->load->view('superadmin/update_modalinformasi_karyawan', $data);
+	}
+
+	//hapus histori nilai karyawan 
+	public function delHistoriNilai($id, $id_user)
+	{
+		$delete = $this->m_admin->delete("histori_nilai_karyawan", array('id' => $id));
+		if ($delete) {
+			$this->session->set_flashdata('delInfo', 'data terhapus');
+			redirect('superadmin/Karyawan/Edit_karyawan/' . $id_user);
+		} else {
+			echo "gagal hapus data";
+		}
+	}
+
+	//hapus histori departement dan divisi  karyawan 
+	public function delDepatertement($id, $id_user)
+	{
+		$delete = $this->m_admin->delete("histori_divisi", array('id' => $id));
+		if ($delete) {
+			$this->session->set_flashdata('delInfo', 'data terhapus');
+			redirect('superadmin/Karyawan/Edit_karyawan/' . $id_user);
+		} else {
+			echo "gagal hapus data";
+		}
+	}
+
+	//hapus histori point  karyawan 
+	public function delPoint($id, $id_user)
+	{
+		$delete = $this->m_admin->delete("histori_poin_karyawan", array('id' => $id));
+		if ($delete) {
+			$this->session->set_flashdata('delInfo', 'data terhapus');
+			redirect('superadmin/Karyawan/Edit_karyawan/' . $id_user);
+		} else {
+			echo "gagal hapus data";
+		}
+	}
+
+	//hapus data golongan
+	public function delgol($id, $id_user, $file)
+	{
+		$dir   = './assets/upload/histori_golongan/' . $file;
+		if (file_exists($dir)) {
+			unlink($dir);
+			$this->m_admin->delete("histori_golongan", array("id" => $id));
+			redirect('superadmin/Karyawan/Edit_karyawan/' . $id_user);
+		}
+	}
+
+
+	//hapus data keluarga karyawan 
+	public function delkel($id, $id_user)
+	{
+		$delete = $this->m_admin->delete("tbl_keluarga", array("id" => $id));
+		if ($delete) {
+			$this->session->set_flashdata('delInfo', 'data terhapus');
+			redirect('superadmin/Karyawan/Edit_karyawan/' . $id_user);
+		} else {
+			echo "gagal hapus data";
+		}
+	}
+
+	//hapus histori human assets value karyawan 
+	public function delHumanAssetValue($id, $id_user)
+	{
+		$delete = $this->m_admin->delete("human_value_assets", array("id" => $id));
+		if ($delete) {
+			$this->session->set_flashdata('delInfo', 'data terhapus');
+			redirect('superadmin/Karyawan/Edit_karyawan/' . $id_user);
+		} else {
+			echo "gagal hapus data";
+		}
+	}
+
+	//hapus histori surat peringatan karyawan 
+	public function delPeringatan($id, $id_user, $file)
+	{
+		$dir   = './assets/upload/surat_peringatan/' . $file;
+		if (file_exists($dir)) {
+			unlink($dir);
+			$this->m_admin->delete("histori_surat_peringatan", array("id" => $id));
+			$this->session->set_flashdata('delInfo', 'data terhapus');
+			redirect('superadmin/Karyawan/Edit_karyawan/' . $id_user);
+		} else {
+			echo "gagal terjadi kesalahan , hubungi IT Support";
+		}
+	}
+
+	//hapus histori traininig karyawan 
+	public function delTraining($id, $id_user, $file)
+	{
+		$dir   = './assets/upload/sertifikat/' . $file;
+		if (file_exists($dir)) {
+			unlink($dir);
+			$this->m_admin->delete("histori_training", array("id" => $id));
+			$this->session->set_flashdata('delInfo', 'data terhapus');
+			redirect('superadmin/Karyawan/Edit_karyawan/' . $id_user);
+		} else {
+			echo "gagal terjadi kesalahan , hubungi IT Support";
+		}
 	}
 }

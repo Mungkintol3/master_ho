@@ -18,6 +18,7 @@ class Surat_peringatan extends CI_Controller
 		}
 	}
 
+	//form input surat peringatan karyawan
 	public function form_add()
 	{
 		$data = array(
@@ -30,6 +31,7 @@ class Surat_peringatan extends CI_Controller
 	}
 
 
+	//tambah surat peringatan karyawan
 	public function add()
 	{
 
@@ -72,6 +74,5 @@ class Surat_peringatan extends CI_Controller
 				echo "gagal";
 			}
 		}
-		/**/
 	}
 }
