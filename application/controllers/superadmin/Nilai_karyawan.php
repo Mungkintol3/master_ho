@@ -6,8 +6,8 @@
  */
 class Nilai_karyawan extends CI_Controller
 {
+	private $filename = "upload_nilai_pegawai";
 	
-
 	//form input nilai karyawan
 	public function add_histori_nilai()
 	{
@@ -19,6 +19,41 @@ class Nilai_karyawan extends CI_Controller
 		$this->load->view("superadmin/add_histori_nilai_karyawan",$data);
 		$this->load->view('template/footer');
 	}
+
+	//form input karyawan dengan upload
+	public function upload_histori_nilai()
+	{
+		$data = array();
+		if(isset($_POST['submit'])){
+			$upload = $this->m_admin->uploadfile($this->filename);
+			if($upload['result'] =="success") {
+                    // Load plugin PHPExcel nya
+                    include APPPATH.'third_party/PHPExcel/PHPExcel.php';
+
+                    $excelreader = new PHPExcel_Reader_Excel2007();
+                    $loadexcel = $excelreader->load('assets/upload/'.$this->filename.'.xlsx'); // Load file yang tadi diupload ke folder excel
+                    $sheet = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
+
+                    // Masukan variabel $sheet ke dalam array data yang nantinya akan di kirim ke file form.php
+                    // Variabel $sheet tersebut berisi data-data yang sudah diinput di dalam excel yang sudha di upload sebelumnya
+                    $data['sheet'] = $sheet ;
+                	}else{
+                    $data['upload_error'] = $upload['error']; // Ambil pesan error uploadnya untuk dikirim ke file form dan ditampilkan
+                    echo $upload['error'];
+                }
+
+		}
+
+		$data1['url'] = $this->uri->segment(2);
+ 		$this->load->view('template/header',$data1);
+ 		$this->load->view('superadmin/form_upload_nilai_karyawan',$data);
+ 		$this->load->view('template/footer');
+	}
+
+	public function Upload()
+ 	{
+
+ 	}
 
 
 	//input data nilai karyawan

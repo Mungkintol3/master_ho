@@ -6,9 +6,9 @@
                   <p class="card-category"> SIGAP PRIMA ASTREA & SIGAP GARDA PRATAMA</p>
                 </div>
                 <div class="card-body">
-                  
                     <div class="form-group">
                       <button type="button " data-toggle="modal" data-target="#selectkaryawan" class="btn btn-success">Cari Karyawan <i class="fa fa-search"></i> </button>
+                      <a class="btn btn-warning" style="float:right;" href="<?=base_url('superadmin/Nilai_karyawan/upload_histori_nilai')?>">Upload Nilai karyawan</></a>
                     </div>
                   <form id="updatenilai" method="post" action="#" class="form-horizontal">
                     <div class="form-group">
