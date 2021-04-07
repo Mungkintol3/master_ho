@@ -50,7 +50,6 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>NPK</th>
-                    <th>Golongan</th>
                   </tr>
                   <tbody>
                     <?php $no = 1 ; foreach($karyawan as $f) : ?>
@@ -67,11 +66,11 @@
                         </a>
                       </td>
                       <td><?= $f->npk ?></td>
-                      <td><?= $f->divisi ?></td>
                     </tr>
                     <?php endforeach ?>
                   </tbody>
                 </table>
+                <span class="text-danger"><small><i>*klik nama pilih karyawan*</i></small></span>
                 </div>
              </div>
          </div>

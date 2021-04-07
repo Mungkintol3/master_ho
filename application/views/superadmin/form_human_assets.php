@@ -78,7 +78,6 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>NPK</th>
-                    <th>Divisi</th>
                   </tr>
                   <tbody>
                     <?php $no = 1 ; foreach($karyawan as $f) : ?>
@@ -95,11 +94,11 @@
                         </a>
                       </td>
                       <td><?= $f->npk ?></td>
-                      <td><?= $f->divisi ?></td>
                     </tr>
                     <?php endforeach ?>
                   </tbody>
                 </table>
+                <span class="text-danger"><small><i>*klik nama untuk pilih karyawan*</i></small></span>
                 </div>
              </div>
          </div>
@@ -133,7 +132,7 @@
             alert("tanggal masih kosong");
           } else {
             $.ajax({
-              url : "<?= base_url('superadmin/human_assets_value/add') ?>" ,
+              url : "<?= base_url('superadmin/Human_assets_value/add') ?>" ,
               method : "POST" ,
               data : postData ,
               processData : false ,

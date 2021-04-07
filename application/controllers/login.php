@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  *
@@ -12,14 +12,18 @@ class Login extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		
+		$id 	 = $this->session->userdata('id');
+
+		if ($id != null || $id != "") {
+			redirect('superadmin/Dashboard');
+		}
 	}
 
 	public function index()
 	{
 		$this->load->view('login');
 	}
-	
+
 
 	public function Ceklogin()
 	{
@@ -27,6 +31,7 @@ class Login extends CI_Controller
 		$username 	= $this->input->post('npk');
 		$password   = md5($this->input->post('password'));
 
+<<<<<<< HEAD
 		var_dump($password,$username);
 			
 		var_dump($username,$password);
@@ -50,6 +55,30 @@ class Login extends CI_Controller
 		 		$this->session->set_flashdata("nouser","akun tidak di temukan");
 		 		redirect("login");
 		 	}
+=======
+		//var_dump($password,$username);
+
+		var_dump($username, $password);
+		$cekakun = $this->m_admin->cari(array("npk" => $username, "password" => $password), "akun");
+		if ($cekakun->num_rows() > 0) {
+			$data = $cekakun->row();
+
+			switch ($data->role_id) {
+				case '1':
+					$this->session->set_userdata("npk", $data->npk);
+					$this->session->set_userdata("nama", $data->nama);
+					$this->session->set_userdata("id", $data->id);
+					redirect('superadmin/Dashboard');
+					break;
+				default:
+					echo "role user tidak tersedia " . "<a href='" . base_url('Logout') . "'>Kembali</a>";
+					break;
+			}
+		} else {
+			$this->session->set_flashdata("nouser", "akun tidak di temukan");
+			redirect("login");
+		}
+>>>>>>> 71c5db5b7e0ad8e38dc6e77fef2ab01f51024578
 	}
 
 	public function Create_akun()
@@ -60,18 +89,18 @@ class Login extends CI_Controller
 	public function Create()
 	{
 
-			 	$npk		 	= $this->input->post('npk');
-			 	$nama 		 	= $this->input->post('nama');
-			 	$email 			= $this->input->post('email');
-			 	$photo 	 		= 'default.jpg';
-			 	$pass  			= md5($this->input->post('password'));
-			 	$role_id    	= 1;
-			 	$is_active  	= 1;
-			 	$date_create 	= date("d-m-Y H:i");
-			 
-			var_dump($npk,$nama,$email,$photo,$pass,$role_id,$is_active,$date_create);
-			 // $this->db->insert('akun',$data);
-			
+		$npk		 	= $this->input->post('npk');
+		$nama 		 	= $this->input->post('nama');
+		$email 			= $this->input->post('email');
+		$photo 	 		= 'default.jpg';
+		$pass  			= md5($this->input->post('password'));
+		$role_id    	= 1;
+		$is_active  	= 1;
+		$date_create 	= date("d-m-Y H:i");
+
+		var_dump($npk, $nama, $email, $photo, $pass, $role_id, $is_active, $date_create);
+		// $this->db->insert('akun',$data);
+
 	}
 
 	public function Lupapass()

@@ -28,7 +28,7 @@
     type: 'pie',
     // data untuk isi chart
     data: {
-      labels: ["1tahun", "10 tahun", "15 tahun", "20 tahun"],
+      labels: ["1 tahun", "10 tahun", "15 tahun", "20 tahun"],
       datasets: [{
         label: " Masa Kerja",
         data: [14, 100, 25, 40],
@@ -69,7 +69,8 @@
           <?= $totalD3->total ?>,
           <?= $totalD4->total ?>,
           <?= $totalS1->total ?>,
-          <?= $totalS2->total ?>]
+          <?= $totalS2->total ?>
+        ]
       }]
     },
 
@@ -95,7 +96,26 @@
           "#ffce56"
         ],
         data: [ 
-            1 , 2, 3, 4 
+            <?php if(count($range18_27) == 1) {
+              echo 0 ;
+            } else if(count($range18_27) != 1){
+                echo $range18_27[1]->jumlah ;  
+            } ?>  ,
+            <?php if(count($range28_35) == 1) {
+              echo 0 ;
+            } else if(count($range28_35) != 1){
+                echo $range28_35[1]->jumlah ;  
+            } ?> ,
+            <?php if(count($range36_45) == 1) {
+              echo 0 ;
+            } else if(count($range36_45) != 1){
+                echo $range36_45[1]->jumlah ;  
+            } ?> ,
+            <?php if(count($range46_55) == 1) {
+              echo 0 ;
+            } else if(count($range46_55) != 1){
+                echo $range46_55[1]->jumlah ;  
+            } ?> 
            ]
       }]
     },

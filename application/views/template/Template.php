@@ -14,8 +14,8 @@ The above copyright notice and this permission notice shall be included in all c
 
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url()?>assets/img/sigap.png">
-  <link rel="icon" type="image/png" href="<?php echo base_url()?>assets/img/sigap.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url() ?>assets/img/sigap.png">
+  <link rel="icon" type="image/png" href="<?php echo base_url() ?>assets/img/sigap.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     Master Data HO
@@ -25,30 +25,30 @@ The above copyright notice and this permission notice shall be included in all c
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
-  <link href="<?php echo base_url()?>assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+  <link href="<?php echo base_url() ?>assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
 </head>
 
 <body class="">
   <div class="wrapper ">
-    <div class="sidebar" data-color="orange" data-background-color="white" data-image="<?php echo base_url()?>assets/img/sigap.png">
+    <div class="sidebar" data-color="orange" data-background-color="white" data-image="<?php echo base_url() ?>assets/img/sigap.png">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
         Tip 2: you can also add an image using data-image tag
     -->
       <div class="logo"><a href="#" class="simple-text logo-normal">
-          <b>SISMORO</b> 
+          <b>SISMORO</b>
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="nav-item ">
-            <a class="nav-link" href="<?php echo base_url("superadmin/dashboard");?>">
+            <a class="nav-link" href="<?php echo base_url("superadmin/dashboard"); ?>">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url()?>superadmin/karyawan">
+            <a class="nav-link" href="<?php echo base_url() ?>superadmin/karyawan">
               <i class="material-icons">person</i>
               <p>Karyawan</p>
             </a>
@@ -161,7 +161,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 
       <br>
-<footer class="footer">
+      <footer class="footer">
         <div class="container-fluid">
           <nav class="float-left">
             <ul>
@@ -195,19 +195,19 @@ The above copyright notice and this permission notice shall be included in all c
       </footer>
     </div>
   </div>
-   <!--   Core JS Files   -->
-  <script src="<?php echo base_url()?>assets/js/core/jquery.min.js"></script>
-  <script src="<?php echo base_url()?>assets/js/core/popper.min.js"></script>
-  <script src="<?php echo base_url()?>assets/js/core/bootstrap-material-design.min.js"></script>
-  <script src="<?php echo base_url()?>assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <!--   Core JS Files   -->
+  <script src="<?php echo base_url() ?>assets/js/core/jquery.min.js"></script>
+  <script src="<?php echo base_url() ?>assets/js/core/popper.min.js"></script>
+  <script src="<?php echo base_url() ?>assets/js/core/bootstrap-material-design.min.js"></script>
+  <script src="<?php echo base_url() ?>assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 
- <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script> -->
+  <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script> -->
   <!-- Chartist JS -->
-  <script src="<?php echo base_url()?>assets/js/plugins/chartist.min.js"></script>
+  <script src="<?php echo base_url() ?>assets/js/plugins/chartist.min.js"></script>
   <!--  Notifications Plugin    -->
-  <script src="<?php echo base_url()?>assets/js/plugins/bootstrap-notify.js"></script>
+  <script src="<?php echo base_url() ?>assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="<?php echo base_url()?>assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
+  <script src="<?php echo base_url() ?>assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
   <script>
     $(document).ready(function() {
       // Javascript method's body can be found in assets/js/demos.js
@@ -215,13 +215,13 @@ The above copyright notice and this permission notice shall be included in all c
     });
   </script>
   <script type="text/javascript">
-      $(document).ready(function(){
-        $('ul li').on('click', function(){
-            //alert('clicked');
-            $(this).siblings().removeClass('nav-item active');
-            $(this).addClass('nav-item active');
-        });
+    $(document).ready(function() {
+      $('ul li').on('click', function() {
+        //alert('clicked');
+        $(this).siblings().removeClass('nav-item active');
+        $(this).addClass('nav-item active');
       });
+    });
   </script>
 </body>
 
