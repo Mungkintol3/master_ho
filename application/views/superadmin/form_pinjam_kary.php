@@ -44,11 +44,11 @@
                     </select>
                   </div>
                   <br>
-                    <div class="form-group">
+                  <!--   <div class="form-group">
                       <label>Bungan Peminjaman</label>
                       <input  type="text" id="persentase_bunga" name="persentase_bunga" class="form-control">
                       <small class="text-danger"><i>*isi manual (%)*</i> </small>
-                    </div>
+                    </div> -->
 
                     <div class="form-group">
                       <label>Pokok Pembayaran</label>
@@ -56,12 +56,12 @@
                       <small class="text-danger"><i>*terisi otomatis*</i> </small>
                     </div>
 
-
+<!-- 
                     <div class="form-group">
                       <label>Total Bunga</label>
                       <input  type="text"  id="total_bunga" readonly="" name="total_bunga" placeholder="" class="form-control">
                       <small class="text-danger"><i>*terisi otomatis*</i> </small>
-                    </div>
+                    </div> -->
 
                      <div class="form-group">
                       <label>Kewajiban Bayaran Per bulan</label>
@@ -188,30 +188,32 @@
         $("select[name=tenor]").on('change',function(){
             var tenor  = $('option:selected',this).attr('data-tenor');
             var total_pinjam = document.getElementById('total_pinjam').value ;
-            var bayaranPokok = document.getElementById('pokok') ;            
-            bayaranPokok.value = total_pinjam / tenor ;
+            var bayar =  total_pinjam / tenor
+            var bayaranPokok = document.getElementById('pokok') ;
+            bayaranPokok.value = bayar  ;
+            document.getElementById('setor_perbulan').value =  bayar ;           
         })
 
 
-        //hitung pokok bunga dan total pembayaran perbulan
-        $("#persentase_bunga").on('change',function(){
-            var persentaseBunga = document.getElementById('persentase_bunga').value  / 100;
-            var totalPinjam = document.getElementById('total_pinjam').value ;
-            var tenor = $('option:selected','select[name=tenor]',this).attr('data-tenor');
-            var bunga   = totalPinjam * persentaseBunga ;
+        // //hitung pokok bunga dan total pembayaran perbulan
+        // $("#persentase_bunga").on('change',function(){
+        //     var persentaseBunga = document.getElementById('persentase_bunga').value  / 100;
+        //     var totalPinjam = document.getElementById('total_pinjam').value ;
+        //     var tenor = $('option:selected','select[name=tenor]',this).attr('data-tenor');
+        //     var bunga   = totalPinjam * persentaseBunga ;
             
 
-            var bungaBayar = document.getElementById('total_bunga').value  = bunga / parseInt(tenor);
+        //     var bungaBayar = document.getElementById('total_bunga').value  = bunga / parseInt(tenor);
 
 
-            //total bungan + pokok pinjaman
-            var pokok = document.getElementById("pokok").value;
-            var totalCicilan = parseInt(pokok) + parseInt(bungaBayar) ;
+        //     //total bungan + pokok pinjaman
+        //     var pokok = document.getElementById("pokok").value;
+        //     var totalCicilan = parseInt(pokok) + parseInt(bungaBayar) ;
             
-            //jumlah cicilan per bulan
-            document.getElementById('setor_perbulan').value = totalCicilan ;
-           console.log(tenor);
-        })
+        //     //jumlah cicilan per bulan
+        //     document.getElementById('setor_perbulan').value = totalCicilan ;
+        //    console.log(tenor);
+        // })
 
     })
 
