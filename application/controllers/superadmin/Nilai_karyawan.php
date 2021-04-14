@@ -6,10 +6,10 @@
  */
 class Nilai_karyawan extends CI_Controller
 {
-<<<<<<< HEAD
+
 	private $filename = "upload_nilai_pegawai";
 	
-=======
+
 
 	public function __construct()
 	{
@@ -25,7 +25,6 @@ class Nilai_karyawan extends CI_Controller
 	}
 
 
->>>>>>> 71c5db5b7e0ad8e38dc6e77fef2ab01f51024578
 	//form input nilai karyawan
 	public function add_histori_nilai()
 	{
@@ -70,6 +69,47 @@ class Nilai_karyawan extends CI_Controller
 
 	public function Upload()
  	{
+ 		// Load plugin PHPExcel nya
+		include APPPATH . 'third_party/PHPExcel/PHPExcel.php';
+
+		$excelreader = new PHPExcel_Reader_Excel2007();
+		$loadexcel = $excelreader->load('assets/upload/' . $this->filename . '.xlsx'); // Load file yang telah diupload ke folder excel
+		$sheet = $loadexcel->getActiveSheet()->toArray(null, true, true, true);
+
+		$numrow = 1;
+		$data = array();
+		$pendidikan = array();
+		$cekNPK = array();
+		foreach ($sheet as $row) {
+			if ($numrow > 1) {
+				//cek nisn sudah terdaftar apa belum di master siswa
+				$cekNPK = $this->m_admin->cari(array("npk" => $row['B']), "tbl_karyawan")->num_rows();
+				if ($cekNPK == 0) {
+					$this->session->set_flashdata("error", "NPK " . $row['B'] . " tidak ada di master karyawan");
+					redirect("superadmin/Nilai_karyawan/upload_histori_nilai");
+				} else {
+					// push data karyawan ke tabel karyawan
+					array_push($data, array(
+						'id_user'					=> $row['B'],
+
+					));
+
+				}
+			}
+			$numrow++; // Tambah 1
+		}
+
+		if ($cekNPK == 0) {
+			echo "";
+		} else {
+			$input = $this->m_admin->inputArray("histori_nilai_karyawan", $data);
+			if ($input) {
+				$this->session->set_flashdata("success", "Karyawan tersimpan di data master");
+				redirect("superadmin/Nilai_karyawan/upload_histori_nilai");
+			} else {
+				echo "Gagal";
+			}
+		}
 
  	}
 

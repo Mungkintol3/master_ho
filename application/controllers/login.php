@@ -31,31 +31,8 @@ class Login extends CI_Controller
 		$username 	= $this->input->post('npk');
 		$password   = md5($this->input->post('password'));
 
-<<<<<<< HEAD
-		var_dump($password,$username);
-			
-		var_dump($username,$password);
-		 	$cekakun = $this->m_admin->cari(array("npk" => $username , "password" => $password),"akun");
-		 	if($cekakun->num_rows() > 0 ){
-		 		$data = $cekakun->row();
-				 
-		 		switch ($data->role_id) {
-		 			case '1':
-		 				$this->session->set_userdata("npk",$data->npk);
-		 		 		$this->session->set_userdata("nama",$data->nama);
-		 		 		$this->session->set_userdata("id",$data->id);
-		 				redirect('superadmin/Dashboard');
-		 				break;
-					
-		 			default:
-		 				# code...
-		 				break;
-		 		}
-		 	}else {
-		 		$this->session->set_flashdata("nouser","akun tidak di temukan");
-		 		redirect("login");
-		 	}
-=======
+
+
 		//var_dump($password,$username);
 
 		var_dump($username, $password);
@@ -78,7 +55,6 @@ class Login extends CI_Controller
 			$this->session->set_flashdata("nouser", "akun tidak di temukan");
 			redirect("login");
 		}
->>>>>>> 71c5db5b7e0ad8e38dc6e77fef2ab01f51024578
 	}
 
 	public function Create_akun()
