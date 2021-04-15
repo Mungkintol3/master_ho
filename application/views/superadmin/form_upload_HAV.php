@@ -1,7 +1,7 @@
 <div class="content">
 <section class="container">
     <div class="row">
-    <h3>Tambah Nilai Karyawan</h3>
+    <h3>Human Assets Value</h3>
     <div class="container-fluid">
     <?php if($this->session->flashdata("success"))  { ?>
       <div class="alert alert-info">
@@ -15,7 +15,7 @@
     <div>
       <form method="post" onsubmit="return validasi()" enctype="multipart/form-data" action="" id="uploadnilai">
           <input type="file" onchange="return cekexe()" name="file" id="file" class="form-control">
-        <a href="<?= base_url('assets/upload/format/upload_nilai.xlsx') ?>" class="btn btn-success btn-round">download format upload</a>
+        <a href="<?= base_url('assets/upload/format/Upload_HAV.xlsx') ?>" class="btn btn-success btn-round">download format upload</a>
 
         <button type="submit" name="submit" class="btn btn-danger btn-round">Posting</button>
       </form>
@@ -26,25 +26,31 @@
 
     <?php 
       if(isset($_POST['submit'])){ ?>
-    <form action="<?= base_url('superadmin/Nilai_karyawan/upload') ?>" method="post" >
+    <form action="<?= base_url('superadmin/Human_assets_value/Upload') ?>" method="post" >
       <table id="table" class="table">
         <thead>
           <tr>
             <th>No</th>
-            <th>Nama</th>
             <th>NPK</th>
-            <th>Nilai</th>
-            <th>Tahun</th>
+            <th>Nama</th>
+            <th>Asset Value</th>
+            <th>Kekuatan</th>
+            <th>Kelemahan</th>
+            <th>Keterangan</th>
+            <th>Tanggal</th>
           </tr>
         </thead>
         <tbody>
         <?php $no =1 ; foreach($sheet as $r ) :  ?>
           <tr>
             <td><?= $no++ ?></td>
-            <td><?= $r['B'] ?></td>
             <td><?= $r['C'] ?></td>
+            <td><?= $r['D'] ?></td>
             <td><?= $r['E'] ?></td>
             <td><?= $r['F'] ?></td>
+            <td><?= $r['G'] ?></td>
+            <td><?= $r['H'] ?></td>
+            <td><?= $r['J'] ?></td>
           </tr>
         <?php endforeach; ?>
         </tbody>

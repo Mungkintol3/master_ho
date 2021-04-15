@@ -48,6 +48,7 @@ class Cetak extends CI_Controller
 		$mpdf->watermark_font = 'DejaVuSansCondensed';
 		$mpdf->watermarkTextAlpha = 0.1;
 		$mpdf->SetDisplayMode('fullpage');
+		$mpdf->SetHTMLFooter("&copy;Murry Febriansyah Putra");
 		$mpdf->WriteHTML($data);
 		$mpdf->Output();
 	}

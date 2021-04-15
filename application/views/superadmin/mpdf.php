@@ -416,7 +416,6 @@ mpdf-->
                 	</div>
                 </div>
             </div>
-
-<div style="text-align: center; font-style: italic; font-size: 10pt;">&copy;Murry Febriansyah Putra</div>
 </body>
+<div name="myFooter	" style="text-align: center; font-style: italic; font-size: 10pt;">&copy;Murry Febriansyah Putra</div>
 </html>

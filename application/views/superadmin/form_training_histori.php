@@ -9,6 +9,7 @@
                   
                     <div class="form-group">
                       <button type="button " data-toggle="modal" data-target="#selectkaryawan" class="btn btn-success">Cari Karyawan <i class="fa fa-search"></i> </button>
+                      <a class="btn btn-warning" style="float:right;" href="<?=base_url('superadmin/Training_histori/uploadExcel')?>">Upload Data Training tanpa sertifikat</></a>
                     </div>
                   <form id="formtraining" enctype="multipart/form-data" class="form-horizontal">
                     <div class="form-group">
@@ -22,17 +23,12 @@
                     </div>
 
                     <div class="form-group">
-                      <select  id="jenis_training" class="form-control" name="jenis_training">
-                        <option value="">Jenis Training</option>
-                        <option>K3</option>
-                        <option>GADUT</option>
-                        <option>GP</option>
-                      </select>
+                      <input  id="jenis_training" class="form-control" name="jenis_training" placeholder="Masukan Jenis Pelatihan">
                     </div>
 
                     <div class="form-group">
                       <select class="form-control"  name="keterangan" id="keterangan">
-                        <option value="">Status Training</option>
+                        <option value="">Sertifikat Training</option>
                         <option>Ada</option>
                         <option>Tidak Ada</option>
                       </select>
@@ -42,7 +38,7 @@
                       <input  type="text" id="tanggal" name="tgl" placeholder="Enter Tahun" class="form-control">
                     </div>
 
-                    <label>Berkas Pendukung</label>
+                    <label>Upload Sertifikat</label>
                     <input class="form-control" type="file" name="file" id="file">
                     <button type="submit" class="btn btn-info">Simpan Perubahan</button>
                   </form>

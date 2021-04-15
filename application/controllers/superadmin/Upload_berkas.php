@@ -8,7 +8,7 @@ class Upload_berkas extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('url');
+		$this->load->helper('url','form');
 		// $this->load->library('encryption');
 		$id 	 = $this->session->userdata('id');
 
@@ -35,9 +35,6 @@ class Upload_berkas extends CI_Controller
 		//tempat menyimpan folder file upload
 		$directory = $this->input->post("direktory");
 		//nama table di database 
-		$nameColum = $this->input->post("nama_colom");
-		$extensi 			 = pathinfo($filename, PATHINFO_EXTENSION);
-
 		$file 				 = $_FILES['file']['name'];
 		$filename 			 = $file;
 		$npk				 = $this->input->post("npk");
@@ -48,16 +45,47 @@ class Upload_berkas extends CI_Controller
 		$config['overwrite'] = true;
 		$config['file_name'] 	   = $npk .  date('his') .  md5($filename) . '.' . $extensi;
 		$this->upload->initialize($config);
-		if ($this->upload->do_upload("file")) {
-			$file = $this->upload->data('file_name');
-			$data = array(
-				$nameColum  => $file
+
+		if(!$this->upload->do_upload('file')){
+			echo 'failed';
+		}else{
+			$ktp				= $this->upload->data("ktp");
+			$buku_rekening 		= $this->upload->data("buku_rekening");
+			$ijazah_sekolah 	= $this->upload->data("ijazah_sekolah");
+			$kartu_keluarga 	= $this->upload->data("kartu_keluarga");
+			$ket_domisili 		= $this->upload->data("ket_domisili");
+			$ket_kesehatan 		= $this->upload->data("ket_kesehatan");
+			$npwp 				= $this->upload->data("npwp");
+			$photo 				= $this->upload->data("photo");
+			$riwayat_hidup 		= $this->upload->data("riwayat_hidup");
+			$skck 				= $this->upload->data("skck");
+			$surat_lamaran 		= $this->upload->data("surat_lamaran");
+		
+			$berkas = array(
+				'id_user'			=> $id_user,
+				'nama'				=> $nama,
+				'npk'				=> $npk,
+				'ktp'				=> $ktp,
+				'buku_rekening'		=> $buku_rekening,
+				'ijazah_sekolah'	=> $ijazah_sekolah,
+				'kartu_keluarga'	=> $kartu_keluarga,
+				'ket_domisili'		=> $ket_domisili,
+				'ket_kesehatan'		=> $ket_kesehatan,
+				'npwp'				=> $npwp,
+				'photo'				=> $photo,
+				'riwayat_hidup'		=> $riwayat_hidup,
+				'skck'				=> $skck,
+				'surat_lamaran'		=> $surat_lamaran,
 			);
-			$where = array('id_user' => $this->input->post('npk'));
-			$p = $this->m_karyawan->updateFile($data, 'tbl_karyawan', $where);
-			if ($p) {
-				echo "Sukses";
-			}
+				var_dump($berkas);
+			// $input = $this->m_admin->inputData("tbl_berkas",$berkas);
+			// if($input){
+			// 	$this->session->set_flashdata("sukses","berhasil");
+			// }else{
+			// 	echo "gagal";
+			// }
 		}
+
+		
 	}
 }
