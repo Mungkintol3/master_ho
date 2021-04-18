@@ -11,7 +11,7 @@
                <div class="form-group">
                       <button type="button " data-toggle="modal" data-target="#selectkaryawan" class="btn btn-success">Cari Karyawan <i class="fa fa-search"></i> </button>
                     </div>
-              <form id="uploadBerkas" class="form-horizontal" method="post" action="#" >
+              <form id="uploadBerkas" class="form-horizontal" method="post" action="<?= base_url();?>superadmin/Upload_berkas/upload" enctype="multipart/form-data"  >
                     <div class="form-group">
                       <input type="hidden" name="id" id="id">
                       <input type="hidden" name="id_user" id="id_user">
@@ -242,7 +242,7 @@
                 success : function(e){
                    if(e = "sukses"){
                      alert(e);
-                     window.location.href="<?= base_url('superadmin/Upload_berkas/index') ?>"
+                     window.location.href="<?= base_url('superadmin/Upload_berkas/upload') ?>"
                    }else {
                       alert("gagal")
                    }
