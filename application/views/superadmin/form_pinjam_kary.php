@@ -150,9 +150,9 @@
               alert("total pinjam masih kosong")
             }else if(document.getElementById('tenor').value == "" ){
               alert("tenor pembayaran masih kosong")
-            }else if(document.getElementById('persentase_bunga').value == "" ){
+            }/*else if(document.getElementById('persentase_bunga').value == "" ){
               alert("bunga pembayaran masih kosong")
-            }else if(document.getElementById('tanggal').value == "" ){
+            }*/else if(document.getElementById('tanggal').value == "" ){
               alert("tanggal masih kosong")
             }else if(document.getElementById('file').value == "" ){
               alert("berkas masih kosong")
