@@ -18,8 +18,8 @@ The above copyright notice and this permission notice shall be included in all c
 
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/sigap.png">
-  <link rel="icon" type="image/png" href="../assets/img/sigap.png">
+  <!-- <link rel="apple-touch-icon" sizes="76x76" href="<?= base_url('assets/img/')?>sigap.png"> -->
+  <link rel="icon" type="favicon" href="<?= base_url('assets/img/')?>sigap.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     Master Data HO
@@ -33,10 +33,13 @@ The above copyright notice and this permission notice shall be included in all c
   <!-- CSS Files -->
   <link href="<?php echo base_url()?>assets/css/material-dashboard.css" rel="stylesheet" />
    <!--  <script src="<?php echo base_url()?>assets/js/core/jquery.min.js"></script> -->
-    <script src="<?php echo base_url()?>assets/js/jquery-3-1.min.js"></script>
+  <script src="<?php echo base_url()?>assets/js/jquery-3-1.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  
+  <link rel="stylesheet" href="<?= base_url('assets/sweetalert2/')?>sweetalert2.min.css">
+  <script src="<?= base_url('assets/sweetalert2/')?>sweetalert2.min.js"></script>
+
+
 </head>
 
 <body class="">

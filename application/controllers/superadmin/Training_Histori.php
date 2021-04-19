@@ -5,6 +5,8 @@ date_default_timezone_set('Asia/Jakarta');
  */
 class Training_histori extends CI_Controller
 {
+	private $filename = "Upload_Pelatihan";
+	
 	public function __construct()
 	{
 		parent::__construct();
@@ -30,8 +32,6 @@ class Training_histori extends CI_Controller
 		$this->load->view("superadmin/form_training_histori", $data);
 		$this->load->view('template/footer');
 	}
-
-
 
 	//simpan histori training karyawan
 	public function add()
@@ -70,10 +70,88 @@ class Training_histori extends CI_Controller
 			);
 			$input = $this->m_admin->inputData($data, "histori_training");
 			if ($input == true) {
-				echo "sukses";
+				$this->session->set_flashdata("success");
 			} else {
 				echo "gagal";
 			}
 		}
 	}
+
+	public function uploadExcel()
+	{
+		$data = array();
+		if(isset($_POST['submit'])){
+			$upload = $this->m_admin->uploadfile($this->filename);
+			if($upload['result'] =="success") {
+                    // Load plugin PHPExcel nya
+                    include APPPATH.'third_party/PHPExcel/PHPExcel.php';
+
+                    $excelreader = new PHPExcel_Reader_Excel2007();
+                    $loadexcel = $excelreader->load('assets/upload/'.$this->filename.'.xlsx'); // Load file yang tadi diupload ke folder excel
+                    $sheet = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
+
+                    // Masukan variabel $sheet ke dalam array data yang nantinya akan di kirim ke file form.php
+                    // Variabel $sheet tersebut berisi data-data yang sudah diinput di dalam excel yang sudha di upload sebelumnya
+                    $data['sheet'] = $sheet ;
+                	}else{
+                    $data['upload_error'] = $upload['error']; // Ambil pesan error uploadnya untuk dikirim ke file form dan ditampilkan
+                    echo $upload['error'];
+                }
+		}
+		$data1['url'] = $this->uri->segment(2);
+		$this->load->view('template/header',$data1);
+		$this->load->view('superadmin/form_upload_training_karyawan',$data);
+		$this->load->view('template/footer');
+	}
+
+	public function Upload()
+ 	{
+ 		// Load plugin PHPExcel nya
+		include APPPATH . 'third_party/PHPExcel/PHPExcel.php';
+
+		$excelreader = new PHPExcel_Reader_Excel2007();
+		$loadexcel = $excelreader->load('assets/upload/' . $this->filename . '.xlsx'); // Load file yang telah diupload ke folder excel
+		$sheet = $loadexcel->getActiveSheet()->toArray(null, true, true, true);
+
+		$numrow = 1;
+		$data = array();
+		$pendidikan = array();
+		$cekNPK = array();
+		foreach ($sheet as $row) {
+			if ($numrow > 1) {
+				//cek nisn sudah terdaftar apa belum di master siswa
+				$cekNPK = $this->m_admin->cari(array("id_user" => $row['B']), "tbl_karyawan")->num_rows();
+				if ($cekNPK == 0) {
+					$this->session->set_flashdata("error", "NPK " . $row['B'] . " NPK tidak terdaftar di dalam sistem");
+					redirect("superadmin/Training_histori/uploadExcel");
+				} else {
+					// push data karyawan ke tabel karyawan
+					array_push($data, array(
+						'id_user'					=> $row['B'],
+						'npk'						=> $row['C'],
+						'nama'						=> $row['D'],
+						'jenis_training'			=> $row['E'],
+						'tahun'						=> $row['F'],
+						'tgl'						=> $row['G'],
+						'keterangan'				=> $row['H']
+					));
+
+				}
+				// var_dump($data);
+			}
+			$numrow++; // Tambah 1
+		}
+		if ($cekNPK == 0) {
+			echo "";
+		} else {
+			$input = $this->m_admin->inputArray("histori_training", $data);
+			if ($input) {
+				$this->session->set_flashdata("success","Berhasil");
+				redirect("superadmin/Training_histori/uploadExcel");
+			} else {
+				echo "Gagal";
+			}
+		}
+
+ 	}
 }

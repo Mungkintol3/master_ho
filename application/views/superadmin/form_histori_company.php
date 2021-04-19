@@ -9,6 +9,7 @@
                   
                     <div class="form-group">
                       <button type="button " data-toggle="modal" data-target="#selectkaryawan" class="btn btn-success">Cari Karyawan <i class="fa fa-search"></i> </button>
+                      <a class="btn btn-warning" style="float:right;" href="<?=base_url('superadmin/Company/uploadExcel')?>">Upload Data Company by Excel </a>
                     </div>
                   <form id="formcompany" class="form-horizontal">
                     <div class="form-group">

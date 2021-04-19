@@ -83,15 +83,19 @@ class Nilai_karyawan extends CI_Controller
 		foreach ($sheet as $row) {
 			if ($numrow > 1) {
 				//cek nisn sudah terdaftar apa belum di master siswa
-				$cekNPK = $this->m_admin->cari(array("npk" => $row['B']), "tbl_karyawan")->num_rows();
+				$cekNPK = $this->m_admin->cari(array("id_user" => $row['B']), "tbl_karyawan")->num_rows();
 				if ($cekNPK == 0) {
-					$this->session->set_flashdata("error", "NPK " . $row['B'] . " tidak ada di master karyawan");
+					$this->session->set_flashdata("error", "NPK " . $row['B'] . " NPK tidak terdaftar di dalam sistem");
 					redirect("superadmin/Nilai_karyawan/upload_histori_nilai");
 				} else {
 					// push data karyawan ke tabel karyawan
 					array_push($data, array(
 						'id_user'					=> $row['B'],
-
+						'npk'						=> $row['C'],
+						'nama'						=> $row['D'],
+						'nilai_pk'					=> $row['E'],
+						'tahun'						=> $row['F'],
+						'tgl'						=> $row['G'],
 					));
 
 				}
@@ -104,7 +108,7 @@ class Nilai_karyawan extends CI_Controller
 		} else {
 			$input = $this->m_admin->inputArray("histori_nilai_karyawan", $data);
 			if ($input) {
-				$this->session->set_flashdata("success", "Karyawan tersimpan di data master");
+				$this->session->set_flashdata("success");
 				redirect("superadmin/Nilai_karyawan/upload_histori_nilai");
 			} else {
 				echo "Gagal";

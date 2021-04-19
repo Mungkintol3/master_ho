@@ -1,13 +1,12 @@
 <div class="content">
-<div class="col-md-12">
-              <div class="card card-plain">
-                <div class="card-header card-header-info">
+  <div class="col-md-12">
+         <div class="card card-plain">
+            <div class="card-header card-header-info">
                   <h4 class="card-title mt-0">Mutasi Jabatan</h4>
                   <p class="card-category"> SIGAP PRIMA ASTREA & SIGAP GARDA PRATAMA</p>
-                </div>
-                <div class="card-body">
-                  
-                    <div class="form-group">
+            </div>
+              <div class="card-body">
+                <div class="form-group">
                       <button type="button " data-toggle="modal" data-target="#selectkaryawan" class="btn btn-success">Cari Karyawan <i class="fa fa-search"></i> </button>
                     </div>
                   <form id="mutasijabatan" enctype="multipart/form-data" method="post" action="#" class="form-horizontal">

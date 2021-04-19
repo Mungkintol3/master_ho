@@ -11,12 +11,17 @@
                <div class="form-group">
                       <button type="button " data-toggle="modal" data-target="#selectkaryawan" class="btn btn-success">Cari Karyawan <i class="fa fa-search"></i> </button>
                     </div>
-              <form id="uploadBerkas" method="post" action="#" class="form-horizontal">
-                 <div class="form-group">
+              <form id="uploadBerkas" class="form-horizontal" method="post" action="<?= base_url();?>superadmin/Upload_berkas/upload" enctype="multipart/form-data"  >
+                    <div class="form-group">
                       <input type="hidden" name="id" id="id">
                       <input type="hidden" name="id_user" id="id_user">
                       <input readonly="" type="text" id="nama" name="nama" placeholder="Enter Nama" class="form-control">
                     </div>
+
+                     <div class="form-group">
+                      <input readonly="" type="text" id="npk" name="npk" placeholder="Enter NPK" class="form-control">
+                    </div>
+
                <div class="form-group form-file-upload form-file-multiple">
                   <input type="file" name="ktp" id="ktp" class="inputFileHidden">
                   <div class="input-group">
@@ -138,8 +143,9 @@
                       </span>
                   </div>
                 </div>
+          <button type="submit" class="btn btn-info">Upload Berkas</button>
           </form>
-          <button type="submit">Upload Berkas</button>
+          
 
     <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="selectkaryawan" class="modal fade">
      <div class="modal-dialog modal-xl">
@@ -192,11 +198,12 @@
       }
   }
   $(function(){
-        
           $("#uploadBerkas").on('submit',function(e){
             var postData = new FormData(this);
             e.preventDefault();
-            if(document.getElementById('ktp').value == "" ){
+            if(document.getElementById('npk').value == ""){
+              alert("Data Karyawan masih kosong")
+            }else if(document.getElementById('ktp').value == "" ){
               alert("Kartu Tanda Penduduk masih kosong")
             }else if(document.getElementById('kartu_keluarga').value == "" ){
               alert("Kartu Keluarga  masih kosong")
@@ -220,11 +227,11 @@
               alert("Ijazah Sekolah masih kosong")
             }else {
               $.ajax({
-                url : "<?= base_url('superadmin/Nilai_karyawan/input_histori') ?>" ,
+                url : "<?= base_url('superadmin/Upload_berkas/upload') ?>" ,
                 method : "POST" ,
-                data : postData ,
-                processData : false ,
-                contentType : false ,
+                data : postData,
+                processData : false,
+                contentType : false,
                 cache : false ,
                 beforeSend : function(){
                   $("#submit").attr("disabled",true);   
@@ -235,7 +242,7 @@
                 success : function(e){
                    if(e = "sukses"){
                      alert(e);
-                     window.location.href="<?= base_url('superadmin/Nilai_karyawan/add_histori_nilai') ?>"
+                     window.location.href="<?= base_url('superadmin/Upload_berkas/upload') ?>"
                    }else {
                       alert("gagal")
                    }
@@ -287,4 +294,29 @@
       document.getElementById("id_user").value   = $(this).attr('data-id_user');
       $('#selectkaryawan').modal('hide');
   })
+
+  $(function(){
+      $("#UploadBerkas").on('submit',function(e){
+        var postData = new FormData(this);
+        e.preventDefault();
+          if(document.getElementById('nama').value == ""){
+            alert("data karyawan masih kosong")
+          }else if(document.getElementById('tanggal').value == ""){
+            alert("tanggal masih kosong")
+          } else {
+            $.ajax({
+              url : "<?= base_url('superadmin/Upload_berkas/upload') ?>" ,
+              method : "POST" ,
+              data : postData ,
+              processData : false ,
+              contentType : false ,
+              cache : false ,
+              success : function(e){
+                alert(e)
+                window.location.href="<?= base_url('superadmin/Company/upload') ?>"
+              }
+            })
+          }
+      })
+    })
   </script>

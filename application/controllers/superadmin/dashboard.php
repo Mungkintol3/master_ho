@@ -22,7 +22,7 @@ class Dashboard extends CI_Controller
 
 	public function index()
 	{
-
+		// $data1 = $this->m_admin->cari(array('id_user' => $id_user), "akun")->result();
 		$data =  array(
 			'karyawan'			=> $this->m_admin->getData("tbl_karyawan")->result(),
 			'url' 				=> $this->uri->segment(2),

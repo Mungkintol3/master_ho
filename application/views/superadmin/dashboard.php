@@ -25,7 +25,7 @@
   var ctx = document.getElementById('masaKerja').getContext('2d');
   var chart = new Chart(ctx, {
     //type chart
-    type: 'pie',
+    type: 'bar',
     // data untuk isi chart
     data: {
       labels: ["1 tahun", "10 tahun", "15 tahun", "20 tahun"],
@@ -51,7 +51,7 @@
   var ctx = document.getElementById('pendidikan').getContext('2d');
   var chart = new Chart(ctx, {
     // The type of chart we want to create
-    type: 'pie',
+    type: 'bar',
 
     // The data for our dataset
     data: {
@@ -83,7 +83,7 @@
   var ctx = document.getElementById('umur').getContext('2d');
   var chart = new Chart(ctx, {
     // The type of chart we want to create
-    type: 'pie',
+    type: 'bar',
 
     // The data for our dataset
     data: {

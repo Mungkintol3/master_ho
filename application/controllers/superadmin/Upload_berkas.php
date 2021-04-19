@@ -8,7 +8,7 @@ class Upload_berkas extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('url');
+		$this->load->helper('url','form');
 		// $this->load->library('encryption');
 		$id 	 = $this->session->userdata('id');
 
@@ -32,32 +32,12 @@ class Upload_berkas extends CI_Controller
 
 	public function upload()
 	{
-		//tempat menyimpan folder file upload
-		$directory = $this->input->post("direktory");
-		//nama table di database 
-		$nameColum = $this->input->post("nama_colom");
-		$extensi 			 = pathinfo($filename, PATHINFO_EXTENSION);
+		if(isset($_POST['submit'])){
+    $ktp = $_FILES['ktp']['name'];
+    $kartu_keluarga = $_FILES['kartu_keluarga']['name'];
+	$surat_lamaran = $_FILES['surat_lamaran']['name'];
 
-		$file 				 = $_FILES['file']['name'];
-		$filename 			 = $file;
-		$npk				 = $this->input->post("npk");
-		$extensi 			 = pathinfo($filename, PATHINFO_EXTENSION);
-		$this->load->library('upload');
-		$config['allowed_types'] = 'pdf';
-		$config['upload_path']     = './assets/upload/berkas/' . $directory . "/";
-		$config['overwrite'] = true;
-		$config['file_name'] 	   = $npk .  date('his') .  md5($filename) . '.' . $extensi;
-		$this->upload->initialize($config);
-		if ($this->upload->do_upload("file")) {
-			$file = $this->upload->data('file_name');
-			$data = array(
-				$nameColum  => $file
-			);
-			$where = array('id_user' => $this->input->post('npk'));
-			$p = $this->m_karyawan->updateFile($data, 'tbl_karyawan', $where);
-			if ($p) {
-				echo "Sukses";
-			}
-		}
+    var_dump($ktp,$kartu_keluarga);
+	}
 	}
 }

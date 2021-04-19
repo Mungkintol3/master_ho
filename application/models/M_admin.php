@@ -21,7 +21,7 @@ class M_admin extends CI_Model
 	{
 		$this->load->library('upload');
 		$config['upload_path']		= './assets/upload/';
-		$config['allowed_types']	= 'xlsx';
+		$config['allowed_types']	= 'xlsx|pdf';
 		$config['max_size']			= '12048';
 		$config['overwrite']		= true;
 		$config['file_name']		= $filename;
