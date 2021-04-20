@@ -26,6 +26,10 @@
                     </div>
 
                     <div class="form-group">
+                      <input type="text" name="point" name="point" id="point" placeholder="Enter Point Pegawai" class="form-control">
+                    </div>
+
+                    <div class="form-group">
                       <input  type="text" id="tanggal" name="tanggal"  placeholder="Enter Tahun" class="form-control">
                     </div>
 

@@ -10,6 +10,7 @@
               <table  id="table_id" class="cell-border">
               <thead>
                   <tr>
+                      <th class="text-center">ID USER</th>
                       <th class="text-center">NPK</th>
                       <th class="text-center">Nama</th>
                       <th class="text-center">Department</th>
@@ -22,6 +23,7 @@
               <tbody>
                 <?php foreach ($karyawan as $result) :?>
                   <tr>
+                     <td class="text-center"><?= $result->id_user?></td>
                      <td class="text-center"><?= $result->npk ?></td>
                      <td class="text-center"><?= $result->nama?></td>
                      <td class="text-center"><?= $result->departement?></td>

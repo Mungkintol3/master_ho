@@ -127,11 +127,13 @@ class Nilai_karyawan extends CI_Controller
 		$id 				 = $this->input->post("id");
 		$nama 				 = $this->input->post("nama");
 		$id_user 			 = $this->input->post("id_user");
+		$point 				 = $this->input->post("point");
 		$data = array(
 			"id_user"				=> $id_user,
 			"npk"					=> $npk,
 			"nama"					=> $nama,
 			"nilai_pk"				=> $nilai,
+			"point"					=> $point,
 			"tahun"					=> substr($tgl, 0, 4),
 			"tgl"					=> $tgl,
 		);

@@ -65,7 +65,7 @@ The above copyright notice and this permission notice shall be included in all c
               </button>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="<?php echo base_url('superadmin/Nilai_karyawan/add_histori_nilai')?>">Input Penilaian Karyawan</a>
-                <a class="dropdown-item" href="<?php echo base_url('superadmin/Poin_pegawai/add_histori_poin')?>">Input Poin Karyawan</a>
+                <!-- <a class="dropdown-item" href="<?php echo base_url('superadmin/Poin_pegawai/add_histori_poin')?>">Input Poin Karyawan</a> -->
                 <!-- <a class="dropdown-item" href="<?= base_url('superadmin/Golongan/add_histori_golongan_pegawai') ?>">Input History Golongan</a> -->
                 <!-- <a class="dropdown-item" href="<?= base_url('superadmin/Career') ?>">Input Career History</a> -->
                 <a class="dropdown-item" href="<?= base_url('superadmin/Training_Histori/form_add') ?>">Input Histori Training</a>
@@ -82,7 +82,6 @@ The above copyright notice and this permission notice shall be included in all c
 
           <li class="nav-item <?php if ($url == 'dashboard'){
             echo 'active';
-
           }?>">
             <a class="nav-link" href="<?php echo base_url("superadmin/dashboard");?>" >
               <i class="material-icons">dashboard</i>

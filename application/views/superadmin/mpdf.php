@@ -297,19 +297,21 @@ mpdf-->
                         <table class="items" width="100%" style="font-size: 9pt; border-collapse: collapse; " cellpadding="3" >
                             <thead>
                                 <tr>
-                                    <td>Company</td>
+                                    <td>Perusahaan</td>
                                     <td>Tanggal bergabung</td>
-                                    <td>Tahun</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- ITEMS HERE -->
+								
                                 <?php foreach ($company as $company) : ?>
                                 <tr>
                                     <td align="center"><?= $company->company?></td>
-                                    <td align="center"><?= $company->join_date?></td>
-                                    <td align="center"><?= $company->tahun?></td>
+									<?= $currentDate = date('Y-m-d')
+									?>	
+                                    <td align="center"><?=date('d F Y', strtotime($company->join_date))?></td>
                                 </tr>
+								
                             <?php endforeach?>
                             </tbody>
                         </table>
@@ -374,7 +376,7 @@ mpdf-->
 						<tr>
 						<td width="50%"><b>Jenis Pelatihan</b></td>
 						<td width="25%"><b>Tahun</b></td>
-                        <td width="25%"><b>Berkas</b></td>
+                        <td width="25%"><b>Sertifikat</b></td>
 						</tr>
 						</thead>
 						<tbody>
