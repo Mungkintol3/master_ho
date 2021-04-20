@@ -64,6 +64,19 @@ class M_admin extends CI_Model
 		return $this->db->update($table, $data);
 	}
 
+	//show nilai passed 3 years
+	public function shownilai($id_user)
+	{
+		$query = $this->db->query("SELECT id_user , nilai_pk, point_pk, tahun FROM histori_nilai_karyawan WHERE tahun >= now()-interval 3 year");
+		return $query;
+	}
+
+	//show value assets passed 3 years
+	public function showvaluea($id_user)
+	{
+		$query = $this->db->query("SELECT id_user, asset_value, tahun, kekuatan, kelemahan, keterangan FROM human_value_assets WHERE tahun >= now()-interval 3 year");
+		return $query;
+	}
 
 	//show pendidikan join
 	public function showPendidikan($id_user)
