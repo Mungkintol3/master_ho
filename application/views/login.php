@@ -9,6 +9,7 @@
 </head>
 
 <body>
+
 	<div class="container">
 		<div class="brand-logo"><img class="brand-logo" src="<?php echo base_url() ?>assets/img/sigap.png"></div>
 		<div class="brand-title">MASTER DATA </div><br>

@@ -44,7 +44,7 @@
           <div class="form-group form-file-upload form-file-multiple">
             <input type="file" name="kartu_keluarga" id="kartu_keluarga" class="inputFileHidden">
             <div class="input-group">
-              <input type="text" class="form-control form-file-upload inputFileVisible" placeholder="Kartu Keluarga">
+              <input type="text" class="form-control form-file-upload inputFileVisible" id="idKK" placeholder="Kartu Keluarga">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-fab btn-round btn-primary">
                   <i class="material-icons">attach_file</i>
@@ -55,7 +55,7 @@
           <div class="form-group form-file-upload form-file-multiple">
             <input type="file" name="buku_rekening" id="buku_rekening" class="inputFileHidden">
             <div class="input-group">
-              <input type="text" class="form-control form-file-upload inputFileVisible" placeholder="Buku Rekening">
+              <input type="text" class="form-control form-file-upload inputFileVisible" id="idrekening" placeholder="Buku Rekening">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-fab btn-round btn-primary">
                   <i class="material-icons">attach_file</i>
@@ -66,7 +66,7 @@
           <div class="form-group form-file-upload form-file-multiple">
             <input type="file" name="surat_lamaran" id="surat_lamaran" class="inputFileHidden">
             <div class="input-group">
-              <input type="text" class="form-control form-file-upload inputFileVisible" placeholder="Surat Lamaran">
+              <input type="text" class="form-control form-file-upload inputFileVisible" id="idLamaran" placeholder="Surat Lamaran">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-fab btn-round btn-primary">
                   <i class="material-icons">attach_file</i>
@@ -77,7 +77,7 @@
           <div class="form-group form-file-upload form-file-multiple">
             <input type="file" name="riwayat_hidup" id="riwayat_hidup" class="inputFileHidden">
             <div class="input-group">
-              <input type="text" class="form-control form-file-upload inputFileVisible" placeholder="Daftar Riwayat Hidup">
+              <input type="text" class="form-control form-file-upload inputFileVisible" id="idRiwayat" placeholder="Daftar Riwayat Hidup">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-fab btn-round btn-primary">
                   <i class="material-icons">attach_file</i>
@@ -88,7 +88,7 @@
           <div class="form-group form-file-upload form-file-multiple">
             <input type="file" name="ket_domisili" id="ket_domisili" class="inputFileHidden">
             <div class="input-group">
-              <input type="text" class="form-control form-file-upload inputFileVisible" placeholder="Surat Keterangan Domisili">
+              <input type="text" class="form-control form-file-upload inputFileVisible" id="idDomisili" placeholder="Surat Keterangan Domisili">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-fab btn-round btn-primary">
                   <i class="material-icons">attach_file</i>
@@ -99,7 +99,7 @@
           <div class="form-group form-file-upload form-file-multiple">
             <input type="file" name="npwp" id="npwp" class="inputFileHidden">
             <div class="input-group">
-              <input type="text" class="form-control form-file-upload inputFileVisible" placeholder="Nomor Pokok Wajib pajak">
+              <input type="text" class="form-control form-file-upload inputFileVisible" id="idNPWP" placeholder="Nomor Pokok Wajib pajak">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-fab btn-round btn-primary">
                   <i class="material-icons">attach_file</i>
@@ -141,9 +141,9 @@
             </div>
           </div>
           <div class="form-group form-file-upload form-file-multiple">
-            <input type="file" onchange="return cekExe()" name="photo" id="photo" multiple="" class="inputFileHidden">
+            <input type="file" name="photo" id="photo" multiple="" class="inputFileHidden">
             <div class="input-group">
-              <input type="text" class="form-control form-file-upload inputFileVisible" placeholder="Foto Karyawan">
+              <input type="text" id="idPhoto" class="form-control form-file-upload inputFileVisible" placeholder="Foto Karyawan">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-fab btn-round btn-primary">
                   <i class="material-icons">attach_file</i>
@@ -191,9 +191,40 @@
         </div>
 
         <script type="text/javascript">
-          function cekExe() {
+          document.getElementById('ktp').addEventListener('change', function() {
+            var file = this.files[0].name;
+            var path = document.getElementById('ktp').value;
+            var exe = /(\.pdf)$/i;
+            var minSize = 1000000;
+            if (!exe.exec(path)) {
+              alert("file harus berbentuk pdf");
+              document.getElementById('ktp').value = "";
+              document.getElementById('namaKTP').value = "";
+              return;
+            } else if (this.files[0].size > minSize) {
+              alert('maksimum file 2 MB ! ' + 'ukuran file anda ' + this.files[0].size / 1024 + ' mb');
+              document.getElementById('ktp').value = "";
+              document.getElementById('namaKTP').value = "";
+              return;
+            }
+          })
 
-          }
+
+          document.getElementById('photo').addEventListener('change', function() {
+            var file = this.files[0].name;
+            var path = document.getElementById('photo').value;
+            var exe = /(\.jpg|\.png|\.jpeg)$/i;
+            var minSize = 2000000;
+            if (!exe.exec(path)) {
+              alert("file harus berbentuk jpg jpeg png");
+              document.getElementById('photo').value = "";
+              document.getElementById('idPhoto').value = "";
+              return;
+            } else if (this.files[0].size > minSize) {
+              alert('maksimum file 2 MB ! ' + this.files[0].size);
+              return;
+            }
+          })
 
           function beforeSubmit() {
             if (document.getElementById('npk').value == "") {
@@ -285,35 +316,34 @@
 
 
           //cek file yang di upload
-          document.getElementById("ktp").addEventListener("change", validateFile)
-          document.getElementById("kartu_keluarga").addEventListener("change", validateFile)
-          var namaFile = document.getElementById('namaKK').value;
+          // document.getElementById("ktp").addEventListener("change", validateFile);
+          // document.getElementById("kartu_keluarga").addEventListener("change", validateFile);
 
-          function validateFile() {
-            const allowedExtensions = ['pdf'],
-              sizeLimit = 2000000; // 2 megabyte
+          // function validateFile() {
+          //   const allowedExtensions = ['pdf'],
+          //     sizeLimit = 1000000; // 2 megabyte
 
-            // destructuring file nama and ukuran  from file object
-            const {
-              name: fileName,
-              size: fileSize
-            } = this.files[0];
+          //   // destructuring file nama and ukuran  from file object
+          //   const {
+          //     name: fileName,
+          //     size: fileSize
+          //   } = this.files[0];
 
-            /*
-             * nama file yang di ijinkan hanyan bisa file dengan ekstensi .pdf
-             * 
-             *
-             */
-            const fileExtension = fileName.split(".").pop();
-            /* 
-              check jika ekstensi file tidak sesuai dengan yang di tentukan 
-            */
-            if (!allowedExtensions.includes(fileExtension)) {
-              alert("tipe file tidak di beri akses" + idFile);
-              this.value = null;
-            } else if (fileSize > sizeLimit) {
-              alert("file terlalu besar ! Maks 2 MB")
-              this.value = null;
-            }
-          }
+          //   /*
+          //    * nama file yang di ijinkan hanyan bisa file dengan ekstensi .pdf
+          //    * 
+          //    *
+          //    */
+          //   const fileExtension = fileName.split(".").pop();
+          //   /* 
+          //     check jika ekstensi file tidak sesuai dengan yang di tentukan 
+          //   */
+          //   if (!allowedExtensions.includes(fileExtension)) {
+          //     this.value = null;
+          //     document.getElementById('');
+          //   } else if (fileSize > sizeLimit) {
+          //     alert("file terlalu besar ! Maks 2 MB")
+          //     this.value = null;
+          //   }
+          // }
         </script>

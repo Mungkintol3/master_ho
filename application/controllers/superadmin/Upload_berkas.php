@@ -48,8 +48,7 @@ class Upload_berkas extends CI_Controller
 		$ket_kesehatan		= $_FILES['ket_kesehatan']['name'];
 		$ijazah				= $_FILES['ijazah_sekolah']['name'];
 		$photo 				= $_FILES['photo']['name'];
-
-
+		$ext = pathinfo($photo, PATHINFO_EXTENSION);
 
 		//rename file dengan nama NPK karyawan 
 		$ktp  				= $id_user . '.pdf';
@@ -62,7 +61,7 @@ class Upload_berkas extends CI_Controller
 		$skck 				= $id_user . '.pdf';
 		$ket_kesehatan		= $id_user . '.pdf';
 		$ijazah				= $id_user . '.pdf';
-		$photo 				= $id_user . '.pdf';
+		$photo 				= $id_user . '.' . $ext;
 
 		if (file_exists("assets/upload/berkas/ktp/$ktp")) {
 			unlink("assets/upload/berkas/ktp/$ktp");
@@ -112,11 +111,21 @@ class Upload_berkas extends CI_Controller
 			move_uploaded_file($_FILES['photo']['tmp_name'], 'assets/upload/berkas/photo/' . $photo)
 		) {
 			$data = array(
-				'id_user'	=> $id_user,
-				'npk'		=> $npk,
-				'nama'		=> $nama,
-				'kk'		=> $kartu_keluarga,
-				'ktp'		=> $ktp
+				'id_user'				=> $id_user,
+				'npk'					=> $npk,
+				'nama'					=> $nama,
+				'ktp'					=> $ktp,
+				'kartu_keluarga'		=> $kartu_keluarga,
+				'buku_rekening'			=> $buku_rekening,
+				'surat_lamaran'			=> $surat_lamaran,
+				'daftar_riwayat_hidup'	=> $riwayat_hidup,
+				'surat_domisili'		=> $ket_domisili,
+				'npwp'					=> $npwp,
+				'skck'					=> $skck,
+				'surat_kesehatan'		=> $ket_kesehatan,
+				'ijazah_sekolah'		=> $ijazah,
+				'foto_karyawan'			=> $photo
+
 			);
 			$input = $this->m_admin->inputData($data, "tbl_berkas");
 			if ($input) {
@@ -126,6 +135,8 @@ class Upload_berkas extends CI_Controller
 				$this->session->set_flashdata('failed', 'file gagal upload');
 				redirect('superadmin/Upload_berkas');
 			}
+		} else {
+			echo "failed uploaded";
 		}
 	}
 }
