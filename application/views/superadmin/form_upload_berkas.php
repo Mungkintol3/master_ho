@@ -14,12 +14,16 @@
           <div class="alert alert-success">
             <?= $this->session->flashdata('upload ok') ?>
           </div>
+        <?php  } else if ($this->session->flashdata('warning')) { ?>
+          <div class="alert alert-warning">
+            <?= $this->session->flashdata('warning') ?>
+          </div>
         <?php  } ?>
 
         <div class="form-group">
           <button type="button " data-toggle="modal" data-target="#selectkaryawan" class="btn btn-success">Cari Karyawan <i class="fa fa-search"></i> </button>
         </div>
-        <form id="uploadBerkas" class="form-horizontal" name="uploadBerkas" method="post" action="<?= base_url('superadmin/Upload_berkas/upload') ?>" enctype="multipart/form-data">
+        <form onsubmit="return beforeSubmit()" id="uploadBerkas" class="form-horizontal" name="uploadBerkas" method="post" action="<?= base_url('superadmin/Upload_berkas/upload') ?>" enctype="multipart/form-data">
           <div class="form-group">
             <input type="hidden" name="id" id="id">
             <input type="hidden" name="id_user" id="id_user">
@@ -110,7 +114,7 @@
           <div class="form-group form-file-upload form-file-multiple">
             <input type="file" name="skck" id="skck" class="inputFileHidden">
             <div class="input-group">
-              <input type="text" class="form-control form-file-upload inputFileVisible" placeholder="Surat Keterangan Catatan Kepolisian">
+              <input type="text" class="form-control form-file-upload inputFileVisible" id="idSKCK" placeholder="Surat Keterangan Catatan Kepolisian">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-fab btn-round btn-primary">
                   <i class="material-icons">attach_file</i>
@@ -119,9 +123,9 @@
             </div>
           </div>
           <div class="form-group form-file-upload form-file-multiple">
-            <input type="file" name="ket_kesehatan" id="ket_kesehatan" multiple="" class="inputFileHidden">
+            <input type="file" name="ket_kesehatan" id="ket_kesehatan" class="inputFileHidden">
             <div class="input-group">
-              <input type="text" class="form-control form-file-upload inputFileVisible" placeholder="Surat Keterangan Kesehatan">
+              <input type="text" class="form-control form-file-upload inputFileVisible" id="idKesehatan" placeholder="Surat Keterangan Kesehatan">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-fab btn-round btn-primary">
                   <i class="material-icons">attach_file</i>
@@ -130,9 +134,9 @@
             </div>
           </div>
           <div class="form-group form-file-upload form-file-multiple">
-            <input type="file" name="ijazah_sekolah" id="ijazah_sekolah" multiple="" class="inputFileHidden">
+            <input type="file" name="ijazah_sekolah" id="ijazah_sekolah" class="inputFileHidden">
             <div class="input-group">
-              <input type="text" class="form-control form-file-upload inputFileVisible" placeholder="Ijazah Sekolah">
+              <input type="text" class="form-control form-file-upload inputFileVisible" id="idIjazah" placeholder="Ijazah Sekolah">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-fab btn-round btn-primary">
                   <i class="material-icons">attach_file</i>
@@ -141,7 +145,7 @@
             </div>
           </div>
           <div class="form-group form-file-upload form-file-multiple">
-            <input type="file" name="photo" id="photo" multiple="" class="inputFileHidden">
+            <input type="file" name="photo" id="photo" class="inputFileHidden">
             <div class="input-group">
               <input type="text" id="idPhoto" class="form-control form-file-upload inputFileVisible" placeholder="Foto Karyawan">
               <span class="input-group-btn">
@@ -195,16 +199,179 @@
             var file = this.files[0].name;
             var path = document.getElementById('ktp').value;
             var exe = /(\.pdf)$/i;
-            var minSize = 1000000;
+            var minSize = 2000000;
             if (!exe.exec(path)) {
               alert("file harus berbentuk pdf");
               document.getElementById('ktp').value = "";
               document.getElementById('namaKTP').value = "";
               return;
             } else if (this.files[0].size > minSize) {
-              alert('maksimum file 2 MB ! ' + 'ukuran file anda ' + this.files[0].size / 1024 + ' mb');
+              alert('maksimum file 2 MB ! ');
               document.getElementById('ktp').value = "";
               document.getElementById('namaKTP').value = "";
+              return;
+            }
+          })
+
+          document.getElementById('kartu_keluarga').addEventListener('change', function() {
+            var file = this.files[0].name;
+            var path = document.getElementById('kartu_keluarga').value;
+            var exe = /(\.pdf)$/i;
+            var minSize = 2000000;
+            if (!exe.exec(path)) {
+              alert("file harus berbentuk pdf");
+              document.getElementById('kartu_keluarga').value = "";
+              document.getElementById('idKK').value = "";
+              return;
+            } else if (this.files[0].size > minSize) {
+              alert('maksimum file 2 MB ! ');
+              document.getElementById('kartu_keluarga').value = "";
+              document.getElementById('idKK').value = "";
+              return;
+            }
+          })
+
+          document.getElementById('buku_rekening').addEventListener('change', function() {
+            var file = this.files[0].name;
+            var path = document.getElementById('buku_rekening').value;
+            var exe = /(\.pdf)$/i;
+            var minSize = 2000000;
+            if (!exe.exec(path)) {
+              alert("file harus berbentuk pdf");
+              document.getElementById('buku_rekening').value = "";
+              document.getElementById('idRekening').value = "";
+              return;
+            } else if (this.files[0].size > minSize) {
+              alert('maksimum file 2 MB ! ');
+              document.getElementById('buku_rekening').value = "";
+              document.getElementById('idRekening').value = "";
+              return;
+            }
+          })
+
+          document.getElementById('surat_lamaran').addEventListener('change', function() {
+            var file = this.files[0].name;
+            var path = document.getElementById('surat_lamaran').value;
+            var exe = /(\.pdf)$/i;
+            var minSize = 2000000;
+            if (!exe.exec(path)) {
+              alert("file harus berbentuk pdf");
+              document.getElementById('surat_lamaran').value = "";
+              document.getElementById('idLamaran').value = "";
+              return;
+            } else if (this.files[0].size > minSize) {
+              alert('maksimum file 2 MB ! ');
+              document.getElementById('surat_lamaran').value = "";
+              document.getElementById('idLamaran').value = "";
+              return;
+            }
+          })
+
+
+          document.getElementById('riwayat_hidup').addEventListener('change', function() {
+            var file = this.files[0].name;
+            var path = document.getElementById('riwayat_hidup').value;
+            var exe = /(\.pdf)$/i;
+            var minSize = 2000000;
+            if (!exe.exec(path)) {
+              alert("file harus berbentuk pdf");
+              document.getElementById('riwayat_hidup').value = "";
+              document.getElementById('idRiwayat').value = "";
+              return;
+            } else if (this.files[0].size > minSize) {
+              alert('maksimum file 2 MB ! ');
+              document.getElementById('riwayat_hidup').value = "";
+              document.getElementById('idRiwayat').value = "";
+              return;
+            }
+          })
+
+          document.getElementById('ket_domisili').addEventListener('change', function() {
+            var file = this.files[0].name;
+            var path = document.getElementById('ket_domisili').value;
+            var exe = /(\.pdf)$/i;
+            var minSize = 2000000;
+            if (!exe.exec(path)) {
+              alert("file harus berbentuk pdf");
+              document.getElementById('ket_domisili').value = "";
+              document.getElementById('idDomisili').value = "";
+              return;
+            } else if (this.files[0].size > minSize) {
+              alert('maksimum file 2 MB ! ');
+              document.getElementById('ket_domisili').value = "";
+              document.getElementById('idDomisili').value = "";
+              return;
+            }
+          })
+
+          document.getElementById('npwp').addEventListener('change', function() {
+            var file = this.files[0].name;
+            var path = document.getElementById('npwp').value;
+            var exe = /(\.pdf)$/i;
+            var minSize = 2000000;
+            if (!exe.exec(path)) {
+              alert("file harus berbentuk pdf");
+              document.getElementById('npwp').value = "";
+              document.getElementById('idNPWP').value = "";
+              return;
+            } else if (this.files[0].size > minSize) {
+              alert('maksimum file 2 MB ! ');
+              document.getElementById('npwp').value = "";
+              document.getElementById('idNPWP').value = "";
+              return;
+            }
+          })
+
+          document.getElementById('skck').addEventListener('change', function() {
+            var file = this.files[0].name;
+            var path = document.getElementById('skck').value;
+            var exe = /(\.pdf)$/i;
+            var minSize = 2000000;
+            if (!exe.exec(path)) {
+              alert("file harus berbentuk pdf");
+              document.getElementById('skck').value = "";
+              document.getElementById('idSKCK').value = "";
+              return;
+            } else if (this.files[0].size > minSize) {
+              alert('maksimum file 2 MB ! ');
+              document.getElementById('skck').value = "";
+              document.getElementById('idSKCK').value = "";
+              return;
+            }
+          })
+
+          document.getElementById('ket_kesehatan').addEventListener('change', function() {
+            var file = this.files[0].name;
+            var path = document.getElementById('ket_kesehatan').value;
+            var exe = /(\.pdf)$/i;
+            var minSize = 2000000;
+            if (!exe.exec(path)) {
+              alert("file harus berbentuk pdf");
+              document.getElementById('ket_kesehatan').value = "";
+              document.getElementById('idKesehatan').value = "";
+              return;
+            } else if (this.files[0].size > minSize) {
+              alert('maksimum file 2 MB ! ');
+              document.getElementById('ket_kesehatan').value = "";
+              document.getElementById('idKesehatan').value = "";
+              return;
+            }
+          })
+
+          document.getElementById('ijazah_sekolah').addEventListener('change', function() {
+            var file = this.files[0].name;
+            var path = document.getElementById('ijazah_sekolah').value;
+            var exe = /(\.pdf)$/i;
+            var minSize = 2000000;
+            if (!exe.exec(path)) {
+              alert("file harus berbentuk pdf");
+              document.getElementById('ijazah_sekolah').value = "";
+              document.getElementById('idIjazah').value = "";
+              return;
+            } else if (this.files[0].size > minSize) {
+              alert('maksimum file 2 MB ! ');
+              document.getElementById('ijazah_sekolah').value = "";
+              document.getElementById('idIjazah').value = "";
               return;
             }
           })
@@ -221,7 +388,7 @@
               document.getElementById('idPhoto').value = "";
               return;
             } else if (this.files[0].size > minSize) {
-              alert('maksimum file 2 MB ! ' + this.files[0].size);
+              alert('maksimum file 2 MB ! ');
               return;
             }
           })
@@ -313,37 +480,4 @@
             document.getElementById("id_user").value = $(this).attr('data-id_user');
             $('#selectkaryawan').modal('hide');
           })
-
-
-          //cek file yang di upload
-          // document.getElementById("ktp").addEventListener("change", validateFile);
-          // document.getElementById("kartu_keluarga").addEventListener("change", validateFile);
-
-          // function validateFile() {
-          //   const allowedExtensions = ['pdf'],
-          //     sizeLimit = 1000000; // 2 megabyte
-
-          //   // destructuring file nama and ukuran  from file object
-          //   const {
-          //     name: fileName,
-          //     size: fileSize
-          //   } = this.files[0];
-
-          //   /*
-          //    * nama file yang di ijinkan hanyan bisa file dengan ekstensi .pdf
-          //    * 
-          //    *
-          //    */
-          //   const fileExtension = fileName.split(".").pop();
-          //   /* 
-          //     check jika ekstensi file tidak sesuai dengan yang di tentukan 
-          //   */
-          //   if (!allowedExtensions.includes(fileExtension)) {
-          //     this.value = null;
-          //     document.getElementById('');
-          //   } else if (fileSize > sizeLimit) {
-          //     alert("file terlalu besar ! Maks 2 MB")
-          //     this.value = null;
-          //   }
-          // }
         </script>

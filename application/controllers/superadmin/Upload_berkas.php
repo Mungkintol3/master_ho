@@ -48,7 +48,7 @@ class Upload_berkas extends CI_Controller
 		$ket_kesehatan		= $_FILES['ket_kesehatan']['name'];
 		$ijazah				= $_FILES['ijazah_sekolah']['name'];
 		$photo 				= $_FILES['photo']['name'];
-		$ext = pathinfo($photo, PATHINFO_EXTENSION);
+		$ext 				= pathinfo($photo, PATHINFO_EXTENSION);
 
 		//rename file dengan nama NPK karyawan 
 		$ktp  				= $id_user . '.pdf';
@@ -93,8 +93,8 @@ class Upload_berkas extends CI_Controller
 		if (file_exists("assets/upload/berkas/ijazah/$ijazah")) {
 			unlink("assets/upload/berkas/ijazah/$ijazah");
 		}
-		if (file_exists("assets/upload/berkas/photo/$photo")) {
-			unlink("assets/upload/berkas/photo/$photo");
+		if (file_exists("assets/upload/berkas/photo/" . $photo)) {
+			unlink("assets/upload/berkas/photo/" . $photo);
 		}
 
 		if (
@@ -127,13 +127,20 @@ class Upload_berkas extends CI_Controller
 				'foto_karyawan'			=> $photo
 
 			);
-			$input = $this->m_admin->inputData($data, "tbl_berkas");
-			if ($input) {
-				$this->session->set_flashdata('upload ok', 'file successfull upload');
+			$cekiduser = $this->m_admin->cari(['id_user' => $id_user], 'tbl_berkas')->num_rows();
+
+			if ($cekiduser > 0) {
+				$this->session->set_flashdata('warning', 'histori berkas user belum di bersihkan kosongkan histori berkas ! Hubungi IT Support');
 				redirect('superadmin/Upload_berkas');
 			} else {
-				$this->session->set_flashdata('failed', 'file gagal upload');
-				redirect('superadmin/Upload_berkas');
+				$input = $this->m_admin->inputData($data, "tbl_berkas");
+				if ($input) {
+					$this->session->set_flashdata('upload ok', 'file successfull upload');
+					redirect('superadmin/Upload_berkas');
+				} else {
+					$this->session->set_flashdata('failed', 'file gagal upload');
+					redirect('superadmin/Upload_berkas');
+				}
 			}
 		} else {
 			echo "failed uploaded";
