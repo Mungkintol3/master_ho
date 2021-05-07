@@ -225,3 +225,16 @@ The above copyright notice and this permission notice shall be included in all c
           </div>
         </div>
       </nav>
+
+<script>
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/js/demos.js
+      md.initDashboardPageCharts();
+    });
+    $(document).ready( function () {
+    $('#table_id').DataTable( {
+       "pagingType": "full_numbers"
+              } );
+           } );
+  </script>
+

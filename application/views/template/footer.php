@@ -1,3 +1,4 @@
+</body>
 <footer class="footer">
         <div class="container-fluid">
           <nav class="float-left">
@@ -15,8 +16,7 @@
             </ul>
           </nav>
           <div class="copyright float-right">
-            mix with
-            <a href="https://wa.me/6287886511096?text=Murray%20are%20you%20there" target="_blank">Murry Febrians</a> for a better future.
+            <a href="https://wa.me/6287886511096?text=Murray%20are%20you%20there" target="_blank">DevByMurs
           </div>  
         </div>
       </footer>
@@ -45,19 +45,4 @@
     });
   });
   </script>
-  
-  <script>
-    $(document).ready(function() {
-      // Javascript method's body can be found in assets/js/demos.js
-      md.initDashboardPageCharts();
-    });
-            $(document).ready( function () {
-              $('#table_id').DataTable( {
-                    "pagingType": "full_numbers"
-                } );
-            } );
-
-  </script>
-</body>
-
 </html>

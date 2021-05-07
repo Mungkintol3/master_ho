@@ -28,7 +28,7 @@ class Cetak extends CI_Controller
 			'margin_footer' => 10
 		]);
 		$data2 = array(
-			'info' 		 => $this->m_admin->cari(array('id_user' => $id), "tbl_karyawan")->row(),
+			'info' 			 => $this->m_admin->cari(array('id_user' => $id), "tbl_karyawan")->row(),
 			'pendidikan'  	=> $this->m_admin->cari(array('id_user' => $id), "pendidikan")->result(),
 			'golongan'		=> $this->m_admin->cari(array("id_user" => $id), "histori_golongan")->result(),
 			'company'		=> $this->m_admin->cari(array("id_user" => $id), "histori_company")->result(),
@@ -36,8 +36,8 @@ class Cetak extends CI_Controller
 			'training'		=> $this->m_admin->cari(array("id_user" => $id), "histori_training")->result(),
 			'sp'			=> $this->m_admin->cari(array("id_user" => $id), "histori_surat_peringatan")->result(),
 			'keluarga'		=> $this->m_admin->cari(array("id_user" => $id), "tbl_keluarga")->result(),
-			'nilai'			=> $this->m_admin->shownilai(array("id_user" => $id), "histori_nilai_karyawan")->result(),
-			'human_value_assets' => $this->m_admin->showvaluea(array("id_user" => $id), "human_value_assets")->result(),
+			'nilai'			=> $this->m_admin->shownilai($id),
+			'human_value_assets' => $this->m_admin->showvaluea($id),
 		);
 		$data = $this->load->view('superadmin/mpdf', $data2, TRUE);
 		$mpdf->SetProtection(array('print'));

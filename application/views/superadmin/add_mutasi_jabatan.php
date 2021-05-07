@@ -64,12 +64,14 @@
                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
              </div>
              <div class="modal-body" id="hstatus">
-                <table class="table">
+                <table class="table" id="table_id">
+                  <thead>
                   <tr>
                     <th>No</th>
                     <th>Nama</th>
                     <th>NPK</th>
                   </tr>
+                  </thead>
                   <tbody>
                     <?php $no = 1 ; foreach($karyawan as $f) : ?>
                     <tr>
