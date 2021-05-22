@@ -39,6 +39,7 @@
                                         History Karyawan
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" data-toggle="tab">
+                                        <a class="dropdown-item" href="#Kelengkapan_berkas" data-toggle="tab">Kelengkapan Berkas</a>
                                         <a class="dropdown-item" href="#historyNilai" data-toggle="tab">History Nilai</a>
                                         <a class="dropdown-item" href="#historyDeptDiv" data-toggle="tab">History Departmen & Divisi</a>
                                         <a class="dropdown-item" href="#historyPoint" data-toggle="tab">History Point</a>
@@ -57,7 +58,7 @@
                     <div class="tab-pane active" id="biodata">
                         <div class="row">
                             <div class="col-lg-4">
-                                <img height="300" width="300" src="<?php echo base_url() ?>assets/upload/berkas/Foto_Profil/Murry.jpeg">
+                            <img height="300" width="300" src="<?php echo base_url('assets/upload/berkas/photo/'.$karyawan->photo)?>"/>
                             </div>
                             <div class="col-lg-8">
                                 <table class="table table-hover">
@@ -375,6 +376,114 @@
                             </tbody>
                         </table>
                     </div>
+                     <div class="tab-pane" id="Kelengkapan_berkas">
+                        <table class="table">
+                        <?php foreach ($berkas as $berkas) : ?>
+                            <tr>
+                            <td>KTP</td>
+                            <td>:</td>
+                            <td>   <?php
+                                 if (empty($berkas->ktp)) { ?>
+                                <button class="btn btn-sm btn-danger">Tidak Ada</button>
+                                <?php } else { ?>
+                                <a href="javascript:open5('<?= $berkas->ktp ?>')" class="btn btn-sm btn-success">Ada</a>
+                                <?php } ?></td>
+                            </tr>
+                            <tr>
+                            <td>NPWP</td>
+                            <td>:</td>
+                            <td> <?php
+                                 if (empty($berkas->npwp)) { ?>
+                                <button class="btn btn-sm btn-danger">Tidak Ada</button>
+                                <?php } else { ?>
+                                <a href="javascript:open6('<?= $berkas->npwp ?>')" class="btn btn-sm btn-success">Ada</a>
+                                <?php } ?></td>
+                            </tr>
+                            <tr>
+                            <td>Buku Rekening</td>
+                            <td>:</td>
+                            <td> <?php
+                                 if (empty($berkas->buku_rekening)) { ?>
+                                <button class="btn btn-sm btn-danger">Tidak Ada</button>
+                                <?php } else { ?>
+                                <a href="javascript:open0('<?= $berkas->buku_rekening ?>')" class="btn btn-sm btn-success">Ada</a>
+                                <?php } ?></td>
+                            </tr>
+                            <tr>
+                            <td>Surat Lamaran</td>
+                            <td>:</td>
+                            <td> <?php
+                                 if (empty($berkas->surat_lamaran)) { ?>
+                                <button class="btn btn-sm btn-danger">Tidak Ada</button>
+                                <?php } else { ?>
+                                <a href="javascript:open9('<?= $berkas->surat_lamaran ?>')" class="btn btn-sm btn-success">Ada</a>
+                                <?php } ?></td>
+                            </tr>
+                            <tr>
+                            <td>Daftar Riwayat Hidup</td>
+                            <td>:</td>
+                            <td> <?php
+                                 if (empty($berkas->daftar_riwayat_hidup)) { ?>
+                                <button class="btn btn-sm btn-danger">Tidak Ada</button>
+                                <?php } else { ?>
+                                <a href="javascript:open1('<?= $berkas->daftar_riwayat_hidup ?>')" class="btn btn-sm btn-success">Ada</a>
+                                <?php } ?></td>
+                            </tr>
+                            <tr>
+                            <td>Ijazah Sekolah</td>
+                            <td>:</td>
+                            <td> <?php
+                                 if (empty($berkas->ijazah_sekolah)) { ?>
+                                <button class="btn btn-sm btn-danger">Tidak Ada</button>
+                                <?php } else { ?>
+                                <a href="javascript:open3('<?= $berkas->ijazah_sekolah ?>')" class="btn btn-sm btn-success">Ada</a>
+                                <?php } ?></td>
+                            </tr>
+                            <tr>
+                            <td>Kartu Keluarga</td>
+                            <td>:</td>
+                            <td> <?php
+                                 if (empty($berkas->kartu_keluarga)) { ?>
+                                <button class="btn btn-sm btn-danger">Tidak Ada</button>
+                                <?php } else { ?>
+                                <a href="javascript:open4('<?= $berkas->kartu_keluarga?>')" class="btn btn-sm btn-success">Ada</a>
+                                <?php } ?></td>
+                            </tr>
+                            <tr>
+                            <td>Surat Kesehatan</td>
+                            <td>:</td>
+                            <td> <?php
+                                 if (empty($berkas->surat_kesehatan)) { ?>
+                                <button class="btn btn-sm btn-danger">Tidak Ada</button>
+                                <?php } else { ?>
+                                <a href="javascript:open8('<?= $berkas->surat_kesehatan ?>')" class="btn btn-sm btn-success">Ada</a>
+                                <?php } ?></td>
+                            </tr>
+                            <tr>
+                            <td>Surat Domisili</td>
+                            <td>:</td>
+                            <td> <?php
+                                 if (empty($berkas->surat_domisili)) { ?>
+                                <button class="btn btn-sm btn-danger">Tidak Ada</button>
+                                <?php } else { ?>
+                                <a href="javascript:open2('<?= $berkas->surat_domisili ?>')" class="btn btn-sm btn-success">Ada</a>
+                                <?php } ?></td>
+                            </tr>
+                            <tr>
+                            <td>SKCK</td>
+                            <td>:</td>
+                            <td> <?php
+                                 if (empty($berkas->skck)) { ?>
+                                <button class="btn btn-sm btn-danger">Tidak Ada</button>
+                                <?php } else { ?>
+                                <a href="javascript:open10('<?= $berkas->skck ?>')" class="btn btn-sm btn-success">Ada</a>
+                                <?php } ?></td>
+                            </tr>
+                            
+                            <?php endforeach ?>
+                        </table>
+                        <button style="float: right;" data-info="<?= $karyawan->id ?>" type="button" class="btn btn-primary" data-toggle="modal" data-target="#update_berkas">Update Berkas Karyawan</button>
+                    </div>
                     <div class="tab-pane" id="historyNilai">
                         <table class="table">
                             <tr>
@@ -543,6 +652,25 @@
     </div>
     <!-- end of modal  -->
 
+    <!-- modal detail update berkas karyawan -->
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="update_berkas" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Perbarui Berkas Karyawan <?= $karyawan->nama ?></h4>
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                </div>
+                <div class="modal-body" id="updateberkaskaryawan">
+
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+    <!-- end of modal  -->
+
     <!-- modal detail edit informasi karyawan -->
     <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="update_informasi" class="modal fade">
         <div class="modal-dialog modal-lg">
@@ -581,6 +709,23 @@
             })
         })
 
+
+        $("#update_berkas").on("show.bs.modal", function(event) {
+            var div = $(event.relatedTarget);
+            var modal = $(this);
+            var id = div.data('berkas');
+            //kirim data ke controller supplier
+            $.ajax({
+                url: "<?php echo base_url("superadmin/Upload_berkas/Update/") ?>",
+                data: "id=" + id,
+                method: "POST",
+                success: function(response) {
+                    $("#updateberkaskaryawan").html(response);
+                }
+            })
+        })
+
+
         //load modal update informasi karyawan
         $("#update_informasi").on("show.bs.modal", function(event) {
             var div = $(event.relatedTarget);
@@ -603,6 +748,16 @@
         <script type="text/javascript">
             function open<?= $i ?>(file) {
                 window.open("<?= base_url("assets/upload/" . $folder[$i] . "/") ?>" + file, "width=650", "height=650", "menubar=yes", "resizeable=yes");
+            }
+        </script>
+    <?php } ?>
+
+     <?php
+    $folder = array('buku rekening', 'daftar riwayat hidup', 'domisili', 'ijazah', 'kartu keluarga','ktp','npwp','photo','surat kesehatan','surat lamaran','skck');
+    for ($i = 0; $i < count($folder); $i++) { ?>
+        <script type="text/javascript">
+            function open<?= $i ?>(file) {
+                window.open("<?= base_url("assets/upload/berkas/" . $folder[$i] . "/") ?>" + file, "width=650", "height=650", "menubar=yes", "resizeable=yes");
             }
         </script>
     <?php } ?>

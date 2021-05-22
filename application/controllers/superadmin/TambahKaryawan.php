@@ -105,6 +105,7 @@ class TambahKaryawan extends CI_Controller
 						'alamat_ktp'				=> $row['AB'],
 						'kontak_darurat'			=> $row['AC'],
 						'join_date'					=> $row['AD'],
+						'photo'						=> $row['AH'],
 
 					));
 

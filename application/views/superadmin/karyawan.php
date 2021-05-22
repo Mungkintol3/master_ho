@@ -31,15 +31,18 @@
                      <td class="text-center"><?= $result->position?></td>
                      <td class="text-center"><?= $result->wilayah?></td>
                      <td class="td-actions text-center">  
-                          <a type="button" class="btn btn-success btn-fab btn-fab-mini btn-round" data-toggle="modal" data-target="#berkas_karyawan">
+                          <!-- <a type="button" class="btn btn-success btn-fab btn-fab-mini btn-round" data-toggle="modal" data-target="#berkas_karyawan">
                             <i class="material-icons">person</i>
-                          </a>
+                          </a> -->
                           <a href="<?= base_url('superadmin/Karyawan/Edit_karyawan/' . $result->id_user) ?>" class="btn btn-info btn-fab btn-fab-mini btn-round">
                             <i class="material-icons">edit</i>
                           </a>
                           <a  href="<?= base_url('superadmin/Cetak/view/' . $result->id_user) ?>" class="btn btn-danger btn-fab btn-fab-mini btn-round">
                             <i class="material-icons">face</i>
                           </a>
+                          <a  href="<?= base_url('superadmin/Karyawan/Replacement/' . $result->id_user) ?>" class="btn btn-warning btn-fab btn-fab-mini btn-round">
+                            <i class="material-icons">face</i>
+                          </a> 
                           <a onclick="return confirm('hapus semua data karyawan')" href="<?= base_url('superadmin/Karyawan/delete/' . $result->id_user) ?>" class="btn btn-danger btn-fab btn-fab-mini btn-round">
                             <i class="material-icons">close</i>
                           </a>
@@ -61,11 +64,17 @@
                   <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                        <h3 align="center">Berkas Karyawan</h3>
-                        <form method="post" id="#">
-                                    <div class="form-row">
-                                
-                                  </div>
-                    </form>
+                        
+                    </div>
+                  </div>
+                </div>
+<!-- End of modal update biodata karyawan -->
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="Replacement" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                       <h3 align="center">Berkas Karyawan</h3>
+                        
                     </div>
                   </div>
                 </div>
@@ -77,15 +86,29 @@
      $('#berkas_karyawan').on('show.bs.modal', function (event) {
              var div = $(event.relatedTarget)  ;// Tombol dimana modal di tampilkan
              var modal          = $(this) ;
-             var id = div.data('id');
+             var id = div.data("id");
              // kirim data ke controller anggota lewat ajax
              $.ajax({
                 url :"<?= base_url("superadmin/Karyawan/loadModal") ?>",
                 method : "GET",
-                data : "id"+ id ,
+                data : "id". id ,
                 success : function(response){
                     $("#berkas_karyawan").html(response);
                 }
              })
          });
+
+    $('#Replacement').on('show.bs.modal', function(ecenet){
+      var div = $(event.relatedTarget);
+      var modal = $(this);
+      var id = div.data("id");
+      $.ajax({
+        url: "<?php base_url("")?>",
+        method: "POST",
+        data: "id", id,
+        success : function(response){
+          $("#Replacement").html(response);
+        }
+      })
+    })
 </script>

@@ -100,7 +100,6 @@ class Promosi extends CI_Controller
 				echo "error";
 			}
 		}
-		/**/
 	}
 
 	//tambah data mutasi jabatan ke histori

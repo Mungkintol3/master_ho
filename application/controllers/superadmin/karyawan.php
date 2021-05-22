@@ -78,6 +78,7 @@ class Karyawan extends CI_Controller
 	public function Edit_karyawan($id)
 	{
 		$data = array(
+			'berkas'		=> $this->m_admin->cari(array("id_user" => $id), "tbl_berkas")->result(),	
 			'karyawan'		=> $this->m_admin->cari(array("id_user" => $id), "tbl_karyawan")->row(),
 			'golongan'		=> $this->m_admin->cari(array("id_user" => $id), "histori_golongan")->result(),
 			'company'		=> $this->m_admin->cari(array("id_user" => $id), "histori_company")->result(),
@@ -90,6 +91,7 @@ class Karyawan extends CI_Controller
 			'keluarga'		=> $this->m_admin->cari(array("id_user" => $id), "tbl_keluarga")->result(),
 			'join_pendidikan' => $this->m_admin->showPendidikan($id)->result(),
 			'human_value_assets' => $this->m_admin->cari(array("id_user" => $id), "human_value_assets")->result(),
+			'berkas'		=> $this->m_admin->cari(array("id_user" => $id), "tbl_berkas")->result(),
 			'url' 			=> $this->uri->segment(2)
 		);
 		//$this->output->cache(1);
@@ -127,6 +129,64 @@ class Karyawan extends CI_Controller
 	}
 
 
+	public function Replacement($id)
+	{
+		 $data = array(
+			'info' 			 => $this->m_admin->cari(array('id_user' => $id), "tbl_karyawan")->row(),
+			'pendidikan'  	=> $this->m_admin->cari(array('id_user' => $id), "pendidikan")->result(),
+			'golongan'		=> $this->m_admin->cari(array("id_user" => $id), "histori_golongan")->result(),
+			'company'		=> $this->m_admin->cari(array("id_user" => $id), "histori_company")->result(),
+			'jabatan'		=> $this->m_admin->cari(array("id_user" => $id), "promosi_jabatan")->result(),
+			'training'		=> $this->m_admin->cari(array("id_user" => $id), "histori_training")->result(),
+			'sp'			=> $this->m_admin->cari(array("id_user" => $id), "histori_surat_peringatan")->result(),
+			'keluarga'		=> $this->m_admin->cari(array("id_user" => $id), "tbl_keluarga")->result(),
+			'nilai'			=> $this->m_admin->shownilai($id),
+			'human_value_assets' => $this->m_admin->showvaluea($id),
+			'replacement'	=> $this->m_admin->getData("tbl_karyawan")->result(),
+			'url' 			=> $this->uri->segment(2)
+		);
+        // $this->load->view('template/header',$data);
+        $this->load->view('superadmin/replacement',$data);
+        // $this->load->view('template/footer');
+	}
+
+	public function Cetak($id)
+	{
+		$mpdf = new \Mpdf\Mpdf([
+			'margin_left' => 20,
+			'margin_right' => 15,
+			'margin_top' => 48,
+			'margin_bottom' => 25,
+			'margin_header' => 10,
+			'margin_footer' => 10
+		]);
+		$data2 = array(
+			'info' 			 => $this->m_admin->cari(array('id_user' => $id), "tbl_karyawan")->row(),
+			'pendidikan'  	=> $this->m_admin->cari(array('id_user' => $id), "pendidikan")->result(),
+			'golongan'		=> $this->m_admin->cari(array("id_user" => $id), "histori_golongan")->result(),
+			'company'		=> $this->m_admin->cari(array("id_user" => $id), "histori_company")->result(),
+			'jabatan'		=> $this->m_admin->cari(array("id_user" => $id), "promosi_jabatan")->result(),
+			'training'		=> $this->m_admin->cari(array("id_user" => $id), "histori_training")->result(),
+			'sp'			=> $this->m_admin->cari(array("id_user" => $id), "histori_surat_peringatan")->result(),
+			'keluarga'		=> $this->m_admin->cari(array("id_user" => $id), "tbl_keluarga")->result(),
+			'nilai'			=> $this->m_admin->shownilai($id),
+			'human_value_assets' => $this->m_admin->showvaluea($id),
+			'replacement'	=> $this->m_admin->getData("tbl_karyawan")->result(),
+			'url' 			=> $this->uri->segment(2)
+		);
+		$data = $this->load->view('superadmin/replacement', $data2, TRUE);
+		$mpdf->SetProtection(array('print'));
+		$mpdf->SetTitle("Replacement");
+		$mpdf->SetAuthor("Murry Fuckin' Febrians");
+		$mpdf->SetWatermarkText("SIGAP");
+		$mpdf->showWatermarkText = true;
+		$mpdf->watermark_font = 'DejaVuSansCondensed';
+		$mpdf->watermarkTextAlpha = 0.1;
+		$mpdf->SetDisplayMode('fullpage');
+		$mpdf->SetHTMLFooter("&copy;Murry Febriansyah Putra");
+		$mpdf->WriteHTML($data);
+		$mpdf->Output();
+	}
 
 
 	public function loadModal($id)
@@ -134,12 +194,9 @@ class Karyawan extends CI_Controller
 		$npk = $this->input->get("npk");
 		$data['npk'] = $id;
 		$data['berkas'] = $id;
-
 		$data['row']  = $this->m_admin->getKar("tbl_karyawan", array('id_user' => $id))->row();
 		$this->load->view("superadmin/karyawan", $data);
 	}
-
-
 
 
 	//modal edit biodata data karyawan
@@ -150,6 +207,7 @@ class Karyawan extends CI_Controller
 		$this->load->view('superadmin/update_modalbiodata_karyawan', $data);
 	}
 
+	//modal edit
 
 	//modal edit informasi karyawan
 	public function modaleditInformasi()
