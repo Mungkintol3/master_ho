@@ -56,8 +56,13 @@ class Company extends CI_Controller
 			"join_date"			=> $tgl,
 		);
 
+		//tambahkan data ke log aktivitas
+		$info  = "Update perubahan histori company  karyawan atas npk " . $npk . " - " . $nama;
+
 		$update = $this->m_admin->update($dataupdate, "tbl_karyawan", array("id" => $id));
 		if ($update) {
+			//log aktivitas admin ketika merubah data
+			helper_log($this->session->userdata('npk'), $this->session->userdata('nama'), $npk, $info);
 			$this->m_admin->inputData($data, "histori_company");
 			echo "company " . $nama . "-" . $npk . " update";
 		} else {
@@ -68,29 +73,28 @@ class Company extends CI_Controller
 	public function UploadExcel()
 	{
 		$data = array();
-		if(isset($_POST['submit'])){
+		if (isset($_POST['submit'])) {
 			$upload = $this->m_admin->uploadfile($this->filename);
-			if($upload['result'] =="success") {
-                    // Load plugin PHPExcel nya
-                    include APPPATH.'third_party/PHPExcel/PHPExcel.php';
+			if ($upload['result'] == "success") {
+				// Load plugin PHPExcel nya
+				include APPPATH . 'third_party/PHPExcel/PHPExcel.php';
 
-                    $excelreader = new PHPExcel_Reader_Excel2007();
-                    $loadexcel = $excelreader->load('assets/upload/'.$this->filename.'.xlsx'); // Load file yang tadi diupload ke folder excel
-                    $sheet = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
+				$excelreader = new PHPExcel_Reader_Excel2007();
+				$loadexcel = $excelreader->load('assets/upload/' . $this->filename . '.xlsx'); // Load file yang tadi diupload ke folder excel
+				$sheet = $loadexcel->getActiveSheet()->toArray(null, true, true, true);
 
-                    // Masukan variabel $sheet ke dalam array data yang nantinya akan di kirim ke file form.php
-                    // Variabel $sheet tersebut berisi data-data yang sudah diinput di dalam excel yang sudha di upload sebelumnya
-                    $data['sheet'] = $sheet ;
-                	}else{
-                    $data['upload_error'] = $upload['error']; // Ambil pesan error uploadnya untuk dikirim ke file form dan ditampilkan
-                    echo $upload['error'];
-                }
-
+				// Masukan variabel $sheet ke dalam array data yang nantinya akan di kirim ke file form.php
+				// Variabel $sheet tersebut berisi data-data yang sudah diinput di dalam excel yang sudha di upload sebelumnya
+				$data['sheet'] = $sheet;
+			} else {
+				$data['upload_error'] = $upload['error']; // Ambil pesan error uploadnya untuk dikirim ke file form dan ditampilkan
+				echo $upload['error'];
+			}
 		}
 		$data1['url'] = $this->uri->segment(2);
- 		$this->load->view('template/header',$data1);
- 		$this->load->view('superadmin/Form_upload_company',$data);
- 		$this->load->view('template/footer');
+		$this->load->view('template/header', $data1);
+		$this->load->view('superadmin/Form_upload_company', $data);
+		$this->load->view('template/footer');
 	}
 
 	public function Upload()
@@ -126,15 +130,14 @@ class Company extends CI_Controller
 
 					//update company pada tbl_karyawan
 					$update = array(
-							'id_user'			=> $row['B'],
-							'company'			=> $row['E'],
-							'join_date'			=> $row['F']
+						'id_user'			=> $row['B'],
+						'company'			=> $row['E'],
+						'join_date'			=> $row['F']
 					);
 
 					//update npk
-					
+
 				}
-				
 			}
 			$numrow++; // Tambah 1
 		}
@@ -142,7 +145,7 @@ class Company extends CI_Controller
 		if ($cekNPK == 0) {
 			echo "";
 		} else {
-			$data1 = $this->m_admin->update($update,"tbl_karyawan",array("id_user" => $row['B']));
+			$data1 = $this->m_admin->update($update, "tbl_karyawan", array("id_user" => $row['B']));
 			if ($data1) {
 				$input = $this->m_admin->inputArray("histori_company", $data);
 				$this->session->set_flashdata("success", "Berhasil");
@@ -151,6 +154,5 @@ class Company extends CI_Controller
 				echo "Gagal";
 			}
 		}
-
 	}
 }

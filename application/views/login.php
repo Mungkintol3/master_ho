@@ -16,7 +16,7 @@
 		<form method="post" onsubmit="return validasi()" action="<?= base_url('Login/Ceklogin') ?>">
 			<div class="input">
 				<!-- <label>NPK</label> -->
-				<input type="text" name="npk" id="npk" placeholder="Masukan NPK anda" data-validate="NPK is Required"><br>
+				<input type="text" name="npk" id="npk" autocomplete="off" placeholder="Masukan NPK anda" data-validate="NPK is Required"><br>
 				<!-- <label>PASSWORD</label> -->
 				<input type="password" name="password" id="password" placeholder="Masukan Password anda" data-validate="Password is Reuired">
 				<button type="submit">LOGIN</button>

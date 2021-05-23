@@ -68,7 +68,7 @@ class M_admin extends CI_Model
 	public function shownilai($id_user)
 	{
 		$query = $this->db->query("SELECT * FROM histori_nilai_karyawan WHERE tahun >= now()-interval 3 year AND id_user = $id_user");
-		return $query->result();	
+		return $query->result();
 	}
 
 	//show value assets passed 3 years
@@ -122,5 +122,12 @@ class M_admin extends CI_Model
 	{
 		$query = $this->db->query("SELECT education_update , COUNT(education_update) AS total FROM tbl_karyawan  where education_update =  '$level'  ");
 		return $query->row();
+	}
+
+	public function save_log($param)
+	{
+		$sql    = $this->db->insert_string('log_aktivitas', $param);
+		$ex     = $this->db->query($sql);
+		return $this->db->affected_rows($sql);
 	}
 }
