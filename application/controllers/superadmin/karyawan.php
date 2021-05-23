@@ -131,7 +131,7 @@ class Karyawan extends CI_Controller
 
 	public function Replacement($id)
 	{
-		 $data = array(
+		 $data2 = array(
 			'info' 			=> $this->m_admin->cari(array('id_user' => $id), "tbl_karyawan")->row(),
 			'pendidikan'  	=> $this->m_admin->cari(array('id_user' => $id), "pendidikan")->result(),
 			'golongan'		=> $this->m_admin->cari(array("id_user" => $id), "histori_golongan")->result(),
@@ -145,53 +145,10 @@ class Karyawan extends CI_Controller
 			'url' 			=> $this->uri->segment(2)
 		);
         //$this->load->view('template/header',$data);
-        $this->load->view('superadmin/replacement',$data);
-        $this->load->view('template/footer');
+		$this->load->view('superadmin/replacement',$data2);
+		$this->load->view('template/footer');
+    	
 	}
-
-	public function FormReplacement()
-	{
-		$this->load->view('superadmin/form_replacement');
-	}
-
-	public function Cetak($id)
-	{
-		$mpdf = new \Mpdf\Mpdf([
-			'margin_left' => 20,
-			'margin_right' => 15,
-			'margin_top' => 48,
-			'margin_bottom' => 25,
-			'margin_header' => 10,
-			'margin_footer' => 10
-		]);
-		$data1 = $this->m_admin->getData('tbl_karyawan')-result();
-		$data2 = array(
-			'info' 			=> $this->m_admin->cari(array('id_user' => $id), "tbl_karyawan")->row(),
-			'pendidikan'  	=> $this->m_admin->cari(array('id_user' => $id), "pendidikan")->result(),
-			'golongan'		=> $this->m_admin->cari(array("id_user" => $id), "histori_golongan")->result(),
-			'company'		=> $this->m_admin->cari(array("id_user" => $id), "histori_company")->result(),
-			'jabatan'		=> $this->m_admin->cari(array("id_user" => $id), "promosi_jabatan")->result(),
-			'training'		=> $this->m_admin->cari(array("id_user" => $id), "histori_training")->result(),
-			'keluarga'		=> $this->m_admin->cari(array("id_user" => $id), "tbl_keluarga")->result(),
-			'nilai'			=> $this->m_admin->shownilai($id),
-			'human_value_assets' => $this->m_admin->showvaluea($id),
-			'replacement'	=> $this->m_admin->getData("tbl_karyawan")->result(),
-			'url' 			=> $this->uri->segment(2)
-		);
-		$data = $this->load->view('superadmin/replacement', $data2, $data1, TRUE);
-		$mpdf->SetProtection(array('print'));
-		$mpdf->SetTitle("Replacement");
-		$mpdf->SetAuthor("Murry Fuckin' Febrians");
-		$mpdf->SetWatermarkText("SIGAP");
-		$mpdf->showWatermarkText = true;
-		$mpdf->watermark_font = 'DejaVuSansCondensed';
-		$mpdf->watermarkTextAlpha = 0.1;
-		$mpdf->SetDisplayMode('fullpage');
-		$mpdf->SetHTMLFooter("&copy;Murry Febriansyah Putra");
-		$mpdf->WriteHTML($data);
-		$mpdf->Output();
-	}
-
 
 	public function loadModal($id)
 	{

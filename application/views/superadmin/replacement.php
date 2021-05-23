@@ -255,7 +255,7 @@ mpdf-->
 <br>
 <div>
 					<table width="58%" style="font-family: serif;" cellpadding="3">
-                		 <form action="<?= base_url('superadmin/karyawan/Cetak')?>" method="post" enctype="multipart/form-data">
+                		 <form action="#" method="post" enctype="multipart/form-data">
 							<tr>
                 				<thead>
                 					<td><b>REPLACEMENT PERSON</b></td>
@@ -295,7 +295,7 @@ mpdf-->
 							</tr>
 							<tr>
 							<td>
-							 <button type="submit" id="submit" class="btn btn-info">Simpan Perubahan</button>
+							 <button onclick="window.print()" class="btn btn-info">Cetak PDF</button>
 							</td>
 							</tr>
 						</form>
@@ -418,5 +418,4 @@ mpdf-->
 	  document.getElementById("age").value		 = $(this).attr('data-age');
       $('#selectkaryawan').modal('hide');
   })
-
   </script>
