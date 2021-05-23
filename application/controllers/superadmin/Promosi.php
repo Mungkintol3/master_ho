@@ -93,6 +93,8 @@ class Promosi extends CI_Controller
 
 			$update = $this->m_admin->update($dataupdate, "tbl_karyawan", array("id" => $id));
 			if ($update) {
+				$info  = "Update kelompok jabatan dan golongan karyawan atas npk " . $npk . " - " . $nama;
+				helper_log($this->session->userdata('npk'), $this->session->userdata('nama'), $npk, $info);
 				$this->m_admin->inputData($data, "promosi_jabatan");
 				$this->m_admin->inputData($data2, "histori_golongan");
 				echo "berhasil";
@@ -165,6 +167,8 @@ class Promosi extends CI_Controller
 
 			$update = $this->m_admin->update($dataupdate, "tbl_karyawan", array("id" => $id));
 			if ($update) {
+				$info  = "Update Mutasi karyawan atas npk " . $npk . " - " . $nama;
+				helper_log($this->session->userdata('npk'), $this->session->userdata('nama'), $npk, $info);
 				$this->m_admin->inputData($data, "histori_karir");
 				echo "sukses";
 			} else {
@@ -250,6 +254,8 @@ class Promosi extends CI_Controller
 
 			$update = $this->m_admin->update($dataupdate, "tbl_karyawan", array("id" => $id));
 			if ($update) {
+				$info  = "Update demosi karyawan atas npk " . $npk . " - " . $nama;
+				helper_log($this->session->userdata('npk'), $this->session->userdata('nama'), $npk, $info);
 				$this->m_admin->inputData($data, "demosi_jabatan");
 				$this->m_admin->inputData($data2, "histori_golongan");
 				echo "sukses";

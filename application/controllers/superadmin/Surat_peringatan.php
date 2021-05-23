@@ -67,8 +67,10 @@ class Surat_peringatan extends CI_Controller
 				'file'							=> $berkas
 			);
 
+			$info  = "Input Surat Peringatan karyawan atas npk " . $npk . " - " . $nama;
 			$input = $this->m_admin->inputData($data, "histori_surat_peringatan");
 			if ($input == true) {
+				helper_log($this->session->userdata('npk'), $this->session->userdata('nama'), $npk, $info);
 				echo "sukses";
 			} else {
 				echo "gagal";

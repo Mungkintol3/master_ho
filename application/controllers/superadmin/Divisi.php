@@ -68,6 +68,8 @@ class Divisi extends CI_Controller
 				'tanggal'			=> $tgl,
 				'tahun'				=> substr($tgl, 0, 4)
 			);
+			$info  = "Ganti divisi dan departement terbaru karyawan atas npk " . $npk . " - " . $nama;
+			helper_log($this->session->userdata('npk'), $this->session->userdata('nama'), $npk, $info);
 			$this->m_admin->inputData($data, "histori_divisi");
 			echo "data " . $nama . "-" . $npk . " update";
 		} else {

@@ -57,44 +57,45 @@ class Human_assets_value extends CI_Controller
 
 		$input = $this->m_admin->inputData($data, "human_value_assets");
 		if ($input == true) {
+			$info  = "Update Human Assets Value atas npk " . $npk . " - " . $nama;
+			helper_log($this->session->userdata('npk'), $this->session->userdata('nama'), $npk, $info);
 			echo "sukses";
 		} else {
 			echo "gagal";
 		}
 	}
-	
+
 	public function uploadExcel()
 	{
 		$data = array();
-		if(isset($_POST['submit'])){
+		if (isset($_POST['submit'])) {
 			$upload = $this->m_admin->uploadfile($this->filename);
-			if($upload['result'] =="success") {
-                    // Load plugin PHPExcel nya
-                    include APPPATH.'third_party/PHPExcel/PHPExcel.php';
+			if ($upload['result'] == "success") {
+				// Load plugin PHPExcel nya
+				include APPPATH . 'third_party/PHPExcel/PHPExcel.php';
 
-                    $excelreader = new PHPExcel_Reader_Excel2007();
-                    $loadexcel = $excelreader->load('assets/upload/'.$this->filename.'.xlsx'); // Load file yang tadi diupload ke folder excel
-                    $sheet = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
+				$excelreader = new PHPExcel_Reader_Excel2007();
+				$loadexcel = $excelreader->load('assets/upload/' . $this->filename . '.xlsx'); // Load file yang tadi diupload ke folder excel
+				$sheet = $loadexcel->getActiveSheet()->toArray(null, true, true, true);
 
-                    // Masukan variabel $sheet ke dalam array data yang nantinya akan di kirim ke file form.php
-                    // Variabel $sheet tersebut berisi data-data yang sudah diinput di dalam excel yang sudha di upload sebelumnya
-                    $data['sheet'] = $sheet ;
-                	}else{
-                    $data['upload_error'] = $upload['error']; // Ambil pesan error uploadnya untuk dikirim ke file form dan ditampilkan
-                    echo $upload['error'];
-                }
-
+				// Masukan variabel $sheet ke dalam array data yang nantinya akan di kirim ke file form.php
+				// Variabel $sheet tersebut berisi data-data yang sudah diinput di dalam excel yang sudha di upload sebelumnya
+				$data['sheet'] = $sheet;
+			} else {
+				$data['upload_error'] = $upload['error']; // Ambil pesan error uploadnya untuk dikirim ke file form dan ditampilkan
+				echo $upload['error'];
+			}
 		}
 
 		$data1['url'] = $this->uri->segment(2);
- 		$this->load->view('template/header',$data1);
- 		$this->load->view('superadmin/form_upload_HAV',$data);
- 		$this->load->view('template/footer');
+		$this->load->view('template/header', $data1);
+		$this->load->view('superadmin/form_upload_HAV', $data);
+		$this->load->view('template/footer');
 	}
 
 	public function Upload()
- 	{
- 		// Load plugin PHPExcel nya
+	{
+		// Load plugin PHPExcel nya
 		include APPPATH . 'third_party/PHPExcel/PHPExcel.php';
 
 		$excelreader = new PHPExcel_Reader_Excel2007();
@@ -126,6 +127,8 @@ class Human_assets_value extends CI_Controller
 						'tgl' 						=> $row['J'],
 					));
 
+					$info  = "Update Human Assets Value atas npk " . $row['C'] . " - " . $row['D'];
+					helper_log($this->session->userdata('npk'), $this->session->userdata('nama'), $row['C'], $info);
 				}
 			}
 			$numrow++; // Tambah 1
@@ -136,12 +139,11 @@ class Human_assets_value extends CI_Controller
 		} else {
 			$input = $this->m_admin->inputArray("human_value_assets", $data);
 			if ($input) {
-				$this->session->set_flashdata("success","Berhasil");
+				$this->session->set_flashdata("success", "Berhasil");
 				redirect("superadmin/Human_assets_value/uploadExcel");
 			} else {
 				echo "Gagal";
 			}
 		}
-
- 	}
+	}
 }

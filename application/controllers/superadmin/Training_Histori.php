@@ -149,14 +149,8 @@ class Training_histori extends CI_Controller
 						'tgl'						=> $row['G'],
 						'keterangan'				=> $row['H']
 					));
-					//masukan log aktiviats 
-					array_push($dataLog, array(
-						'npk'			=> $this->session->userdata('npk'),
-						'nama'			=> $this->session->userdata('nama'),
-						'tanggal'		=> date('y-m-d H:i:s'),
-						'npk_user'		=> $row['C'],
-						'keterangan'	=> $info
-					));
+					//masukan log aktivitas
+					helper_log($this->session->userdata('npk'), $this->session->userdata('nama'), $row['C'], $info);
 				}
 				// var_dump($data);
 			}
@@ -167,7 +161,7 @@ class Training_histori extends CI_Controller
 		} else {
 			$input = $this->m_admin->inputArray("histori_training", $data);
 			if ($input) {
-				$this->m_admin->inputArray("log_aktivitas", $dataLog);
+				helper_log($this->session->userdata('npk'), $this->session->userdata('nama'), $npk, $info);
 				$this->session->set_flashdata("success", "Berhasil");
 				redirect("superadmin/Training_histori/uploadExcel");
 			} else {

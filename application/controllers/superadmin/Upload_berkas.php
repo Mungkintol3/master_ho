@@ -51,17 +51,17 @@ class Upload_berkas extends CI_Controller
 		$ext 				= pathinfo($photo, PATHINFO_EXTENSION);
 
 		//rename file dengan nama NPK karyawan 
-		$ktp  				= $id_user . date('his'). md5($ktp) .'.pdf';
-		$kartu_keluarga  	= $id_user . date('his'). md5($kartu_keluarga) .'.pdf';
-		$buku_rekening		= $id_user . date('his'). md5($buku_rekening) .'.pdf';
-		$surat_lamaran		= $id_user . date('his'). md5($surat_lamaran) .'.pdf';
-		$riwayat_hidup		= $id_user . date('his'). md5($riwayat_hidup) .'.pdf';
-		$ket_domisili 		= $id_user . date('his'). md5($ket_domisili) .'.pdf';
-		$npwp 				= $id_user . date('his'). md5($npwp) .'.pdf';
-		$skck 				= $id_user . date('his'). md5($skck) .'.pdf';
-		$ket_kesehatan		= $id_user . date('his'). md5($ket_kesehatan) .'.pdf';
-		$ijazah				= $id_user . date('his'). md5($ijazah) .'.pdf';
-		$photo 				= $id_user . date('his'). md5($photo) .'.' . $ext;
+		$ktp  				= $id_user . date('his') . md5($ktp) . '.pdf';
+		$kartu_keluarga  	= $id_user . date('his') . md5($kartu_keluarga) . '.pdf';
+		$buku_rekening		= $id_user . date('his') . md5($buku_rekening) . '.pdf';
+		$surat_lamaran		= $id_user . date('his') . md5($surat_lamaran) . '.pdf';
+		$riwayat_hidup		= $id_user . date('his') . md5($riwayat_hidup) . '.pdf';
+		$ket_domisili 		= $id_user . date('his') . md5($ket_domisili) . '.pdf';
+		$npwp 				= $id_user . date('his') . md5($npwp) . '.pdf';
+		$skck 				= $id_user . date('his') . md5($skck) . '.pdf';
+		$ket_kesehatan		= $id_user . date('his') . md5($ket_kesehatan) . '.pdf';
+		$ijazah				= $id_user . date('his') . md5($ijazah) . '.pdf';
+		$photo 				= $id_user . date('his') . md5($photo) . '.' . $ext;
 
 		if (file_exists("assets/upload/berkas/ktp/$ktp")) {
 			unlink("assets/upload/berkas/ktp/$ktp");
@@ -127,7 +127,7 @@ class Upload_berkas extends CI_Controller
 				'foto_karyawan'			=> $photo
 			);
 			$data2 = array(
-				'photo'    		=> $photo	
+				'photo'    		=> $photo
 			);
 			$cekiduser = $this->m_admin->cari(['id_user' => $id_user], 'tbl_berkas')->num_rows();
 			if ($cekiduser > 0) {
@@ -137,6 +137,8 @@ class Upload_berkas extends CI_Controller
 				$this->m_admin->update($data2, "tbl_karyawan", array("id" => $id));
 				$input = $this->m_admin->inputData($data, "tbl_berkas");
 				if ($input) {
+					$info  = "Upload file berkas karyawan atas npk " . $npk . " - " . $nama;
+					helper_log($this->session->userdata('npk'), $this->session->userdata('nama'), $npk, $info);
 					$this->session->set_flashdata('upload ok', 'file successfull upload');
 					redirect('superadmin/Upload_berkas');
 				} else {
@@ -153,13 +155,13 @@ class Upload_berkas extends CI_Controller
 	{
 		$id = $this->input->post('id');
 		$data['karyawan'] = $this->m_admin->cari(array("id" => $id), "tbl_karyawan")->row();
-		$this->load->view('superadmin/modal_update_berkas', $data);	
+		$this->load->view('superadmin/modal_update_berkas', $data);
 	}
 
 	public function loadForm()
- 	{
- 		$keyword = $this->input->get("pilih"); 
- 		$data['keyword'] =  $this->input->get("pilih"); 
- 		$this->load->view("superadmin/form-upload-berkas",$data);
- 	}
+	{
+		$keyword = $this->input->get("pilih");
+		$data['keyword'] =  $this->input->get("pilih");
+		$this->load->view("superadmin/form-upload-berkas", $data);
+	}
 }

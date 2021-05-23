@@ -55,6 +55,8 @@ class Keluarga extends CI_Controller
 
 		$input = $this->m_admin->inputData($data, "tbl_keluarga");
 		if ($input == true) {
+			$info  = "Tambah anggota keluarga baru dari karyawan atas npk " . $npk . " - " . $nama;
+			helper_log($this->session->userdata('npk'), $this->session->userdata('nama'), $npk, $info);
 			echo "sukses";
 		} else {
 			echo "gagal";

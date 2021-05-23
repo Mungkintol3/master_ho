@@ -111,6 +111,8 @@ class Company extends CI_Controller
 		$pendidikan = array();
 		$cekNPK = array();
 		foreach ($sheet as $row) {
+			$info  = "Update perubahan histori company  karyawan atas npk " . $row['C'] . " - " . $row['D'];
+
 			if ($numrow > 1) {
 				//cek nisn sudah terdaftar apa belum di master siswa
 				$cekNPK = $this->m_admin->cari(array("id_user" => $row['B']), "tbl_karyawan")->num_rows();
@@ -135,8 +137,8 @@ class Company extends CI_Controller
 						'join_date'			=> $row['F']
 					);
 
-					//update npk
-
+					//log aktivitas 
+					helper_log($this->session->userdata('npk'), $this->session->userdata('nama'), $row['C'], $info);
 				}
 			}
 			$numrow++; // Tambah 1

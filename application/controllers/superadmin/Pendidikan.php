@@ -62,6 +62,8 @@ class Pendidikan extends CI_Controller
 
 		$update = $this->m_admin->update($dataupdate, "tbl_karyawan", array("id" => $id));
 		if ($update) {
+			$info  = "Perbarui pendidikan karyawan atas npk " . $npk . " - " . $nama;
+			helper_log($this->session->userdata('npk'), $this->session->userdata('nama'), $npk, $info);
 			$this->m_admin->inputData($data, "pendidikan");
 			echo "pendidikan " . $nama . "-" . $npk . " update";
 		} else {

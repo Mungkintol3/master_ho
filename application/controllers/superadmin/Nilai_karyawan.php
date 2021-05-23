@@ -100,6 +100,7 @@ class Nilai_karyawan extends CI_Controller
 					));
 
 					//
+					helper_log($this->session->userdata('npk'), $this->session->userdata('nama'), $row['C'], $info);
 				}
 			}
 			$numrow++; // Tambah 1
@@ -110,7 +111,6 @@ class Nilai_karyawan extends CI_Controller
 		} else {
 			$input = $this->m_admin->inputArray("histori_nilai_karyawan", $data);
 			if ($input) {
-				$this->m_admin->inputArray("log_aktivitas", $dataLog);
 				$this->session->set_flashdata("success");
 				redirect("superadmin/Nilai_karyawan/upload_histori_nilai");
 			} else {

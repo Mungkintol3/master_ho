@@ -57,6 +57,8 @@ class NPK extends CI_Controller
 
 		$update = $this->m_admin->update($dataupdate, "tbl_karyawan", array("id" => $id));
 		if ($update) {
+			$info  = "Perbarui NPK karyawan atas npk " . $npk_lama . " - " . $nama;
+			helper_log($this->session->userdata('npk'), $this->session->userdata('nama'), $npk_lama, $info);
 			$this->m_admin->inputData($data, "histori_npk");
 			echo "sukses";
 		} else {
