@@ -1,5 +1,28 @@
 <html>
 <head>
+  <!-- <link rel="apple-touch-icon" sizes="76x76" href="<?= base_url('assets/img/')?>sigap.png"> -->
+  <link rel="icon" type="favicon" href="<?= base_url('assets/img/')?>sigap.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    Master Data HO
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport'/>
+  <!-- chartis -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/assets/css/font-google.css" />
+  <link rel="stylesheet" href="<?= base_url() ?>/assets/font-awesome/css/font-awesome.min.css">
+  <!-- CSS Files -->
+  <link href="<?php echo base_url()?>assets/css/material-dashboard.css" rel="stylesheet" />
+   <!--  <script src="<?php echo base_url()?>assets/js/core/jquery.min.js"></script> -->
+  <script src="<?php echo base_url()?>assets/js/jquery-3-1.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="<?= base_url('assets/sweetalert2/')?>sweetalert2.min.css">
+  <script src="<?= base_url('assets/sweetalert2/')?>sweetalert2.min.js"></script>
+
+
+</head>
 <style>
 body {font-family: tahoma;
 	font-size: 10pt;
@@ -34,17 +57,15 @@ table thead td { background-color: #EEEEEE;
 	text-align: "." center;
 }
 .Foto_profil{
-	border: 5px solid #000000;
 	position:absolute;
-	left:200mm;
+	margin-top:-100px;
+	padding-left:20px;
+	right:1px;
 	top: 70mm; 
 	width: 100mm;
-	margin-right:500px;
+	margin-right:10px;
 	overflow: auto;
 }
-	@media{
-		
-	}
 
 </style>
 </head>
@@ -70,8 +91,10 @@ mpdf-->
 <td width="10%">&nbsp;</td>
 <td width="45%" style="border: 0.1mm solid #888888;"><span style="font-size: 7pt; color: #555555; font-family: sans;">SHIP TO:</span><br /><br />345 Anotherstreet<br />Little Village<br />Their City<br />CB22 6SO</td>
 </tr></table> -->
-<br />
-<a href="#">Cari Karyawan</a>
+<br/>
+					 <div class="form-group">
+                      <button type="button " data-toggle="modal" data-target="#selectkaryawan" class="btn btn-success">Cari Karyawan <i class="fa fa-search"></i> </button>
+                    </div>
 
 				<div class="Foto_profil">
 					 <img height="150" width="150" style  src="<?= base_url("assets/upload/berkas/photo/".$info->photo) ?>">
@@ -84,40 +107,37 @@ mpdf-->
                 			</tr>
                 			<tr>
                 				<td class="text-left">NPK</td>
-                				<td class="text-center">:</td>
-                				<td>    </td>
-                				<td class="text-right"><?= $info->npk ?></td>
+                				<td>:</td>
+                				<td><?= $info->npk ?></td>
                 			</tr>
                 			<tr>
                 				<td class="text-left">Nama Lengkap</td>
-                				<td class="text-center">:</td>
-                				<td>    </td>
-                				<td class="text-right"><?= $info->nama ?> </td>
+                				<td>:</td>
+                				<td><?= $info->nama ?> </td>
                 			</tr>
-                			<tr class="text-right">
+                			<tr >
                 				<td class="text-left">Tempat,Tanggal Lahir</td>
                 				<td>:</td>
-                				<td>     </td>
+
                 				<td><?= $info->tempat_lahir . "," . date('d F Y', strtotime($info->tgl_lahir))?></td>
                 			</tr>
-							<tr class="text-right">
+							<tr >
 								<td class="text-left">Job Title</td>
 								<td>:</td>
-								<td>	</td>
+							
 								<td><?= $info->kel_jabatan?></td>
 							</tr>
 							<tr>
                 				<td class="text-left">Join Sigap</td>
-                				<td class="text-center">:</td>
-                				<td>    </td>
-                				<td class="text-right"><?= date('d F Y', strtotime($info->join_date))?></td>
+                				<td>:</td>
+                   				<td><?= date('d F Y', strtotime($info->join_date))?></td>
                 			</tr>
 							<?php foreach($jabatan as $jabatan):?>
                                 <tr>
-                                    <td >Latest Promotion</td>
-                                    <td >:</td>
-                                    <td >	</td>
-                                    <td ><?= date('d F Y', strtotime($jabatan->tanggal))?></td>
+                                    <td class="text-left" >Latest Promotion</td>
+                                    <td>:</td>
+                                   
+                                    <td><?= date('d F Y', strtotime($jabatan->tanggal))?></td>
                                 </tr>
                             <?php endforeach?>
                 		</table><br>
@@ -230,31 +250,173 @@ mpdf-->
                 	</div>
                 </div>
             </div>
-</body>
-<div name="myFooter	" style="text-align: center; font-style: italic; font-size: 10pt;">&copy;Murry Febriansyah Putra</div>
 
+
+<br>
 <div>
-				<form id="updatejabatan" enctype="multipart/form-data" method="post" action="#" class="form-horizontal">
-                    <div class="form-group">
-                      <input type="hidden" name="id" id="id">
-                      <input type="hidden" name="id_user" id="id_user">
-                      <input readonly="" type="text" name="nama" id="nama" placeholder="Enter Nama" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                      <input readonly="" type="text" name="npk" id="npk" placeholder="Enter NPK" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                      <input type="text" readonly="" name="promosi_old" id="jabatan_old" placeholder="Jabatan Sekarang" class="form-control">
-                    </div>
-                     <div class="form-group">
-                      <input type="text"  name="golongan" id="golongan" placeholder="Input Golongan Kerja" class="form-control">
-                    </div>
-                    <div class="form-group">
-                      <input  type="text" id="tanggal" name="tanggal"  placeholder="Enter Tahun" class="form-control">
-                    </div>
-                    <button type="submit" id="submit" class="btn btn-info">Simpan Perubahan</button>
-                  </form>
+					<table width="58%" style="font-family: serif;" cellpadding="3">
+                		 <form action="<?= base_url('superadmin/karyawan/Cetak')?>" method="post" enctype="multipart/form-data">
+							<tr>
+                				<thead>
+                					<td><b>REPLACEMENT PERSON</b></td>
+                				</thead>
+                			</tr>
+                			<tr>
+								<td>Nama Lengkap</td>
+								<td>:</td>
+                				 <input type="hidden" name="id" id="id">
+                     			 <input type="hidden" name="id_user" id="id_user">
+                				<td><input readonly="" type="text" name="nama" id="nama" placeholder="Enter Nama" class="form-control"></td>
+                			</tr>
+                			<tr>
+                				<td class="text-left">NPK</td>
+                				<td>:</td>
+                				<td><input readonly="" type="text" name="npk" id="npk" placeholder="Enter NPK" class="form-control"></td>
+                			</tr>
+                			<tr >
+                				<td class="text-left">Position</td>
+                				<td>:</td>
+                				<td><input type="text" readonly="" name="position" id="position" placeholder="Posisi Sekarang" class="form-control"></td>
+                			</tr>
+							<tr >
+								<td class="text-left">Grade</td>
+								<td>:</td>
+								<td><input type="text" readonly="" name="grade" id="grade" placeholder="Gol Sekarang" class="form-control"></td>
+							</tr>
+							<tr>
+                				<td class="text-left">Age</td>
+                				<td>:</td>
+                   				<td><input type="text" readonly="" name="age" id="age" placeholder="Umur" class="form-control"></td>
+                			</tr>
+							<tr>
+							<td class="text-left">Length Of Service</td>
+							<td>:</td>
+							<td><input type="text" readonly="" name="promosi_old" id="jabatan_old" placeholder="Jabatan Sekarang" class="form-control"></td>
+							</tr>
+							<tr>
+							<td>
+							 <button type="submit" id="submit" class="btn btn-info">Simpan Perubahan</button>
+							</td>
+							</tr>
+						</form>
+                		</table>
 </div>
 </html>
+</body>
+	<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="selectkaryawan" class="modal fade">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<div class="modal-header">
+				Data Karyawan
+					<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+				</div>
+				<div class="modal-body" id="hstatus">
+					<table class="table" id="table_id">
+					<thead>
+					<tr>
+						<th>No</th>
+						<th>Nama</th>
+						<th>NPK</th>
+					</tr>
+					</thead>
+					<tbody>
+						<?php $no = 1 ; foreach($replacement as $f) : ?>
+						<tr>
+						<td><?= $no++ ?></td>
+						<td>
+							<a class="btn btn-success btn-sm click"
+							data-id="<?= $f->id ?>"
+							data-id_user="<?= $f->id_user ?>" 
+							data-npk="<?= $f->npk ?>" 
+							data-nama="<?= $f->nama ?>"
+							data-position="<?= $f->kel_jabatan?>"
+							data-grade="<?= $f->gol_kerja ?>"
+							data-age="<?= $f->age?>"
+							>
+								<?= $f->nama ?>
+							</a>
+						</td>
+						<td><?= $f->npk ?></td>
+						</tr>
+						<?php endforeach ?>
+					</tbody>
+					</table>
+					</div>
+				</div>
+			</div>
+		</form>
+		</div>
+		<div name="myFooter	" style="text-align: center; font-style: italic; font-size: 10pt;">&copy;Murry Febriansyah Putra</div>
+
+  <script type="text/javascript">
+     function cekexe(){
+        const file = document.getElementById('file');
+        const path  = file.value ;
+        const exe = /(\.pdf)$/i;
+        if(!exe.exec(path)){
+          alert("file harus berbentuk pdf");
+          file.value = "";
+          return ;
+        }
+      }
+
+      $(function(){
+        
+          $("#replacement").on('submit',function(e){
+            var postData = new FormData(this);
+            e.preventDefault();
+            if(document.getElementById('npk').value == "" ){
+              alert("data karyawan masih kosong")
+            }else if(document.getElementById('new_jabatan').value == "" ){
+              alert("jabatan baru masih kosong")
+            }else if(document.getElementById('range').value == "" ){
+              alert("range golongan masih kosong")
+            }else if(document.getElementById('golongan').value == "" ){
+              alert("golongan kerja masih kosong")
+            }else if(document.getElementById('status').value == "" ){
+              alert("status masih kosong")
+            }else if(document.getElementById('tanggal').value == "" ){
+              alert("tanggal masih kosong")
+            }else if(document.getElementById('file').value == "" ){
+              alert("berkas pendukung masih kosong")
+            }else {
+              $.ajax({
+                url : "<?= base_url('superadmin/karyawan/Cetak') ?>" ,
+                method : "POST" ,
+                data : postData,
+                processData: false,
+                contentType: false,
+                cache  : false ,
+                beforeSend : function(){
+                  $("#submit").attr("disabled",true);   
+                },
+                complete : function(){
+                  $("#submit").attr("disabled",false);    
+                },
+                success : function(e){
+                   //alert(e);
+                   if(e = "sukses"){
+                     alert(e);
+                     window.location.href="<?= base_url('superadmin/Karyawan/Cetak') ?>"
+                   }else {
+                      alert("gagal")
+                   }
+                }
+              })
+            }
+          })
+
+    })
+
+    $('.click').on('click',function(e){
+	  document.getElementById("id").value        = $(this).attr('data-id');
+      document.getElementById("id_user").value   = $(this).attr('data-id_user');
+      document.getElementById("npk").value       = $(this).attr('data-npk');
+      document.getElementById("nama").value      = $(this).attr('data-nama');
+	  document.getElementById("position").value  = $(this).attr('data-position');
+      document.getElementById("grade").value  	 = $(this).attr('data-grade');
+	  document.getElementById("age").value		 = $(this).attr('data-age');
+      $('#selectkaryawan').modal('hide');
+  })
+
+  </script>
