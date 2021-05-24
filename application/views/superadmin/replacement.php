@@ -25,6 +25,7 @@
 </head>
 <style>
 body {font-family: tahoma;
+	margin: 5px 5px 5px 5px;
 	font-size: 10pt;
 }
 p {	margin: 0pt; }
@@ -57,16 +58,21 @@ table thead td { background-color: #EEEEEE;
 	text-align: "." center;
 }
 .Foto_profil{
+	border:solid;
 	position:absolute;
 	margin-top:-100px;
-	padding-left:20px;
+	padding-left:10px;
 	right:1px;
-	top: 70mm; 
-	width: 100mm;
+	top: 60mm; 
+	width: 170px;
 	margin-right:10px;
 	overflow: auto;
 }
-
+@media print{
+	#tombol{
+		display: none;
+	}
+}
 </style>
 </head>
 <body>
@@ -93,7 +99,7 @@ mpdf-->
 </tr></table> -->
 <br/>
 					 <div class="form-group">
-                      <button type="button " data-toggle="modal" data-target="#selectkaryawan" class="btn btn-success">Cari Karyawan <i class="fa fa-search"></i> </button>
+                      <button type="button " data-toggle="modal" data-target="#selectkaryawan" id="tombol" class="btn btn-success">Cari Karyawan <i class="fa fa-search"></i> </button>
                     </div>
 
 				<div class="Foto_profil">
@@ -255,7 +261,7 @@ mpdf-->
 <br>
 <div>
 					<table width="58%" style="font-family: serif;" cellpadding="3">
-                		 <form action="#" method="post" enctype="multipart/form-data">
+                		 <form id="replacement" action="#" method="post" enctype="multipart/form-data">
 							<tr>
                 				<thead>
                 					<td><b>REPLACEMENT PERSON</b></td>
@@ -295,7 +301,7 @@ mpdf-->
 							</tr>
 							<tr>
 							<td>
-							 <button onclick="window.print()" class="btn btn-info">Cetak PDF</button>
+							 <button id="tombol" class="btn btn-info">Cetak PDF</button>
 							</td>
 							</tr>
 						</form>
@@ -366,44 +372,10 @@ mpdf-->
             var postData = new FormData(this);
             e.preventDefault();
             if(document.getElementById('npk').value == "" ){
-              alert("data karyawan masih kosong")
-            }else if(document.getElementById('new_jabatan').value == "" ){
-              alert("jabatan baru masih kosong")
-            }else if(document.getElementById('range').value == "" ){
-              alert("range golongan masih kosong")
-            }else if(document.getElementById('golongan').value == "" ){
-              alert("golongan kerja masih kosong")
-            }else if(document.getElementById('status').value == "" ){
-              alert("status masih kosong")
-            }else if(document.getElementById('tanggal').value == "" ){
-              alert("tanggal masih kosong")
-            }else if(document.getElementById('file').value == "" ){
-              alert("berkas pendukung masih kosong")
-            }else {
-              $.ajax({
-                url : "<?= base_url('superadmin/karyawan/Cetak') ?>" ,
-                method : "POST" ,
-                data : postData,
-                processData: false,
-                contentType: false,
-                cache  : false ,
-                beforeSend : function(){
-                  $("#submit").attr("disabled",true);   
-                },
-                complete : function(){
-                  $("#submit").attr("disabled",false);    
-                },
-                success : function(e){
-                   //alert(e);
-                   if(e = "sukses"){
-                     alert(e);
-                     window.location.href="<?= base_url('superadmin/Karyawan/Cetak') ?>"
-                   }else {
-                      alert("gagal")
-                   }
-                }
-              })
-            }
+              alert("Data Replacement Karyawan Belum Terisi")
+            }else{
+				window.print();
+			} 
           })
 
     })
