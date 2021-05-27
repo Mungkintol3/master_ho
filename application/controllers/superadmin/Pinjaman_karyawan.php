@@ -51,6 +51,7 @@ class Pinjaman_karyawan extends CI_Controller
 
 	public function form_pinjam_kary()
 	{
+
 		$data = array(
 			'url'		 	 => $this->uri->segment(2),
 			'karyawan'		 => $this->m_admin->getData("tbl_karyawan")->result()
@@ -112,6 +113,38 @@ class Pinjaman_karyawan extends CI_Controller
 
 			$input = $this->m_admin->inputData($data, "tbl_peminjaman");
 			if ($input) {
+				$day = date('d');
+				if ($day > 15) {
+					for ($i = 1; $i <= $tenor; $i++) {
+						$tanggalBayar = date('Y-m-d', strtotime(date('Y-m-d') . '+' . $i . ' month'));
+						$jumlahTenor   = array(
+							'id_user'			=> $id_user,
+							'nama'				=>  $nama,
+							'npk'				=> $npk,
+							'pembayaran_ke'		=> $i,
+							'bunga'				=> $bunga,
+							'pokok'				=> $pokokBayar,
+							'id_pinjam'			=> $id_pinjam,
+							'tanggal'			=> $tanggalBayar,
+						);
+						$this->m_admin->inputData($jumlahTenor, "tbl_pembayaran");
+					}
+				} else if ($day < 15) {
+					for ($i = 0; $i < $tenor; $i++) {
+						$tanggalBayar = date('Y-m-d', strtotime(date('Y-m-d') . '+' . $i . ' month'));
+						$jumlahTenor   = array(
+							'id_user'			=> $id_user,
+							'nama'				=>  $nama,
+							'npk'				=> $npk,
+							'pembayaran_ke'		=> $i + 1,
+							'bunga'				=> $bunga,
+							'pokok'				=> $pokokBayar,
+							'id_pinjam'			=> $id_pinjam,
+							'tanggal'			=> $tanggalBayar,
+						);
+						$this->m_admin->inputData($jumlahTenor, "tbl_pembayaran");
+					}
+				}
 				echo "sukses";
 			} else {
 				echo "error";

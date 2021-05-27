@@ -130,4 +130,12 @@ class M_admin extends CI_Model
 		$ex     = $this->db->query($sql);
 		return $this->db->affected_rows($sql);
 	}
+
+
+	//hitung total pembayaran peminjaman
+	public function countPay($id)
+	{
+		$query = $this->db->query("SELECT SUM(jumlah_bayar) AS total FROM tbl_pembayaran WHERE id_pinjam = '" . $id . "' ");
+		return $query->row();
+	}
 }
