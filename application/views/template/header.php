@@ -70,6 +70,7 @@ The above copyright notice and this permission notice shall be included in all c
               <!-- <a class="dropdown-item" href="<?= base_url('superadmin/Golongan/add_histori_golongan_pegawai') ?>">Input History Golongan</a> -->
               <!-- <a class="dropdown-item" href="<?= base_url('superadmin/Career') ?>">Input Career History</a> -->
               <a class="dropdown-item" href="<?= base_url('superadmin/Training_Histori/form_add') ?>">Input Histori Training</a>
+              <a class="dropdown-item" href="<?= base_url('superadmin/Fasilitas/add_fasilitas') ?>">Input Fasilitas Karyawan</a>
               <a class="dropdown-item" href="<?= base_url('superadmin/Company') ?>">Input History Company</a>
               <a class="dropdown-item" href="<?= base_url('superadmin/Surat_peringatan/form_add') ?>">Input Surat Peringatan</a>
               <a class="dropdown-item" href="<?= base_url('superadmin/Human_assets_value/form_add') ?>">Input Human Assets Value</a>
@@ -89,14 +90,14 @@ The above copyright notice and this permission notice shall be included in all c
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="nav-item <?php if ($url == 'Log') {
+          <!-- <li class="nav-item <?php if ($url == 'Log') {
                                 echo 'active';
                               } ?>">
             <a class="nav-link" href="<?php echo base_url("superadmin/Log"); ?>">
               <i class="material-icons">dashboard</i>
               <p>Log</p>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item <?php if ($url == 'karyawan' || $url == 'TambahKaryawan') {
                                 echo 'active';
                               } ?>">

@@ -15,7 +15,7 @@ class Fasilitas extends CI_Controller{
 		}
 	}
 
-    public function index()
+    public function add_fasilitas()
     {
         $data = array(
 			'url'		 => $this->uri->segment(2),
@@ -27,7 +27,7 @@ class Fasilitas extends CI_Controller{
         $this->load->view('template/footer');
     }
 
-    public function Input_fasilitas()
+    public function input_fasilitas()
     {
         $id             = $this->input->post("id");
         $id_user        = $this->input->post("id_user");
@@ -43,8 +43,20 @@ class Fasilitas extends CI_Controller{
             "fasilitas"     => $fasilitas,
             "tanggal"       => $tanggal,
         );
+        $dataupdate = array(
+				'fasilitas' 	 => $fasilitas,
+			);
 
-        var_dump($data);
+     //  var_dump($data);
+       $update = $this->m_admin->update($dataupdate, "tbl_karyawan", array("id" => $id));
+			if ($update) {
+				$info  = "Update Fasilitas Karayawan " . $npk . " - " . $nama;
+				helper_log($this->session->userdata('npk'), $this->session->userdata('nama'), $npk, $info);
+				$this->m_admin->inputData($data, "tbl_fasilitasi");
+				echo "sukses";
+			} else {
+				echo "gagal update";
+			}
     }
 }
 

@@ -19,8 +19,46 @@
         <canvas id="pendidikan" width="350" height="350">Education</canvas>
       </div>
     </div>
+    <hr>
+    <div class="col-md-12">
+    <div class="card card-plain">
+     <div class="card-header card-header-info">
+                <h4 class="card-title mt-0"> LOG ADMINISTRATOR</h4>
+                <p class="card-category"> SIGAP PRIMA ASTREA & SIGAP GARDA PRATAMA</p>
+            </div>
+    <div class="card-body">
+                <table  id="table_id" class="cell-border">
+                <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama Admin</th>
+                  <th>Npk Karyawan</th>
+                  <th>Keterangan</th>
+                  <th>tanggal</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php  $i = 1;
+                foreach ($aktivitas as $log) : ?>
+                  <tr>
+                      <td><?= $i++;?></td>
+                      <td><?= $log->nama?></td>
+                      <td><?= $log->npk_user ?></td>
+                      <td><?= $log->keterangan ?></td>
+                      <td><?= $log->tanggal?></td>
+                  </tr>
+                <?php endforeach ?>
+                </tbody>
+              </table>
+     </div>
+  </div>
+  </div>
   </div>
 </div>
+
+
+
+
 <script type="text/javascript">
   var ctx = document.getElementById('masaKerja').getContext('2d');
   var chart = new Chart(ctx, {

@@ -99,13 +99,17 @@
             e.preventDefault();
             if(document.getElementById('npk').value == "" ){
               alert("data karyawan masih kosong")
+            }else if(document.getElementById('nama').value == "" ){
+              alert("status masih kosong")
+            }else if(document.getElementById('join_date').value == "" ){
+              alert("tanggal masih kosong")
             }else if(document.getElementById('fasilitas').value == "" ){
               alert("status masih kosong")
             }else if(document.getElementById('tanggal').value == "" ){
               alert("tanggal masih kosong")
             }else {
               $.ajax({
-                url : "<?= base_url('superadmin/Fasilitas/Input_fasilitas') ?>" ,
+                url : "<?= base_url('superadmin/Fasilitas/input_fasilitas') ?>" ,
                 method : "POST" ,
                 data : postData,
                 processData: false,
@@ -121,7 +125,7 @@
                    //alert(e);
                    if(e = "sukses"){
                      alert(e);
-                     window.location.href="<?= base_url('superadmin/Fasilitas') ?>"
+                     window.location.href="<?= base_url('superadmin/Fasilitas/add_fasilitas') ?>"
                    }else {
                       alert("gagal")
                    }

@@ -91,6 +91,7 @@ class Promosi extends CI_Controller
 				'status'			=> $status
 			);
 
+			// var_dump($data2,$data,$dataupdate);
 			$update = $this->m_admin->update($dataupdate, "tbl_karyawan", array("id" => $id));
 			if ($update) {
 				$info  = "Update kelompok jabatan dan golongan karyawan atas npk " . $npk . " - " . $nama;

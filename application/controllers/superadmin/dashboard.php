@@ -24,6 +24,7 @@ class Dashboard extends CI_Controller
 	{
 		// $data1 = $this->m_admin->cari(array('id_user' => $id_user), "akun")->result();
 		$data =  array(
+			'aktivitas'			=> $this->m_admin->getData("log_aktivitas")->result(),
 			'karyawan'			=> $this->m_admin->getData("tbl_karyawan")->result(),
 			'url' 				=> $this->uri->segment(2),
 			'range18_27'		=> $this->m_admin->rangeUmur(18, 27),
@@ -37,7 +38,7 @@ class Dashboard extends CI_Controller
 			'totalD4'			=> $this->m_admin->countPendidikan("D4"),
 		);
 		$this->load->view('template/header', $data);
-		$this->load->view('superadmin/dashboard');
+		$this->load->view('superadmin/dashboard',$data);
 		$this->load->view('template/footer');
 	}
 }
