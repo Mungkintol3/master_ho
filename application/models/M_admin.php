@@ -159,4 +159,18 @@ class M_admin extends CI_Model
 		$query = $this->db->query("SELECT SUM(jumlah_bayar) AS total FROM tbl_pembayaran WHERE id_pinjam = '" . $id . "' ");
 		return $query->row();
 	}
+
+	//cek klaim 
+	public function cekKlaim($id_user)
+	{
+		$query = $this->db->query("SELECT  *  FROM tbl_fasilitasi WHERE id_user = '" . $id_user . "' ORDER BY claim_ke DESC   ");
+		return $query->row();
+	}
+
+	//cari nilai terbesari dari klaim
+	public function maxKlaim($id)
+	{
+		$query = $this->db->query("SELECT MAX(claim_ke) AS claim FROM tbl_fasilitasi WHERE id_user = '" . $id . "'  ");
+		return $query->row();
+	}
 }
