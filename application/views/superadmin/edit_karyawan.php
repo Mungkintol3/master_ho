@@ -40,6 +40,7 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" data-toggle="tab">
                                         <a class="dropdown-item" href="#Kelengkapan_berkas" data-toggle="tab">Kelengkapan Berkas</a>
+                                        <a class="dropdown-item" href="#fasilitas" data-toggle="tab">History Fasilitas</a>
                                         <a class="dropdown-item" href="#historyNilai" data-toggle="tab">History Nilai</a>
                                         <a class="dropdown-item" href="#historyDeptDiv" data-toggle="tab">History Departmen & Divisi</a>
                                         <a class="dropdown-item" href="#historyPoint" data-toggle="tab">History Point</a>
@@ -110,7 +111,13 @@
                                     <tr class="text-right">
                                         <td class="text-left">Umur</td>
                                         <td>:</td>
-                                        <td><?= $karyawan->age ?> </td>
+                                        <td><?php 
+                                                $today = new DateTime("today");
+                                                if ($karyawan->tgl_lahir > $today)
+                                                {
+                                                echo $today->diff($karyawan->tgl_lahir);
+                                                }
+                                        ?></td>
                                     </tr>
                                     <tr class="text-right">
                                         <td class="text-left">Alamat KTP</td>
@@ -484,6 +491,24 @@
                         </table>
                         <button style="float: right;" data-info="<?= $karyawan->id ?>" type="button" class="btn btn-primary" data-toggle="modal" data-target="#update_berkas">Update Berkas Karyawan</button>
                     </div>
+
+                    <div class="tab-pane" id="fasilitas">
+                        <table class="table">
+                            <tr>
+                                <th>Fasilitas Karyawan</th>
+                                <th>Tahun</th>
+                            </tr>
+                            <tbody>
+                                <?php foreach ($fasilitas as $fasilitas) : ?>
+                                    <tr>
+                                        <td><?= $fasilitas->fasilitas ?></td>
+                                        <td><?= $fasilitas->tanggal ?></td>
+                                    </tr>
+                                <?php endforeach ?>
+                            </tbody>
+                        </table>
+                    </div>
+
                     <div class="tab-pane" id="historyNilai">
                         <table class="table">
                             <tr>

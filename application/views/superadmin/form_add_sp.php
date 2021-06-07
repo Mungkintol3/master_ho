@@ -22,7 +22,13 @@
                     </div>
 
                     <div class="form-group">
-                      <input type="text"  name="tipe_sp" placeholder="Jenis Surat Peringatan" id="tipe_sp" class="form-control">
+                      <select name="tipe_sp" id="tipe_sp" class="form-control">
+                      <option selected="true" disabled="disabled">Jenis Surat Peringatan</option>
+                      <option>Teguran</option>
+                      <option>SP 1</option>
+                      <option>SP 2</option>
+                      <option>SP 3</option>
+                      </select>
                     </div>
 
                     <div class="form-group">

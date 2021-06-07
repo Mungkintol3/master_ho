@@ -2,6 +2,7 @@
 
 $akun = $this->m_admin->cari(array('id' => $this->session->userdata('id')), "akun")->row();
 ?>
+
 <div class="content">
   <div class="col-md-12">
 
@@ -11,7 +12,7 @@ $akun = $this->m_admin->cari(array('id' => $this->session->userdata('id')), "aku
         <p class="card-category"> SIGAP PRIMA ASTREA & SIGAP GARDA PRATAMA</p>
       </div>
       <div class="card-body">
-        <form action="#" id="updatedata" method="post">
+        <form action="<?= base_url('superadmin/Setting/update')?>" id="updatedata" method="post">
           <label>Username</label>
           <div class="form-group">
             <input type="hidden" class="form-control" name="id" id="id" value="<?= $this->session->userdata('id') ?>">
@@ -37,3 +38,15 @@ $akun = $this->m_admin->cari(array('id' => $this->session->userdata('id')), "aku
   </div>
 </div>
 </div>
+
+<?php if($this->session->flashdata('sukses')){?>
+	<script type="text/javascript">
+			Swal.fire({
+			title: 'SUKSES!',
+			text: 'Password Berhasil di Rubah',
+			icon: 'success',
+			confirmButtonText: 'Cool'
+			})
+	</script>
+
+<?php }?>

@@ -28,10 +28,9 @@
                     <div class="form-group">
                       <select id="fasilitas" name="fasilitas" class="form-control">
                         <option value="">Pilih Fasilitas </option>
-                        <option>Kacamata</option>
-                        <option>Handphone</option>
-                        <option>COP(Kredit Motor)</option>
-                        <option>MOP(Kredit Mobil)</option>
+                        <?php foreach($fasilitasi as $fasilitasi) :?>
+                            <option> <?= $fasilitasi->fasilitas?></option>
+                        <?php endforeach ;?>
                       </select>
                     </div>
 

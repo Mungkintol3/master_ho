@@ -35,7 +35,7 @@ class Setting extends CI_Controller
 
 				$update = $this->m_admin->update($data,'akun',array('id' => $id));
 				if($update){
-					echo "sukses";
+					$this->session->set_flashdata('sukses','akun sudah terdaftar');
 				}else {
 					echo "gagal";
 				}
@@ -49,7 +49,8 @@ class Setting extends CI_Controller
 
 				$update = $this->m_admin->update($data,'akun',array('id' => $id));
 					if($update){
-						echo "sukses";
+					$this->session->set_flashdata('sukses','Password Berhasil di Rubah');
+					redirect('superadmin/Setting');
 					}else {
 						echo "gagal";
 					}

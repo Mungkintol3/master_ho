@@ -30,9 +30,6 @@ class Login extends CI_Controller
 		date_default_timezone_set('Asia/Jakarta');
 		$username 	= $this->input->post('npk');
 		$password   = md5($this->input->post('password'));
-
-
-
 		//var_dump($password,$username);
 
 		var_dump($username, $password);
@@ -64,23 +61,35 @@ class Login extends CI_Controller
 
 	public function Create()
 	{
-
 		$npk		 	= $this->input->post('npk');
 		$nama 		 	= $this->input->post('nama');
 		$email 			= $this->input->post('email');
 		$photo 	 		= 'default.jpg';
-		$pass  			= md5($this->input->post('password'));
-		$role_id    	= 1;
+		$pass  			= md5('S1g4p123');
+		$role_id    	= 1.;
 		$is_active  	= 1;
 		$date_create 	= date("d-m-Y H:i");
-
-		var_dump($npk, $nama, $email, $photo, $pass, $role_id, $is_active, $date_create);
-		// $this->db->insert('akun',$data);
-
+		$data = array(
+			'npk'  		=> $npk,
+			'nama'		=> $nama,
+			'email'  	=> $email,
+			'photo'		=> $photo,
+			'password'  => $pass,
+			'role_id' 	=> $role_id,
+			'is_active' => $is_active,
+			'date_create' => $date_create,
+		);
+		// var_dump($data);
+		$cekakun = $this->m_admin->cari(array("npk" => $npk), "akun")->num_rows();
+		if ($cekakun == null) {
+		$this->m_admin->inputData($data,'akun');
+		$this->session->set_flashdata('sukses','akun sudah terdaftar');
+		redirect("login");
+		}else{
+		$this->session->set_flashdata('message','akun sudah terdaftar');
+		redirect("Login/Create_akun");
+		}
 	}
 
-	public function Lupapass()
-	{
-		$this->load->view('Lupapass');
-	}
 }
+		

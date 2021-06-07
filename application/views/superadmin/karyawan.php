@@ -10,7 +10,6 @@
               <table  id="table_id" class="cell-border">
               <thead>
                   <tr>
-                      <th class="text-center">ID USER</th>
                       <th class="text-center">NPK</th>
                       <th class="text-center">Nama</th>
                       <th class="text-center">Department</th>
@@ -23,7 +22,6 @@
               <tbody>
                 <?php foreach ($karyawan as $result) :?>
                   <tr>
-                     <td class="text-center"><?= $result->id_user?></td>
                      <td class="text-center"><?= $result->npk ?></td>
                      <td class="text-center"><?= $result->nama?></td>
                      <td class="text-center"><?= $result->departement?></td>
@@ -43,9 +41,9 @@
                           <a  href="<?= base_url('superadmin/Karyawan/Replacement/' . $result->id_user) ?>" class="btn btn-warning btn-fab btn-fab-mini btn-round">
                             <i class="material-icons">face</i>
                           </a> 
-                          <a onclick="return confirm('hapus semua data karyawan')" href="<?= base_url('superadmin/Karyawan/delete/' . $result->id_user) ?>" class="btn btn-danger btn-fab btn-fab-mini btn-round">
+                          <!-- <a onclick="return confirm('hapus semua data karyawan')" href="<?= base_url('superadmin/Karyawan/delete/' . $result->id_user) ?>" class="btn btn-danger btn-fab btn-fab-mini btn-round">
                             <i class="material-icons">close</i>
-                          </a>
+                          </a> -->
                      </td>
                   </tr>
                   <?php endforeach  ?>  

@@ -2,24 +2,6 @@
 <div class="content">
 
   <div class="container-fluid">
-    <div class="row">
-      
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <h3 align="center">Usia </h3>
-        <canvas id="umur" width="350" height="350">Usia</canvas>
-      </div>
-      <div class="col-md-4">
-        <h3 align="center">Masa Kerja</h3>
-        <canvas id="masaKerja" width="350" height="350">Masa Kerja</canvas>
-      </div>
-      <div class="col-md-4">
-        <h3 align="center">Pendidikan</h3>
-        <canvas id="pendidikan" width="350" height="350">Education</canvas>
-      </div>
-    </div>
-    <hr>
     <div class="col-md-12">
     <div class="card card-plain">
      <div class="card-header card-header-info">
@@ -51,6 +33,25 @@
                 </tbody>
               </table>
      </div>
+    
+    <div class="row">
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <h3 align="center">Usia </h3>
+        <canvas id="umur" width="350" height="350">Usia</canvas>
+      </div>
+      <div class="col-md-4">
+        <h3 align="center">Masa Kerja</h3>
+        <canvas id="masaKerja" width="350" height="350">Masa Kerja</canvas>
+      </div>
+      <div class="col-md-4">
+        <h3 align="center">Pendidikan</h3>
+        <canvas id="pendidikan" width="350" height="350">Education</canvas>
+      </div>
+    </div>
+    <hr>
+    
   </div>
   </div>
   </div>
@@ -69,7 +70,7 @@
       labels: ["1 tahun", "10 tahun", "15 tahun", "20 tahun"],
       datasets: [{
         label: " Masa Kerja",
-        data: [14, 100, 25, 40],
+        data: [],
         backgroundColor: [
           "#FF6384",
           "#63FF84",

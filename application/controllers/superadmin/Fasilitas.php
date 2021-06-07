@@ -15,12 +15,55 @@ class Fasilitas extends CI_Controller{
 		}
 	}
 
+
+    public function index()
+    {
+      $data = array(
+			'url'		 => $this->uri->segment(2),
+			'fasilitas'	 => $this->m_admin->getData("fasilitas")->result(),
+		);
+        $this->load->view('template/header',$data);
+        $this->load->view('superadmin/form_fasilitas',$data);
+        $this->load->view('template/footer');
+        
+    }
+
+    public function add()
+	{
+		$fasilitas 	    = $this->input->post("fasilitas");
+        $aktif_klaim    = $this->input->post("aktif_klaim");
+        $periode_klaim 	= $this->input->post("periode_klaim");
+        $golongan       = $this->input->post("golongan");
+		$cek		    = $this->m_admin->cari(array("fasilitas" => $fasilitas), "fasilitas")->num_rows();
+		if ($cek > 0) {
+			echo "fasilitas sudah ada";
+		} else {
+			$data = array(
+				"fasilitas"			=> $fasilitas,
+                "aktif_klaim"       => $aktif_klaim,
+                "periode_klaim"           => $periode_klaim,
+                "golongan"          => $golongan,
+			);
+			var_dump($data);
+			$input = $this->m_admin->inputData($data, "fasilitas");
+			if ($input == true) {
+				echo "sukses";
+			} else {
+				echo "gagal";
+			}
+		}
+	}
+   
+    
+
     public function add_fasilitas()
     {
         $data = array(
 			'url'		 => $this->uri->segment(2),
 			'karyawan'	 => $this->m_admin->getData("tbl_karyawan")->result(),
 			'fasilitas'	 => $this->m_admin->getData("tbl_fasilitasi")->result(),
+            'fasilitasi' => $this->m_admin->getData("fasilitas")->result(),
+
 		);
         $this->load->view('template/header',$data);
         $this->load->view('superadmin/fasilitas',$data);

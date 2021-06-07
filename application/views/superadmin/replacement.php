@@ -25,8 +25,8 @@
 </head>
 <style>
 body {font-family: tahoma;
-	margin: 5px 5px 5px 5px;
-	font-size: 10pt;
+	 margin: 5px 5px 5px 5px;
+	 font-size: 10pt;
 }
 p {	margin: 0pt; }
 table.items {
@@ -57,16 +57,12 @@ table thead td { background-color: #EEEEEE;
 .items td.cost {
 	text-align: "." center;
 }
-.Foto_profil{
-	border:solid;
-	position:absolute;
-	margin-top:-100px;
-	padding-left:10px;
-	right:1px;
-	top: 60mm; 
-	width: 170px;
+
+.foto_profil{
+	margin-bottom: 20px;
 	margin-right:10px;
-	overflow: auto;
+	border:solid;
+	float:right;
 }
 @media print{
 	#tombol{
@@ -76,36 +72,25 @@ table thead td { background-color: #EEEEEE;
 </style>
 </head>
 <body>
-<!--mpdf
-<htmlpageheader name="myheader">
-<table width="100%"><tr>
-<td width="50%" style="color:#0000BB; "><span style="font-weight: bold; font-size: 14pt;">SIGAP PRIMA ASTREA.</span><br />Jl. Gaya Motor II Nomor 1<br />Jakarta Utara<br /><br />
-<td width="50%" style="text-align: right;"><img src="assets/img/sigap-logo-1.png"><br /><span style="font-weight: bold; font-size: 12pt;"></span></td>
-</tr></table>
-</htmlpageheader>
-<htmlpagefooter name="myfooter">
-<div style="border-top: 1px solid #000000; font-size: 9pt; text-align: center; padding-top: 3mm; ">
-Page {PAGENO} of {nb}
-</div>
-</htmlpagefooter>
-<sethtmlpageheader name="myheader" value="on" show-this-page="1" />
-<sethtmlpagefooter name="myfooter" value="on" />
-mpdf-->
-<div style="text-align: center;"><p style="font-size: 25pt;"><u>Replacement Karyawan</u></p></div>
 <!-- <table width="100%" style="font-family: serif;" cellpadding="10"><tr>
 <td width="45%" style="border: 0.1mm solid #888888; "><span style="font-size: 7pt; color: #555555; font-family: sans;">Data Form:</span><br /><br />345 Anotherstreet<br />Little Village<br />Their City<br />CB22 6SO</td>
 <td width="10%">&nbsp;</td>
 <td width="45%" style="border: 0.1mm solid #888888;"><span style="font-size: 7pt; color: #555555; font-family: sans;">SHIP TO:</span><br /><br />345 Anotherstreet<br />Little Village<br />Their City<br />CB22 6SO</td>
 </tr></table> -->
 <br/>
+			<div>
+				<table width="100%"><tr>
+				<td width="50%" style="color:#0000BB; "><span style="font-weight: bold; font-size: 14pt;">SIGAP PRIMA ASTREA.</span><br />Jl. Gaya Motor II Nomor 1<br />Jakarta Utara<br /><br />
+				<td width="50%" style="text-align: right;"><img src="<?php echo base_url('assets/img/sigap-logo-1.png') ?>"><br /><span style="font-weight: bold; font-size: 12pt;"></span></td>
+				</tr></table>
+			</div>
+			<div style="text-align: center;"><p style="font-size: 25pt;"><u>Replacement Table Chart</u></p></div>
+
 					 <div class="form-group">
                       <button type="button " data-toggle="modal" data-target="#selectkaryawan" id="tombol" class="btn btn-success">Cari Karyawan <i class="fa fa-search"></i> </button>
                     </div>
-
-				<div class="Foto_profil">
-					 <img height="150" width="150" style  src="<?= base_url("assets/upload/berkas/photo/".$info->photo) ?>">
-				 </div>
-          		<table width="58%" style="font-family: serif;" cellpadding="3">
+					 <img class="foto_profil" height="250" width="300" src="<?= base_url("assets/upload/berkas/photo/".$info->photo) ?>">
+          			<table width="58%" style="font-family: serif;" cellpadding="3">
                 			<tr>
                 				<thead>
                 					<td><b>INFORMASI KARYAWAN</b></td>
@@ -183,9 +168,8 @@ mpdf-->
                                 <?php foreach ($company as $company) : ?>
                                 <tr>
                                     <td align="center"><?= $company->company?></td>
-									<?= $currentDate = date('Y-m-d')
-									?>	
-                                    <td align="center"><?=date('d F Y', strtotime($company->join_date))?></td>
+				
+				                    <td align="center"><?=date('d F Y', strtotime($company->join_date))?></td>
                                 </tr>
 								
                             <?php endforeach?>
@@ -228,6 +212,24 @@ mpdf-->
                             </tbody>
                         </table>
                         <br>
+						
+						<table class="items" width="100%" style="font-size: 9pt; border-collapse: collapse; " cellpadding="3">
+						<thead>
+						<tr>
+						<td width="20%"><b>Training</b></td>
+						<td width="20%"><b>Tahun</b></td>
+						</tr>
+						</thead>
+						<tbody>
+						<!-- ITEMS HERE -->
+						<?php foreach($training as $train) {?>
+                        <tr>
+                            <td align="center"><?= $train->jenis_training?></td>
+                            <td align="center"><?= $train->tahun?></td>
+                        </tr>
+                        <?php } ?> 
+						</tbody>
+						</table>
 						<br>
 
 						<table class="items" width="100%" style="font-size: 9pt; border-collapse: collapse; " cellpadding="3">
@@ -253,6 +255,7 @@ mpdf-->
                         <?php } ?> 
 						</tbody>
 						</table>
+						
                 	</div>
                 </div>
             </div>

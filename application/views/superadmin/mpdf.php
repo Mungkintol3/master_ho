@@ -307,8 +307,6 @@ mpdf-->
                                 <?php foreach ($company as $company) : ?>
                                 <tr>
                                     <td align="center"><?= $company->company?></td>
-									<?= $currentDate = date('Y-m-d')
-									?>	
                                     <td align="center"><?=date('d F Y', strtotime($company->join_date))?></td>
                                 </tr>
 								

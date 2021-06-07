@@ -84,6 +84,7 @@ class Karyawan extends CI_Controller
 			'company'		=> $this->m_admin->cari(array("id_user" => $id), "histori_company")->result(),
 			'training'		=> $this->m_admin->cari(array("id_user" => $id), "histori_training")->result(),
 			'sp'			=> $this->m_admin->cari(array("id_user" => $id), "histori_surat_peringatan")->result(),
+			'fasilitas'		=> $this->m_admin->cari(array("id_user" => $id), "tbl_fasilitasi")->result(),
 			'pendidikan'	=> $this->m_admin->cari(array("id_user" => $id), "pendidikan")->result(),
 			'point'			=> $this->m_admin->cari(array("id_user" => $id), "histori_poin_karyawan")->result(),
 			'dept_divi' 	=> $this->m_admin->cari(array("id_user" => $id), "histori_divisi")->result(),
@@ -132,17 +133,17 @@ class Karyawan extends CI_Controller
 	public function Replacement($id)
 	{
 		 $data2 = array(
-			'info' 			=> $this->m_admin->cari(array('id_user' => $id), "tbl_karyawan")->row(),
-			'pendidikan'  	=> $this->m_admin->cari(array('id_user' => $id), "pendidikan")->result(),
-			'golongan'		=> $this->m_admin->cari(array("id_user" => $id), "histori_golongan")->result(),
-			'company'		=> $this->m_admin->cari(array("id_user" => $id), "histori_company")->result(),
-			'jabatan'		=> $this->m_admin->cari(array("id_user" => $id), "promosi_jabatan")->result(),
-			'training'		=> $this->m_admin->cari(array("id_user" => $id), "histori_training")->result(),
-			'keluarga'		=> $this->m_admin->cari(array("id_user" => $id), "tbl_keluarga")->result(),
-			'nilai'			=> $this->m_admin->shownilai($id),
-			'human_value_assets' => $this->m_admin->showvaluea($id),
-			'replacement'	=> $this->m_admin->getData("tbl_karyawan")->result(),
-			'url' 			=> $this->uri->segment(2)
+			'info' 					=> $this->m_admin->cari(array('id_user' => $id), "tbl_karyawan")->row(),
+			'pendidikan'  			=> $this->m_admin->cari(array('id_user' => $id), "pendidikan")->result(),
+			'golongan'				=> $this->m_admin->cari(array("id_user" => $id), "histori_golongan")->result(),
+			'company'				=> $this->m_admin->cari(array("id_user" => $id), "histori_company")->result(),
+			'jabatan'				=> $this->m_admin->cari(array("id_user" => $id), "promosi_jabatan")->result(),
+			'training'				=> $this->m_admin->train($id),
+			'keluarga'				=> $this->m_admin->cari(array("id_user" => $id), "tbl_keluarga")->result(),
+			'nilai'					=> $this->m_admin->nilai($id),
+			'human_value_assets' 	=> $this->m_admin->valuea($id),
+			'replacement'			=> $this->m_admin->getData("tbl_karyawan")->result(),
+			'url' 					=> $this->uri->segment(2)
 		);
         //$this->load->view('template/header',$data);
 		$this->load->view('superadmin/replacement',$data2);

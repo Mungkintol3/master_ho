@@ -132,6 +132,15 @@ The above copyright notice and this permission notice shall be included in all c
             </a>
           </li>
 
+          <li class="nav-item <?php if ($url == 'Fasilitas') {
+                                echo 'active';
+                              } ?>">
+            <a class="nav-link" href="<?php echo base_url() ?>superadmin/Fasilitas">
+              <i class="material-icons">note_add</i>
+              <p>Fasilitas Karyawan</p>
+            </a>
+          </li>
+
           <li class="nav-item <?php if ($url == 'Update_pkwt') {
                                 echo 'active';
                               } ?>">
@@ -205,7 +214,7 @@ The above copyright notice and this permission notice shall be included in all c
           <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
 
-              <li class="nav-item dropdown">
+              <!-- <li class="nav-item dropdown">
                 <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">notifications</i>
                   <span class="notification"></span>
@@ -216,7 +225,7 @@ The above copyright notice and this permission notice shall be included in all c
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                   <p>Nothing</p>
                 </div>
-              </li>
+              </li> -->
               <li class="nav-item dropdown">
                 <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">person</i>

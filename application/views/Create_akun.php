@@ -1,9 +1,11 @@
-	<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>MASTER DATA HO</title>
 	<meta name="viewport" content="width=device-width , initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/login.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/sweetalert2/sweetalert2.min.css" media="screen">
+	<script src="<?= base_url('assets/sweetalert2/') ?>sweetalert2.min.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -18,8 +20,6 @@
 			 <!-- <label>PASSWORD</label> -->
 		    <input type="email" name="email" id="email" placeholder="Masukan Alamat Email Anda" data-validate="Email is Reuired"><br>
 		    <!-- Passsword -->
-		    <input type="password" name="passsword" id="password" placeholder="Masukan Password Anda" data-validate="Password is required">
-		    
 		    <button type="submit">Daftar</button>
 		</div>
 		</form>
@@ -34,3 +34,16 @@
 	
 </body>
 </html>
+
+<?php if($this->session->flashdata('message')){?>
+	<script type="text/javascript">
+			Swal.fire({
+			title: 'Error!',
+			text: 'Akun Sudah Terdaftar',
+			icon: 'error',
+			confirmButtonText: 'Cool'
+			})
+	</script>
+
+<?php }?>
+

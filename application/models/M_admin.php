@@ -71,6 +71,27 @@ class M_admin extends CI_Model
 		return $query->result();
 	}
 
+	//show nilai for replacement
+	public function nilai($id_user)
+	{
+		$query = $this->db->query("SELECT * FROM histori_nilai_karyawan WHERE tahun >= now()-interval 1 year AND id_user = $id_user");
+		return $query->result();
+	}
+
+	//show last 3 years training for replacement
+	public function train($id_user)
+	{
+		$query = $this->db->query("SELECT * FROM histori_training WHERE tahun >= now()-interval 1 year AND id_user = $id_user");
+		return $query->result();
+	}
+
+	//show value assets for replacement
+	public function valuea($id_user)
+	{
+		$query = $this->db->query("SELECT * FROM human_value_assets WHERE tahun >= now()-interval 1 year AND id_user = $id_user");
+		return $query->result();
+	}
+
 	//show value assets passed 3 years
 	public function showvaluea($id_user)
 	{
