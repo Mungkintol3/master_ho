@@ -118,19 +118,14 @@
           success: function(e) {
             alert(e);
             window.location.href = "<?= base_url('superadmin/Fasilitas/add_fasilitas') ?>"
+            document.getElementById("id").value = $(this).attr('data-id');
+            document.getElementById("id_user").value = $(this).attr('data-id_user');
+            document.getElementById("join_date").value = $(this).attr('data-join');
+            $('#selectkaryawan').modal('hide');
           }
+
         })
       }
     })
-
-  })
-
-  $('.click').on('click', function(e) {
-    document.getElementById("npk").value = $(this).attr('data-npk');
-    document.getElementById("nama").value = $(this).attr('data-nama');
-    document.getElementById("id").value = $(this).attr('data-id');
-    document.getElementById("id_user").value = $(this).attr('data-id_user');
-    document.getElementById("join_date").value = $(this).attr('data-join');
-    $('#selectkaryawan').modal('hide');
   })
 </script>
