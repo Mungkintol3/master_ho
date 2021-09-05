@@ -40,6 +40,7 @@ class Admin extends CI_Controller
         if ($update) {
             $this->session->set_flashdata('ok', 'password di reset');
             redirect('superadmin/Admin');
+          
         }
     }
 

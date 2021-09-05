@@ -48,7 +48,7 @@ class Surat_peringatan extends CI_Controller
 		if (!$this->upload->do_upload('file')) {
 			echo "failed";
 		} else {
-			$berkas     = $this->upload->data("file_name");
+			$berkas     	 = $this->upload->data("file_name");
 			$npk  			 = $this->input->post("npk");
 			$nama  			 = $this->input->post("nama");
 			$id_user 		 = $this->input->post("id_user");

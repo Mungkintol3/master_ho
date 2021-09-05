@@ -5,10 +5,11 @@ require FCPATH.'vendor/autoload.php';
 	use PhpOffice\PhpSpreadsheet\IOFactory;
 	use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
-class TambahKaryawan extends CI_Controller
-{
-	public function __construct()
-	{
+    class Tambahkar extends CI_Controller 
+    {
+
+        public function __construct()
+        {
 		parent::__construct();
 		$this->load->helper('url');
 		// $this->load->library('encryption');
@@ -19,38 +20,104 @@ class TambahKaryawan extends CI_Controller
 			redirect('Login');
 		}
 	}
-
-
-	public function index()
-	{
-
-		// $data = array();
-		// if (isset($_POST['submit'])) {
-		// 	$upload = $this->m_admin->uploadfile($this->filename);
-		// 	if ($upload['result'] == "success") {
-		// 		 Load plugin PHPExcel nya
-		// 		 include APPPATH . 'third_party/PHPExcel/PHPExcel.php';
-				
-		// 		$loadexcel = $excelreader->load('assets/upload/' . $this->filename . '.xlsx'); // Load file yang tadi diupload ke folder excel
-		// 		$sheet = $loadexcel->getActiveSheet()->toArray(null, true, true, true);
-
-		// 		// Masukan variabel $sheet ke dalam array data yang nantinya akan di kirim ke file form.php
-		// 		// Variabel $sheet tersebut berisi data-data yang sudah diinput di dalam excel yang sudha di upload sebelumnya
-		// 		$data['sheet'] = $sheet;
-		// 	} else {
-		// 		$data['upload_error'] = $upload['error']; // Ambil pesan error uploadnya untuk dikirim ke file form dan ditampilkan
-		// 		echo $upload['error'];
-		// 	}
-		// }
-			
-		$data1['url'] = $this->uri->segment(2);
+        
+        public function index()
+        {
+         $data1['url'] = $this->uri->segment(2);
 		$this->load->view('template/header', $data1);
 		$this->load->view('superadmin/form_add_pegawai');
 		$this->load->view('template/footer');
-	}
+        }
+
+        public function import(){
+           
+            $spreadsheet = new Spreadsheet();
+            $sheet = $spreadsheet->getActiveSheet();
+            $sheet->getColumnDimension('A')->setAutoSize(true);
+            $sheet->getColumnDimension('B')->setAutoSize(true);
+            $sheet->getColumnDimension('C')->setAutoSize(true);
+            $sheet->getColumnDimension('D')->setAutoSize(true);
+            $sheet->getColumnDimension('E')->setAutoSize(true);
+            $sheet->getColumnDimension('F')->setAutoSize(true);
+            $sheet->getColumnDimension('G')->setAutoSize(true);
+            $sheet->getColumnDimension('H')->setAutoSize(true);
+            $sheet->getColumnDimension('I')->setAutoSize(true);
+            $sheet->getColumnDimension('J')->setAutoSize(true);
+            $sheet->getColumnDimension('K')->setAutoSize(true);
+            $sheet->getColumnDimension('L')->setAutoSize(true);
+            $sheet->getColumnDimension('M')->setAutoSize(true);
+            $sheet->getColumnDimension('N')->setAutoSize(true);
+            $sheet->getColumnDimension('O')->setAutoSize(true);
+            $sheet->getColumnDimension('P')->setAutoSize(true);
+            $sheet->getColumnDimension('Q')->setAutoSize(true);
+            $sheet->getColumnDimension('R')->setAutoSize(true);
+            $sheet->getColumnDimension('S')->setAutoSize(true);
+            $sheet->getColumnDimension('T')->setAutoSize(true);
+            $sheet->getColumnDimension('U')->setAutoSize(true);
+            $sheet->getColumnDimension('V')->setAutoSize(true);
+            $sheet->getColumnDimension('W')->setAutoSize(true);
+            $sheet->getColumnDimension('X')->setAutoSize(true);
+            $sheet->getColumnDimension('Y')->setAutoSize(true);
+            $sheet->getColumnDimension('Z')->setAutoSize(true);
+            $sheet->getColumnDimension('AA')->setAutoSize(true);
+            $sheet->getColumnDimension('AB')->setAutoSize(true);
+            $sheet->getColumnDimension('AC')->setAutoSize(true);
+            $sheet->getColumnDimension('AD')->setAutoSize(true);
+            $sheet->getColumnDimension('AE')->setAutoSize(true);
+            $sheet->getColumnDimension('AF')->setAutoSize(true);
+            $sheet->getColumnDimension('AG')->setAutoSize(true);
 
 
-	public function upload()
+            $sheet->setCellValue('A1', 'NO');
+            $sheet->setCellValue('B1', 'Employe Number');
+            $sheet->setCellValue('C1', 'Name');
+            $sheet->setCellValue('D1', 'Wilayah');
+            $sheet->setCellValue('E1', 'Jenis Kelamin');
+            $sheet->setCellValue('F1', 'Status Perkawinan');
+            $sheet->setCellValue('G1', 'Alamat Tempat Tinggal');
+            $sheet->setCellValue('H1', 'Tempat Lahir');
+            $sheet->setCellValue('I1', 'Tanggal Lahir');
+            $sheet->setCellValue('J1', 'Umur');
+            $sheet->setCellValue('K1', 'No Telphone');
+            $sheet->setCellValue('L1', 'Alamat Email');
+            $sheet->setCellValue('M1', 'Golongan Darah');
+            $sheet->setCellValue('N1', 'Nomor KTP');
+            $sheet->setCellValue('O1', 'Nomor KK');
+            $sheet->setCellValue('P1', 'No BPJS Kes');
+            $sheet->setCellValue('Q1', 'No BPJS TK');
+            $sheet->setCellValue('R1', 'NO DPLK / Asuransi');
+            $sheet->setCellValue('S1', 'No NPWP');
+            $sheet->setCellValue('T1', 'Nama Bank');
+            $sheet->setCellValue('U1', 'No Rekening');
+            $sheet->setCellValue('V1', 'Status Pajak');
+            $sheet->setCellValue('W1', 'Status Perkawinan');
+            $sheet->setCellValue('X1', 'Nomor PKWT');
+            $sheet->setCellValue('Y1', 'Status Karyawan');
+            $sheet->setCellValue('Z1', 'Pendidikan Saat Bergabung');
+            $sheet->setCellValue('AA1', 'Kelompok Jabatan');
+            $sheet->setCellValue('AB1', 'Alamat KTP');
+            $sheet->setCellValue('AC1', 'Kontak Darurat');
+            $sheet->setCellValue('AD1', 'Tanggal Bergabung');
+            $sheet->setCellValue('AE1', 'Jurusan Pendidikan');
+            $sheet->setCellValue('AF1', 'Tahun Lulus');
+            $sheet->setCellValue('AG1', 'Nama Sekolah / Universitas'); 
+            
+            $sheet->getStyle('A1:AG1')->getFont()->setBold(true);
+            $sheet->getStyle('A1:AG1')->getAlignment()->setWrapText(true);
+		    $sheet->getStyle('A1:AG1')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
+		    $sheet->getStyle('A1:AG1')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+		    $sheet->getStyle('A1:AG1')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('FFFF00');
+
+            ob_end_clean();
+            header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+            header('Content-Disposition: attachment;filename="Upload Karyawan.xlsx"');
+            header('Cache-Control: max-age=0');
+            $writer = IOFactory::createWriter($spreadsheet,'Xlsx');
+            $writer->save("php://output");
+            die;
+        }
+
+        public function upload()
         {
             $upload_file=$_FILES['upload_file']['name'];
             $extension=pathinfo($upload_file,PATHINFO_EXTENSION);
@@ -162,5 +229,6 @@ class TambahKaryawan extends CI_Controller
                         echo "Gagal";
                     }
                 }
-	}
-}
+         }
+   }
+	

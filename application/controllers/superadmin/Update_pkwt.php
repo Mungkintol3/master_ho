@@ -47,7 +47,8 @@ class Update_pkwt extends CI_Controller
 		$this->upload->initialize($config);
 		if (!$this->upload->do_upload('file')) {
 			echo "failed";
-		} else {
+		}else{
+	
 			$berkas     = $this->upload->data("file_name");
 			$id  		= $this->input->post("id");
 			$id_user	= $this->input->post("id_user");
@@ -78,6 +79,6 @@ class Update_pkwt extends CI_Controller
 			} else {
 				echo "gagal update";
 			}
-		}
+	}
 	}
 }

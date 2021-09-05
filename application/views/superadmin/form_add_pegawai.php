@@ -13,8 +13,8 @@
       </div>
     <?php } ?>
     <div>
-      <form method="post" onsubmit="return validasi()" enctype="multipart/form-data" action="" id="uploadpegawai">
-          <input type="file" onchange="return cekexe()" name="file" id="file" class="form-control">
+      <form method="post"  enctype="multipart/form-data" action="<?= base_url('superadmin/TambahKaryawan/upload') ?>" id="uploadpegawai">
+          <input type="file" onchange="return cekexe()" name="upload_file" id="upload_file" class="form-control">
         <a href="<?= base_url('assets/upload/format/form_kar_upload.xlsx') ?>" class="btn btn-success btn-round">download format upload</a>
 
         <button type="submit" name="submit" class="btn btn-danger btn-round">Posting</button>
@@ -24,7 +24,7 @@
     </div>
     </div>
 
-    <?php 
+    <!-- <?php 
       if(isset($_POST['submit'])){ ?>
     <form action="<?= base_url('superadmin/TambahKaryawan/upload') ?>" method="post" >
       <table id="table" class="table">
@@ -36,13 +36,13 @@
           </tr>
         </thead>
         <tbody>
-        <?php $no =1 ; foreach($sheet as $r ) :  ?>
+         <!-- <?php $no =1 ; foreach($sheetdata as $sheetdata ) :  ?>
           <tr>
             <td><?= $no++ ?></td>
-            <td><?= $r['B'] ?></td>
-            <td><?= $r['C'] ?></td>
+            <td><?= $EmployeNumber?></td>
+            <td><?= $Name?></td>
           </tr>
-        <?php endforeach; ?>
+        <?php endforeach; ?> -->
         </tbody>
       </table>
       <div class="form-group">
@@ -50,12 +50,12 @@
       </div>
     </form> 
     <?php }
-    ?>
+    ?> -->
   </section>
 
   <script type="text/javascript">
     function cekexe(){
-      const file = document.getElementById('file');
+      const file = document.getElementById('upload_file');
       const path  = file.value ;
       const exe = /(\.xlsx)$/i;
       if(!exe.exec(path)){
@@ -65,8 +65,8 @@
       }
     }
 
-    function validasi(){
-      const file = document.getElementById('file');
+    function  (){
+      const file = document.getElementById('upload_file');
       if(file.value == "" || file.value == null){
         alert("file masih kosong");
         return false  ;

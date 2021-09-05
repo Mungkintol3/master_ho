@@ -22,7 +22,7 @@ class M_admin extends CI_Model
 		$this->load->library('upload');
 		$config['upload_path']		= './assets/upload/';
 		$config['allowed_types']	= 'xlsx|pdf';
-		$config['max_size']			= '12048';
+		$config['max_size']			= '500';
 		$config['overwrite']		= true;
 		$config['file_name']		= $filename;
 
@@ -44,11 +44,11 @@ class M_admin extends CI_Model
 		return $this->db->insert_batch($data, $table);
 	}
 
-	//cari data berdasarkan inputan 
-	public function cari($where, $table)
-	{
-		return $this->db->get_where($table, $where);
-	}
+		//cari data berdasarkan inputan 
+		public function cari($where, $table)
+		{
+			return $this->db->get_where($table, $where);
+		}
 
 	//hapus data
 	public function delete($table, $where)

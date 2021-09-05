@@ -31,7 +31,7 @@
                     </div>
 
                     <div class="form-group">
-                      <input type="text" id="pkwt_baru" onchange="return cekexe()" name="pkwt_baru"  placeholder="Enter PKWT Update" class="form-control">
+                      <input type="text" id="pkwt_baru"  name="pkwt_baru"  placeholder="Enter PKWT Update" class="form-control">
                     </div>
 
                     <label>Berkas Pendukung</label>
@@ -88,17 +88,6 @@
 
 
   <script type="text/javascript">
-    function cekexe(){
-      const file = document.getElementById('file');
-      const path  = file.value ;
-      const exe = /(\.pdf)$/i;
-      if(!exe.exec(path)){
-        alert("file harus berbentuk pdf");
-        file.value = "";
-        return ;
-      }
-    }
-
     
     $('.click').on('click',function(e){
         document.getElementById("npk").value = $(this).attr('data-npk');

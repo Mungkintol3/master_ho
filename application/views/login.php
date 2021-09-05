@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/login.css" media="screen">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/captcha/slidercaptcha.min.css">
 	<script type="tex/javascript" src="<?php echo base_url('assets/captcha/')?>longbow.slidercaptcha.min.js"></script>
+	<link rel="apple-touch-icon" sizes="76x76" href="<?= base_url('assets/img/')?>sigap.png">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/sweetalert2/sweetalert2.min.css" media="screen">
 	<script src="<?= base_url('assets/sweetalert2/') ?>sweetalert2.min.js"></script>
 
