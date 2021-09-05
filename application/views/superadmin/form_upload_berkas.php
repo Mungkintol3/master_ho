@@ -23,7 +23,8 @@
         <div class="form-group">
           <button type="button " data-toggle="modal" data-target="#selectkaryawan" class="btn btn-success">Cari Karyawan <i class="fa fa-search"></i> </button>
         </div>
-        <form onsubmit="return beforeSubmit()" id="uploadBerkas" class="form-horizontal" name="uploadBerkas" method="post" action="<?= base_url('superadmin/Upload_berkas/upload') ?>" enctype="multipart/form-data">
+        <!-- onsubmit="return beforeSubmit()" -->
+        <form id="uploadBerkas" class="form-horizontal" name="uploadBerkas" method="post" action="<?= base_url('superadmin/Upload_berkas/uploadTrial') ?>" enctype="multipart/form-data">
           <div class="form-group">
             <input type="hidden" name="id" id="id">
             <input type="hidden" name="id_user" id="id_user">
@@ -478,6 +479,19 @@
             document.getElementById("nama").value = $(this).attr('data-nama');
             document.getElementById("id").value = $(this).attr('data-id');
             document.getElementById("id_user").value = $(this).attr('data-id_user');
+            let id = $(this).attr('data-id_user');
+            $.ajax({
+              url: "<?= base_url('superadmin/Upload_berkas/cekFile') ?>",
+              data: "id=" + id,
+              method: "POST",
+              cache: false,
+              contentType: false,
+              processData: false,
+              success: function(result) {
+                // const d = JSON.parse(result);
+                console.log(result);
+              }
+            })
             $('#selectkaryawan').modal('hide');
           })
         </script>

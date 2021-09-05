@@ -6,20 +6,13 @@
 	<meta name="viewport" content="width=device-width , initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/login.css" media="screen">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/captcha/slidercaptcha.min.css">
-<<<<<<< HEAD
-	<script type="tex/javascript" src="<?php echo base_url('assets/captcha/')?>longbow.slidercaptcha.min.js"></script>
-	<link rel="apple-touch-icon" sizes="76x76" href="<?= base_url('assets/img/')?>sigap.png">
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/sweetalert2/sweetalert2.min.css" media="screen">
-=======
 	<script type="tex/javascript" src="<?php echo base_url('assets/captcha/') ?>longbow.slidercaptcha.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/sweetalert2/sweetalert2.min.css" media="screen">
->>>>>>> 430ec0225d1c788545d4fb6e396f123aefbfa07c
 	<script src="<?= base_url('assets/sweetalert2/') ?>sweetalert2.min.js"></script>
 
 </head>
 
 <body>
-
 	<div class="slidercaptcha card">
 		<div class="card-header">
 			<span>Drag To Verify</span>

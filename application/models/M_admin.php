@@ -44,11 +44,11 @@ class M_admin extends CI_Model
 		return $this->db->insert_batch($data, $table);
 	}
 
-		//cari data berdasarkan inputan 
-		public function cari($where, $table)
-		{
-			return $this->db->get_where($table, $where);
-		}
+	//cari data berdasarkan inputan 
+	public function cari($where, $table)
+	{
+		return $this->db->get_where($table, $where);
+	}
 
 	//hapus data
 	public function delete($table, $where)
@@ -172,5 +172,29 @@ class M_admin extends CI_Model
 	{
 		$query = $this->db->query("SELECT MAX(claim_ke) AS claim FROM tbl_fasilitasi WHERE id_user = '" . $id . "'  ");
 		return $query->row();
+	}
+
+
+	public function cekFile()
+	{
+		$query = $this->db->query("SELECT 
+		tbl_karyawan.id ,
+		tbl_karyawan.nama ,
+		tbl_karyawan.id_user	 ,
+		tbl_karyawan.npk ,
+		tbl_berkas.id_user , 
+		tbl_berkas.ktp ,
+		tbl_berkas.kartu_keluarga ,
+		tbl_berkas.buku_rekening ,
+		tbl_berkas.surat_lamaran ,
+		tbl_berkas.daftar_riwayat_hidup	 ,
+		tbl_berkas.surat_domisili	 ,
+		tbl_berkas.npwp ,
+		tbl_berkas.skck ,
+		tbl_berkas.surat_kesehatan ,
+		tbl_berkas.ijazah_sekolah ,
+		tbl_berkas.foto_karyawan
+		FROM tbl_karyawan JOIN tbl_berkas  ");
+		return $query->result();
 	}
 }
