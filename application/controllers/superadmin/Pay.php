@@ -18,6 +18,7 @@ class Pay extends CI_Controller
             $hitungPembayaran  = $this->m_admin->countPay($idPinjam);
 
             if ($dataPeminjam->tanggal == $today && $hitungPembayaran != $hutang->total_pinjam) {
+                //jika tanggal bayar & tgl sekarang sama  && total bayar dan jumlah hutang tidak sama eksekusi script ini 
                 $d = ['jumlah_bayar' => $hutang->setor_perbulan];
                 $this->m_admin->update($d, "tbl_pembayaran", array('id_pinjam' => $idPinjam, 'tanggal' => $today));
                 echo "dibayar untuk bulan " . $today;
