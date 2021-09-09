@@ -92,7 +92,7 @@ class Upload_berkas extends CI_Controller
 				$ktp = $this->input->post("namaKTP");
 				//echo "file tidak update";
 			} else if ($this->input->post("namaKTP") != $identitas->ktp) {
-				if (file_exists("assets/upload/berkas/ktp/$identitas->ktp")) {
+				if (file_exists("./assets/upload/berkas/ktp/$identitas->ktp")) {
 					unlink("assets/upload/berkas/ktp/$identitas->ktp");
 				}
 				$ktp = "KTP" . $id_user . date('his') .  '.pdf';
@@ -104,7 +104,7 @@ class Upload_berkas extends CI_Controller
 				$kartu_keluarga = $this->input->post("idKK");
 				//echo "file tidak update";
 			} else if ($kartu_keluarga != $identitas->kartu_keluarga) {
-				if (file_exists("assets/upload/berkas/kartu keluarga/$identitas->kartu_keluarga")) {
+				if (file_exists("./assets/upload/berkas/kartu keluarga/$identitas->kartu_keluarga")) {
 					unlink("assets/upload/berkas/kartu keluarga/$identitas->kartu_keluarga");
 				}
 				$kartu_keluarga = "Kartu_Keluarga" . $id_user . date('his') .  '.pdf';
@@ -115,7 +115,7 @@ class Upload_berkas extends CI_Controller
 				$buku_rekening = $this->input->post("idrekening");
 				//echo "file tidak update";
 			} else if ($buku_rekening != $identitas->buku_rekening) {
-				if (file_exists("assets/upload/berkas/buku rekening/$identitas->buku_rekening")) {
+				if (file_exists("./assets/upload/berkas/buku rekening/$identitas->buku_rekening")) {
 					unlink("assets/upload/berkas/buku rekening/$identitas->buku_rekening");
 				}
 				$buku_rekening = "Buku_rekening" . $id_user . date('his') .  '.pdf';
@@ -148,8 +148,8 @@ class Upload_berkas extends CI_Controller
 				$ket_domisili = $this->input->post("idDomisili");
 				//echo "file tidak update";
 			} else if ($ket_domisili != $identitas->surat_domisili) {
-				if (file_exists("assets/upload/berkas/daftar riwayat hidup/$identitas->surat_domisili")) {
-					unlink("assets/upload/berkas/daftar riwayat hidup/$identitas->surat_domisili");
+				if (file_exists("./assets/upload/berkas/domisili/$identitas->surat_domisili")) {
+					unlink("assets/upload/berkas/domisili/$identitas->surat_domisili");
 				}
 				$ket_domisili = "Domisili" . $id_user . date('his') .  '.pdf';
 				//echo "update file   <br>";
@@ -217,10 +217,11 @@ class Upload_berkas extends CI_Controller
 			move_uploaded_file($_FILES['buku_rekening']['tmp_name'], 'assets/upload/berkas/buku rekening/' . $buku_rekening);
 			move_uploaded_file($_FILES['surat_lamaran']['tmp_name'], 'assets/upload/berkas/surat lamaran/' . $surat_lamaran);
 			move_uploaded_file($_FILES['riwayat_hidup']['tmp_name'], 'assets/upload/berkas/daftar riwayat hidup/' . $riwayat_hidup);
+			move_uploaded_file($_FILES['ket_domisili']['tmp_name'], 'assets/upload/berkas/domisili/' . $ket_domisili);
 			move_uploaded_file($_FILES['npwp']['tmp_name'], 'assets/upload/berkas/npwp/' . $npwp);
 			move_uploaded_file($_FILES['skck']['tmp_name'], 'assets/upload/berkas/skck/' . $skck);
 			move_uploaded_file($_FILES['ket_kesehatan']['tmp_name'], 'assets/upload/berkas/surat kesehatan/' . $ket_kesehatan);
-			move_uploaded_file($_FILES['ijazah']['tmp_name'], 'assets/upload/berkas/ijazah/' . $ijazah);
+			move_uploaded_file($_FILES['ijazah_sekolah']['tmp_name'], 'assets/upload/berkas/ijazah/' . $ijazah);
 			move_uploaded_file($_FILES['photo']['tmp_name'], 'assets/upload/berkas/photo/' . $photo);
 			$data = array(
 				'ktp'					=> $ktp,
@@ -317,7 +318,7 @@ class Upload_berkas extends CI_Controller
 
 			//rename nama file ijazah yang di upload
 			if ($ijazah != null || $ijazah != "") {
-				$ijazah	= "Ijazah" . $id_user . date('his') .  '.pdf';
+				$ijazah	= "IJAZAH" . $id_user . date('his') .  '.pdf';
 			} else {
 				$ijazah = null;
 			}
@@ -340,7 +341,7 @@ class Upload_berkas extends CI_Controller
 			move_uploaded_file($_FILES['npwp']['tmp_name'], 'assets/upload/berkas/npwp/' . $npwp);
 			move_uploaded_file($_FILES['skck']['tmp_name'], 'assets/upload/berkas/skck/' . $skck);
 			move_uploaded_file($_FILES['ket_kesehatan']['tmp_name'], 'assets/upload/berkas/surat kesehatan/' . $ket_kesehatan);
-			move_uploaded_file($_FILES['ijazah']['tmp_name'], 'assets/upload/berkas/ijazah/' . $ijazah);
+			move_uploaded_file($_FILES['ijazah_sekolah']['tmp_name'], 'assets/upload/berkas/ijazah/' . $ijazah);
 			move_uploaded_file($_FILES['photo']['tmp_name'], 'assets/upload/berkas/photo/' . $photo);
 			$data = array(
 				'id_user'				=> $id_user,
