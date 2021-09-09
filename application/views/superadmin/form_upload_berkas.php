@@ -23,8 +23,8 @@
         <div class="form-group">
           <button type="button " data-toggle="modal" data-target="#selectkaryawan" class="btn btn-success">Cari Karyawan <i class="fa fa-search"></i> </button>
         </div>
-        <!-- onsubmit="return beforeSubmit()" -->
-        <form id="uploadBerkas" class="form-horizontal" name="uploadBerkas" method="post" action="<?= base_url('superadmin/Upload_berkas/uploadTrial') ?>" enctype="multipart/form-data">
+        <!--  -->
+        <form onsubmit="return beforeSubmit()" id="uploadBerkas" class="form-horizontal" name="uploadBerkas" method="post" action="<?= base_url('superadmin/Upload_berkas/uploadTrial') ?>" enctype="multipart/form-data">
           <div class="form-group">
             <input type="hidden" name="id" id="id">
             <input type="hidden" name="id_user" id="id_user">
@@ -38,7 +38,7 @@
           <div class="form-group form-file-upload form-file-multiple">
             <input type="file" name="ktp" id="ktp" class="inputFileHidden">
             <div class="input-group">
-              <input type="text" class="form-control form-file-upload inputFileVisible" id="namaKTP" placeholder=" Kartu Tanda Penduduk">
+              <input type="text" name="namaKTP" autocomplete="off" class="form-control form-file-upload inputFileVisible" id="namaKTP" placeholder="Kartu Tanda Penduduk">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-fab btn-round btn-primary">
                   <i class="material-icons">attach_file</i>
@@ -49,7 +49,7 @@
           <div class="form-group form-file-upload form-file-multiple">
             <input type="file" name="kartu_keluarga" id="kartu_keluarga" class="inputFileHidden">
             <div class="input-group">
-              <input type="text" class="form-control form-file-upload inputFileVisible" id="idKK" placeholder="Kartu Keluarga">
+              <input type="text" autocomplete="off" class="form-control form-file-upload inputFileVisible" name="idKK" id="idKK" placeholder="Kartu Keluarga">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-fab btn-round btn-primary">
                   <i class="material-icons">attach_file</i>
@@ -60,7 +60,7 @@
           <div class="form-group form-file-upload form-file-multiple">
             <input type="file" name="buku_rekening" id="buku_rekening" class="inputFileHidden">
             <div class="input-group">
-              <input type="text" class="form-control form-file-upload inputFileVisible" id="idrekening" placeholder="Buku Rekening">
+              <input type="text" autocomplete="off" class="form-control form-file-upload inputFileVisible" name="idrekening" id="idrekening" placeholder="Buku Rekening">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-fab btn-round btn-primary">
                   <i class="material-icons">attach_file</i>
@@ -71,7 +71,7 @@
           <div class="form-group form-file-upload form-file-multiple">
             <input type="file" name="surat_lamaran" id="surat_lamaran" class="inputFileHidden">
             <div class="input-group">
-              <input type="text" class="form-control form-file-upload inputFileVisible" id="idLamaran" placeholder="Surat Lamaran">
+              <input type="text" autocomplete="off" class="form-control form-file-upload inputFileVisible" name="idLamaran" id="idLamaran" placeholder="Surat Lamaran">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-fab btn-round btn-primary">
                   <i class="material-icons">attach_file</i>
@@ -82,7 +82,7 @@
           <div class="form-group form-file-upload form-file-multiple">
             <input type="file" name="riwayat_hidup" id="riwayat_hidup" class="inputFileHidden">
             <div class="input-group">
-              <input type="text" class="form-control form-file-upload inputFileVisible" id="idRiwayat" placeholder="Daftar Riwayat Hidup">
+              <input type="text" autocomplete="off" class="form-control form-file-upload inputFileVisible" name="idRiwayat" id="idRiwayat" placeholder="Daftar Riwayat Hidup">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-fab btn-round btn-primary">
                   <i class="material-icons">attach_file</i>
@@ -93,7 +93,7 @@
           <div class="form-group form-file-upload form-file-multiple">
             <input type="file" name="ket_domisili" id="ket_domisili" class="inputFileHidden">
             <div class="input-group">
-              <input type="text" class="form-control form-file-upload inputFileVisible" id="idDomisili" placeholder="Surat Keterangan Domisili">
+              <input type="text" autocomplete="off" class="form-control form-file-upload inputFileVisible" name="idDomisili" id="idDomisili" placeholder="Surat Keterangan Domisili">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-fab btn-round btn-primary">
                   <i class="material-icons">attach_file</i>
@@ -104,7 +104,7 @@
           <div class="form-group form-file-upload form-file-multiple">
             <input type="file" name="npwp" id="npwp" class="inputFileHidden">
             <div class="input-group">
-              <input type="text" class="form-control form-file-upload inputFileVisible" id="idNPWP" placeholder="Nomor Pokok Wajib pajak">
+              <input type="text" autocomplete="off" class="form-control form-file-upload inputFileVisible" name="idNPWP" id="idNPWP" placeholder="Nomor Pokok Wajib pajak">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-fab btn-round btn-primary">
                   <i class="material-icons">attach_file</i>
@@ -115,7 +115,7 @@
           <div class="form-group form-file-upload form-file-multiple">
             <input type="file" name="skck" id="skck" class="inputFileHidden">
             <div class="input-group">
-              <input type="text" class="form-control form-file-upload inputFileVisible" id="idSKCK" placeholder="Surat Keterangan Catatan Kepolisian">
+              <input type="text" autocomplete="off" class="form-control form-file-upload inputFileVisible" name="idSKCK" id="idSKCK" placeholder="Surat Keterangan Catatan Kepolisian">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-fab btn-round btn-primary">
                   <i class="material-icons">attach_file</i>
@@ -126,7 +126,7 @@
           <div class="form-group form-file-upload form-file-multiple">
             <input type="file" name="ket_kesehatan" id="ket_kesehatan" class="inputFileHidden">
             <div class="input-group">
-              <input type="text" class="form-control form-file-upload inputFileVisible" id="idKesehatan" placeholder="Surat Keterangan Kesehatan">
+              <input type="text" autocomplete="off" class="form-control form-file-upload inputFileVisible" name="idKesehatan" id="idKesehatan" placeholder="Surat Keterangan Kesehatan">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-fab btn-round btn-primary">
                   <i class="material-icons">attach_file</i>
@@ -137,7 +137,7 @@
           <div class="form-group form-file-upload form-file-multiple">
             <input type="file" name="ijazah_sekolah" id="ijazah_sekolah" class="inputFileHidden">
             <div class="input-group">
-              <input type="text" class="form-control form-file-upload inputFileVisible" id="idIjazah" placeholder="Ijazah Sekolah">
+              <input type="text" autocomplete="off" class="form-control form-file-upload inputFileVisible" name="idIjazah" id="idIjazah" placeholder="Ijazah Sekolah">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-fab btn-round btn-primary">
                   <i class="material-icons">attach_file</i>
@@ -148,7 +148,7 @@
           <div class="form-group form-file-upload form-file-multiple">
             <input type="file" name="photo" id="photo" class="inputFileHidden">
             <div class="input-group">
-              <input type="text" id="idPhoto" class="form-control form-file-upload inputFileVisible" placeholder="Foto Karyawan">
+              <input type="text" autocomplete="off" id="idPhoto" name="idPhoto" class="form-control form-file-upload inputFileVisible" placeholder="Foto Karyawan">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-fab btn-round btn-primary">
                   <i class="material-icons">attach_file</i>
@@ -398,40 +398,42 @@
             if (document.getElementById('npk').value == "") {
               alert("Data Karyawan masih kosong");
               return false;
-            } else if (document.getElementById('ktp').value == "") {
-              alert("Kartu Tanda Penduduk masih kosong");
-              return false;
-            } else if (document.getElementById('kartu_keluarga').value == "") {
-              alert("Kartu Keluarga  masih kosong");
-              return false;
-            } else if (document.getElementById('surat_lamaran').value == "") {
-              alert("Surat Lamaran  masih kosong");
-              return false;
-            } else if (document.getElementById('buku_rekening').value == "") {
-              alert("Buku Rekening  masih kosong");
-              return false;
-            } else if (document.getElementById('riwayat_hidup').value == "") {
-              alert("Daftar Riwayat Hidup  masih kosong");
-              return false;
-            } else if (document.getElementById('ket_domisili').value == "") {
-              alert("Surat Keterangan Domisili  masih kosong");
-              return false;
-            } else if (document.getElementById('npwp').value == "") {
-              alert("Nomor Pokok Wajib Pajak masih kosong");
-              return false;
-            } else if (document.getElementById('ket_kesehatan').value == "") {
-              alert("Surat Keterangan Kesehatan kosong");
-              return false;
-            } else if (document.getElementById('skck').value == "") {
-              alert("Surat Keterangan Kepolisian  masih kosong");
-              return false;
-            } else if (document.getElementById('photo').value == "") {
-              alert("Foto karyawan masih kosong");
-              return false;
-            } else if (document.getElementById('ijazah_sekolah').value == "") {
-              alert("Ijazah Sekolah masih kosong");
-              return false;
             }
+            //else if (document.getElementById('ktp').value == "") {
+            //  alert("Kartu Tanda Penduduk masih kosong");
+            //  return false;
+            // } 
+            //else if (document.getElementById('kartu_keluarga').value == "") {
+            //   alert("Kartu Keluarga  masih kosong");
+            //   return false;
+            // } else if (document.getElementById('surat_lamaran').value == "") {
+            //   alert("Surat Lamaran  masih kosong");
+            //   return false;
+            // } else if (document.getElementById('buku_rekening').value == "") {
+            //   alert("Buku Rekening  masih kosong");
+            //   return false;
+            // } else if (document.getElementById('riwayat_hidup').value == "") {
+            //   alert("Daftar Riwayat Hidup  masih kosong");
+            //   return false;
+            // } else if (document.getElementById('ket_domisili').value == "") {
+            //   alert("Surat Keterangan Domisili  masih kosong");
+            //   return false;
+            // } else if (document.getElementById('npwp').value == "") {
+            //   alert("Nomor Pokok Wajib Pajak masih kosong");
+            //   return false;
+            // } else if (document.getElementById('ket_kesehatan').value == "") {
+            //   alert("Surat Keterangan Kesehatan kosong");
+            //   return false;
+            // } else if (document.getElementById('skck').value == "") {
+            //   alert("Surat Keterangan Kepolisian  masih kosong");
+            //   return false;
+            // } else if (document.getElementById('photo').value == "") {
+            //   alert("Foto karyawan masih kosong");
+            //   return false;
+            // } else if (document.getElementById('ijazah_sekolah').value == "") {
+            //   alert("Ijazah Sekolah masih kosong");
+            //   return false;
+            // }
 
             return;
           }
@@ -474,24 +476,51 @@
             $(this).parent().siblings().trigger('focusout');
           });
 
-          $('.click').on('click', function(e) {
-            document.getElementById("npk").value = $(this).attr('data-npk');
-            document.getElementById("nama").value = $(this).attr('data-nama');
-            document.getElementById("id").value = $(this).attr('data-id');
-            document.getElementById("id_user").value = $(this).attr('data-id_user');
-            let id = $(this).attr('data-id_user');
-            $.ajax({
-              url: "<?= base_url('superadmin/Upload_berkas/cekFile') ?>",
-              data: "id=" + id,
-              method: "POST",
-              cache: false,
-              contentType: false,
-              processData: false,
-              success: function(result) {
-                // const d = JSON.parse(result);
-                console.log(result);
-              }
+
+          $(function() {
+            $('.click').on('click', function(e) {
+              // e.preventDefault();
+              document.getElementById("npk").value = $(this).attr('data-npk');
+              document.getElementById("nama").value = $(this).attr('data-nama');
+              document.getElementById("id").value = $(this).attr('data-id');
+              document.getElementById("id_user").value = $(this).attr('data-id_user');
+              let idUser = $(this).attr('data-id_user');
+              $.ajax({
+                url: "<?= base_url('superadmin/Upload_berkas/cekFile') ?>",
+                method: "POST",
+                data: 'id=' + idUser,
+                success: function(result) {
+                  const data = result.replace('`', "");
+                  const hasil = JSON.parse(data);
+                  console.log(hasil.result);
+                  if (hasil.result == 0) {
+                    document.getElementById('namaKTP').value = "";
+                    document.getElementById('idKK').value = "";
+                    document.getElementById('idrekening').value = "";
+                    document.getElementById('idLamaran').value = "";
+                    document.getElementById('idRiwayat').value = "";
+                    document.getElementById('idDomisili').value = "";
+                    document.getElementById('idNPWP').value = "";
+                    document.getElementById('idSKCK').value = "";
+                    document.getElementById('idKesehatan').value = "";
+                    document.getElementById('idIjazah').value = "";
+                    document.getElementById('idPhoto').value = "";
+                  } else {
+                    document.getElementById('namaKTP').value = hasil.ktp;
+                    document.getElementById('idKK').value = hasil.kartu_keluarga;
+                    document.getElementById('idrekening').value = hasil.buku_rekening;
+                    document.getElementById('idLamaran').value = hasil.surat_lamaran;
+                    document.getElementById('idRiwayat').value = hasil.daftar_riwayat_hidup;
+                    document.getElementById('idDomisili').value = hasil.surat_domisili;
+                    document.getElementById('idNPWP').value = hasil.npwp;
+                    document.getElementById('idSKCK').value = hasil.skck;
+                    document.getElementById('idKesehatan').value = hasil.surat_kesehatan;
+                    document.getElementById('idIjazah').value = hasil.ijazah_sekolah;
+                    document.getElementById('idPhoto').value = hasil.foto_karyawan;
+                  }
+                }
+              })
+              $('#selectkaryawan').modal('hide');
             })
-            $('#selectkaryawan').modal('hide');
           })
         </script>

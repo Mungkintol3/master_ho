@@ -175,8 +175,9 @@ class M_admin extends CI_Model
 	}
 
 
-	public function cekFile()
+	public function cekFile($idUser)
 	{
+
 		$query = $this->db->query("SELECT 
 		tbl_karyawan.id ,
 		tbl_karyawan.nama ,
@@ -194,7 +195,9 @@ class M_admin extends CI_Model
 		tbl_berkas.surat_kesehatan ,
 		tbl_berkas.ijazah_sekolah ,
 		tbl_berkas.foto_karyawan
-		FROM tbl_karyawan JOIN tbl_berkas  ");
-		return $query->result();
+		FROM tbl_karyawan JOIN tbl_berkas
+		where tbl_karyawan.id_user = tbl_berkas.id_user 
+		and tbl_berkas.id_user = '" . $idUser . "' ");
+		return $query;
 	}
 }
